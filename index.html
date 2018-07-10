@@ -162,14 +162,12 @@
 </ul>
 <p>Dlib的主要特点:</p>
 <ol>
-<li>文档齐全</li>
-</ol>
-<p>不像很多其他的开源库一样,Dlib为每一个类和函数提供了完整的文档说明。同时,还提供了debug模式;打开debug模式后,用户可以调试代码,查看变量和对象的值,快速定位错误点。另外,Dlib还提供了大量的实例。</p>
-<ol start="2">
-<li>高质量的可移植代码</li>
-</ol>
-<p>Dlib不依赖第三方库,无须安装和配置,这部分可参照(官网左侧树形目录的how to compile的介绍)。Dlib可用在window、Mac OS、Linux系统上。</p>
-<ol start="3">
+<li><p>文档齐全</p>
+<p> 不像很多其他的开源库一样,Dlib为每一个类和函数提供了完整的文档说明。同时,还提供了debug模式;打开debug模式后,用户可以调试代码,查看变量和对象的值,快速定位错误点。另外,Dlib还提供了大量的实例。</p>
+</li>
+<li><p>高质量的可移植代码</p>
+<p> Dlib不依赖第三方库,无须安装和配置,这部分可参照(官网左侧树形目录的how to compile的介绍)。Dlib可用在window、Mac OS、Linux系统上。</p>
+</li>
 <li><p>提供大量的机器学习 / 图像处理算法</p>
 <ul>
 <li><p>深度学习</p>
@@ -187,7 +185,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="人脸检测（框选）"><a href="#人脸检测（框选）" class="headerlink" title="人脸检测（框选）"></a>人脸检测（框选）</h2><h2 id="人脸检测（点选）"><a href="#人脸检测（点选）" class="headerlink" title="人脸检测（点选）"></a>人脸检测（点选）</h2><p>利用OpenCV读取摄像头数据帧，其实数据帧就是numpy数组。然后直接dlib提供的detector方法进行人脸检测。此处直接对三通道图片进行人脸检测。</p>
+<h2 id="人脸检测（CNN）"><a href="#人脸检测（CNN）" class="headerlink" title="人脸检测（CNN）"></a>人脸检测（CNN）</h2><h2 id="人脸检测（68-landmark）"><a href="#人脸检测（68-landmark）" class="headerlink" title="人脸检测（68 landmark）"></a>人脸检测（68 landmark）</h2><p>利用OpenCV读取摄像头数据帧，官方例程利用load_rgb_image加载图片文件，其数据帧就是numpy数组。然后直接dlib提供的detector方法进行采取面部68个地标进行人脸检测。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> dlib</span><br><span class="line"> </span><br><span class="line">cap=cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 可在官网下载已经训练好的68特征人脸数据 </span></span><br><span class="line"><span class="comment"># http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 下载数据包</span></span><br><span class="line">predictor_path = <span class="string">"shape_predictor_68_face_landmarks.dat"</span></span><br><span class="line">predictor = dlib.shape_predictor(predictor_path)</span><br><span class="line">detector = dlib.get_frontal_face_detector()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    _,frame=cap.read()</span><br><span class="line">    <span class="comment"># Ask the detector to find the bounding boxes of each face. The 1 in the  </span></span><br><span class="line">    <span class="comment"># second argument indicates that we should upsample the image 1 time. This  </span></span><br><span class="line">    <span class="comment"># will make everything bigger and allow us to detect more faces. </span></span><br><span class="line">    dets = detector(frame, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> len(dets) != <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># Get the landmarks/parts for the face in box d.</span></span><br><span class="line">        shape = predictor(frame, dets[<span class="number">0</span>])</span><br><span class="line">        print(shape.parts())</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> shape.parts():</span><br><span class="line">            cv2.circle(frame, (p.x, p.y), <span class="number">3</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>), <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    cv2.imshow(<span class="string">'video'</span>,frame)</span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>)&amp;<span class="number">0xFF</span>==<span class="number">27</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
