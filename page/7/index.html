@@ -3,24 +3,20 @@
 <head>
   <meta charset="utf-8">
   <!-- 
-  <title>Q</title> -->
+  <title>第 7 页 | Q</title> -->
   <title>Q</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta name="description" content="“ 世界上只有一种真正的英雄主义，那就是在认清生活的真相后依然热爱生活。 ”                                                  ——罗曼·罗兰 《米开朗琪罗》 Quenwa Zhang 湖南,长沙技能: C++, Python">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Q">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta property="og:url" content="http://yoursite.com/page/7/index.html">
 <meta property="og:site_name" content="Q">
-<meta property="og:description" content="“ 世界上只有一种真正的英雄主义，那就是在认清生活的真相后依然热爱生活。 ”                                                  ——罗曼·罗兰 《米开朗琪罗》 Quenwa Zhang 湖南,长沙技能: C++, Python">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-09T02:38:44.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Q">
-<meta name="twitter:description" content="“ 世界上只有一种真正的英雄主义，那就是在认清生活的真相后依然热爱生活。 ”                                                  ——罗曼·罗兰 《米开朗琪罗》 Quenwa Zhang 湖南,长沙技能: C++, Python">
   
     <link rel="alternate" href="/atom.xml" title="Q" type="application/atom+xml">
   
@@ -125,65 +121,71 @@
             
       <div id="content" class="outer">
         
-          <section id="main"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+          <section id="main">
+  
+    <article id="post-对异常、断言与返回值的选择"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/07/02/对异常、断言与返回值的选择/">对异常、断言与返回值的选择</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-meta">
       
+	<a href="/2018/07/02/对异常、断言与返回值的选择/" class="article-date">
+	  <time datetime="2018-07-01T16:58:55.000Z" itemprop="datePublished">七月 2, 2018</time>
+	</a>
+
        
       
-	<span id="busuanzi_container_page_pv">
-	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	</span>
-
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>“ 世界上只有一种真正的英雄主义，那就是在认清生活的真相后依然热爱生活。 ”
+        <pre><code>编码过程中，难免遇到对异常、断言及返回值选择问题的困惑。本文将收集到网络上对这种选择的总结。因基本没有一个课本对这几个选择有明确的界定，故本文提供建议，仅供参考。
+</code></pre><h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>当你实现某个功能可能失败，则可以利用返回值的形式告知调用者失败原因或直接返回失败。</p>
+<p>eg: 你找一个目录下不确定存在的东西，没找到即返回没找到。</p>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>断言即断定绝对不会发生的事情，即不可能事件。<br>使用场景：在你当前代码逻辑下，你认为100%不会出现某种情况，请使用断言，主要用于开发人员对问题快速定位。</p>
+<p>注意：切记勿用断言替代入参检查替代返回值，将导致Release模式下入参的不确定性，而引发未知错误。</p>
+<p>eg: 数组索引是否超出范围</p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>异常则是你实现的功能99.999%不会失败，但可能0.001%的原因导致失败了，请毫不犹豫使用异常。</p>
+<p>eg: 你找一个程序必须的应该存在的配置文件，没找到可以抛出异常。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>方便对底层代码的不可能发生的错误进行遏止，留下发生异常原因，然后自杀进程。避免异常蔓延导致难以定位的错误。<br>异常是处理构造函数失败的唯一途径</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>底层代码异常泛滥，顶层代码将要对所有调用进行异常捕获与处理。甚至导致中间过程未处理而出现不可预料的错误。<br>异常会彻底扰乱程序的执行流程并难以判断，函数也许会在您意料不到的地方返回。<br>切勿在析构函数中抛出异常，将导致内存泄漏及其他不可预料的错误。</p>
+<h2 id="其他说法"><a href="#其他说法" class="headerlink" title="其他说法"></a>其他说法</h2><h3 id="观点一"><a href="#观点一" class="headerlink" title="观点一"></a>观点一</h3><p>也有部分人认为，针对对外接口（客户对象非程序员）不使用异常，因客户可不想看到程序崩溃的情况。而内部接口使用异常，便于开发过程中快速定位错误。</p>
+<h3 id="观点二"><a href="#观点二" class="headerlink" title="观点二"></a>观点二</h3><p>在google的编码规范中是严禁使用异常的，估计缘由与google现有的大多数C++代码都没有异常处理, 所以引入带有异常处理的新代码相当困难。</p>
 
-                                                ——罗曼·罗兰 《米开朗琪罗》
-</code></pre><h2 id="Quenwa-Zhang"><a href="#Quenwa-Zhang" class="headerlink" title="Quenwa Zhang"></a>Quenwa Zhang</h2><h4 id="湖南-长沙"><a href="#湖南-长沙" class="headerlink" title=" 湖南,长沙"></a><span><i class="fa fa-mars"></i></span> 湖南,长沙</h4><h5 id="技能-C-Python"><a href="#技能-C-Python" class="headerlink" title="技能: C++, Python"></a>技能: C++, Python</h5>
       
     </div>
     <footer class="entry-meta entry-footer">
       
       
-      
-        
-	<div id="comment">
-		<!-- 来必力City版安装代码 -->
-		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
-		<script type="text/javascript">
-		   (function(d, s) {
-		       var j, e = d.getElementsByTagName(s)[0];
-
-		       if (typeof LivereTower === 'function') { return; }
-
-		       j = d.createElement(s);
-		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-		       j.async = true;
-
-		       e.parentNode.insertBefore(j, e);
-		   })(document, 'script');
-		</script>
-		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-		</div>
-		<!-- City版安装代码已完成 -->
-	</div>
-
-
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingThinking/">编程思想</a></li></ul>
 
       
     </footer>
     <hr class="entry-footer-hr">
   </div>
   
-    
-  
 </article>
 
 <!-- Table of Contents -->
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">下一页</a>
+  </nav>
+
 </section>
           <aside id="sidebar">
   
