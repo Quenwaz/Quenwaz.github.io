@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <!-- 
-  <title>Tag: Socket | Q</title> -->
+  <title>第 4 页 | Q</title> -->
   <title>Q</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
@@ -12,7 +12,7 @@
   
   <meta property="og:type" content="website">
 <meta property="og:title" content="Q">
-<meta property="og:url" content="http://yoursite.com/tags/Socket/index.html">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
 <meta property="og:site_name" content="Q">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -123,40 +123,63 @@
         
           <section id="main">
   
-  
-  
+    <article id="post-OpenCV-显示视频"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/07/03/利用Socket传输摄像头视频流数据/" class="archive-article-date">
-		  <time datetime="2018-07-03T03:05:11.000Z" itemprop="datePublished">7月 03, 2018</time>
-	  </a>
-      
+      <header class="article-header">
+        
   
     <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/07/03/利用Socket传输摄像头视频流数据/">利用Socket传输摄像头视频流数据</a>
+      <a class="article-title" href="/2018/07/02/OpenCV-显示视频/">OpenCV 显示视频</a>
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/02/OpenCV-显示视频/" class="article-date">
+	  <time datetime="2018-07-02T02:40:57.000Z" itemprop="datePublished">七月 2, 2018</time>
+	</a>
+
+       
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h2><ul>
+<li>python 3.6.1   </li>
+<li>cv2</li>
+<li>numpy</li>
+</ul>
+<h2 id="从摄像头中读取"><a href="#从摄像头中读取" class="headerlink" title="从摄像头中读取"></a>从摄像头中读取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">"capture"</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>若需知道视频最大分辨率，及帧数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取摄像头最大分辨率</span></span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_WIDTH)</span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_HEIGHT)</span><br><span class="line"><span class="comment"># 获取视频帧数</span></span><br><span class="line">fps =cap.get(cv2.CAP_PROP_FPS)</span><br></pre></td></tr></table></figure></p>
+<h2 id="从MP4文件中读取"><a href="#从MP4文件中读取" class="headerlink" title="从MP4文件中读取"></a>从MP4文件中读取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="string">"D://test.mp4"</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">"capture"</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
   </div>
+  
 </article>
-  
-  
-    </div></section>
+
+<!-- Table of Contents -->
+
   
 
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+  </nav>
 
 </section>
           <aside id="sidebar">
