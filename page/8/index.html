@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <!-- 
-  <title>归档: 2018 | Q</title> -->
+  <title>第 8 页 | Q</title> -->
   <title>Q</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
@@ -14,7 +14,7 @@
 <meta name="keywords" content="C++,Boost,STL,Python,OpenCV,人脸识别,编程思想">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Q">
-<meta property="og:url" content="http://yoursite.com/archives/2018/page/3/index.html">
+<meta property="og:url" content="http://yoursite.com/page/8/index.html">
 <meta property="og:site_name" content="Q">
 <meta property="og:description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
 <meta property="og:locale" content="zh-CN">
@@ -128,56 +128,92 @@
       <div id="content" class="outer">
         
           <section id="main">
-  <div class="archives-tags-wrap"><blockquote><span>目前共计8篇文章</span></blockquote>
-
-
-
-
-
-	<!-- 分页显示 -->
-	
-	
-		
-		
-		  
-		  
-		  <section class="archives-wrap">
-		    <div class="archive-year-wrap">
-		      <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
-		    </div>
-		    <div class="archives">
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2018/07/05/利用dlib进行人脸检测/" class="archive-article-date">
-		  <time datetime="2018-07-05T04:21:04.000Z" itemprop="datePublished">7月 05, 2018</time>
-	  </a>
-      
+  
+    <article id="post-优雅地使用Hexo搭建Github博客"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
   
     <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/07/05/利用dlib进行人脸检测/">利用dlib进行人脸检测</a>
+      <a class="article-title" href="/2018/06/30/优雅地使用Hexo搭建Github博客/">优雅地使用Hexo搭建Github Blog</a>
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/06/30/优雅地使用Hexo搭建Github博客/" class="article-date">
+	  <time datetime="2018-06-30T06:59:30.000Z" itemprop="datePublished">六月 30, 2018</time>
+	</a>
+
+       
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>在github上新建一个仓库<br><img src="/2018/06/30/优雅地使用Hexo搭建Github博客/new_repository.jpg" title="New Repository"></p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><h3 id="依赖环境"><a href="#依赖环境" class="headerlink" title="依赖环境"></a>依赖环境</h3><p>在安装Hexo之前，需要首先安装以下依赖，其中Node.js中已经包含npm：</p>
+<ul>
+<li>Git</li>
+<li>Npm</li>
+<li>Node.js (LTS)</li>
+</ul>
+<h3 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h3><p>若已经安装好git，且利用git安装好npm。即可进行hexo的安装。在Git Bash中输入此命令行：</p>
+<pre><code>npm install -g hexo-cli
+</code></pre><h2 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h2><h3 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h3><pre><code># 新建博客文件夹
+mkdir Blog
+
+# 初始化博客文件夹
+hexo init Blog
+
+# 进入博客文件夹
+cd Blog
+
+# node.js 命令安装依赖dependencies
+npm install
+
+# 输入hexo g,首次体验Hexo
+hexo g
+</code></pre><img src="/2018/06/30/优雅地使用Hexo搭建Github博客/build_blog.jpg" title="Build Blog">
+<pre><code># 开启服务器,开始体验
+hexo s
+</code></pre><h3 id="生成博客"><a href="#生成博客" class="headerlink" title="生成博客"></a>生成博客</h3><pre><code># 新建博客
+hexo new post &quot;Hello, Hexo&quot;
+</code></pre><img src="/2018/06/30/优雅地使用Hexo搭建Github博客/new_blog.jpg" title="New Blog">
+<pre><code># 将md生产html之前需要安装一个扩展
+npm install hexo-deployer-git --save
+</code></pre><p>在部署之前，需要设置与github关联，在文件<strong>_config.yml</strong>中进行配置<br><img src="/2018/06/30/优雅地使用Hexo搭建Github博客/config_github.jpg" title="config github"></p>
+<pre><code># 接下来利用hexo g生成，利用hexo d部署到github上。结合起来：
+hexo d -g
+</code></pre><p>部署成功后即可访问地址：<a href="http://username.github.io。访问博客了" target="_blank" rel="noopener">http://username.github.io。访问博客了</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO/">HEXO</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
   </div>
+  
 </article>
-	
-	
-		</div></section>
-	
 
-	<!-- 页数指示器 -->
-	
-	  <nav id="page-nav">
-	    
-	    <a class="extend prev" rel="prev" href="/archives/2018/page/2/">上一页</a><a class="page-number" href="/archives/2018/">1</a><a class="page-number" href="/archives/2018/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2018/page/4/">4</a><a class="page-number" href="/archives/2018/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2018/page/8/">8</a><a class="extend next" rel="next" href="/archives/2018/page/4/">下一页</a>
-	  </nav>
-	
+<!-- Table of Contents -->
+
+  
 
 
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+  </nav>
 
 </section>
           <aside id="sidebar">

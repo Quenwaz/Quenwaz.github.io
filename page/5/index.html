@@ -129,7 +129,7 @@
         
           <section id="main">
   
-    <article id="post-对异常、断言与返回值的选择"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-OpenCV-显示视频"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -137,7 +137,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/07/02/对异常、断言与返回值的选择/">对异常、断言与返回值的选择</a>
+      <a class="article-title" href="/2018/07/02/OpenCV-显示视频/">OpenCV 显示视频</a>
     </h1>
   
 
@@ -145,8 +145,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/07/02/对异常、断言与返回值的选择/" class="article-date">
-	  <time datetime="2018-07-01T16:58:55.000Z" itemprop="datePublished">七月 2, 2018</time>
+	<a href="/2018/07/02/OpenCV-显示视频/" class="article-date">
+	  <time datetime="2018-07-02T02:40:57.000Z" itemprop="datePublished">七月 2, 2018</time>
 	</a>
 
        
@@ -154,26 +154,21 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>编码过程中，难免遇到对异常、断言及返回值选择问题的困惑。本文将收集到网络上对这种选择的总结。因基本没有一个课本对这几个选择有明确的界定，故本文提供建议，仅供参考。
-</code></pre><h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>当你实现某个功能可能失败，则可以利用返回值的形式告知调用者失败原因或直接返回失败。</p>
-<p>eg: 你找一个目录下不确定存在的东西，没找到即返回没找到。</p>
-<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>断言即断定绝对不会发生的事情，即不可能事件。<br>使用场景：在你当前代码逻辑下，你认为100%不会出现某种情况，请使用断言，主要用于开发人员对问题快速定位。</p>
-<p>注意：切记勿用断言替代入参检查替代返回值，将导致Release模式下入参的不确定性，而引发未知错误。</p>
-<p>eg: 数组索引是否超出范围</p>
-<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>异常则是你实现的功能99.999%不会失败，但可能0.001%的原因导致失败了，请毫不犹豫使用异常。</p>
-<p>eg: 你找一个程序必须的应该存在的配置文件，没找到可以抛出异常。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>方便对底层代码的不可能发生的错误进行遏止，留下发生异常原因，然后自杀进程。避免异常蔓延导致难以定位的错误。<br>异常是处理构造函数失败的唯一途径</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>底层代码异常泛滥，顶层代码将要对所有调用进行异常捕获与处理。甚至导致中间过程未处理而出现不可预料的错误。<br>异常会彻底扰乱程序的执行流程并难以判断，函数也许会在您意料不到的地方返回。<br>切勿在析构函数中抛出异常，将导致内存泄漏及其他不可预料的错误。</p>
-<h2 id="其他说法"><a href="#其他说法" class="headerlink" title="其他说法"></a>其他说法</h2><h3 id="观点一"><a href="#观点一" class="headerlink" title="观点一"></a>观点一</h3><p>也有部分人认为，针对对外接口（客户对象非程序员）不使用异常，因客户可不想看到程序崩溃的情况。而内部接口使用异常，便于开发过程中快速定位错误。</p>
-<h3 id="观点二"><a href="#观点二" class="headerlink" title="观点二"></a>观点二</h3><p>在google的编码规范中是严禁使用异常的，估计缘由与google现有的大多数C++代码都没有异常处理, 所以引入带有异常处理的新代码相当困难。</p>
-
+        <h2 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h2><ul>
+<li>python 3.6.1   </li>
+<li>cv2</li>
+<li>numpy</li>
+</ul>
+<h2 id="从摄像头中读取"><a href="#从摄像头中读取" class="headerlink" title="从摄像头中读取"></a>从摄像头中读取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">"capture"</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>若需知道视频最大分辨率，及帧数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取摄像头最大分辨率</span></span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_WIDTH)</span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_HEIGHT)</span><br><span class="line"><span class="comment"># 获取视频帧数</span></span><br><span class="line">fps =cap.get(cv2.CAP_PROP_FPS)</span><br></pre></td></tr></table></figure></p>
+<h2 id="从MP4文件中读取"><a href="#从MP4文件中读取" class="headerlink" title="从MP4文件中读取"></a>从MP4文件中读取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="string">"D://test.mp4"</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">"capture"</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="entry-meta entry-footer">
       
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingThinking/">编程思想</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li></ul>
 
       
     </footer>
@@ -189,7 +184,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
   </nav>
 
 </section>
@@ -289,6 +284,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/07/13/开始进行元编程/">开始进行元编程</a></h6>
+              <span>七月 13, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/07/11/利用dlib进行面部特征提取/">利用dlib进行面部特征提取</a></h6>
               <span>七月 11, 2018</span>
             </div>
@@ -343,18 +350,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/07/01/Hexo-如何显示Tags、Category页面/">Hexo 如何显示Tags、Category页面</a></h6>
-              <span>七月 1, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -364,7 +359,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编码</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编码</a><span class="category-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -374,7 +369,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/">编程思想</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cpp/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/">CppMetaProgramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/">编程思想</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -384,7 +379,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Dlib/" style="font-size: 15px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 15px;">HEXO</a> <a href="/tags/OpenCV/" style="font-size: 20px;">OpenCV</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/FaceDetection/" style="font-size: 15px;">人脸检测</a> <a href="/tags/ProgrammingThinking/" style="font-size: 10px;">编程思想</a>
+      <a href="/tags/Cpp/" style="font-size: 10px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 10px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 15px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 15px;">HEXO</a> <a href="/tags/OpenCV/" style="font-size: 20px;">OpenCV</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/FaceDetection/" style="font-size: 15px;">人脸检测</a> <a href="/tags/ProgrammingThinking/" style="font-size: 10px;">编程思想</a>
     </div>
   </div>
 
@@ -394,7 +389,7 @@
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
