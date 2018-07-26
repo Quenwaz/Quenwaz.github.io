@@ -57,32 +57,10 @@
 
 
   
-  
-  <div class="site-header-image">
-    <img id="originBg" width="100%" alt="Quenwa Zhang" src="">
-  </div>
-
-  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
-    <img id="blurBg" width="100%" style="top: 96%" alt="Quenwa Zhang" src="">
-  </div>
-
-  <script>
-        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
-        var random = Math.floor((Math.random() * imgUrls.length ));
-        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-          document.getElementById("originBg").src=imgUrls[random];
-          document.getElementById("blurBg").src=imgUrls[random];
-        } else {
-          document.getElementById("originBg").src='/' + imgUrls[random];
-          document.getElementById("blurBg").src='/' + imgUrls[random];
-        }
-    </script>
-
-
 
 
 <header id="allheader" class="site-header" role="banner" 
-   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
+   >
   <div class="clearfix container">
       <div class="site-branding">
 
@@ -129,7 +107,7 @@
         
           <section id="main">
   
-    <article id="post-利用dlib进行面部特征提取"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-OpenCV-显示视频"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -137,7 +115,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/07/11/利用dlib进行面部特征提取/">利用dlib进行面部特征提取</a>
+      <a class="article-title" href="/2018/07/02/OpenCV-显示视频/">OpenCV 显示视频</a>
     </h1>
   
 
@@ -145,8 +123,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/07/11/利用dlib进行面部特征提取/" class="article-date">
-	  <time datetime="2018-07-11T11:08:30.000Z" itemprop="datePublished">七月 11, 2018</time>
+	<a href="/2018/07/02/OpenCV-显示视频/" class="article-date">
+	  <time datetime="2018-07-02T02:40:57.000Z" itemprop="datePublished">七月 2, 2018</time>
 	</a>
 
       
@@ -157,26 +135,14 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h2><ul>
-<li>python 3.6.1</li>
-<li>opencv</li>
-<li>dlib</li>
+        <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
+<li>python 3.6.1   </li>
+<li>cv2</li>
 <li>numpy</li>
 </ul>
-<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ul>
-<li><p>加载官方提供模型，面部检测器</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">detector = dlib.get_frontal_face_detector()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>加载<a href="http://dlib.net/files/shape_predictor_5_face_landmarks.dat.bz2" target="_blank" rel="noopener">面部标记模型</a>，将面对齐到标准姿势。与脸、眼睛、眉毛、嘴角等对齐</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sp = dlib.shape_predictor(<span class="string">'shape_predictor_5_face_landmarks.dat'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最后加载用于将面部特征转换为128D矢量模型<a href="http://dlib.net/files/dlib_face_recognition_resnet_model_v1.dat.bz2" target="_blank" rel="noopener">(下载)</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">facerec = dlib.face_recognition_model_v1(<span class="string">'dlib_face_recognition_resnet_model_v1.dat.bz2'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">extract_128d_feature</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        返回单张图像的128D特征</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, dlib_shape_5_face_dat_path, dlib_face_rec_model_dat_path)</span>:</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># detector to find the faces</span></span><br><span class="line">        self.detector = dlib.get_frontal_face_detector()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># shape predictor to find the face landmarks</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dlib_shape_5_face_dat_path):</span><br><span class="line">            print(dlib_shape_5_face_dat_path + <span class="string">"文件不存在！"</span>)</span><br><span class="line">            exit()</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        self.predictor = dlib.shape_predictor(dlib_shape_5_face_dat_path)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dlib_face_rec_model_dat_path):</span><br><span class="line">            print(dlib_face_rec_model_dat_path + <span class="string">"文件不存在！"</span>)</span><br><span class="line">            exit()</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="comment"># face recognition model, the object maps human faces into 128D vectors</span></span><br><span class="line">        self.facerec = dlib.face_recognition_model_v1(dlib_face_rec_model_dat_path)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detector</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.detector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, img)</span>:</span></span><br><span class="line">        img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">        dets = self.detector(img_gray, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(len(dets)!=<span class="number">0</span>):</span><br><span class="line">            shape = self.predictor(img_gray, dets[<span class="number">0</span>])</span><br><span class="line">            face_descriptor = self.facerec.compute_face_descriptor(img_gray, shape)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            face_descriptor = <span class="number">0</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>, <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span>, face_descriptor</span><br></pre></td></tr></table></figure>
-<p>最终可以得到128维向量数据，其中同一人的图像彼此接近，并且来自不同人的图像相距很远。 因此，您可以通过将面映射到128D空间然后检查它们的欧几里德距离是否很小来执行面部识别。</p>
-<p>通常，如果两个面部描述符向量之间的欧几里德距离小于0.6，则它们来自同一个人，否则它们来自不同的人。</p>
+<h3 id="从摄像头中读取"><a href="#从摄像头中读取" class="headerlink" title="从摄像头中读取"></a>从摄像头中读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">"capture"</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>若需知道视频最大分辨率，及帧数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取摄像头最大分辨率</span></span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_WIDTH)</span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_HEIGHT)</span><br><span class="line"><span class="comment"># 获取视频帧数</span></span><br><span class="line">fps =cap.get(cv2.CAP_PROP_FPS)</span><br></pre></td></tr></table></figure></p>
+<h3 id="从MP4文件中读取"><a href="#从MP4文件中读取" class="headerlink" title="从MP4文件中读取"></a>从MP4文件中读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="string">"D://test.mp4"</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">"capture"</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
 <hr>
 <p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
 
@@ -189,7 +155,136 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dlib/">Dlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FaceDetection/">人脸检测</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-对异常、断言与返回值的选择"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/06/20/对异常、断言与返回值的选择/">对异常、断言与返回值的选择</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/06/20/对异常、断言与返回值的选择/" class="article-date">
+	  <time datetime="2018-06-19T16:58:55.000Z" itemprop="datePublished">六月 20, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>编码过程中，难免遇到对异常、断言及返回值选择问题的困惑。本文将收集到网络上对这种选择的总结。因基本没有一个课本对这几个选择有明确的界定，故本文提供建议，仅供参考。
+</code></pre><h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>当你实现某个功能可能失败，则可以利用返回值的形式告知调用者失败原因或直接返回失败。</p>
+<p>eg: 你找一个目录下不确定存在的东西，没找到即返回没找到。</p>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p>断言即断定绝对不会发生的事情，即不可能事件。<br>使用场景：在你当前代码逻辑下，你认为100%不会出现某种情况，请使用断言，主要用于开发人员对问题快速定位。</p>
+<p>注意：切记勿用断言替代入参检查替代返回值，将导致Release模式下入参的不确定性，而引发未知错误。</p>
+<p>eg: 数组索引是否超出范围</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>异常则是你实现的功能99.999%不会失败，但可能0.001%的原因导致失败了，请毫不犹豫使用异常。</p>
+<p>eg: 你找一个程序必须的应该存在的配置文件，没找到可以抛出异常。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>方便对底层代码的不可能发生的错误进行遏止，留下发生异常原因，然后自杀进程。避免异常蔓延导致难以定位的错误。<br>异常是处理构造函数失败的唯一途径</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>底层代码异常泛滥，顶层代码将要对所有调用进行异常捕获与处理。甚至导致中间过程未处理而出现不可预料的错误。<br>异常会彻底扰乱程序的执行流程并难以判断，函数也许会在您意料不到的地方返回。<br>切勿在析构函数中抛出异常，将导致内存泄漏及其他不可预料的错误。</p>
+<h3 id="其他说法"><a href="#其他说法" class="headerlink" title="其他说法"></a>其他说法</h3><h4 id="观点一"><a href="#观点一" class="headerlink" title="观点一"></a>观点一</h4><p>也有部分人认为，针对对外接口（客户对象非程序员）不使用异常，因客户可不想看到程序崩溃的情况。而内部接口使用异常，便于开发过程中快速定位错误。</p>
+<h4 id="观点二"><a href="#观点二" class="headerlink" title="观点二"></a>观点二</h4><p>在google的编码规范中是严禁使用异常的，估计缘由与google现有的大多数C++代码都没有异常处理, 所以引入带有异常处理的新代码相当困难。</p>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingThinking/">编程思想</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-设计模式之工厂模式"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/04/25/设计模式之工厂模式/">设计模式之工厂模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/04/25/设计模式之工厂模式/" class="article-date">
+	  <time datetime="2018-04-25T05:17:25.000Z" itemprop="datePublished">四月 25, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p>简单工厂模式由输入产品类型，决定生产哪一类产品。通常为枚举值，或特定字符串。</p>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>当需要生产的产品较少时，这是一种比较合适的方式。客户只需要知道生产产品的类型，无需关心如何生产。因工厂类需要根据类型进行生产，所以导致其内聚性比较低，每当新增产品时，需要在工厂类新增对应生产代码。</p>
+<h4 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h4><h4 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*用户抽象类*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IUser</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	IUser()&#123;&#125;</span><br><span class="line">	<span class="keyword">virtual</span> ~IUser()&#123;&#125;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	根据不同用户</span></span><br><span class="line"><span class="comment">	其操作局限性不同</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">differentOperation</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">雇员用户类</span></span><br><span class="line"><span class="comment">操作优先级最低</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CEmployee</span> :</span><span class="keyword">public</span> IUser&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CEmployee()&#123;&#125;</span><br><span class="line">	~CEmployee()&#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">differentOperation</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"我是雇员，我只能服从领导安排！"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*管理者用户类*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CManager</span> :</span><span class="keyword">public</span> IUser</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CManager()&#123;&#125;</span><br><span class="line">	~CManager()&#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">differentOperation</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"我是管理者，我可以给部门员工安排工作！"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*老板用户类*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CAdministrator</span> :</span><span class="keyword">public</span> IUser</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CAdministrator()&#123;&#125;</span><br><span class="line">	~CAdministrator()&#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">differentOperation</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"我是老板，我需要把公司团队带上国际化！"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">创建用户工厂</span></span><br><span class="line"><span class="comment">根据入参优先级创建不同等级用户</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CUserFactory</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	输入用户优先级</span></span><br><span class="line"><span class="comment">	0：雇员</span></span><br><span class="line"><span class="comment">	1：管理者</span></span><br><span class="line"><span class="comment">	2：老板</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> IUser* <span class="title">getUser</span><span class="params">(<span class="keyword">int</span> levels)</span></span>&#123;</span><br><span class="line">		<span class="keyword">switch</span> (levels)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> CEmployee();</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> CManager();</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> CAdministrator();</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><ul>
+<li style="list-style: none"><input type="checkbox"> 待添加概念</li>
+</ul>
+<h4 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h4><ul>
+<li style="list-style: none"><input type="checkbox"> 添加使用场景</li>
+</ul>
+<h4 id="UML-类图-1"><a href="#UML-类图-1" class="headerlink" title="UML 类图"></a>UML 类图</h4><ul>
+<li style="list-style: none"><input type="checkbox"> 待添加</li>
+</ul>
+<h4 id="C-实现-1"><a href="#C-实现-1" class="headerlink" title="C++实现"></a>C++实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">class description:</span></span><br><span class="line"><span class="comment">电视机抽象类定义</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ITelevision</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">class description:</span></span><br><span class="line"><span class="comment">电视机具体类定义</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CHarerTelevision</span> :</span> <span class="keyword">public</span> ITelevision</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CHarerTelevision()&#123;&#125;</span><br><span class="line">	~CHarerTelevision()&#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n海尔电视机播放中...\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CTclTelevision</span> :</span> <span class="keyword">public</span> ITelevision</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CTclTelevision()&#123;&#125;</span><br><span class="line">	~CTclTelevision()&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>((<span class="string">"\nTCL电视机播放中...\n"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">class description:</span></span><br><span class="line"><span class="comment">空调抽象类定义</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IAirConditioner</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">changeTemperature</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">class description:</span></span><br><span class="line"><span class="comment">空调具体类定义</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CHairAirConditioner</span> :</span> <span class="keyword">public</span> IAirConditioner</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CHairAirConditioner()&#123;&#125;</span><br><span class="line">	~CHairAirConditioner()&#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">changeTemperature</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>((<span class="string">"\n海尔空调温度改变中...\n"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CTCLAirConditioner</span> :</span> <span class="keyword">public</span> IAirConditioner</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CTCLAirConditioner()&#123;&#125;</span><br><span class="line">	~CTCLAirConditioner()&#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">changeTemperature</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>((<span class="string">"\nTCL空调温度改变中...\n"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">class description:</span></span><br><span class="line"><span class="comment">抽象工厂类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IFactory</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> ITelevision* <span class="title">produceTelevition</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> IAirConditioner* <span class="title">produceAirConditioner</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">class description:</span></span><br><span class="line"><span class="comment">海尔工厂类定义</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CHaierFactory</span> :</span> <span class="keyword">public</span> IFactory</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CHaierFactory()&#123;&#125;</span><br><span class="line">	~CHaierFactory()&#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function">ITelevision* <span class="title">produceTelevition</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> CHarerTelevision();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">IAirConditioner* <span class="title">produceAirConditioner</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> CHairAirConditioner();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">class description:</span></span><br><span class="line"><span class="comment">TCL 工厂类定义</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CTCLFactory</span> :</span> <span class="keyword">public</span> IFactory</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CTCLFactory()&#123;&#125;</span><br><span class="line">	~CTCLFactory()&#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function">ITelevision* <span class="title">produceTelevition</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> CTclTelevision();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">IAirConditioner* <span class="title">produceAirConditioner</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> CTCLAirConditioner();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DesignPatterns/">设计模式</a></li></ul>
 
       
     </footer>
@@ -205,7 +300,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
 
 </section>
@@ -305,18 +400,6 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2018/07/13/开始进行元编程/">开始进行元编程</a></h6>
-              <span>七月 13, 2018</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
               <h6 style="margin: 0;"><a href="/2018/07/11/利用dlib进行面部特征提取/">利用dlib进行面部特征提取</a></h6>
               <span>七月 11, 2018</span>
             </div>
@@ -365,8 +448,20 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2018/07/02/对异常、断言与返回值的选择/">对异常、断言与返回值的选择</a></h6>
-              <span>七月 2, 2018</span>
+              <h6 style="margin: 0;"><a href="/2018/06/20/对异常、断言与返回值的选择/">对异常、断言与返回值的选择</a></h6>
+              <span>六月 20, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2018/04/25/设计模式之工厂模式/">设计模式之工厂模式</a></h6>
+              <span>四月 25, 2018</span>
             </div>
 
           </li>
@@ -380,7 +475,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编码</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编码</a><span class="category-list-count">17</span></li></ul>
     </div>
   </div>
 
@@ -390,7 +485,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cpp/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/">CppMetaProgramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/">编程思想</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cpp/">C++</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/">CppMetaProgramming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/">编程思想</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetworkProgramming/">网络编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DesignPatterns/">设计模式</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -400,7 +495,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 10px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 10px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 15px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 15px;">HEXO</a> <a href="/tags/OpenCV/" style="font-size: 20px;">OpenCV</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/FaceDetection/" style="font-size: 15px;">人脸检测</a> <a href="/tags/ProgrammingThinking/" style="font-size: 10px;">编程思想</a>
+      <a href="/tags/Cpp/" style="font-size: 20px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 15px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 15px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 15px;">HEXO</a> <a href="/tags/OpenCV/" style="font-size: 20px;">OpenCV</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/FaceDetection/" style="font-size: 15px;">人脸检测</a> <a href="/tags/Algorithm/" style="font-size: 15px;">算法</a> <a href="/tags/ProgrammingThinking/" style="font-size: 10px;">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 10px;">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 15px;">设计模式</a>
     </div>
   </div>
 
@@ -410,7 +505,7 @@
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -465,9 +560,6 @@
 
 
     <!-- headerblur min height -->
-    
-      var headerblur = document.getElementById("header-blur");
-      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
     
     
 </script>

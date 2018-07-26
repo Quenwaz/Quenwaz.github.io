@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="Q">
 <meta property="og:description" content="环境依赖 python 3.6.1 opencv dlib numpy  实现步骤 加载官方提供模型，面部检测器 1detector = dlib.get_frontal_face_detector()  加载面部标记模型，将面对齐到标准姿势。与脸、眼睛、眉毛、嘴角等对齐 1sp = dlib.shape_predictor(&apos;shape_predictor_5_face_landmarks.da">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-13T08:01:32.173Z">
+<meta property="og:updated_time" content="2018-07-16T00:34:02.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用dlib进行面部特征提取">
 <meta name="twitter:description" content="环境依赖 python 3.6.1 opencv dlib numpy  实现步骤 加载官方提供模型，面部检测器 1detector = dlib.get_frontal_face_detector()  加载面部标记模型，将面对齐到标准姿势。与脸、眼睛、眉毛、嘴角等对齐 1sp = dlib.shape_predictor(&apos;shape_predictor_5_face_landmarks.da">
@@ -60,32 +60,10 @@
 
 
   
-  
-  <div class="site-header-image">
-    <img id="originBg" width="100%" alt="Quenwa Zhang" src="">
-  </div>
-
-  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
-    <img id="blurBg" width="100%" style="top: 96%" alt="Quenwa Zhang" src="">
-  </div>
-
-  <script>
-        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
-        var random = Math.floor((Math.random() * imgUrls.length ));
-        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-          document.getElementById("originBg").src=imgUrls[random];
-          document.getElementById("blurBg").src=imgUrls[random];
-        } else {
-          document.getElementById("originBg").src='/' + imgUrls[random];
-          document.getElementById("blurBg").src='/' + imgUrls[random];
-        }
-    </script>
-
-
 
 
 <header id="allheader" class="site-header" role="banner" 
-   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
+   >
   <div class="clearfix container">
       <div class="site-branding">
 
@@ -162,13 +140,13 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h2><ul>
+        <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
 <li>python 3.6.1</li>
 <li>opencv</li>
 <li>dlib</li>
 <li>numpy</li>
 </ul>
-<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ul>
+<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><ul>
 <li><p>加载官方提供模型，面部检测器</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">detector = dlib.get_frontal_face_detector()</span><br></pre></td></tr></table></figure>
 </li>
@@ -179,7 +157,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">facerec = dlib.face_recognition_model_v1(<span class="string">'dlib_face_recognition_resnet_model_v1.dat.bz2'</span>)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">extract_128d_feature</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        返回单张图像的128D特征</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, dlib_shape_5_face_dat_path, dlib_face_rec_model_dat_path)</span>:</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># detector to find the faces</span></span><br><span class="line">        self.detector = dlib.get_frontal_face_detector()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># shape predictor to find the face landmarks</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dlib_shape_5_face_dat_path):</span><br><span class="line">            print(dlib_shape_5_face_dat_path + <span class="string">"文件不存在！"</span>)</span><br><span class="line">            exit()</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        self.predictor = dlib.shape_predictor(dlib_shape_5_face_dat_path)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dlib_face_rec_model_dat_path):</span><br><span class="line">            print(dlib_face_rec_model_dat_path + <span class="string">"文件不存在！"</span>)</span><br><span class="line">            exit()</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="comment"># face recognition model, the object maps human faces into 128D vectors</span></span><br><span class="line">        self.facerec = dlib.face_recognition_model_v1(dlib_face_rec_model_dat_path)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detector</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.detector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, img)</span>:</span></span><br><span class="line">        img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">        dets = self.detector(img_gray, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(len(dets)!=<span class="number">0</span>):</span><br><span class="line">            shape = self.predictor(img_gray, dets[<span class="number">0</span>])</span><br><span class="line">            face_descriptor = self.facerec.compute_face_descriptor(img_gray, shape)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            face_descriptor = <span class="number">0</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>, <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span>, face_descriptor</span><br></pre></td></tr></table></figure>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">extract_128d_feature</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        返回单张图像的128D特征</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, dlib_shape_5_face_dat_path, dlib_face_rec_model_dat_path)</span>:</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># detector to find the faces</span></span><br><span class="line">        self.detector = dlib.get_frontal_face_detector()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># shape predictor to find the face landmarks</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dlib_shape_5_face_dat_path):</span><br><span class="line">            print(dlib_shape_5_face_dat_path + <span class="string">"文件不存在！"</span>)</span><br><span class="line">            exit()</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        self.predictor = dlib.shape_predictor(dlib_shape_5_face_dat_path)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dlib_face_rec_model_dat_path):</span><br><span class="line">            print(dlib_face_rec_model_dat_path + <span class="string">"文件不存在！"</span>)</span><br><span class="line">            exit()</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="comment"># face recognition model, the object maps human faces into 128D vectors</span></span><br><span class="line">        self.facerec = dlib.face_recognition_model_v1(dlib_face_rec_model_dat_path)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detector</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.detector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, img)</span>:</span></span><br><span class="line">        img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">        dets = self.detector(img_gray, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(len(dets)!=<span class="number">0</span>):</span><br><span class="line">            shape = self.predictor(img_gray, dets[<span class="number">0</span>])</span><br><span class="line">            face_descriptor = self.facerec.compute_face_descriptor(img_gray, shape)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            face_descriptor = <span class="number">0</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>, <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span>, face_descriptor</span><br></pre></td></tr></table></figure>
 <p>最终可以得到128维向量数据，其中同一人的图像彼此接近，并且来自不同人的图像相距很远。 因此，您可以通过将面映射到128D空间然后检查它们的欧几里德距离是否很小来执行面部识别。</p>
 <p>通常，如果两个面部描述符向量之间的欧几里德距离小于0.6，则它们来自同一个人，否则它们来自不同的人。</p>
 <hr>
@@ -229,15 +207,6 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/07/13/开始进行元编程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          开始进行元编程
-        
-      </div>
-    </a>
-  
   
     <a href="/2018/07/05/利用dlib进行人脸检测/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
@@ -255,7 +224,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境依赖"><span class="nav-number">1.</span> <span class="nav-text">环境依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现步骤"><span class="nav-number">2.</span> <span class="nav-text">实现步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现"><span class="nav-number">3.</span> <span class="nav-text">具体实现</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境依赖"><span class="nav-number">1.</span> <span class="nav-text">环境依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现步骤"><span class="nav-number">2.</span> <span class="nav-text">实现步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体实现"><span class="nav-number">3.</span> <span class="nav-text">具体实现</span></a></li></ol>
     
     </div>
   </aside>
@@ -308,9 +277,6 @@
 
 
     <!-- headerblur min height -->
-    
-      var headerblur = document.getElementById("header-blur");
-      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
     
     
 </script>

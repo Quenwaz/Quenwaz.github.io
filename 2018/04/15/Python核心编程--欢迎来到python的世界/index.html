@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- 
+  <title>Python核心编程——欢迎来到python的世界 | Q</title> -->
+  <title>Q</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Python" />
+  
+  
+  
+  
+  <meta name="description" content="什么是PythonPython优雅且健壮的编程，它继承传统语言的强大和，同时也借鉴简单脚本和解释语言的易用性。 特点高级Python高级数据结构，如List，Dictionary，set，Tumple等数据结构 面向对象面向对象编程为数据和逻辑相分离的结构化和过程化编程添加了新活力。面向对象编程支持将特定的行为、特性和功能与它们要处理或所代表的数据结合在一起。 可升级Python提供了基本开发模块">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python核心编程——欢迎来到python的世界">
+<meta property="og:url" content="http://yoursite.com/2018/04/15/Python核心编程--欢迎来到python的世界/index.html">
+<meta property="og:site_name" content="Q">
+<meta property="og:description" content="什么是PythonPython优雅且健壮的编程，它继承传统语言的强大和，同时也借鉴简单脚本和解释语言的易用性。 特点高级Python高级数据结构，如List，Dictionary，set，Tumple等数据结构 面向对象面向对象编程为数据和逻辑相分离的结构化和过程化编程添加了新活力。面向对象编程支持将特定的行为、特性和功能与它们要处理或所代表的数据结合在一起。 可升级Python提供了基本开发模块">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-26T08:04:37.757Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python核心编程——欢迎来到python的世界">
+<meta name="twitter:description" content="什么是PythonPython优雅且健壮的编程，它继承传统语言的强大和，同时也借鉴简单脚本和解释语言的易用性。 特点高级Python高级数据结构，如List，Dictionary，set，Tumple等数据结构 面向对象面向对象编程为数据和逻辑相分离的结构化和过程化编程添加了新活力。面向对象编程支持将特定的行为、特性和功能与它们要处理或所代表的数据结合在一起。 可升级Python提供了基本开发模块">
+  
+    <link rel="alternate" href="/atom.xml" title="Q" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Q" rel="home"> Q </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">标签</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Python核心编程--欢迎来到python的世界" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Python核心编程——欢迎来到python的世界
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/04/15/Python核心编程--欢迎来到python的世界/" class="article-date">
+	  <time datetime="2018-04-15T04:53:42.000Z" itemprop="datePublished">四月 15, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是Python"><a href="#什么是Python" class="headerlink" title="什么是Python"></a>什么是Python</h2><p>Python优雅且健壮的编程，它继承传统语言的强大和，同时也借鉴简单脚本和解释语言的易用性。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p><strong>高级</strong><br>Python高级数据结构，如List，Dictionary，set，Tumple等数据结构</p>
+<p><strong>面向对象</strong><br>面向对象编程为数据和逻辑相分离的结构化和过程化编程添加了新活力。面向对象编程支持将特定的行为、特性和功能与它们要处理或所代表的数据结合在一起。</p>
+<p><strong>可升级</strong><br>Python提供了基本开发模块，你可以在它上面开发你的软件，而且当这些需要扩展和增长时，Python可插入性和模块化架构则能使你的项目生机盎然和易于管理。</p>
+<p><strong>可扩展</strong><br>在Python中如果遇到性能瓶颈，可以利用C/C++编码写Python模块，且在使用上跟Python标准模板无异。<br>如果CPython是使用C写的，所以要使用C/C++编写Python扩展。同样Python的Java实现被称作Jython,要使用Java编写其扩展。</p>
+<p><strong>可移植性</strong><br>在不同的操作系统上都能看到Python的身影。因为Python是由C写的，又由于C的可移植性，使得Python可以运行在任何ANSI C编译器的平台上。</p>
+<p><strong>健壮性</strong><br>Python提供了“安全合理”的退出机制，让程序员能掌控局面。一旦你的Python程序因为错误崩溃，解释程序就会转出一个“堆栈跟踪”。里边包含崩溃的原因以及文件名，代码所在行数。这些异常Python能够让你监控并进行处理。</p>
+<p><strong>内存管理器</strong><br>C/C++最大的诟病就是开发者需要自行管理内存。而Python自身的内存管理使你能够专心于开发最直接的目标，无需关注内存释放。</p>
+<p><strong>解释性和（字节）编译性</strong><br>Python是一种解释性语言，就意味着开发过程中没有了编译环节。由于不是以本地机器码运行，纯粹的解释性语言通常比编译性语言要慢。而因为Java，Python是一种近似机器语言的字节编译，使得其性能有所提高，同时保持解释性语言的优点。</p>
+<blockquote>
+<p>Python源文件通常以.py作为扩展名。当源文件被解释器加载或者显示地进行字节码编译的时候会被编译成字节码。由于可能解释器不同，源文件会被编译成带有.pyc或.pyo扩展名的文件。</p>
+</blockquote>
+<h2 id="下载和安装Python"><a href="#下载和安装Python" class="headerlink" title="下载和安装Python"></a>下载和安装Python</h2><p><em><a href="https://www.python.org/downloads/" target="_blank" rel="noopener">官网下载</a></em></p>
+<p><strong>Python支持操作系统：</strong></p>
+<ul>
+<li>所有Unix衍生系统（Linux,MacOs X,Solaris,FreeBSD等）</li>
+<li>windows系统</li>
+<li>游戏控制平台：VxWorks,QNX</li>
+<li>其他</li>
+</ul>
+<p><strong>开源Python发行版本–Anaconda</strong><br>可使用Anaconda对Python版本以及各模块进行管理，其使用与Pip类似，同时支持可视化界面操作。<br>可使用清华镜像进行<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/" target="_blank" rel="noopener">下载</a>，相比速度较快。具体Anaconda对应Python版本请自行百度。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><br></h2><p><small>此文为《Python核心编程》（第二版）学习笔记<br>若有错误处，烦请指出。</small></p>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/18/Python核心编程--Python起步/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          PyPython核心编程--Python起步
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/12/排序算法之归并排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">排序算法之归并排序</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Python"><span class="nav-number">1.</span> <span class="nav-text">什么是Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载和安装Python"><span class="nav-number">3.</span> <span class="nav-text">下载和安装Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">4.</span> <span class="nav-text"></span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Q All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="http://quenwaz.applinzi.com" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
