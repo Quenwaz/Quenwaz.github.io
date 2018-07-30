@@ -3,32 +3,27 @@
 <head>
   <meta charset="utf-8">
   <!-- 
-  <title>优雅地使用Hexo搭建Github Blog | Q</title> -->
+  <title>二、传输层:TCP、UDP和SCTP | Q</title> -->
   <title>Q</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="HEXO" />
+  <meta name="keywords" content="网络编程C++" />
   
   
   
   
-  <meta name="description" content="前提条件在github上新建一个仓库 安装Hexo依赖环境在安装Hexo之前，需要首先安装以下依赖，其中Node.js中已经包含npm：  Git Npm Node.js (LTS)  开始安装若已经安装好git，且利用git安装好npm。即可进行hexo的安装。在Git Bash中输入此命令行： npm install -g hexo-cli 环境部署初始化博客# 新建博客文件夹 mkdir B">
-<meta name="keywords" content="HEXO">
+  <meta name="description" content="概述本文焦点是传输层，包括TCP、UDP和SCTP(Stream Control Transmission Protocol,流控制传输协议)。绝大多数网络应用使用TCP或UDP。SCTP是一种较新的协议，最初设计用于跨因特网传输电话信令。这些传输协议转而使用网络协议IP。 UDP是一种简单的、不可靠的数据报协议。而TCP是一个复杂、可靠的字节流协议。SCTP与TCP类似是一种可靠的传输协议，但它">
+<meta name="keywords" content="网络编程,C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="优雅地使用Hexo搭建Github Blog">
-<meta property="og:url" content="http://yoursite.com/2018/01/15/优雅地使用Hexo搭建Github博客/index.html">
+<meta property="og:title" content="二、传输层:TCP、UDP和SCTP">
+<meta property="og:url" content="http://yoursite.com/2018/02/28/二、传输层-TCP、UDP和SCTP/index.html">
 <meta property="og:site_name" content="Q">
-<meta property="og:description" content="前提条件在github上新建一个仓库 安装Hexo依赖环境在安装Hexo之前，需要首先安装以下依赖，其中Node.js中已经包含npm：  Git Npm Node.js (LTS)  开始安装若已经安装好git，且利用git安装好npm。即可进行hexo的安装。在Git Bash中输入此命令行： npm install -g hexo-cli 环境部署初始化博客# 新建博客文件夹 mkdir B">
+<meta property="og:description" content="概述本文焦点是传输层，包括TCP、UDP和SCTP(Stream Control Transmission Protocol,流控制传输协议)。绝大多数网络应用使用TCP或UDP。SCTP是一种较新的协议，最初设计用于跨因特网传输电话信令。这些传输协议转而使用网络协议IP。 UDP是一种简单的、不可靠的数据报协议。而TCP是一个复杂、可靠的字节流协议。SCTP与TCP类似是一种可靠的传输协议，但它">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2018/01/15/优雅地使用Hexo搭建Github博客/new_repository.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/01/15/优雅地使用Hexo搭建Github博客/build_blog.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/01/15/优雅地使用Hexo搭建Github博客/new_blog.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/01/15/优雅地使用Hexo搭建Github博客/config_github.jpg">
-<meta property="og:updated_time" content="2018-07-26T08:04:37.759Z">
+<meta property="og:updated_time" content="2018-07-30T05:03:48.407Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="优雅地使用Hexo搭建Github Blog">
-<meta name="twitter:description" content="前提条件在github上新建一个仓库 安装Hexo依赖环境在安装Hexo之前，需要首先安装以下依赖，其中Node.js中已经包含npm：  Git Npm Node.js (LTS)  开始安装若已经安装好git，且利用git安装好npm。即可进行hexo的安装。在Git Bash中输入此命令行： npm install -g hexo-cli 环境部署初始化博客# 新建博客文件夹 mkdir B">
-<meta name="twitter:image" content="http://yoursite.com/2018/01/15/优雅地使用Hexo搭建Github博客/new_repository.jpg">
+<meta name="twitter:title" content="二、传输层:TCP、UDP和SCTP">
+<meta name="twitter:description" content="概述本文焦点是传输层，包括TCP、UDP和SCTP(Stream Control Transmission Protocol,流控制传输协议)。绝大多数网络应用使用TCP或UDP。SCTP是一种较新的协议，最初设计用于跨因特网传输电话信令。这些传输协议转而使用网络协议IP。 UDP是一种简单的、不可靠的数据报协议。而TCP是一个复杂、可靠的字节流协议。SCTP与TCP类似是一种可靠的传输协议，但它">
   
     <link rel="alternate" href="/atom.xml" title="Q" type="application/atom+xml">
   
@@ -135,7 +130,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-优雅地使用Hexo搭建Github博客" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-二、传输层-TCP、UDP和SCTP" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -143,7 +138,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      优雅地使用Hexo搭建Github Blog
+      二、传输层:TCP、UDP和SCTP
     </h1>
   
 
@@ -151,8 +146,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/01/15/优雅地使用Hexo搭建Github博客/" class="article-date">
-	  <time datetime="2018-01-15T06:59:30.000Z" itemprop="datePublished">一月 15, 2018</time>
+	<a href="/2018/02/28/二、传输层-TCP、UDP和SCTP/" class="article-date">
+	  <time datetime="2018-02-28T15:35:20.000Z" itemprop="datePublished">二月 28, 2018</time>
 	</a>
 
       
@@ -167,41 +162,23 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>在github上新建一个仓库<br><img src="/2018/01/15/优雅地使用Hexo搭建Github博客/new_repository.jpg" title="New Repository"></p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><h4 id="依赖环境"><a href="#依赖环境" class="headerlink" title="依赖环境"></a>依赖环境</h4><p>在安装Hexo之前，需要首先安装以下依赖，其中Node.js中已经包含npm：</p>
-<ul>
-<li>Git</li>
-<li>Npm</li>
-<li>Node.js (LTS)</li>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>本文焦点是传输层，包括TCP、UDP和SCTP(Stream Control Transmission Protocol,流控制传输协议)。绝大多数网络应用使用TCP或UDP。SCTP是一种较新的协议，最初设计用于跨因特网传输电话信令。这些传输协议转而使用网络协议IP。</p>
+<p><strong>UDP是一种简单的、不可靠的数据报协议</strong>。而<strong>TCP是一个复杂、可靠的字节流协议</strong>。SCTP与TCP类似是一种可靠的传输协议，但<strong>它还提供消息边界、传输级别多宿支持以及将头端阻塞减少到最小的一种方法。</strong>我们必须了解这些传输层协议提供给应用进程的服务，才能弄清这些协议处理什么，应用进程中又需要处理什么。</p>
+<h3 id="部分协议介绍"><a href="#部分协议介绍" class="headerlink" title="部分协议介绍"></a>部分协议介绍</h3><ul>
+<li><strong>IPv4</strong> 网际协议版本4(Internet Protocol version 4),给TCP、UDP、SCTP、ICMP及IGMP提供分组递送服务</li>
+<li><strong>IPv6</strong> 网际协议版本6(Internet Protocol version 6),与IPv4最大区别在于使用128位更大地址。给TCP、UDP、SCTP和ICMPv6提供分组递送服务</li>
+<li><strong>TCP</strong> 传输控制协议(Transmission Control Protocol),是一个面向连接的协议，为用户进程提供可靠的全双工字节流。TCP套接字是一个流套接字(stream socket),关心确定、超时和重传等细节。</li>
+<li><strong>UDP</strong> 用户数据报协议(User Datagram Protocol)，是一个无连接洗衣，一种数据报套接字(datagram socket)。UDP数据报不能保证最终到达目的地。</li>
+<li><strong>SCTP</strong> 流控制传输协议(Stream Control Transmission Protocol)</li>
+<li><strong>ICMP</strong> 网际控制消息协议(Internet Control Message Protocol)。ICMP处理在路由器和主机之间的流通的错误和控制消息。这些消息通常由TCP/IP网络支持软件(非用户进程)本身产生和处理</li>
+<li><strong>IGMP</strong> 网际组管理协议(Internet Group Management Protocol)。IGMP用于多播</li>
+<li><strong>ARP</strong> 地址解析协议(Address Resolution Protocol)。ARP用于把一个IPv4地址映射成一个硬件地址(如以太网地址)</li>
+<li><strong>RARP</strong> 反向地址解析协议(Reverse Address Resolution Protocol)。RARP把一个硬件地址映射成一个IPv4地址。</li>
 </ul>
-<h4 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h4><p>若已经安装好git，且利用git安装好npm。即可进行hexo的安装。在Git Bash中输入此命令行：</p>
-<pre><code>npm install -g hexo-cli
-</code></pre><h3 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h3><h4 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h4><pre><code># 新建博客文件夹
-mkdir Blog
-
-# 初始化博客文件夹
-hexo init Blog
-
-# 进入博客文件夹
-cd Blog
-
-# node.js 命令安装依赖dependencies
-npm install
-
-# 输入hexo g,首次体验Hexo
-hexo g
-</code></pre><img src="/2018/01/15/优雅地使用Hexo搭建Github博客/build_blog.jpg" title="Build Blog">
-<pre><code># 开启服务器,开始体验
-hexo s
-</code></pre><h4 id="生成博客"><a href="#生成博客" class="headerlink" title="生成博客"></a>生成博客</h4><pre><code># 新建博客
-hexo new post &quot;Hello, Hexo&quot;
-</code></pre><img src="/2018/01/15/优雅地使用Hexo搭建Github博客/new_blog.jpg" title="New Blog">
-<pre><code># 将md生产html之前需要安装一个扩展
-npm install hexo-deployer-git --save
-</code></pre><p>在部署之前，需要设置与github关联，在文件<strong>_config.yml</strong>中进行配置<br><img src="/2018/01/15/优雅地使用Hexo搭建Github博客/config_github.jpg" title="config github"></p>
-<pre><code># 接下来利用hexo g生成，利用hexo d部署到github上。结合起来：
-hexo d -g
-</code></pre><p>部署成功后即可访问地址：<a href="http://username.github.io。访问博客了" target="_blank" rel="noopener">http://username.github.io。访问博客了</a></p>
+<h3 id="用户数据报协议-UDP"><a href="#用户数据报协议-UDP" class="headerlink" title="用户数据报协议(UDP)"></a>用户数据报协议(UDP)</h3><p>UDP是一个简单的传输层协议。应用进程往一个UDP套接字写入一个消息，该消息随后被封装到一个UDP数据报，该UDP数据报进而又被封装到一个IP数据报，然后发送到目的地。<strong>不保证UDP数据报最终到达目的地，且不保证其到达的先后顺序，也不保证数据报只到达一次。</strong></p>
+<p>所有UDP进行网络编程却反可靠性。如果一个数据报在网络传输途中丢失，它就无法被投递给UDP套接字，也不会被源端自动重传。如果想确保一个数据报到达目的地，<strong>可以添置一些特性:来自对端的确认、本端的超时与重传等。</strong></p>
+<p>UDP提供无连接(connectionless)的服务,因为UDP客户与服务器之间不必存在长期关系。举例说:一个UDP客户可以创建一个套接字并发送一个数据报给一个服务器，然后可以利用同一套接字发送另一个数据报给另一个服务器。同样UDP服务器可以利用同一个套接字从若干个不同的客户接收数据报。</p>
+<h3 id="传输控制协议-TCP"><a href="#传输控制协议-TCP" class="headerlink" title="传输控制协议(TCP)"></a>传输控制协议(TCP)</h3><p><br><br><small><em>本文为学习整理《UNIX 网络编程–卷一(第三版)》一书中的要点</em></small></p>
 <hr>
 <p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
 
@@ -214,7 +191,7 @@ hexo d -g
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HEXO/">HEXO</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NetworkProgramming/">网络编程</a></li></ul>
 
       
         
@@ -249,15 +226,20 @@ hexo d -g
     
 <nav id="article-nav">
   
-    <a href="/2018/02/24/一、网络编程介绍/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/03/05/一、元编程--开始进行元编程/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          一、网络编程介绍
+          一、元编程--开始进行元编程
         
       </div>
     </a>
   
+  
+    <a href="/2018/02/28/Hexo-如何显示Tags、Category页面/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Hexo 如何显示Tags、Category页面</div>
+    </a>
   
 </nav>
 
@@ -270,7 +252,7 @@ hexo d -g
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">2.</span> <span class="nav-text">安装Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖环境"><span class="nav-number">2.1.</span> <span class="nav-text">依赖环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开始安装"><span class="nav-number">2.2.</span> <span class="nav-text">开始安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境部署"><span class="nav-number">3.</span> <span class="nav-text">环境部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化博客"><span class="nav-number">3.1.</span> <span class="nav-text">初始化博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成博客"><span class="nav-number">3.2.</span> <span class="nav-text">生成博客</span></a></li></ol></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分协议介绍"><span class="nav-number">2.</span> <span class="nav-text">部分协议介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户数据报协议-UDP"><span class="nav-number">3.</span> <span class="nav-text">用户数据报协议(UDP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输控制协议-TCP"><span class="nav-number">4.</span> <span class="nav-text">传输控制协议(TCP)</span></a></li></ol>
     
     </div>
   </aside>

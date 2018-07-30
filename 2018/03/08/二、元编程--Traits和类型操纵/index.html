@@ -7,13 +7,13 @@
   <title>Q</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="CppMetaProgrammingC++" />
+  <meta name="keywords" content="C++CppMetaProgramming" />
   
   
   
   
   <meta name="description" content="类型关联在C++中，可以在编译期进行操纵的实体称为元数据(metadata),元数据可分为(任何元数据都可以作为模板参数):  非类型:在中的常量整数值就属于一种非类型，此类包括可在编译期知道的任何值类型。如：整形、枚举、函数和“全局”对象的指针与引用，及指向成员的指针。  类型:而类型通常需要利用关键字typename进行声明。对于typename的使用条件：当使用一个依赖性的名字(depend">
-<meta name="keywords" content="CppMetaProgramming,C++">
+<meta name="keywords" content="C++,CppMetaProgramming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二、元编程--Traits和类型操纵">
 <meta property="og:url" content="http://yoursite.com/2018/03/08/二、元编程--Traits和类型操纵/index.html">
@@ -60,10 +60,32 @@
 
 
   
+  
+  <div class="site-header-image">
+    <img id="originBg" width="100%" alt="Quenwa Zhang" src="">
+  </div>
+
+  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
+    <img id="blurBg" width="100%" style="top: 96%" alt="Quenwa Zhang" src="">
+  </div>
+
+  <script>
+        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("originBg").src=imgUrls[random];
+          document.getElementById("blurBg").src=imgUrls[random];
+        } else {
+          document.getElementById("originBg").src='/' + imgUrls[random];
+          document.getElementById("blurBg").src='/' + imgUrls[random];
+        }
+    </script>
+
+
 
 
 <header id="allheader" class="site-header" role="banner" 
-   >
+   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
   <div class="clearfix container">
       <div class="site-branding">
 
@@ -313,6 +335,9 @@
 
 
     <!-- headerblur min height -->
+    
+      var headerblur = document.getElementById("header-blur");
+      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
     
     
 </script>
