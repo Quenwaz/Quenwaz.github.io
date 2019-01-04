@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="OpenCV,人脸检测,Dlib," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="环境依赖 python 3.6.1 opencv dlib numpy  DLIB 介绍Dlib是一个包含机器学习算法的C++开源工具包。Dlib可以帮助您创建很多复杂的机器学习方面的软件来帮助解决实际问题。目前Dlib已经被广泛的用在行业和学术领域,包括机器人,嵌入式设备,移动电话和大型高性能计算环境。 Dlib是开源的、免费的;官网和git地址:  官网 github   Dlib的主要特点:">
+<meta name="keywords" content="OpenCV,人脸检测,Dlib">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用dlib进行人脸检测">
+<meta property="og:url" content="http://yoursite.com/2018/07/05/利用dlib进行人脸检测/index.html">
+<meta property="og:site_name" content="Q">
+<meta property="og:description" content="环境依赖 python 3.6.1 opencv dlib numpy  DLIB 介绍Dlib是一个包含机器学习算法的C++开源工具包。Dlib可以帮助您创建很多复杂的机器学习方面的软件来帮助解决实际问题。目前Dlib已经被广泛的用在行业和学术领域,包括机器人,嵌入式设备,移动电话和大型高性能计算环境。 Dlib是开源的、免费的;官网和git地址:  官网 github   Dlib的主要特点:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/07/05/利用dlib进行人脸检测/cnn_face_detector.jpg">
+<meta property="og:updated_time" content="2018-07-16T00:34:02.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用dlib进行人脸检测">
+<meta name="twitter:description" content="环境依赖 python 3.6.1 opencv dlib numpy  DLIB 介绍Dlib是一个包含机器学习算法的C++开源工具包。Dlib可以帮助您创建很多复杂的机器学习方面的软件来帮助解决实际问题。目前Dlib已经被广泛的用在行业和学术领域,包括机器人,嵌入式设备,移动电话和大型高性能计算环境。 Dlib是开源的、免费的;官网和git地址:  官网 github   Dlib的主要特点:">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/05/利用dlib进行人脸检测/cnn_face_detector.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/05/利用dlib进行人脸检测/"/>
+
+
+
+
+
+  <title>利用dlib进行人脸检测 | Q</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Q</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quenwaz's Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/利用dlib进行人脸检测/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Quenwa Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Q">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">利用dlib进行人脸检测</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-05T12:21:04+08:00">
+                2018-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
+<li>python 3.6.1</li>
+<li>opencv</li>
+<li>dlib</li>
+<li>numpy</li>
+</ul>
+<h3 id="DLIB-介绍"><a href="#DLIB-介绍" class="headerlink" title="DLIB 介绍"></a>DLIB 介绍</h3><p>Dlib是一个包含机器学习算法的C++开源工具包。Dlib可以帮助您创建很多复杂的机器学习方面的软件来帮助解决实际问题。目前Dlib已经被广泛的用在行业和学术领域,包括机器人,嵌入式设备,移动电话和大型高性能计算环境。</p>
+<p>Dlib是开源的、免费的;官网和git地址:</p>
+<ul>
+<li><a href="http://dlib.net/" target="_blank" rel="noopener">官网</a></li>
+<li><a href="https://github.com/davisking/dlib" target="_blank" rel="noopener">github</a> </li>
+</ul>
+<p>Dlib的主要特点:</p>
+<ol>
+<li><p>文档齐全</p>
+<p> 不像很多其他的开源库一样,Dlib为每一个类和函数提供了完整的文档说明。同时,还提供了debug模式;打开debug模式后,用户可以调试代码,查看变量和对象的值,快速定位错误点。另外,Dlib还提供了大量的实例。</p>
+</li>
+<li><p>高质量的可移植代码</p>
+<p> Dlib不依赖第三方库,无须安装和配置,这部分可参照(官网左侧树形目录的how to compile的介绍)。Dlib可用在window、Mac OS、Linux系统上。</p>
+</li>
+<li><p>提供大量的机器学习 / 图像处理算法</p>
+<ul>
+<li><p>深度学习</p>
+</li>
+<li><p>基于SVM的分类和递归算法</p>
+</li>
+<li><p>针对大规模分类和递归的降维方法</p>
+</li>
+<li><p>相关向量机(relevance vector machine);是与支持向量机相同的函数形式稀疏概率模型,对未知函数进行预测或分类。其训练是在贝叶斯框架下进行的,与SVM相比,不需要估计正则化参数,其核函数也不需要满足Mercer条件,需要更少的相关向量,训练时间长,测试时间短。</p>
+</li>
+<li><p>聚类: linear or kernel k-means, Chinese Whispers, and Newman clustering. Radial Basis Function Networks</p>
+</li>
+<li><p>多层感知机</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="人脸检测（CNN）"><a href="#人脸检测（CNN）" class="headerlink" title="人脸检测（CNN）"></a>人脸检测（CNN）</h3><p>示例显示如何使用dlib运行基于CNN的面部检测器。加载预训练模型并使用它来查找图像中的面。该CNN模型比基于HOG的模型准确得多，但需要更多的计算能力运行，并且意味着在GPU上执行以获得合理的速度。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># The contents of this file are in the public domain. See LICENSE_FOR_EXAMPLE_PROGRAMS.txt</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   This example shows how to run a CNN based face detector using dlib.  The</span></span><br><span class="line"><span class="comment">#   example loads a pretrained model and uses it to find faces in images.  The</span></span><br><span class="line"><span class="comment">#   CNN model is much more accurate than the HOG based model shown in the</span></span><br><span class="line"><span class="comment">#   face_detector.py example, but takes much more computational power to</span></span><br><span class="line"><span class="comment">#   run, and is meant to be executed on a GPU to attain reasonable speed.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   You can download the pre-trained model from:</span></span><br><span class="line"><span class="comment">#       http://dlib.net/files/mmod_human_face_detector.dat.bz2</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   The examples/faces folder contains some jpg images of people.  You can run</span></span><br><span class="line"><span class="comment">#   this program on them and see the detections by executing the</span></span><br><span class="line"><span class="comment">#   following command:</span></span><br><span class="line"><span class="comment">#       ./cnn_face_detector.py mmod_human_face_detector.dat ../examples/faces/*.jpg</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># COMPILING/INSTALLING THE DLIB PYTHON INTERFACE</span></span><br><span class="line"><span class="comment">#   You can install dlib using the command:</span></span><br><span class="line"><span class="comment">#       pip install dlib</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   Alternatively, if you want to compile dlib yourself then go into the dlib</span></span><br><span class="line"><span class="comment">#   root folder and run:</span></span><br><span class="line"><span class="comment">#       python setup.py install</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   Compiling dlib should work on any operating system so long as you have</span></span><br><span class="line"><span class="comment">#   CMake installed.  On Ubuntu, this can be done easily by running the</span></span><br><span class="line"><span class="comment">#   command:</span></span><br><span class="line"><span class="comment">#       sudo apt-get install cmake</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   Also note that this example requires Numpy which can be installed</span></span><br><span class="line"><span class="comment">#   via the command:</span></span><br><span class="line"><span class="comment">#       pip install numpy</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> dlib</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># if len(sys.argv) &lt; 3:</span></span><br><span class="line"><span class="comment">#     print(</span></span><br><span class="line"><span class="comment">#         "Call this program like this:\n"</span></span><br><span class="line"><span class="comment">#         "   ./cnn_face_detector.py mmod_human_face_detector.dat ../examples/faces/*.jpg\n"</span></span><br><span class="line"><span class="comment">#         "You can get the mmod_human_face_detector.dat file from:\n"</span></span><br><span class="line"><span class="comment">#         "    http://dlib.net/files/mmod_human_face_detector.dat.bz2")</span></span><br><span class="line"><span class="comment">#     exit()</span></span><br><span class="line"><span class="comment"># 官方例程都是从命令行加载，其提供的训练模型</span></span><br><span class="line"><span class="comment"># 需要先行下载</span></span><br><span class="line">cnn_face_detector = dlib.cnn_face_detection_model_v1(<span class="string">"mmod_human_face_detector.dat"</span>)</span><br><span class="line">win = dlib.image_window()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此处改成自己的图片目录，图片中需包含人脸</span></span><br><span class="line"><span class="comment"># 该例程会进行人脸框选</span></span><br><span class="line">cur_path = os.getcwd()</span><br><span class="line">image_path = cur_path + os.sep + <span class="string">'faces'</span></span><br><span class="line">print(image_path)</span><br><span class="line">dir_pics = os.listdir(image_path)</span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> dir_pics:</span><br><span class="line">    print(<span class="string">"Processing file: &#123;&#125;"</span>.format(f))</span><br><span class="line">    path = image_path + os.sep + f</span><br><span class="line">    print(path)</span><br><span class="line">    img = dlib.load_rgb_image(path)</span><br><span class="line">    <span class="comment"># The 1 in the second argument indicates that we should upsample the image</span></span><br><span class="line">    <span class="comment"># 1 time.  This will make everything bigger and allow us to detect more</span></span><br><span class="line">    <span class="comment"># faces.</span></span><br><span class="line">    dets = cnn_face_detector(img, <span class="number">1</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    This detector returns a mmod_rectangles object. This object contains a list of mmod_rectangle objects.</span></span><br><span class="line"><span class="string">    These objects can be accessed by simply iterating over the mmod_rectangles object</span></span><br><span class="line"><span class="string">    The mmod_rectangle object has two member variables, a dlib.rectangle object, and a confidence score.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    It is also possible to pass a list of images to the detector.</span></span><br><span class="line"><span class="string">        - like this: dets = cnn_face_detector([image list], upsample_num, batch_size = 128)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    In this case it will return a mmod_rectangless object.</span></span><br><span class="line"><span class="string">    This object behaves just like a list of lists and can be iterated over.</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    print(<span class="string">"Number of faces detected: &#123;&#125;"</span>.format(len(dets)))</span><br><span class="line">    <span class="keyword">for</span> i, d <span class="keyword">in</span> enumerate(dets):</span><br><span class="line">        print(<span class="string">"Detection &#123;&#125;: Left: &#123;&#125; Top: &#123;&#125; Right: &#123;&#125; Bottom: &#123;&#125; Confidence: &#123;&#125;"</span>.format(</span><br><span class="line">            i, d.rect.left(), d.rect.top(), d.rect.right(), d.rect.bottom(), d.confidence))</span><br><span class="line"></span><br><span class="line">    rects = dlib.rectangles()</span><br><span class="line">    rects.extend([d.rect <span class="keyword">for</span> d <span class="keyword">in</span> dets])</span><br><span class="line"></span><br><span class="line">    win.clear_overlay()</span><br><span class="line">    win.set_image(img)</span><br><span class="line">    win.add_overlay(rects)</span><br><span class="line">    dlib.hit_enter_to_continue()</span><br></pre></td></tr></table></figure></p>
+<img src="/2018/07/05/利用dlib进行人脸检测/cnn_face_detector.jpg" title="cnn_face_detector">
+<h3 id="人脸检测（HOG）"><a href="#人脸检测（HOG）" class="headerlink" title="人脸检测（HOG）"></a>人脸检测（HOG）</h3><p>利用OpenCV读取摄像头数据帧，官方例程利用load_rgb_image加载图片文件，其数据帧就是numpy数组。然后直接dlib提供的detector方法进行采取面部68个地标进行人脸检测。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> dlib</span><br><span class="line"> </span><br><span class="line">cap=cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 可在官网下载已经训练好的68特征人脸数据 </span></span><br><span class="line"><span class="comment"># http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 下载数据包</span></span><br><span class="line">predictor_path = <span class="string">"shape_predictor_68_face_landmarks.dat"</span></span><br><span class="line">predictor = dlib.shape_predictor(predictor_path)</span><br><span class="line">detector = dlib.get_frontal_face_detector()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    _,frame=cap.read()</span><br><span class="line">    <span class="comment"># Ask the detector to find the bounding boxes of each face. The 1 in the  </span></span><br><span class="line">    <span class="comment"># second argument indicates that we should upsample the image 1 time. This  </span></span><br><span class="line">    <span class="comment"># will make everything bigger and allow us to detect more faces. </span></span><br><span class="line">    dets = detector(frame, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> len(dets) != <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># Get the landmarks/parts for the face in box d.</span></span><br><span class="line">        shape = predictor(frame, dets[<span class="number">0</span>])</span><br><span class="line">        print(shape.parts())</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> shape.parts():</span><br><span class="line">            cv2.circle(frame, (p.x, p.y), <span class="number">3</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>), <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    cv2.imshow(<span class="string">'video'</span>,frame)</span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>)&amp;<span class="number">0xFF</span>==<span class="number">27</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
+          
+            <a href="/tags/FaceDetection/" rel="tag"># 人脸检测</a>
+          
+            <a href="/tags/Dlib/" rel="tag"># Dlib</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/03/利用Socket传输摄像头视频流数据/" rel="next" title="利用Socket传输摄像头视频流数据">
+                <i class="fa fa-chevron-left"></i> 利用Socket传输摄像头视频流数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/11/利用dlib进行面部特征提取/" rel="prev" title="利用dlib进行面部特征提取">
+                利用dlib进行面部特征提取 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Quenwa Zhang</p>
+              <p class="site-description motion-element" itemprop="description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境依赖"><span class="nav-number">1.</span> <span class="nav-text">环境依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DLIB-介绍"><span class="nav-number">2.</span> <span class="nav-text">DLIB 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人脸检测（CNN）"><span class="nav-number">3.</span> <span class="nav-text">人脸检测（CNN）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人脸检测（HOG）"><span class="nav-number">4.</span> <span class="nav-text">人脸检测（HOG）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Quenwa Zhang</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

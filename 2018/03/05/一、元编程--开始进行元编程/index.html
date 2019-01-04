@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CppMetaProgramming,C++," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="起步关于模版元编程的美妙之处在于，它们与传统的系统具有共同特性,即：一旦一个元程序完成，且能够工作，你就大可放心使用。不必关心底层实现。 下面写下我们的第一个元程序，开启元编程之旅。 123456789101112131415161718192021#include &quot;iostream&quot;#include &quot;boost/mpl/long.hpp&quot;#include &quot;boost/mpl/alias.h">
+<meta name="keywords" content="CppMetaProgramming,C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一、元编程--开始进行元编程">
+<meta property="og:url" content="http://yoursite.com/2018/03/05/一、元编程--开始进行元编程/index.html">
+<meta property="og:site_name" content="Q">
+<meta property="og:description" content="起步关于模版元编程的美妙之处在于，它们与传统的系统具有共同特性,即：一旦一个元程序完成，且能够工作，你就大可放心使用。不必关心底层实现。 下面写下我们的第一个元程序，开启元编程之旅。 123456789101112131415161718192021#include &quot;iostream&quot;#include &quot;boost/mpl/long.hpp&quot;#include &quot;boost/mpl/alias.h">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="og:updated_time" content="2018-07-26T08:04:37.757Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一、元编程--开始进行元编程">
+<meta name="twitter:description" content="起步关于模版元编程的美妙之处在于，它们与传统的系统具有共同特性,即：一旦一个元程序完成，且能够工作，你就大可放心使用。不必关心底层实现。 下面写下我们的第一个元程序，开启元编程之旅。 123456789101112131415161718192021#include &quot;iostream&quot;#include &quot;boost/mpl/long.hpp&quot;#include &quot;boost/mpl/alias.h">
+<meta name="twitter:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAooAAAB1CAYAAADJL8BpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABJOSURBVHhe7d3vix3Xfcfx+wf4qUHrUlHW4CcCg9gH3Ueh4BUsGCoKJUFQDAHtgxo/2MKigh8oLkUOTkii9XahramUorDugyqxca+iKqrFOkJW7Fa1KVoTpybxGtuSvfLKcljFJebbOWfOzJxz7jn3zt07d/bO7PsFH7J3fs+s984nZ+6uOjLAzlc78tTmU06u3Lti5gIAAKCtKIoAAAAIoigCAAAgaGBRVJY/WXZy/bfXzRwAAAC0VamiCAAAgP2HoggAAIAgiiIAAACCKIoAAAAIoigCAAAgiKIIAACAIIoiAAAAgiiKAAAACKIoAgAAIIiiCAAAgCCKIgAAAIIoigAAAAiiKAIAACCIoggAAIAgiiIAAACCKIoAAAAIoigCAAAgqNaiuHE62eERkQ/M64mxvS5L01OycOG2mVDWppyZm5Hld8xL2Zb1pdldbAcAAGDyTHRRvNUVmT2h6teY7aooqlI4LTNFS0zpbdnlEQAAoJlGLoovvviiXLp0KZjLly+bpXantqK4C9vrSzI9syyhPthvHgAAQFOMXBRVIYy5evVq+sUtkeMHkp0le/NHFLvHRU6tihxQ85IcOZtMtJe3cuK1dJ0gNZI3e1Se/MZ0suyMnFxNylqyUjril47+dZLXOlMLkg0ebp6ZM9O9EcXNM/KNhVU5Nde7Trq9fo+Y/UfSAAAAzZPUr9GUKoqZDZHDgaKYl0c1/2GR18wQ4lAjivqRryqG19NSOLMs19eXZHbhgvh1To34udMDxS8pinN5efQeM+tSahdHX+SxNAAAQINUUhS3trbkySefdKKULYr5SKEaSZwdoSjq8laUPrsQFiOHaabKFEXr8bFav3xR9JYHAABooIkYURx7UdSjg8Wj4NIjirsuioHtAQAANMzEF8UD3vJRg4pi/hlD9fnBEUcUBxZBPqMIAACar56iqApisqeOlYfNSGG/oqicPlysM/iXWSJFURe77JdZ0l906Z2exRS8vkVR7Y7fegYAAO2W1K/RjPPP40y2tGT2fA5RFVb+jiIAAGiBkYuib2dnx3y1H/AvswAAgPaqvCi+9NJL5isAAAA0GUURAAAAQaWK4o/u/MjJ2ztvmzm9KIoAAADtMLAo7ny1I09tPuXkyr0rZm4viiIAAEA7UBQBAAAQVG9RvNWV4wfU3yo8ImdL/RVtAAAA7JVai+LG6cNyhIYIAADQCDUXxT+VE/Y/uwIAAICJVWNRvCXd47MURQAAgIaopyhunJbDnYcpiQAAAA3CiCIAAACC+IwiAAAAgiiKAAAACKq5KPLncQAAAJqi1qLIH9wGAABojnqLIgAAABqDoggAAICggUVR+cHtHzh59d6rZk4viiIAAEA7MKIIAACAIIoidumu/PT8K/LYy7+UO2YKAABol/1TFLfXZWl2QS7cNq9DyixTpz09ng/lH85ekn/+0LzsMalF8X1ZO/qAdDodOXb+rpmWen/tqDyQTO8cO58cveX9NTn6gPpt/CSPPis37pvpiV+cfEhPf/TZG2JNVjPkIbV8YHvRdfbUL+TkQ+FzBAAghqJoa1NR/OwN+avnz8m/f2peW35zcVX+uPueeRUzqChOCFXyZrPio8rQo/LsjXd1WbSLoipvqri9q8qiU+yyddLmpMuknp8WTrWNbN28W+lieUyyzRfz+6zj7WfPONcLAID+WlYUN+XMnBk1STK1cEFuy7asL03n09x5vet0puxiZtadWZZ3zJTM9vqSTHdmZNmfsXlG5vL9WPMj0zfPzMlMsVByLGreoGMeYPOi/Mkzz8lfvu63xM/kytp3pPN8V941U+LSovj9y+vyteWfyKHlrjzz1hfprF+/KX+mp/3EHVHc2pC//pfX5YXzr+h5h5atommto/IXVz5Jp6t1fvhzeeHfLpp5Zj9q+X/8uVzJG506HusYFD2qFypfRWHzFUXQUNuwXqejgUUJVPzSp7Yxm782I5iBkUi3KCZ0wYyUxei5pCOB/v57y645Znt0NEnwGLyiqI61uFbWtvRLa+TUH4mMHjMAoC1aVRRVeZuNlang6FxayPKi1rPMkEVRrT8dKI/+dFUaTSENF0XzcjcjirokPi9/9555nUtL4h+ce11MRRtAFTOrCPYUN5Fbb67Ln/tF8e+LErjxs4uRR9PWaKW3jt7Puf+SXyc16KfnL7rlVE83dElxC12hfFEsSl+6zqPPrsqSXZQSfukrilVa4o59bzVYvnpKmmbW8Y9tiKKYTvPKnFMcM+qcZt1tDlMUvWWDJZuiCACt1q4RxWzULlDsgqXLn7abYmaJFlV1XM4xFYWwyqJ45401+aPnQo+bN+WF1WdKPG62+Y+e/deRovjDokw6800hzEYU89FGbx2bvf7Gz/4jL426sPT9nN2wRfEV+ad8ea+EJcJF8VKynClJkfIVLopKqPwNxy53vUWvGFHs+EVuiKKor1W+HZNgIQUAtFU7P6MYKoz7oChqlY4oWsUwUOjKF0X/F1+8EcVIUdTLral5yf/+2BpNVCoaUUy3Y43wqSJlff5Q8UtfWqCsAqa2UebRs5YWudCxDUUd5zfVeSTbe6zYt9pvUeZGG1FMS/TuyywAoPna+8ssoRLY81hYFbMpWdALmcfMo3xGURdUfx8Jb996XevRc/bZQ/W187nG4DGXUOFnFLOiqErf1+xHv4lhi2L2eFlvq8SIoqJHEi9fk6ezR9O26KPPIYqiVYz0K6dopXpKn1O20n35pTBYFHUJjTyqjZ5LWix7S6fa7zfl/KWT8pg1z9lvaJuRopito88/K+D6eGNlPOGXbABA67SqKKZFq3hMVozUpez5WTlLC5+alhTGtX/1RvCGLIqJYnsqXjkMTE/LYDp9amFVTs252wwdcymV/Naz9ajY+nxiWvSseUl0CYwWxYT1yyyPvfymPFdqRDGh17NGNn2B0pZdrzTF6Jj/GDUvOKbw6OnWyGBamux1itLlbM8qlvF1VOGLlERl6KKYHUOgCGa/zHLse7KajSja07Nkx23N8z+j6V83pxRm63nFGgDQHu0dUUQr9IxaYoLER24BAO1AUcREykctvcfdmBBmFDY00gkAaA+KIgAAAIIoigAAAAgaWBSVb330LSev3nvVzOlFUQTqsfXlNXn33vcJIYTUGPXeu5+UKorDoCgC9VBvWN2P/pAQQkiNUe+9+wlFEWiorChe3/p6/v90Vd7Y/Fu58dEp2fjsO4QQQgbkrdvfltd/8zfO+2go6r2WolgBiiJQD/VmFXrT+u+335P79+/Lzs4OIYSQEvnPG78y76BxsffctqMoJtaXRBYumBe1+1yuPf2I+YPGD8oTL39kpgP9xd601Bte6I2QEEJIOBTFOIpiYi+L4sfnHpcHn3hZdD38/Jo8/cgh+e7/6FlAXxRFQgipJhTFuFYVxe11kdkFkVNzyYklZ9aZkuKf49sUmVPTrOlq+elsmjdPLz8j+T/dt3lGZGY5/VoXy9Vie1PJPtUqantHT4osTZttWeuHfSznHreK4cfn5PFkxUNWU1RFsvPgE8JAI3wURUIIqSYUxbikzlRrr4uiKn7Zv5Wcl7vtpLzNFqVRL2eVuOCI4oCiaJfAM0kxVfv096+m9x2pVCOIs2kJ/Pza0/JIUghXv/04RRGlUBQJIaSaUBTjWlcU1YhiNoiYyQpcPmqoMmJRDBVAf/+x5XKmKJ77cVISD31XVD1UxdAuikAMRZEQQqoJRTFu3xTF0PTMnhVF/ei5Ix1TErNfbKEoogyKIiGEVBOKYty+KIr60fN08UjYpwpdVgJzqijan1dMrlT1RdEbQdSfUXR/mUU/evamAQpFkRBCqglFMW5/FMWEmmc/fnaKoSmCep71CzCq6GXTVk+Npyjmo4rJjkJ/Hkd/djGZxygjfBRFQgipJhTFuKQGVWsvi2Ir8SdzEEFRJISQakJRjKMoTrD0sTN/hBthE18Ub67I/MF5WbkZmNeIdGXx4KJ0g/PGmZuyMn9QFruheW1LmWu8V9+H/RKurwpFMY6iCDQURXHcoSiOP+0oijdX5uXgwYNFFrvWfHX82Tz7PCbl+zw513cvryNFMY6iCDRUPUVxmDfhphWcQce7VzfQvbqOe7HfMtd4copMLN3FgzK/cjMwT13T4tjVckX5mZSfl8m5vnt5HSmKcRRFoKEoiqNm0PFSFMef9hTFUtetuygH51fkpn49KT8vk1UU9+o6UhTjKIpAQ1VdFN3HPurGoW4g2esk2RuzfqRcTE/foAPL6uXsG5C7THjkoN9y3j56tj0vKyvJDaRnvSHOzYlaJn78w+zfXdcsF9ynSnbjc/fn3gj7Hcvg+aWuh/3RAedjBGrZ5Otu8d+BPjZ18zavi3MfdC5qujm2vvvzr3WxrfF9HyLRx2afQ3qO4eNx446Y9Sk4zvkHErxW6fZ6/rvPzs8cd3ac8e+Bdfz+a+/au9fWTc9j5IHrjOE6DhGKYhxFEWioSotizw0hi/8mnLxetG6suhxk63nLOttMbzD9bixpYssFpjv7Njew7HGU3rd9Iy1zbn7UNvscf9n9m3nONVQ3xAFF0blRBvY16Fii88tej55r6J5Pfvx62/65Z9svcy72ccX2Zy9f1/fBTnYeg5d3ypmKPoZ0Xfe/Ne9698Tap339VGLXSl2LfN/29pOvoz+3/vfA2pfzWi2XXUuVQcc/Wqq7juVCUYyrqShuyOnD6u8EPiwnXts20wCMotKimN1gnRuBSvhNuHdEKrCsfZNxbmB9ElsuON3eX+gmlr0e7tyKWDfQUfYfWrfv9QgdlzVt0LGUOtbdXI8s/rn2ez3gXPSyVjEJxlqm1u+DiSkog69LFv8YiujP1uX7K3u9k5Q+BmvfTslLE/65ta6vv47/M5yvW8Qp7ZVmDNexTyiKcbWOKN7qHpcDR87KB+Y1gN2rtihmSd90ixLhvQmbG1Z+c3BuLKFlrZvMoBuySmy54HS1v+w4+xQEZ/k+59YT6wY6yv5D6/a9HqHjsqYNOpaBx2pPG+Z6ZPHPtd/r0DbtadY1jsZaptbvg530mNNyVOZ47WOIzQtdGzvD7LNI9lhWlUL35zT2c2tdX2e697r0tUrjltIi5YtlVdexXCiKcfU+et44LYcpikAlKi2KyQ1hJX+jtd94vTdh72aR3gyyG4u3bM/NyH4z78pK8IYRWy6d7txknGPxbyrqWMzrsufWE7VN9/h3tX+zbrGfdL/xm66Zn/9Wp3+dyxxLn/llr4f+/hXX0H2Ea59rv9dlzsV83Xd/e/F9iEQfm7udm/n+vNEutax/7vn+vOttxzn/QKLXyryeX5TF/LyTONeo5PcguJx7vN3FbF4VGcN1HCIUxbh6i+KtrhyfPSE8fQZGV2lRTKLfmJMbgU7PjT170zY3V7PcfHKjsEcgnGX1Tce6kejX2bp9bjDR5dIbVbbv3nn2jdUuCGXPLVs3i3UDzV9b2xli/+45JdPL/DJLcm3D+1LpdyyD55e6HvqYzTnYX/eca7/Xg85FLWte992fv062rdD27GMZ5ftQNuk55sfjbS+/pjr2sXrrBdaNJnqtVMx2re+rvy/359a9vvbx+j/f7vUbvZy5qfY6FtstF4piXP2/zKLK4oGOHDnLuCIwiqqLIqkx3ghPe5PexKstFBVm33wfyKBQFOMYUQQaiqLYlKiyZI+ApCNizuPT1maSiuJ+/j6QQaEoxvEZRaChKIoNivfIbv+UkwkbUYx+H/zH2WkmdiSUVB6KYhxFEWgoiiIhhFQTimJcrUWRP48DVIeiSAgh1YSiGFdTUeQPbgNVoygSQkg1oSjG1fvoGUBlKIqEEFJNKIpxFEWgoSiKhBBSTSiKcZUXxbW1NV0WVa5evWqmAqgaRZEQQqoJRTGu8qIIoB4URUIIqSYUxTiKItBQsTetG2+9J/fv3w++GRJCCOkNRTGOogg0VOxN61f/+6F8unU3+GZICCHEzd27X8jNd94376BxFEUAjRJ70/rdl/8n7/zyA/3/kAkhhPSPKok7O78z76BxFEUAjZK9aV3f+rr+mhBCyPii3mspigAaQ71ZqTctQggh9YWiCKARtr68lv8/XUIIIfVEvffuJxRFAAAABFEUAQAAEERRBAAAQBBFEQAAAEEURQAAAARRFAEAABBEUQQAAEDQ2Ivi73//FSGEEEIIaWDGXhQ/+eQeIYQQQghpYMZeFD/99Au5d+8+IYQQQghpWMZeFO/c+a35CgAAAE1CUQQAAEAQRREAAABBFEUAAAAEiPw/B16YWjllsGEAAAAASUVORK5CYII=">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/05/一、元编程--开始进行元编程/"/>
+
+
+
+
+
+  <title>一、元编程--开始进行元编程 | Q</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Q</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quenwaz's Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/05/一、元编程--开始进行元编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Quenwa Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Q">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一、元编程--开始进行元编程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-05T11:07:50+08:00">
+                2018-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><p>关于模版元编程的美妙之处在于，它们与传统的系统具有共同特性,即：一旦一个元程序完成，且能够工作，你就大可放心使用。不必关心底层实现。</p>
+<p>下面写下我们的第一个元程序，开启元编程之旅。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"boost/mpl/long.hpp"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"boost/mpl/alias.hpp"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="keyword">long</span> n &gt; <span class="class"><span class="keyword">struct</span> <span class="title">binary</span></span></span><br><span class="line"><span class="class">	:</span> mpl::long_&lt; (binary&lt; n / <span class="number">10</span> &gt;::value &lt;&lt; <span class="number">1</span>) + n % <span class="number">10</span> &gt;</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;&gt; <span class="class"><span class="keyword">struct</span> <span class="title">binary</span>&lt;0&gt;</span></span><br><span class="line"><span class="class">	:</span> mpl::long_&lt;<span class="number">0</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; binary&lt;<span class="number">110101</span>&gt;::value;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当前程序依赖boost中的mpl模块，如果在这之前没有了解mpl，但一定需要熟悉template。便于之后对程序的理解。</p>
+<p>这段程序的神奇之处在于，即使你没有运行，已经能获知当前二进制的十进制值，只需将鼠标移至value，即可显示如下结果(<em>vs 2015</em>)：</p>
+<p><img src="data:image/png;base64,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" alt="查看当前二进制值"></p>
+<h3 id="元程序的概念"><a href="#元程序的概念" class="headerlink" title="元程序的概念"></a>元程序的概念</h3><p><strong>元程序是一个用于操纵代码的程序</strong></p>
+<p>如:C++编译器（visual studio、code blacks），YACC解析器等，都是用于操纵代码的程序。</p>
+<h3 id="在C-进行元编程"><a href="#在C-进行元编程" class="headerlink" title="在C++进行元编程"></a>在C++进行元编程</h3><h4 id="数值计算"><a href="#数值计算" class="headerlink" title="数值计算"></a>数值计算</h4><p>最早的C++元编程在编译期执行整数计算。下面例程尝试自己编写第一个上一例子中boost封装的部分</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">unsigned</span> <span class="keyword">long</span> N&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">binary</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> value = binary&lt;N / <span class="number">10</span>&gt;::value * N % <span class="number">10</span>;    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">binary</span>&lt;0&gt;</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">const</span> value = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此例由binary<n>嵌套对::value进行递归运算。直至N变为0，利用特化版本作为终结条件。</n></p>
+<pre><code>当输入值非二进制值(1与0的组合)，那么程序得到的结果并非一个有效的二进制值？那么如何解决这个问题？后续更新将解决此问题。
+</code></pre><p>由于C++语言对编译器计算和运行期计算的表达方式强加了一些区别。因此元程序看起来不同于它们的运行期对应物。下面编写运行期实现版本:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">binary</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> N)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> N == <span class="number">0</span> ? <span class="number">0</span> : N % <span class="number">10</span> + <span class="number">2</span> * binary(N / <span class="number">10</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出运行期版本与编译器版本最大的区别在于终结条件不同。元程序是利用模板特化来描述N为0时，该如何进行下一步。<strong>几乎所有元程序都是利用模板特化进行递归终结</strong>。</p>
+<p>下面将使用循环而非递归的方式实现binary的十进制运算:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">binary</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> N)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> bit = <span class="number">0x1</span>; N; N /= <span class="number">10</span>, bit &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (N % <span class="number">10</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            result += bit;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>非递归版本代码虽然相对冗长，但更加讨喜，因为除了看上去更直观，而且有时候比递归更高效。</p>
+<p>C++编译期组成的部分通常称为”纯函数性语言(pure funtional language)”。元数据必须保证是常性的。<br><br>如需编写有限循环递归，则需要检查终结条件中一些可变(mutable)东西的状态。所以，<strong>对于C++元程序来说,递归(recursion)是惯用法。</strong></p>
+<h4 id="类型计算"><a href="#类型计算" class="headerlink" title="类型计算"></a>类型计算</h4><p>相比在编译期进行数值计算，而进行类型计算能力更强。后续更新更多对类型计算展开。若需要深入了解YACC表达式求值器，可深入去了解boost spirit库。</p>
+<h3 id="为何进行元编程"><a href="#为何进行元编程" class="headerlink" title="为何进行元编程"></a>为何进行元编程</h3><p>元编程有什么好处？下面让我们首先看看其他实现元编程的途径。</p>
+<h4 id="运行期计算"><a href="#运行期计算" class="headerlink" title="运行期计算"></a>运行期计算</h4><p>最直接的方法就是在运行期而非编译期执行计算。而采用元程序最显而易见的是在程序启动之前做了许多工作，所以可以更好地提高性能。如binary的例程，其::value是一个编译期常数，编译器可以直接编码到目的码，因而当需要使用它时，可以节省内存查找时间。</p>
+<p>另一个比较有说服的理由即是，元程序使得计算结果可与目标语言进行更深入地互动。例如，C++数组的大小可利用binary<n>::value这样的编译期常数。而不能通过一个运行期函数返回值指定。</n></p>
+<h4 id="用户分析"><a href="#用户分析" class="headerlink" title="用户分析"></a>用户分析</h4><p>不是在运行期或编译期进行计算，我们也可以手动做这件事。根据我们课堂所学，将一个二进制转换为十进制，手工也不难。<br>相对于写一个元程序的难度，或许你更倾向于手工计算。但是，一旦一个元程序被写好了，整个C++使用团队都受惠于它所带来的便利性。</p>
+<h3 id="何时进行元编程"><a href="#何时进行元编程" class="headerlink" title="何时进行元编程"></a>何时进行元编程</h3><p>作为一个指导方针，如果一下条件中有任何三个适合你，可能就适宜采用一个元编程解决方案：</p>
+<ul>
+<li>如果不使用元编程，你需要编写大量的刻板的实现代码</li>
+<li>你需要基于组件的类型参数的属性来选择组件实现。</li>
+<li>你希望利用C++中泛型编程的价值特性，如：静态类型检查和行为定制能力，同时无需付出效率上的代价。</li>
+<li>你希望利用C++语言内完成这件事，而无需使用第三方工具或定制源码生成器。</li>
+</ul>
+<h3 id="为何需要元编程程序库"><a href="#为何需要元编程程序库" class="headerlink" title="为何需要元编程程序库"></a>为何需要元编程程序库</h3><p>建议花时间去了解boost mpl。因为接下来的篇章将与boost mpl存在协作。所以为何需要元编程程序库？下面给出答案：</p>
+<ul>
+<li>质量</li>
+<li>复用</li>
+<li>移植性</li>
+<li>乐趣</li>
+<li>生产率</li>
+</ul>
+<p><br><br><small><em>本文为学习整理《C++ Template Metaprogramming》一书中的要点</em></small></p>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MetaProgramming/" rel="tag"># CppMetaProgramming</a>
+          
+            <a href="/tags/Cpp/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/28/二、传输层-TCP、UDP和SCTP/" rel="next" title="二、传输层:TCP、UDP和SCTP">
+                <i class="fa fa-chevron-left"></i> 二、传输层:TCP、UDP和SCTP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/08/二、元编程--Traits和类型操纵/" rel="prev" title="二、元编程--Traits和类型操纵">
+                二、元编程--Traits和类型操纵 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Quenwa Zhang</p>
+              <p class="site-description motion-element" itemprop="description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#起步"><span class="nav-number">1.</span> <span class="nav-text">起步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元程序的概念"><span class="nav-number">2.</span> <span class="nav-text">元程序的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在C-进行元编程"><span class="nav-number">3.</span> <span class="nav-text">在C++进行元编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数值计算"><span class="nav-number">3.1.</span> <span class="nav-text">数值计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型计算"><span class="nav-number">3.2.</span> <span class="nav-text">类型计算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为何进行元编程"><span class="nav-number">4.</span> <span class="nav-text">为何进行元编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行期计算"><span class="nav-number">4.1.</span> <span class="nav-text">运行期计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户分析"><span class="nav-number">4.2.</span> <span class="nav-text">用户分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#何时进行元编程"><span class="nav-number">5.</span> <span class="nav-text">何时进行元编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为何需要元编程程序库"><span class="nav-number">6.</span> <span class="nav-text">为何需要元编程程序库</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Quenwa Zhang</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

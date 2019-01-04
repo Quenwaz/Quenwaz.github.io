@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CppMetaProgramming,C++," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="类型关联在C++中，可以在编译期进行操纵的实体称为元数据(metadata),元数据可分为(任何元数据都可以作为模板参数):  非类型:在中的常量整数值就属于一种非类型，此类包括可在编译期知道的任何值类型。如：整形、枚举、函数和“全局”对象的指针与引用，及指向成员的指针。  类型:而类型通常需要利用关键字typename进行声明。对于typename的使用条件：当使用一个依赖性的名字(depend">
+<meta name="keywords" content="CppMetaProgramming,C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二、元编程--Traits和类型操纵">
+<meta property="og:url" content="http://yoursite.com/2018/03/08/二、元编程--Traits和类型操纵/index.html">
+<meta property="og:site_name" content="Q">
+<meta property="og:description" content="类型关联在C++中，可以在编译期进行操纵的实体称为元数据(metadata),元数据可分为(任何元数据都可以作为模板参数):  非类型:在中的常量整数值就属于一种非类型，此类包括可在编译期知道的任何值类型。如：整形、枚举、函数和“全局”对象的指针与引用，及指向成员的指针。  类型:而类型通常需要利用关键字typename进行声明。对于typename的使用条件：当使用一个依赖性的名字(depend">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-26T08:04:37.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二、元编程--Traits和类型操纵">
+<meta name="twitter:description" content="类型关联在C++中，可以在编译期进行操纵的实体称为元数据(metadata),元数据可分为(任何元数据都可以作为模板参数):  非类型:在中的常量整数值就属于一种非类型，此类包括可在编译期知道的任何值类型。如：整形、枚举、函数和“全局”对象的指针与引用，及指向成员的指针。  类型:而类型通常需要利用关键字typename进行声明。对于typename的使用条件：当使用一个依赖性的名字(depend">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/08/二、元编程--Traits和类型操纵/"/>
+
+
+
+
+
+  <title>二、元编程--Traits和类型操纵 | Q</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Q</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quenwaz's Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/08/二、元编程--Traits和类型操纵/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Quenwa Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Q">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">二、元编程--Traits和类型操纵</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-08T13:13:37+08:00">
+                2018-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="类型关联"><a href="#类型关联" class="headerlink" title="类型关联"></a>类型关联</h3><p>在C++中，可以在编译期进行操纵的实体称为<strong>元数据(metadata)</strong>,元数据可分为(任何元数据都可以作为模板参数):</p>
+<ul>
+<li><p>非类型:<br>在中的常量整数值就属于一种非类型，此类包括可在编译期知道的任何值类型。如：整形、枚举、函数和“全局”对象的指针与引用，及指向成员的指针。</p>
+</li>
+<li><p>类型:<br>而类型通常需要利用关键字typename进行声明。对于typename的使用条件：当使用一个依赖性的名字(dependent name)且该名字表示的是一个类型时，C++标准要求使用typename关键字标明。</p>
+</li>
+</ul>
+<p>下面写一个简单的算法: iter_swap,它的主要职责用于接收两个迭代器交换它们的值：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIterator1</span>, <span class="title">class</span> <span class="title">ForwardIterator2</span> <span class="title">i2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">iter_swap</span>(<span class="title">ForwardIterator1</span> <span class="title">i1</span>, <span class="title">ForwardIterator2</span> <span class="title">i2</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  T tmp = *i1;</span><br><span class="line">  *i1 = *i2;</span><br><span class="line">  *i2 = tmp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码无法通过编译， 错误很明显，对于类型T未定义。那么如何给这个类型命名呢？请往下看。</p>
+<h4 id="一种直接的方式"><a href="#一种直接的方式" class="headerlink" title="一种直接的方式"></a>一种直接的方式</h4><p>要求迭代器提供一个名称为value_type的嵌套类型，可以直接访问它：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIterator1</span>, <span class="title">class</span> <span class="title">ForwardIterator2</span> <span class="title">i2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">iter_swap</span>(<span class="title">ForwardIterator1</span> <span class="title">i1</span>, <span class="title">ForwardIterator2</span> <span class="title">i2</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">typename</span> ForwardIterator1::value_type tmp = *i1;</span><br><span class="line">  *i1 = *i2;</span><br><span class="line">  *i2 = tmp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>对于类型关联来说，这是个好的策略，但它不具有一般性。C++中迭代器的设计是模仿指针，这样做的用意是普通的指针也可以用做合法的迭代器。而指针没有嵌套类型，所以不适用。只能适用于类类型。</p>
+<h4 id="一种迂回的方式"><a href="#一种迂回的方式" class="headerlink" title="一种迂回的方式"></a>一种迂回的方式</h4><p>我们无法为所有的迭代器都添加嵌套类型::value_type，但是我们可以将其添加到一个带有迭代器类型的参数模板。在标准库中，称为iterator_traits,如下:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Iterator</span>&gt; <span class="title">struct</span> <span class="title">iterator_traits</span>;</span></span><br><span class="line"><span class="comment">// 下面调整iter_swap:</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIterator1</span>, <span class="title">class</span> <span class="title">ForwardIterator2</span> <span class="title">i2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">iter_swap</span>(<span class="title">ForwardIterator1</span> <span class="title">i1</span>, <span class="title">ForwardIterator2</span> <span class="title">i2</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">typename</span> iterator_traits&lt;ForwardIterator1&gt;::value_type tmp = *i1;</span><br><span class="line">  *i1 = *i2;</span><br><span class="line">  *i2 = tmp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>iterator_traits描述了实参的特性。这里的特性（traits）是迭代器的五个相关联类型：value_type、reference、pointer、difference_type及iterator_category。</p>
+<p>traits模板最重要的功能是提供了一种非侵入的方式，使信息与类型进行关联。你只需要添加一个iterator_traits的显式特化(explicit specialization),当iter_swap使用时，就能看到特化中的value_type类型:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">iterator_traits</span>&lt;Hector::hands_off&gt;</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">int</span> value_type;</span><br><span class="line">  <span class="comment">//..</span></span><br><span class="line">  <span class="comment">// 另外四个typedefs</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这种非侵入的方式，可以适用于指针，而非局限于类类型，只需局部特化一个版本：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">iterator_trait</span>&lt;T*&gt;</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">typedef</span> T value_type;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="comment">// 另外四个typedefs</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h4 id="寻找一种捷径"><a href="#寻找一种捷径" class="headerlink" title="寻找一种捷径"></a>寻找一种捷径</h4><p>直接上代码:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Iterator</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">iterator_trait</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">typename</span> Iterator::value_type value_type;</span><br><span class="line">  <span class="comment">// .. 另外四个typedefs</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>由代码可以看出，value_type 的具体类型由实参Iterator控制，作者在编码时只需要在Iterator内部添加一个value_type实际类型即可。</p>
+<p>那么这样做的好处在哪里？相比进行特化而言，此方式明显更简洁，更能控制无必要的冗余代码。相对在类外部新增特化版本，在类内部控制更为便利。</p>
+<h3 id="元函数"><a href="#元函数" class="headerlink" title="元函数"></a>元函数</h3><p>相信阅读至此， 你已经注意到traits模板和普通函数之间存在某些相似性。traits的模板参数和嵌套类型在编译期发挥了类似于普通函数的参数和返回值在运行期发挥的作用。</p>
+<p>处理传递和返回的是类型而非值外，traits模板还有两个显著的特征，他们在普通函数身上是看不到的：</p>
+<ul>
+<li><strong>特化</strong>：只需要添加一个特化就可以针对其参数特定的“值”非侵入性地修改traits模板结果。或通过使用局部特化为整个范围的“值”修改结果。如果将特化应用于普通函数，将不可思议。假如添加一个重载的std::abs，只有当其实参为一个奇数的时候才能调用该特化版本。</li>
+<li><strong>多个返回值</strong>：通常普通函数传递多个实参只返回一个值（输出实参除外）。而traits通常具有不止一个返回结果。如， std::iterator_traits包含五个嵌套类型:value_type、reference、pointer、different_type及iterator_category。</li>
+</ul>
+<p>为了深入了解”类模板用作函数”的思想，我们将使用术语<strong>元函数(metafunctions)</strong>。</p>
+<p>标准库中traits模板都遵从”多个返回值”模型。通常此类模型称为”blob”，因为它似乎是将单独的，松散相关的元函数揉碎后放入单个单元中。这种方式会存在如下弊端:</p>
+<ul>
+<li>当首次进入iterator_traits访问::value_type时，该模板会被实例化，意味着编译器需要承担很多工作，而且不仅只计算value_type，其他四个相关联类型都需要计算(即使用不到)</li>
+<li>降低了互操作能力，因为将多个元函数捆绑，如:<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">X</span>, <span class="title">class</span> <span class="title">UnaryOp1</span>, <span class="title">class</span> <span class="title">UnaryOp2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">X</span> <span class="title">apply_fg</span>(<span class="title">X</span> <span class="title">x</span>, <span class="title">UnaryOp1</span> <span class="title">f</span>, <span class="title">UnaryOp2</span> <span class="title">g</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">return</span> f(g(x));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>而利用blob的方式:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">X</span>, <span class="title">class</span> <span class="title">Blob</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">X</span> <span class="title">apply_fg</span>(<span class="title">X</span> <span class="title">x</span>, <span class="title">Blob</span> <span class="title">blob</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">return</span> blob.f(blob.g(x));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>显然第二种方式意味着必须是Blob成员，而第一种方式可以如下操作:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">log2</span><span class="params">(<span class="keyword">float</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = apply_fg(<span class="number">5.0f</span>, <span class="built_in">std</span>::negate&lt;<span class="keyword">float</span>&gt;(), log2);</span><br><span class="line"><span class="keyword">int</span> b = apply_fg(<span class="number">-2.14f</span>, log2, <span class="built_in">std</span>::negate&lt;<span class="keyword">float</span>&gt;());</span><br></pre></td></tr></table></figure></p>
+<p>这种允许不同实参类型可交换使用的属性，成为多态(polymorphism)</p>
+<blockquote>
+<p><strong>多态</strong><br><br> C++中有两种多态。常见的<strong>动态多态(dynamic polymorphism)</strong> 即单个基类指针或引用可处理多个派生类型的对象。而此处提到的是<strong>静态多态(static polymorphism)</strong> 允许不同类型的对象以同样的方式被操纵。<br></p>
+<ul>
+<li>动态多态，连同”迟绑定”或”运行期派发”(C++ 借助于虚函数提供的特性)，是面向对象编程的关键特性。通常在运行期。</li>
+<li>静态多态，也称为参数化多态是泛型编程的本质要素。通常在编译期间</li>
+</ul>
+</blockquote>
+<h3 id="数值元函数"><a href="#数值元函数" class="headerlink" title="数值元函数"></a>数值元函数</h3><p>数值元函数也称常量外覆器<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">five</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">int</span> <span class="keyword">const</span> value = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">int</span> value_type;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码看似不方便，这样做的原因:要求所有元函数和返回类型，可以使他们更统一，更多态。</p>
+<p>在boost所有数值型原函数都是这么做的，后续章节将讲到它所带来的好处。</p>
+<h3 id="在编译期作出选择"><a href="#在编译期作出选择" class="headerlink" title="在编译期作出选择"></a>在编译期作出选择</h3><h4 id="进一步讨论iter-swap"><a href="#进一步讨论iter-swap" class="headerlink" title="进一步讨论iter_swap"></a>进一步讨论iter_swap</h4><ul>
+<li style="list-style: none"><input type="checkbox"> 待完善<br><br><br><small><em>本文为学习整理《C++ Template Metaprogramming》一书中的要点</em></small></li>
+</ul>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MetaProgramming/" rel="tag"># CppMetaProgramming</a>
+          
+            <a href="/tags/Cpp/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/05/一、元编程--开始进行元编程/" rel="next" title="一、元编程--开始进行元编程">
+                <i class="fa fa-chevron-left"></i> 一、元编程--开始进行元编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/10/排序算法之插入排序/" rel="prev" title="排序算法之插入排序">
+                排序算法之插入排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Quenwa Zhang</p>
+              <p class="site-description motion-element" itemprop="description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型关联"><span class="nav-number">1.</span> <span class="nav-text">类型关联</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一种直接的方式"><span class="nav-number">1.1.</span> <span class="nav-text">一种直接的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一种迂回的方式"><span class="nav-number">1.2.</span> <span class="nav-text">一种迂回的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寻找一种捷径"><span class="nav-number">1.3.</span> <span class="nav-text">寻找一种捷径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元函数"><span class="nav-number">2.</span> <span class="nav-text">元函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值元函数"><span class="nav-number">3.</span> <span class="nav-text">数值元函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在编译期作出选择"><span class="nav-number">4.</span> <span class="nav-text">在编译期作出选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进一步讨论iter-swap"><span class="nav-number">4.1.</span> <span class="nav-text">进一步讨论iter_swap</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Quenwa Zhang</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

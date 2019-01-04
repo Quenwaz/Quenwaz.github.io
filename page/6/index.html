@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
+<meta name="keywords" content="C++,Boost,STL,Python,OpenCV,人脸识别,编程思想">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Q">
+<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+<meta property="og:site_name" content="Q">
+<meta property="og:description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Q">
+<meta name="twitter:description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/6/"/>
+
+
+
+
+
+  <title>Q</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Q</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quenwaz's Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/05/一、元编程--开始进行元编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Quenwa Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Q">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/05/一、元编程--开始进行元编程/" itemprop="url">一、元编程--开始进行元编程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-05T11:07:50+08:00">
+                2018-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><p>关于模版元编程的美妙之处在于，它们与传统的系统具有共同特性,即：一旦一个元程序完成，且能够工作，你就大可放心使用。不必关心底层实现。</p>
+<p>下面写下我们的第一个元程序，开启元编程之旅。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"boost/mpl/long.hpp"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"boost/mpl/alias.hpp"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="keyword">long</span> n &gt; <span class="class"><span class="keyword">struct</span> <span class="title">binary</span></span></span><br><span class="line"><span class="class">	:</span> mpl::long_&lt; (binary&lt; n / <span class="number">10</span> &gt;::value &lt;&lt; <span class="number">1</span>) + n % <span class="number">10</span> &gt;</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;&gt; <span class="class"><span class="keyword">struct</span> <span class="title">binary</span>&lt;0&gt;</span></span><br><span class="line"><span class="class">	:</span> mpl::long_&lt;<span class="number">0</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; binary&lt;<span class="number">110101</span>&gt;::value;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当前程序依赖boost中的mpl模块，如果在这之前没有了解mpl，但一定需要熟悉template。便于之后对程序的理解。</p>
+<p>这段程序的神奇之处在于，即使你没有运行，已经能获知当前二进制的十进制值，只需将鼠标移至value，即可显示如下结果(<em>vs 2015</em>)：</p>
+<p><img src="data:image/png;base64,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" alt="查看当前二进制值"></p>
+<h3 id="元程序的概念"><a href="#元程序的概念" class="headerlink" title="元程序的概念"></a>元程序的概念</h3><p><strong>元程序是一个用于操纵代码的程序</strong></p>
+<p>如:C++编译器（visual studio、code blacks），YACC解析器等，都是用于操纵代码的程序。</p>
+<h3 id="在C-进行元编程"><a href="#在C-进行元编程" class="headerlink" title="在C++进行元编程"></a>在C++进行元编程</h3><h4 id="数值计算"><a href="#数值计算" class="headerlink" title="数值计算"></a>数值计算</h4><p>最早的C++元编程在编译期执行整数计算。下面例程尝试自己编写第一个上一例子中boost封装的部分</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">unsigned</span> <span class="keyword">long</span> N&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">binary</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> value = binary&lt;N / <span class="number">10</span>&gt;::value * N % <span class="number">10</span>;    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">binary</span>&lt;0&gt;</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">const</span> value = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此例由binary<n>嵌套对::value进行递归运算。直至N变为0，利用特化版本作为终结条件。</n></p>
+<pre><code>当输入值非二进制值(1与0的组合)，那么程序得到的结果并非一个有效的二进制值？那么如何解决这个问题？后续更新将解决此问题。
+</code></pre><p>由于C++语言对编译器计算和运行期计算的表达方式强加了一些区别。因此元程序看起来不同于它们的运行期对应物。下面编写运行期实现版本:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">binary</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> N)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> N == <span class="number">0</span> ? <span class="number">0</span> : N % <span class="number">10</span> + <span class="number">2</span> * binary(N / <span class="number">10</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出运行期版本与编译器版本最大的区别在于终结条件不同。元程序是利用模板特化来描述N为0时，该如何进行下一步。<strong>几乎所有元程序都是利用模板特化进行递归终结</strong>。</p>
+<p>下面将使用循环而非递归的方式实现binary的十进制运算:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">binary</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> N)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> bit = <span class="number">0x1</span>; N; N /= <span class="number">10</span>, bit &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (N % <span class="number">10</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            result += bit;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>非递归版本代码虽然相对冗长，但更加讨喜，因为除了看上去更直观，而且有时候比递归更高效。</p>
+<p>C++编译期组成的部分通常称为”纯函数性语言(pure funtional language)”。元数据必须保证是常性的。<br><br>如需编写有限循环递归，则需要检查终结条件中一些可变(mutable)东西的状态。所以，<strong>对于C++元程序来说,递归(recursion)是惯用法。</strong></p>
+<h4 id="类型计算"><a href="#类型计算" class="headerlink" title="类型计算"></a>类型计算</h4><p>相比在编译期进行数值计算，而进行类型计算能力更强。后续更新更多对类型计算展开。若需要深入了解YACC表达式求值器，可深入去了解boost spirit库。</p>
+<h3 id="为何进行元编程"><a href="#为何进行元编程" class="headerlink" title="为何进行元编程"></a>为何进行元编程</h3><p>元编程有什么好处？下面让我们首先看看其他实现元编程的途径。</p>
+<h4 id="运行期计算"><a href="#运行期计算" class="headerlink" title="运行期计算"></a>运行期计算</h4><p>最直接的方法就是在运行期而非编译期执行计算。而采用元程序最显而易见的是在程序启动之前做了许多工作，所以可以更好地提高性能。如binary的例程，其::value是一个编译期常数，编译器可以直接编码到目的码，因而当需要使用它时，可以节省内存查找时间。</p>
+<p>另一个比较有说服的理由即是，元程序使得计算结果可与目标语言进行更深入地互动。例如，C++数组的大小可利用binary<n>::value这样的编译期常数。而不能通过一个运行期函数返回值指定。</n></p>
+<h4 id="用户分析"><a href="#用户分析" class="headerlink" title="用户分析"></a>用户分析</h4><p>不是在运行期或编译期进行计算，我们也可以手动做这件事。根据我们课堂所学，将一个二进制转换为十进制，手工也不难。<br>相对于写一个元程序的难度，或许你更倾向于手工计算。但是，一旦一个元程序被写好了，整个C++使用团队都受惠于它所带来的便利性。</p>
+<h3 id="何时进行元编程"><a href="#何时进行元编程" class="headerlink" title="何时进行元编程"></a>何时进行元编程</h3><p>作为一个指导方针，如果一下条件中有任何三个适合你，可能就适宜采用一个元编程解决方案：</p>
+<ul>
+<li>如果不使用元编程，你需要编写大量的刻板的实现代码</li>
+<li>你需要基于组件的类型参数的属性来选择组件实现。</li>
+<li>你希望利用C++中泛型编程的价值特性，如：静态类型检查和行为定制能力，同时无需付出效率上的代价。</li>
+<li>你希望利用C++语言内完成这件事，而无需使用第三方工具或定制源码生成器。</li>
+</ul>
+<h3 id="为何需要元编程程序库"><a href="#为何需要元编程程序库" class="headerlink" title="为何需要元编程程序库"></a>为何需要元编程程序库</h3><p>建议花时间去了解boost mpl。因为接下来的篇章将与boost mpl存在协作。所以为何需要元编程程序库？下面给出答案：</p>
+<ul>
+<li>质量</li>
+<li>复用</li>
+<li>移植性</li>
+<li>乐趣</li>
+<li>生产率</li>
+</ul>
+<p><br><br><small><em>本文为学习整理《C++ Template Metaprogramming》一书中的要点</em></small></p>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/28/二、传输层-TCP、UDP和SCTP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Quenwa Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Q">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/28/二、传输层-TCP、UDP和SCTP/" itemprop="url">二、传输层:TCP、UDP和SCTP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-28T23:35:20+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>本文焦点是传输层，包括TCP、UDP和SCTP(Stream Control Transmission Protocol,流控制传输协议)。绝大多数网络应用使用TCP或UDP。SCTP是一种较新的协议，最初设计用于跨因特网传输电话信令。这些传输协议转而使用网络协议IP。</p>
+<p><strong>UDP是一种简单的、不可靠的数据报协议</strong>。而<strong>TCP是一个复杂、可靠的字节流协议</strong>。SCTP与TCP类似是一种可靠的传输协议，但<strong>它还提供消息边界、传输级别多宿支持以及将头端阻塞减少到最小的一种方法。</strong>我们必须了解这些传输层协议提供给应用进程的服务，才能弄清这些协议处理什么，应用进程中又需要处理什么。</p>
+<h3 id="部分协议介绍"><a href="#部分协议介绍" class="headerlink" title="部分协议介绍"></a>部分协议介绍</h3><ul>
+<li><strong>IPv4</strong> 网际协议版本4(Internet Protocol version 4),给TCP、UDP、SCTP、ICMP及IGMP提供分组递送服务</li>
+<li><strong>IPv6</strong> 网际协议版本6(Internet Protocol version 6),与IPv4最大区别在于使用128位更大地址。给TCP、UDP、SCTP和ICMPv6提供分组递送服务</li>
+<li><strong>TCP</strong> 传输控制协议(Transmission Control Protocol),是一个面向连接的协议，为用户进程提供可靠的全双工字节流。TCP套接字是一个流套接字(stream socket),关心确定、超时和重传等细节。</li>
+<li><strong>UDP</strong> 用户数据报协议(User Datagram Protocol)，是一个无连接协议，一种数据报套接字(datagram socket)。UDP数据报不能保证最终到达目的地。</li>
+<li><strong>SCTP</strong> 流控制传输协议(Stream Control Transmission Protocol)</li>
+<li><strong>ICMP</strong> 网际控制消息协议(Internet Control Message Protocol)。ICMP处理在路由器和主机之间的流通的错误和控制消息。这些消息通常由TCP/IP网络支持软件(非用户进程)本身产生和处理</li>
+<li><strong>IGMP</strong> 网际组管理协议(Internet Group Management Protocol)。IGMP用于多播</li>
+<li><strong>ARP</strong> 地址解析协议(Address Resolution Protocol)。ARP用于把一个IPv4地址映射成一个硬件地址(如以太网地址)</li>
+<li><strong>RARP</strong> 反向地址解析协议(Reverse Address Resolution Protocol)。RARP把一个硬件地址映射成一个IPv4地址。</li>
+</ul>
+<h3 id="用户数据报协议-UDP"><a href="#用户数据报协议-UDP" class="headerlink" title="用户数据报协议(UDP)"></a>用户数据报协议(UDP)</h3><p>UDP是一个简单的传输层协议。应用进程往一个UDP套接字写入一个消息，该消息随后被封装到一个UDP数据报，该UDP数据报进而又被封装到一个IP数据报，然后发送到目的地。<strong>不保证UDP数据报最终到达目的地，且不保证其到达的先后顺序，也不保证数据报只到达一次。</strong></p>
+<p>所有UDP进行网络编程缺乏可靠性。如果一个数据报在网络传输途中丢失，它就无法被投递给UDP套接字，也不会被源端自动重传。如果想确保一个数据报到达目的地，<strong>可以添置一些特性:来自对端的确认、本端的超时与重传等。</strong></p>
+<p>UDP提供无连接(connectionless)的服务,因为UDP客户与服务器之间不必存在长期关系。举例说:一个UDP客户可以创建一个套接字并发送一个数据报给一个服务器，然后可以利用同一套接字发送另一个数据报给另一个服务器。同样UDP服务器可以利用同一个套接字从若干个不同的客户接收数据报。</p>
+<h3 id="传输控制协议-TCP"><a href="#传输控制协议-TCP" class="headerlink" title="传输控制协议(TCP)"></a>传输控制协议(TCP)</h3><p>TCP提供客户与服务器之间的连接。TCP客户会与一个服务器建立一个连接，再与服务器交换数据，最后终止连接。</p>
+<p>TCP提供了可靠的(reliability)。当TCP向对端发送数据时，它要求对端返回一个确认。如果没有收到确认，TCP自动重传数据并等待更长时间。在多次重传失败后才放弃。</p>
+<p>TCP并不保证数据一定会被对端接收，如果没有送达则通知(<strong>通过放弃重传并中断连接的方式</strong>)用户。</p>
+<p><strong>TCP含有用于动态估算客户与服务器之间的往返时间(round-trip time,RTT)的算法，</strong>以便知道它等待一个确认需要多少时间。如，RTT在一个局域网大约是几毫秒，而广域网可能是数秒钟。<strong>TCP会对每个字节关联一个序列号，对所发送的数据进行排序(sequencing)。</strong>假设你要发送一个2048大小的字节到一个套接字，导致TCP发送两个分节(TCP传递数据给IP的数据单元)，第一个分节序列号为1~1024，第二个分节则为1025~2048。如果这些分节非顺序送达，则接收端TCP会根据序列号进行排序，再传递给网络应用。如果TCP接收到对端的重复数据(某分节丢失导致重传，其实没有丢失，因为某些特殊原因)，TCP可判定为重复数据而丢弃数据。</p>
+<blockquote>
+<p>UDP 不提供确认、序列号、RTT估算、超时和重传等机制。</p>
+</blockquote>
+<p><strong>TCP 提供流量控制(flow control)。</strong>TCP总是告知对端在某一时刻能够从对端接收多少个字节数据，称为通告窗口(advertised window)。在任何时刻，该窗口指出接收缓冲区当前可用空间，以防止发送端的数据导致接收缓冲区溢出。该窗口时刻动态变化：当接收到发送端数据时，窗口大小减少，当接收端应用从缓冲区读取数据，窗口大小就增大。存在窗口大小为0，此时必须等待应用读取缓冲区数据，方能继续从对端接收数据。</p>
+<p><strong>TCP连接是全双工的(full-duplex)。</strong>这意味着当前连接既可以发送数据又可以接收数据。当然也可以转换为单工连接。</p>
+<h3 id="流控制传输协议-SCTP"><a href="#流控制传输协议-SCTP" class="headerlink" title="流控制传输协议(SCTP)"></a>流控制传输协议(SCTP)</h3><p>SCTP在客户和服务之间提供关联(association),并像TCP一样提供可靠性、排序、流量控制及全双工数据传送。SCTP所谓的关联而非连接主要是指两个系统之间的一次通信，而连接只涉及两个IP地址间的通信。<strong>SCTP支持多宿而涉及不止两个地址。</strong></p>
+<p>与TCP不同的是，SCTP是面向消息的(message-oriented)。它提供各个记录按序递送服务。与UDP一样，由发送端写入记录长度随数据传递给接收端应用。</p>
+<p>SCTP能够在连接端点之间提供多个流，每个流各自可靠地递送消息。如果某个流数据丢失不会阻塞同一关联其他流的消息投递。这种做法与TCP正好相反，对于TCP，如果在单一字节流中任何位置的字节丢失将阻塞后续字节的递送，知道该丢失被修复为止。</p>
+<p><strong>SCTP提供多宿特性，使得单个SCTP端点能够支持多个IP地址。</strong>该特性可以增强应对网络故障的健壮性。当然TCP也可以实现(需要路由协议的辅助)。</p>
+<h3 id="TCP连接的建立和终止"><a href="#TCP连接的建立和终止" class="headerlink" title="TCP连接的建立和终止"></a>TCP连接的建立和终止</h3><h4 id="三路握手"><a href="#三路握手" class="headerlink" title="三路握手"></a>三路握手</h4><p>建立一个TCP连接时会发生下述情形：</p>
+<ol>
+<li>服务器必须准备好接受外来的连接。这通常通过调用socket、bind和listen这三个函数来完成，称之为被动打开(passive open)</li>
+<li>客户通过调用connect发起主动打开(active open)。这导致客户TCP发送一个<strong>SYN(同步)</strong>分节，以告知服务器客户将在(待建立的)连接中发送数据的初始序列号。通常SYN分节不携带数据。</li>
+<li>服务器必须确认<strong>(ACK)</strong>客户的SYN，同时也得发送一个SYN分节，包含服务器将在同一连接中发送的数据的初始序列号。服务器在单个分节中发送SYN和客户SYN的ACK(确认)</li>
+<li>客户必须确认服务器的SYN。</li>
+</ol>
+<p>这种交换至少需要三个分组，称之为三路握手(three-way handshake):</p>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="processonSvg1000" viewbox="38.0 136.0 678.0 286.0" width="678.0" height="286.0"><defs id="ProcessOnDefs1001"><marker id="ProcessOnMarker1011" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1012" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1018" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1019" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1025" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1026" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker></defs><g id="ProcessOnG1002"><path id="ProcessOnPath1003" d="M38.0 136.0H716.0V422.0H38.0V136.0Z" fill="none"/><g id="ProcessOnG1004"><g id="ProcessOnG1005"><path id="ProcessOnPath1006" d="M206.0 194.0L206.0 298.0L206.0 298.0L206.0 402.0" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none"/></g><g id="ProcessOnG1007"><path id="ProcessOnPath1008" d="M517.0 194.0L517.0 298.0L517.0 298.0L517.0 402.0" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none"/></g><g id="ProcessOnG1009"><path id="ProcessOnPath1010" d="M206.0 217.0L499.0450529095885 274.08669861875103" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1011)"/><g id="ProcessOnG1013" transform="matrix(1.0,0.0,0.0,1.0,352.5225264547943,237.41834930937551)"><path id="ProcessOnPath1014" d="M0 0H36.0V16.25H0Z" fill="#fff" transform="matrix(1.0,0.0,0.0,1.0,-18.0,0.0)"/><text id="ProcessOnText1015" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">SYN J</text></g></g><g id="ProcessOnG1016"><path id="ProcessOnPath1017" d="M515.0 288.0L223.12067546055025 324.1283854478798" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1018)"/><g id="ProcessOnG1020" transform="matrix(1.0,0.0,0.0,1.0,369.06033773027514,297.93919272393987)"><path id="ProcessOnPath1021" d="M0 0H99.0V16.25H0Z" fill="#fff" transform="matrix(1.0,0.0,0.0,1.0,-49.5,0.0)"/><text id="ProcessOnText1022" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">SYN K,ACK  J+1</text></g></g><g id="ProcessOnG1023"><path id="ProcessOnPath1024" d="M207.0 341.0L498.84101949123635 370.4692886131216" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1025)"/><g id="ProcessOnG1027" transform="matrix(1.0,0.0,0.0,1.0,352.9205097456182,347.60964430656077)"><path id="ProcessOnPath1028" d="M0 0H56.0V16.25H0Z" fill="#fff" transform="matrix(1.0,0.0,0.0,1.0,-28.0,0.0)"/><text id="ProcessOnText1029" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">ACK K+1</text></g></g><g id="ProcessOnG1030" transform="matrix(1.0,0.0,0.0,1.0,179.0,159.0)" opacity="1.0"><path id="ProcessOnPath1031" d="M0.0 0.0L55.0 0.0L55.0 30.0L0.0 30.0Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1032" transform="matrix(1.0,0.0,0.0,1.0,0.0,6.875)"><text id="ProcessOnText1033" fill="#000000" font-size="13" x="26.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">客户</text></g></g><g id="ProcessOnG1034" transform="matrix(1.0,0.0,0.0,1.0,488.0,156.0)" opacity="1.0"><path id="ProcessOnPath1035" d="M0.0 0.0L55.0 0.0L55.0 30.0L0.0 30.0Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1036" transform="matrix(1.0,0.0,0.0,1.0,0.0,6.875)"><text id="ProcessOnText1037" fill="#000000" font-size="13" x="26.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">服务器</text></g></g><g id="ProcessOnG1038" transform="matrix(1.0,0.0,0.0,1.0,524.0,181.5)" opacity="1.0"><path id="ProcessOnPath1039" d="M0.0 0.0L172.0 0.0L172.0 98.0L0.0 98.0Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1040" transform="matrix(1.0,0.0,0.0,1.0,0.0,32.75)"><text id="ProcessOnText1041" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">socket,bind,listen(被动打开)</text><text id="ProcessOnText1042" fill="#000000" font-size="13" x="0.0" y="29.575" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">accept(阻塞)</text></g></g><g id="ProcessOnG1043" transform="matrix(1.0,0.0,0.0,1.0,58.0,210.0)" opacity="1.0"><path id="ProcessOnPath1044" d="M0.0 0.0L144.0 0.0L144.0 41.0L0.0 41.0Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1045" transform="matrix(1.0,0.0,0.0,1.0,0.0,4.25)"><text id="ProcessOnText1046" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">socket</text><text id="ProcessOnText1047" fill="#000000" font-size="13" x="0.0" y="29.575" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">connet(阻塞)(主动打开)</text></g></g><g id="ProcessOnG1048" transform="matrix(1.0,0.0,0.0,1.0,119.0,318.0)" opacity="1.0"><path id="ProcessOnPath1049" d="M0.0 0.0L78.0 0.0L78.0 36.0L0.0 36.0Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1050" transform="matrix(1.0,0.0,0.0,1.0,0.0,9.875)"><text id="ProcessOnText1051" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">connect返回</text></g></g><g id="ProcessOnG1052" transform="matrix(1.0,0.0,0.0,1.0,533.0,354.0)" opacity="1.0"><path id="ProcessOnPath1053" d="M0.0 0.0L78.0 0.0L78.0 36.0L0.0 36.0Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1054" transform="matrix(1.0,0.0,0.0,1.0,0.0,1.75)"><text id="ProcessOnText1055" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">accept返回</text><text id="ProcessOnText1056" fill="#000000" font-size="13" x="0.0" y="29.575" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">read阻塞</text></g></g></g></g></svg>
+
+<p>其中客户初始化序列号J，服务器初始化序列号K。ACK中的确认号是发送这个ACK的一端所期待的下一个序列号。因为SYN占据一个字节的序列号空间，所以每个SYN的ACK确认号就是该SYN的初始化序列号加1。</p>
+<blockquote>
+<p>建立一个TCP连接好比一个电话系统，socket函数等同于有电话可用。bind函数是告诉别人你的电话号码。listen函数是打开电话振铃，当外来呼叫到达时，你可以听到。connect函数要求我们知道对方号码并拨打它。accept函数发生在被呼叫的人应答电话时。由accept返回客户标识(即客户的IP地址和端口号)类似于让电话机显示呼叫者电话号码。然后accept只在连接建立后返回客户标识，而客户早已知道服务标识</p>
+</blockquote>
+<h4 id="TCP选项"><a href="#TCP选项" class="headerlink" title="TCP选项"></a>TCP选项</h4><p>每个SYN可包含多个TCP选项。如下常用:</p>
+<ul>
+<li><strong>MSS选项。</strong>发送SYN的TCP一端使用本选项告知对端最大分节大小(maximum segment size, MSS),也就是它在本连接的每个TCP分节中愿意接受的最大数据量。发送端TCP使用接收端的MSS值作为所发送分节的最大大小。利用TCP_MAXSEG可设置本选项</li>
+<li><strong>窗口规模选项。</strong>TCP连接任何一端能够通告对端最大窗口大小是65535，因为在TCP首部中相应字段占16位。当然高速网络连接，如RFC 1323或长延迟路径，要求更大的窗口以获得更大吞吐量。这个新选项指定TCP首部中的通告窗口必须扩大的位数(0~14)，因此最大窗口接近1 GB(65535 x $ 2^{14} $)。在TCP连接上使用窗口规模前提需要两个端系统必须支持此选项。可使用SO_RECVBUF套接字选项影响这个TCP选项。</li>
+<li><strong>时间戳选项。</strong>这个选项对于高速网络连接时必要的，它可以防止由失而复现的分组可能造成的数据损坏。它是一个较新的选项，类似于窗口规模选项的方式协商处理。作为网络编码人员，无需考虑此选项。</li>
+</ul>
+<h4 id="TCP连接终止"><a href="#TCP连接终止" class="headerlink" title="TCP连接终止"></a>TCP连接终止</h4><p>TCP建立连接需要3个分节，终止一个连接则需要4个分节。</p>
+<ol>
+<li>某个应用进程先调用close，称为执行主动关闭(active close)。该端TCP发送一个FIN分节，表示数据发送完毕。</li>
+<li>接收到这个FIN的对端执行被动关闭(passive close)。这个FIN由TCP确认。它的接收也作为文件结束符(end-of file)传递给接收端进程(放置已排队待接收数据之后)，因为FIN接收意味接收端进程再无额外数据接收。</li>
+<li>直到接收端接收到这个文件结束符，进程将调用close关闭套接字。导致TCP也发送一个FIN。</li>
+<li>接收这个最终FIN的原发送端(即主动关闭一端)TCP确认这个FIN。</li>
+</ol>
+<p>既然每个方向都需要一个FIN和一个ACK，因此通常需要4个分节。特殊情况第一个FIN会随数据一并发送，而2、3步可能合并为一个分节。</p>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="processonSvg1000" viewbox="258.5 102.0 592.5 286.0" width="592.5" height="286.0"><defs id="ProcessOnDefs1001"><marker id="ProcessOnMarker1011" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1012" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1018" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1019" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1025" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1026" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1052" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1053" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker></defs><g id="ProcessOnG1002"><path id="ProcessOnPath1003" d="M258.5 102.0H851.0V388.0H258.5V102.0Z" fill="none"/><g id="ProcessOnG1004"><g id="ProcessOnG1005"><path id="ProcessOnPath1006" d="M377.5 160.0L377.5 264.0L377.5 264.0L377.5 368.0" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none"/></g><g id="ProcessOnG1007"><path id="ProcessOnPath1008" d="M688.5 160.0L688.5 264.0L688.5 264.0L688.5 368.0" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none"/></g><g id="ProcessOnG1009"><path id="ProcessOnPath1010" d="M377.5 183.0L669.8407708957977 212.4717525130723" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1011)"/><g id="ProcessOnG1013" transform="matrix(1.0,0.0,0.0,1.0,523.6703854478989,189.61087625653613)"><path id="ProcessOnPath1014" d="M0 0H39.0V16.25H0Z" fill="#fff" transform="matrix(1.0,0.0,0.0,1.0,-19.5,0.0)"/><text id="ProcessOnText1015" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">FIN M</text></g></g><g id="ProcessOnG1016"><path id="ProcessOnPath1017" d="M685.5 220.0L393.6206754605503 256.1283854478798" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1018)"/><g id="ProcessOnG1020" transform="matrix(1.0,0.0,0.0,1.0,539.5603377302751,229.9391927239399)"><path id="ProcessOnPath1021" d="M0 0H61.0V16.25H0Z" fill="#fff" transform="matrix(1.0,0.0,0.0,1.0,-30.5,0.0)"/><text id="ProcessOnText1022" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">ACK M+1</text></g></g><g id="ProcessOnG1023"><path id="ProcessOnPath1024" d="M378.5 307.0L670.3410194912364 336.4692886131216" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1025)"/><g id="ProcessOnG1027" transform="matrix(1.0,0.0,0.0,1.0,524.4205097456181,313.60964430656077)"><path id="ProcessOnPath1028" d="M0 0H59.0V16.25H0Z" fill="#fff" transform="matrix(1.0,0.0,0.0,1.0,-29.5,0.0)"/><text id="ProcessOnText1029" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">ACK N+1</text></g></g><g id="ProcessOnG1030" transform="matrix(1.0,0.0,0.0,1.0,350.5,125.0)" opacity="1.0"><path id="ProcessOnPath1031" d="M0.0 0.0L55.0 0.0L55.0 30.0L0.0 30.0Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1032" transform="matrix(1.0,0.0,0.0,1.0,0.0,6.875)"><text id="ProcessOnText1033" fill="#000000" font-size="13" x="26.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">客户</text></g></g><g id="ProcessOnG1034" transform="matrix(1.0,0.0,0.0,1.0,659.5,122.0)" opacity="1.0"><path id="ProcessOnPath1035" d="M0.0 0.0L55.0 0.0L55.0 30.0L0.0 30.0Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1036" transform="matrix(1.0,0.0,0.0,1.0,0.0,6.875)"><text id="ProcessOnText1037" fill="#000000" font-size="13" x="26.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">服务器</text></g></g><g id="ProcessOnG1038" transform="matrix(1.0,0.0,0.0,1.0,698.5,203.0)" opacity="1.0"><path id="ProcessOnPath1039" d="M0.0 0.0L132.5 0.0L132.5 25.666664123535156L0.0 25.666664123535156Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1040" transform="matrix(1.0,0.0,0.0,1.0,0.0,4.708332061767578)"><text id="ProcessOnText1041" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">被动关闭，read返回0</text></g></g><g id="ProcessOnG1042" transform="matrix(1.0,0.0,0.0,1.0,278.5,170.0)" opacity="1.0"><path id="ProcessOnPath1043" d="M0.0 0.0L97.5 0.0L97.5 25.666664123535156L0.0 25.666664123535156Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1044" transform="matrix(1.0,0.0,0.0,1.0,0.0,4.708332061767578)"><text id="ProcessOnText1045" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">close 主动关闭</text></g></g><g id="ProcessOnG1046" transform="matrix(1.0,0.0,0.0,1.0,698.5,241.0)" opacity="1.0"><path id="ProcessOnPath1047" d="M0.0 0.0L78.0 0.0L78.0 36.0L0.0 36.0Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1048" transform="matrix(1.0,0.0,0.0,1.0,0.0,9.875)"><text id="ProcessOnText1049" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="start" size="13">close</text></g></g><g id="ProcessOnG1050"><path id="ProcessOnPath1051" d="M686.5 263.0L394.6206754605503 299.1283854478798" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1052)"/><g id="ProcessOnG1054" transform="matrix(1.0,0.0,0.0,1.0,540.5603377302751,272.93919272393987)"><path id="ProcessOnPath1055" d="M0 0H37.0V16.25H0Z" fill="#fff" transform="matrix(1.0,0.0,0.0,1.0,-18.5,0.0)"/><text id="ProcessOnText1056" fill="#000000" font-size="13" x="0.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">FIN N</text></g></g></g></g></svg>
+
+<p>当套接字被关闭时，其所在端TCP各自发送了一个FIN。不论进程主动关闭或是被迫关闭，所有打开描述符都会被关闭，也将导致仍打开的任何TCP连接发出一个FIN。</p>
+<p>不论是服务端还是客户端，任何一端都可主动关闭。通常为客户执行主动关闭。某些服务(HTTP/1.0)由服务器执行主动关闭。</p>
+<p><br><br><small><em>本文为学习整理《UNIX 网络编程–卷一(第三版)》一书中的要点</em></small></p>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/28/Hexo-如何显示Tags、Category页面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Quenwa Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Q">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/28/Hexo-如何显示Tags、Category页面/" itemprop="url">Hexo 如何显示Tags、Category页面</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-28T19:49:38+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>hexo环境搭好之初，是不支持tags、categories两个页面的，需要自个儿新建页面。在git bash中输入以下命令分别创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 新建标签页</span><br><span class="line">hexo new page &apos;tags&apos;</span><br><span class="line">// 新建目录页</span><br><span class="line">hexo new page &apos;categories&apos;</span><br></pre></td></tr></table></figure></p>
+<p>然后在目录source中会自动创建两个目录tags、categories</p>
+<p><img src="data:image/png;base64,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" alt="目录"></p>
+<p>然后分别打开目录中index.md文件，修改如下格式:</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAh4AAACdCAYAAAD7eHEVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAACPwSURBVHhe7Z1fTBxXvud532eLt7Xu02gZ7UZrPzhIu2trpI25Ws+i9V7hyVzJvAzJC1EyxFKGcFfOOsNlV24JgWdlmGTTO/G22h64dCA2eG0jkkALE4jJAIlxhwk4vhDbhIHgjBsrSL89v1NV3VXF6aY5VHdXV38/0ld0nVP/6FPnd751zqmuiu+++46gYOvJkycEShsuQ7/p22+/Nc8OBA1VeUOQV4LxKANxQYPSxl1x/SAYj+CiKm8I8kowHmUgLmhQ2rgrrh8E4xFcVOUNQV4JxqMMxAUNSht3xfWDYDyCi6q8IcgrwXiUgbigQWnjrrh+EIxHcFGVNwR5JRiPMhAXNCht3BXXD4LxCC6q8oYgrwTjUQbiggaljbvi+kEwHsFFVd4Q5JVgPMpAXNCgtHFXXD8IxiO4qMobgrwSjEcZiAsalDbuiusHwXgEF1V5Q5BXgvEoA3FBg9LGXXH9IBiP4KIqbwjySjAeZSAuaFDauCuuHwTjEVxU5Q1BXgnGowzEBQ1KG3fF9YNgPIKLqrz9oJ/97GcOtba2KteD/K2SNR7Dw8M5S7V9OYkLer8s3I7Twsa2uWTy6HO6Nv3IXAD5xF1x/aB9G4/vVNfP97Rw4zNaMJdAcVCVtx/EZsO+/Nvf/tZz8+E2N7lKtS8dqfadi1T78qsC1eOxm8lwG5JsUm2/L63M0fDcijovz+KC3i9/uhylvz0foy7ZUHDjcJXqz0fptRs5Go/FAWoOz9CmubgnlgeoaWDZXCgmmzTV3U1TWv/E/nBXXD9o38bjUZxeE9dQ/f8xTa0wsl3dfJ3doD+Zq2RnmQZeOkristJglQYaG2lg1VwsJjMhOhzS+ifyhqq8/SBVA+u1+XA36LlKtS8dqfadi1T78qsqlhQNlVNLNDeRoBVlnn+kaxbyYjJUCoTx2Kmcjcd+KHHjsba2RtevX6dnz56ZKSQ/cxrn5YK74vpBXhmPnddVrsZjPwTXeHz11Vf061//WpaRBX/mNM7LBXs5+0kLCwvKdC8bXneDnqtU+9KRat+5SLUvv6oisaRurNJK0PTwnC+Nh72HIpNU21naLd9TwXjoU+LGY2hoiP7whz/QwMCANBws/sxpnJcL7orrB8F4eITHxuO1116TDVFDQ0OqrPgzp3FeLtjLuZh68HCN3rx0m/7Nr3up4r++Swdfjspl93peNryZ9sXp2fJU6Toq9vELodRQy8rSHE2PjorGeJRGp80eDm4sbY34dMJqzFYoMS3WE2mjE3OUWLHSeZsEzU2k97OUmLZtZxxnQh7Hve0KzQ1PU2IpIfLFseb4r6unRexrIpFuvHczDqp863/ZTe7tLAOWkOcvzn10mpbEua+Icxo1lx3fw3dLju9oSWxXzsZjc6o7bR42p6i7aYDml+PU3dxETc1nKTJja803F2mk+yw1NzVRc6dYb8ZlPDZnqLezmZqamuls9wgtyk2XaSQUohFrta0ZioQGaNFctFgeaKLu+AzF5f6bqVNssLU5TwPm/joHFmnLXJdZneqlTusc4/Niu70bDzYa/f39KfNhmQ5Os/eCZMNdcXPR73//e/r5z39O7e3te07LRcU3HjMUOpw2DzOhw9Q4MEUjZ1+k6sOH6Wh9mGZShblFiwOtVH/0MB2ufoGae+MUcRiPTZqJNNIL1SL/aD21mtfB5kgzHW0eSQ0RzodPimO4TPDqADUeDtHAiLH/6hea6fryJi32Nsv98fLAou2qWp2icOML5jmGKH7dW+PBZfOrX/1KNkZsOCzTwWmclwv2ci60rAaWr8vm98fp373ZT/G5b2Te3NcP6V+/1ivT3dvYl/ejTPuyzitTnipdR8U+PivfsSNlPJYS6UZ+aU40mKkG3t3jIUzHxATNWT0lwmhMp4ZilmjO3gBznjAZKeMhGt/R1LpWvmiU5TIbj1GamFsy8oS44bY35onpCcey2iCkpcq3p+XyOS3+Hvh/Mb4XNhzD4nuwL49OW+fu+o7kcJUwWzAe1oIwHs3CAIhGXy4LA9IUMRuJTYp3hqh33gz1W4t0PSRMQSrYL1JvczfFl41AvjnTS6HIjLGf5YHU5+WBkDAzxjp22Hg0h66TbAfEvgdaWynUbS7znIFQa9q8LIoA1x0n81CivQhTszi2zhwPu/nYq+lg3BU3F1mB6he/+MWe03KRH41H9UlRfnJ5k6ZCJ+hEeF7mbU210tHGXjIuKzYhTXS0Or3tcm89nWyNk7HpvDAlJ8nYlHtGzM9sME6GydijDWk8jqau0eXeRjp88kU6ay0PNFJ1yrwsU2/9SWqNmwcWdaHzxWrP53hw+Vjmg7UX08HYy7nQ4vO1Pv/Ll6Ip02GJl9l82NPs2+xXmfZlfZeqvN/85jfKdB3pHD9Tuq6sY+UrdqgnlzqGBVzGQ5iFdANrKGUIlkTj62pcVxLcOBufl4SRmHP0CrDJGTYbaDYeTmPB+0v3cIjzmE6k84TcBmG3ZXcaf7ZLtU5axveQnhOjWBYmSn5P8jtyniubrtIzHs9o4eNh6uwZpn/4X6oGIkp/1z0k869MrYi1M6Pq8Uj3RmyJu80mktnLI9TaPZW6w5TM96a23ZqJUGvKGTDCLDSJBsVcmu8Vd57xEeruVk9klT0eNuegXJa9L3xO4k7VfijRCMVD+sbD6umwej7ybTz4LoTvRviuZK9puUjbeHz3BV0R10zn5Rj9neKa+tvzvfQPnB+L090fzG2U7DQeL9kLbD5MJxoHRKlt0khzNTnbdmFgX7S2nafwiSa6bivXVWEWXuw1r1BhQOsbI9Tb+iJ1KsysYTxCNGUuKperO8XZClLnlGYr3poX42H1dLCsYZdcsZdzocXna33m4RV7XqZ0+zb7VaZ9Wd8lf+YhoBOtQ/I8+C/3xLjX11Uux1flqdJ1le/YkTYeSwmaEwZiQtyZ8/BAZuPhHH6xJA2Fa1hFypaWmJ6mhD3PkW8OtTjyl9K9Kbyeaz4KH3cvy+60XD6n5foesi2r5nOU7ByPFbomnzTIrF9e/oJ2O4LKeDjsg2jwDeOhmM9hS5P7aWpyyWYGVuMUajpL1127sMjJeMhl1XwOvTkedtPBPR32YZdczYe74vpB++nxeDJ7g36puJbSilHsm92+G9VQi61J5wZfNvKq+Rz2NN7PYTrsVsoMbFH8rFhuuu4wDClMo5GyDtmWVfM5PJ7jwWVjH16xD7twXi7Yy7nQsjei3OPhbtStHg+eaMrrWrKvsx9l2pf9OP/pt4NyuIcNyP/onaJ/3zKwY31d5XJ8VZ4q3a8yjId5h75i9TZk7fGYo1HbcIhD3ONhm4PBWkmkh1q4x8PRo8Fpjh6PncZkac7oBWHT4n4Cx20Qdlt2p/Fnu1TrpLU34+HuFeLvpjSNh+DHBxTLYD5++X8/o1yey8jdeFyXj93a7yu3ZsJp4zHTTSGrm1rB4kAn9Q7Yhl9c7MV4zHTbhl0kyzTSunfjYU0utYZXWJb5KN/Jpdv0ZDqT+YjRla+zdnWY5G48rjeeMIdOLLiXI208OqtbKa66YBhhfBsbQxRKDb+42JPx6KRqYWDsl9Dm9SZPjYc1udQaXmFZ5qMUJpfaG1Fu3LlRt8/x4Imm3Nhb63itbI27lWfvceFzytQzo6Ncjq/KU6X7VcZTLdwo2uYncGOfbiSXRINqb/Td8xfsEo2ve47HhH2OhzAmE645HhNW4602HjxEMTE3R9OZzI4pyyy4TYRbmQyG+rP431NzULIYjR3L4n8ZDdYcD/rhK+pyDbfkajqYnI0HD520htKT8Tbn6Xpna3pbnjTK8yxU3mPRmuNhDJP0mo3EajxEnXEj1OduPIxzbu6eMu9yt2g5HqGQhvHgR2bZYNh7N/gzp5X147TCfDz8+KrLfORqOphcjQd/bKRq8dm4rDZpvvcsnUwZDx4BOUknQ64hPom4Hi3DMR+mk/W9xhDh5gidPdpKU7y/vRgPcf2GTpykkHURrcaps/6Ep8aDH5llg8FlZMGfOa0UHqe1N6Lco8Dmg3s4uHHnv2w6VHM/vFIuDT/3ePzPf/osdX48Ada9vq5yOb4qT5XuV1VYDWW2JzBWhBHhvNRQx4rZkIq04VHnhFAesuGnPviplonEkpx0aR9+WUkYT4WknnqxtstkPLjRFsdQG53MRmO39N1krK9rPITYVNmfEirxp1okP3xBnZ17Nx1M7sZDIIJx5Kz51EokTqvzruEXfhpG5vPTJiHqlj0gy3TdPv+Cj9FqzCPRNR6ygRrolE/XNDV30sD8Mn5AzKb9Gw9GmI/hAfrPezYdTO7GQyxQPFRPR3kI5Wg9heIzruEX7s0y8w9X0wsvthJfMqvXG4UhsXrPhKENnTCeatE1HoItnrT8QrVxnGZhZMT16aXx8AJVeRdKuTSibDryZT6yNe4ffPBB6thsNtgM8V82IKptdJTt+NnyVOl+lXpyqYdKD6Xoik2OrZfElNMgZJZ7HZ1tSl1c0J4hzMd7PXszHWD/uCuuH+SN8WDYfAxTbE+mA+QTVXkXSrk2rvkyH1YD71YkEsmr4bGkOnYuUu3Lr8qr8TB+s8P+5MfexU/F2H+7A9q7uKBBaeOuuH6Qd8YD+A1VeRdKqkbVkntdNgD5NAFu8VBPIY8XVHlsPGxDMDzUMi1Mh2syae7ioQvex9KO3g5ob+KCBqWNu+L6QTAewUVV3hDklfI+1AIVX1zQoLRxV1w/CMYjuKjKG4K8EoxHGYgLGpQ27orrB8F4BBdVeUOQV4LxKANxQYPSxl1x/SAYj+CiKm8I8kowHmUgLmhQ2rgrrh8E4xFcVOUNQV4JxqMMxAUNSht3xfWDYDyCi6q8IcgrwXiUgbigQWnjrrh+EIxHcFGVNwR5JRiPMhAXNCht3BXXD4LxCC6q8oYgrwTjUQbiggaljbvi+kEwHsFFVd4Q5JVgPMpAXNCgtHFXXD8IxiO4qMobgrxShXmdAZO//OUvEORb5YOBgQG6ffv2ngXj4URVXhDkF+WDP/7xj3Tr1q09C8bDharAIMgv4tfoW/IKDgRffvnlngXj4URVXhDkF+UjdvBNy8TExJ4F4+HCKiQA/MiD8XHa/Od/pvWvv5Z/t7e3Zfr63bu0OjVFydVV+n5hgbbENcxpuQDj4Q2IHcDPZIsdT0Vd5tjBMeSvKysyhvxVrPP00SP64cEDmaaKKTAeHoHgAfzMWiJBo//4j/RPf//39PG5c7S5uWnmEG3++c/0aXMz3aitpaUPPjBTdwfGwxsQO4CfyRY7Vj/7TMYOjiEzoZCMIfPvvivNyMpHH8k0VUyB8fAIBA/gZzh4/CDuQviO5ftvvqG/Pn4s72T20/MB4+ENiB3Az+QSO/ba8xEg4/E9/el/t9K/+ptW6nlsJhUQBA/gZzh4DL7yirxzmbhwQYrT9tPzERzjgdgBQCZyiR177fkIhvF4PEH/7b+00u8GrtApBA8ACkIgjAdiBwAFJxDGY6nnXbq08FQEkZsIHgAoyMfM9CAYD8QOALKTj9gRrDkeCB4AFIxAzfFA7ACgYMB4eASCByg3YDy8AbEDlBswHh4hg8fdd6m2ooIqUmqjcTNfMt5myxOqjZI9BI+32fKEaqM+DNAAmMB4eANiByg3YDw8AnctoNyA8fAGxA5QbsB4eASCByg3YDy8AbEDlBuBMB4Pe1rpX/zNqy4VNoggeIByIwjGA7EDgMITrB6PIoLgAcqNQPV4FBHEDlBuwHh4BIIHKDdgPLwBsQOUGzAeHoHgAcoNGA9vQOwA5QaMh0dYwQOC/Kh8AOPhDarygiC/KB/AeHiEqsAgyC/KBzAe3qAqLwjyi/IBjAcAQAsYDwCADjAeAAAtYDwAADrAeAAAtIDxAADoAOMBANACxgMAoAOMBxBM0tCBA9TT94joUR/1iM9Dk2ZWkXnYd5ouHeigWfF5tuMAXTrdRw+NLFBkYDyAn2NH3tkYpv5DVXQ5nDATvKEcYl4wjMePKzTaO0j/oSNGP+3op5di92jVzCo0sxeP0oVYqQXW3YLHI7rdUkM3ihBQYDz8SyCMB2LHPsmz8ZgNU6Txmj/rPIyHNoEwHlv3RunNG1/T9z+Khe/vUdvFGL0ytmFkFpjptgpqL7lXUj+iT04foP6xpPjMgaSWRu4bOQZGflHuZCY76FJtlBbFR1khW8boqZEDikwQjAdix37ZLXbsE67/5XazUQYxL5BDLZ/3iruX3nvmUmH4NlpLb1VU7FTbeDpfXEz2sLI+9DK9dTwsLzAabxPrDtFX0Vfp/EGxXeVRujgkc0wW6earx+ntSs77CbW3j++8M/s2RqcqD9LLQ+tmwv6Rjlvcxbgl73BMHk+Gqb/ukJFX00i3ZjkIWSTpXriRIocybX+f4i11FKmy8gynD/xPEIdaEDu8ix0GSVroa6HL1VWpum+/gckYO8zeE2ubtOzx4T7dtmJHVTX1dE2S/d1+2/eH6WpddYbtN+jL6Bm6LONSFUUaOmjSZpg47vX0JYxz5/1XNzjimj0u2mOhxZPZMPXVmP9XXQt9krDHRKJvrmX+TsqBABqPJI1eidF//PBrc7mwZLxrWY/RhYpa+jCVtU436yvoQsys6Bw8Kiqp7Y0hGWB+XAxTe0U93ZTZSZptO0JtIhAZi4v04anKncfJW/DI1uMxSyMdw7Ro3iSujZ0TgSAdHJ6K5Us1Ylnm36dPGkQl70qHjm+iInCcGxNhAJQawTMeiB1ex45lvmOv66IvlRU8e+yQZOzxSNKXHTUU6ZiUsWM7acQW+w3NSB0v36dnYmlD7Cdy4AzdNo8lexIaorQgl5O02Ncg4lQXWZaTjUWkpoYum/t/fK1ReR6GQXEZj0fXqOdQA31iGpm1MXHsY+L/srzH/ShdPnaO7pjnUo4EznhsffERnegYpMECvtbaTubu0iSNv2Gr8BxMKt+gceti5OAh7moemIsiEtCHtRUU5pue5Ai9U/Fqel1m/A1661SsQOPRexlq4e7W0/SJWRfvdQnXLyqvhVHh02O2bDwu1XXQnUdJ2jbTQGkQNOOB2OE1szRUdYxuOJxENpyxQ5LJeCTHqP9AC03a/q/tSXGTY8WWjWvU59gX77uKhuS5zNKNY+7zEkal1so3DMWlhj5aNhbNHhiXKRKojMditJYuR+3jTcIUnU7vWxqPA3U0NPaobIeNg2U8HnxKL3X0U9sXfzUTCk/WcVozQHDuaqyezodt3aG2PAMjeMh9fRsVdzC2LlhLru7X/JHNeGzQbJd7KCVd4deGz+zo8XBWSrPLk7sdq+voal8CvR8lQqCMB2KH9/Cdv9tIOMgeOySZjEemoZjUugm6VePq8ag6R3ekUVEYHFeMU/ZkKFCtJ02L4tzs8XNjNkr9PAxUVU2XW/rMnpfyITjGY8UIHG+O7bhEC0rW4EHTFH3uOMUWOTBYXaEmO4LHIsWOVtKlafFxfYguuO9aCkpm4yGNhaPb0Fmpn3D3aXVNahz2cstw+i7CxRMek605QH3DsB6lQGCMB2JHnuBYkHmy6W6xQ5LJeGwMU5+rx8PJfRo5XU0Ra56FY+6ZqsfDmbYf43Gv65jr5iozz5L3afJcDV06M0xrZlo5EAzjsfIZvdIRo1c+Lm7gYIyJYOakLwWL4ePUVi/uWF4dIUedkcHD2i5Ji7GX6e0j7XRXLq/TzZcr6TxPCssWQPI2x4MrWJVyLoYcOhHnvSA+bycf0Z2OOlHRreCxQfHGA9R/bUPedewGj9OOCIMD41EaBMJ4IHYY5CV2JEXcOCbnUtxTVOnsscNE9mycVpiXDbp9poou84RS1f812yX3fS/D/3yvSzT2DX20KPPNOR51xpMkzH6Mx7Y4duTYGYonkjnEPXHsqPgeYDxykq+Mh5yJLp/Dt2uQYsUYq03epdjLR9JdmubM9BRyolgFvTPiqhEcPKxtKg7S2/XtNGmPAWK/H1oz0831dtwd5dF4bG+M0ZBthniqsiVn6VaDmS6HSsLUbwseG2MtqW0MHbL1ehg9Kam8Q3XUH53FUEuJEATjgdhhkrfYsXM4JdVzukvsMEjSQvSMbXvbPItkgj5xPBFnNwE8uTSdLuV4MoXPq8HcVsSkM1HHBNjsxoN7Zlz7FrKv/3iyK/1Ui1T6vKXhSqXvPHY5ELjJpb5nMUzn7RPDLHZ0lwYBo/L3D2/YJo4m6FYtejWCQNAml/qesood+0M+TWf2plhsyKGd9JMroHjAeBSSdXFHc+ogtat+nTCQwYNntQuTIe4ErNnbT+/3UU9VzR5mugO/AuNRQMouduyPh9cahPHoMie1Mxt0p6P85lL4FRiPgmDMMn/r4BG6cHGanpipDgIaPIwfCLKGaKooUttINybtPSCgVIHxKATlGzv2RTJB8Q7bEM+hGurhp0fcvUWgKMB4AAC0gPEAAOgA4wEA0ALGAwCgA4wHAEALGA8AgA4wHgAALWA8AAA6wHgAALSA8QAA6ADjAQDQAsYDAKADjIeHyJ88tn5B0P2rg4HF/PVR+QZa4xf9Mv/iX4Hh9zyYv4Ro/FrgzrdLAn1gPLwDscNnsaMALIRr6dKhFpr09LcUbd+j+SI99cs9i0swjMcXH9l+7rifXondK9Dr4tXIIOK34PHtEF080k783ihvySF4zIYp0ph+FX7BgPHIK4EwHogdu1PM2LEvHtHtlhq64cOGl4HxUJuLbPJvj8f39+n992L0+ljxfpLbn8GDX4/dlofgYbzXwHgboxFI+sdcv9KT6Q2T+UZWPPMNlnwOtemXQIH9E7geD8QONcWMHfvC2KcfG978Yf8e2YRkfjtwMQnkUAu/+Oml4eLdt2QMHuvj1PPycaM71fFLhMavEzpf3MRvlayg82GzqVyfppi1beVPqL1thB4YOYJxClfU0oe2zdOv2OY8swvXIef6/DKm6bYjVHn0oncBxnTc6RciWXK+6CneYb6sSfHa/G1+Vb7t5XTu7b+51kKXq6tSeeUVZIpLEIdaEDt8EjtMtjcm6UZjTbru229gssQONjSpbWyy96gsD1uxo4oiDfafVxfwC+zsx5VKv8DumYhLQ9YL7syXW6Z+VVbGPRGj+NxP84vi7C/GFDjioqIX1n5sse+rfQnHL9ZuzIYdL6DztpeoMATPeDyeof9+cZBiK8X7Ue5MwWM23Eajd9fpR/H5x/URCj9XSWFztdVYvfNnj+WbKOvppnxZJAeXSmoP3xUhRZBcpA9PVVJbu1XNswUPk13vWvIXPLL1eDwcDtPIpPEuF+u1+OmKxC+ZqxLL9+XrpTfEfiIHztBtK0Dcj9LlY+foTvFuUMuawBkPxA6Jb2JHcpKuHquh/mv3U+96spM9djCZezyezopYUsPmgJfM1+KnYlSS7pwTZqRjUr4p+5l8v9Sx9PulxHkNifO6OvxIxqVn/Obumqr0iy+lsaihSG0DfSJ7G2bF+lU7z8MyKOaiwSOKNxxKxTxj38fEtmZPUHKMrlad9mUvxl4IjPFYHR5MjdWeuDJDq1xDi0Su3aWOCp4coXcq0wFABpM3RkQVEEy309vPtTsv0MUwtVW2mWleBI88soehFjkXQ475CjauUZ/jNdncdSgqsPVFsPE4UEdDY+mX0IHCERTjgdjhz9ghX/TWeC3nl7o5Yockk/FI0mSLe1hHmJwDDRSXsWaWbhyyb2fsp+eaEYjW+C23rvN6OtZClxrMeWym8UiZBYHyNfsq48ExzTUkvCz/L3MtaTyOUV/fbEm/7C54PR5ba/T5h1fp3773WdEmiWUKHqvj7XThyEFHt6W9gk+3iTsTubxON+uPU8y6+lQvgXIEg9I1Hk8SfTuHUlLBI0G3xJ2Eo8ej6hzdscWLjdmo8RI62dXaRwvo/SgYgevxQOyQ+CV2fNlR5TISTrLHDiaT8TDSHdtJWTc5GzR5xt3jUZfqZdhpcAT2GKfsyVCgWo/3s+O8hGzHk8M8cijmEEUau+iOy8+UAoGc40GPP6WXOj6iz83FQqMMHutDdKHiOQqPGN2lzI4Kzncnx8O0yBW9PpYOfuZdy11zUeJIcwePJI2+XArGQ9xZHBN3AtF0V6qzUnP3aTVFrPHMmka6NWu/S0nzLHmfJs/htdeFJIhzPBA7/BM7ZCxoGcvQm7lb7GAyGY8Nun0m20RWHmrhuGOamuo6ujp8P/VGbdnj4YozjrT9GI/ZLoq4ejwysZ3coHvRBrp0rIvumWmlQgB7PB7S6JV+OhFboC0zqdAog4esvEepR9b2JD0YaaPzla4KLi632PEjdEHcsbwzYq8U0xQ9wnc0i2JLgTlOm5o8xvnPVdI7QzyKu053w6d23BHJAFNpBC81eZzjISuYalzSePSrf9h4Tf7abB/119jcvaiEl2rDdC9TfHCQpMWoCDwwHgUjeD0eiB2+ih0ybhhzKXaaj11ih8lsRxVFzo3Jngs70ijUddGXG8mUoUghh3htc8ncbAxTX1UNDY1tOOZ4pIzMfowHG6qaY9R3zTmhNBNrY+coAuNRHOxjtM//bpBeHyzGs/jG7HJ7V6hUKogkafbiKXpbBAyeWX7+1Sj1uO8sBHJ8tuJVGnc3tuvjdOnUT4x9HjxOF8PTxmQxkyfj7XT+oLHv9ovTNPqGYt8csH5SaZ6bs3s1b8FDkqSF6BmKHBKBge8gbJVNziyX6Ua34Sddrh6POmsbU9UNqV4PeYeTyjtEl89ERSCRWaAABMF4IHb4O3bsGE6x9Zxmjx0G22wKbNun51mImNTnfCIuve8NutPiGsLhp0tsvR7GeZk9sSImDYk8NiGSXYyHM25ZSq+/40keoVSvjWMohp/G6aDJEpxoGsyhlhJmMXw8PTGszHkq3Dz3eCyYy8wG36mUoMMPIoEcailhEDs8Qk5ad/Z4PEuEd6QBfWA8fMT63TC1HzxFQ4jLEjmrvdb+fL24E+nAPA6/AOPhHxA7PGSWexUaKf7IGoYxH7etwQ2PV8B4+AE5hltBbx2pp55p3K+kkD8Q1JgeojlUQz385Aq+Il8A4+EDEDvywAbNhs+kh2GqquVQjuMHxsC+gPEAAGgB4wEA0AHGAwCgBYwHAEAHGA8AgBYwHgAAHWA8AABawHgAAHSA8QAAaAHjAQDQAcYDAKAFjAcAQAcYDwCAFjAeAAAdAmY8HlLsPf7540GKPTaTAAB5IVjGA7EDgEIRKOOx+vEgPX/lJr2J4AFA3gmS8UDsAKBwBMd4rE3T6x3/j26t3aM2BA8A8k5gjAdiBwAFJSDGY4NuvR+j18f4N20RPAAoBMEwHogdABSaQBiPrTs36fn3PjNfZ43gAUAhCILxQOwAoPCUvvH4QQSLi4M0mAoWRQwe30aptqKCKlJqo3EzSzLeZssTqo2SPQSPt9nyhGqj/hsLB8Ci5I0HYgcARaH0jccXH9FPO3g2ukK9eIkxAPmi5I0HYgcARSE4k0tToLsUgEIQmMmlKRA7ACgEMB4AAC1gPAAAOgTQeAAACkHwjAcAoBDAeAAAtIDxAADoAOMBANACxgMAoAOMBwBACxgPAIAOMB4AAC1gPAAAOsB4AAC0gPEAAOgA4wEA0ALGAwCgA4wHAEALGA8AgA4wHgAALWA8AAA6wHgAALSA8QAA6BAM4/H4U3oJL3kCoKAEwnggdgBQcIJjPN77lFbNRQBA/gmM8UDsAKCgwHgAALSA8QAA6ADjAQDQAsYDAKBDIOd4nHh/lD5d2zYzAQD5IIhzPBA7AMg/wTAedrbW6O7gIP30Ypz+bCYBALwnEMbDDmIHAAUheMaDWYrTiY6P6HNzEQDgPYEzHgxiBwB5J3jG4/uvKfZ+Pz1/ZY62zCQAgPcEznggdgBQEAJhPFaHB1NjtM//bpBeH7yHyWIA5JkgGA/EDgAKTzCHWgAAeSeQQy0AgLwD4wEA0ALGAwCgA4wHAEALGA8AgA4wHgAALWA8AAA6wHgAALSA8QAA6ADjAQDQAsYDAKADjAcAQAsYDwCADjAeAAAtYDwAADrAeAAAtIDxAADoAOMBANACxgMAoAOMBwBACxgPAIAOMB4AAC1gPAAAOsB4AAC0gPEAAOgA4wEA0ALGAwCgA4wHAEALGA8AgA4wHgAALWA8AAA6wHgAALSA8QAA6ADjAQDQAsYDAKADjAcAQAsYDwCADjAeAAAtYDwAADrAeAAAtIDxAADoAOMBANACxgMAoAOMBwBACxgPAIAOMB4AAC1gPAAAOsB4AAC0gPEAAOgA4wEA0ALGAwCgA4wHAEALGA8AgA4wHgAALWA8AAA6wHgAALSA8QAA6ADjAQDQAsYDAKADjAcAQAsYDwCADjAeAAAtYDwAADroGY8J+v/t0s/iBjMYfgAAAABJRU5ErkJggg==" alt="tags、categories"></p>
+<p>最终需要themes中的配置文件_config.yml修改menu如下：</p>
+<p><img src="data:image/png;base64,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" alt="themes menu modify"></p>
+<p>提交到github。即可打开tags、categories页面</p>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Quenwa Zhang</p>
+              <p class="site-description motion-element" itemprop="description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Quenwa Zhang</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
