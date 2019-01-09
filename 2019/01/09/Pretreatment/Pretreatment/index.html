@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="Pretreatment.md    /*---------------------------------------------------------------------------------------------  *  Copyright (c) Microsoft Corporation. All rights reserved.  *  Licensed under t">
+<meta name="description" content="预处理  预处理 功能概括 现状概括 1. 图例识别 2. 通用表格识别 3. 封面识别 4. 材料表识别 5. 目录表识别   可调整项 一、 公共基础数据结构调整 二、 基础预处理调整   调整方案 基础数据结构调整方案 预处理调整方案 基础预处理 加工处理 对象构建   最终结果 类结构   实例展示 伪代码       功能概括针对单个大文件预处理时间较长，且需要多次使用。所以单独提取预处">
 <meta name="keywords" content="C++,Boost,STL,Python,OpenCV,人脸识别,编程思想">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Q">
+<meta property="og:title" content="预处理">
 <meta property="og:url" content="http://yoursite.com/2019/01/09/Pretreatment/Pretreatment/index.html">
 <meta property="og:site_name" content="Q">
-<meta property="og:description" content="Pretreatment.md    /*---------------------------------------------------------------------------------------------  *  Copyright (c) Microsoft Corporation. All rights reserved.  *  Licensed under t">
+<meta property="og:description" content="预处理  预处理 功能概括 现状概括 1. 图例识别 2. 通用表格识别 3. 封面识别 4. 材料表识别 5. 目录表识别   可调整项 一、 公共基础数据结构调整 二、 基础预处理调整   调整方案 基础数据结构调整方案 预处理调整方案 基础预处理 加工处理 对象构建   最终结果 类结构   实例展示 伪代码       功能概括针对单个大文件预处理时间较长，且需要多次使用。所以单独提取预处">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/01/09/Pretreatment/Pretreatment/img/base_data_structure.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/01/09/Pretreatment/Pretreatment/img/version1.jpg">
-<meta property="og:updated_time" content="2019-01-09T05:55:22.646Z">
+<meta property="og:updated_time" content="2019-01-09T06:42:35.825Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Q">
-<meta name="twitter:description" content="Pretreatment.md    /*---------------------------------------------------------------------------------------------  *  Copyright (c) Microsoft Corporation. All rights reserved.  *  Licensed under t">
+<meta name="twitter:title" content="预处理">
+<meta name="twitter:description" content="预处理  预处理 功能概括 现状概括 1. 图例识别 2. 通用表格识别 3. 封面识别 4. 材料表识别 5. 目录表识别   可调整项 一、 公共基础数据结构调整 二、 基础预处理调整   调整方案 基础数据结构调整方案 预处理调整方案 基础预处理 加工处理 对象构建   最终结果 类结构   实例展示 伪代码       功能概括针对单个大文件预处理时间较长，且需要多次使用。所以单独提取预处">
 <meta name="twitter:image" content="http://yoursite.com/2019/01/09/Pretreatment/Pretreatment/img/base_data_structure.jpg">
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <title> | Q</title>
+  <title>预处理 | Q</title>
   
 
 
@@ -283,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">预处理</h1>
         
 
         <div class="post-meta">
@@ -295,7 +295,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:16:28+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:27:00+08:00">
                 2019-01-09
               </time>
             
@@ -333,494 +333,73 @@
       
 
       
-        <!DOCTYPE html>
-<html>
-<head>
-<title>Pretreatment.md</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
-<style>
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
-	word-wrap: break-word;
-	margin: 50px;
-}
-
-#code-csp-warning {
-	position: fixed;
-	top: 0;
-	right: 0;
-	color: white;
-	margin: 16px;
-	text-align: center;
-	font-size: 12px;
-	font-family: sans-serif;
-	background-color:#444444;
-	cursor: pointer;
-	padding: 6px;
-	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
-}
-
-#code-csp-warning:hover {
-	text-decoration: none;
-	background-color:#007acc;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
-}
-
-
-body.scrollBeyondLastLine {
-	margin-bottom: calc(100vh - 22px);
-}
-
-body.showEditorSelection .code-line {
-	position: relative;
-}
-
-body.showEditorSelection .code-active-line:before,
-body.showEditorSelection .code-line:hover:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: -12px;
-	height: 100%;
-}
-
-body.showEditorSelection li.code-active-line:before,
-body.showEditorSelection li.code-line:hover:before {
-	left: -30px;
-}
-
-.vscode-light.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.15);
-}
-
-.vscode-light.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.40);
-}
-
-.vscode-dark.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.4);
-}
-
-.vscode-dark.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.60);
-}
-
-.vscode-high-contrast.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 160, 0, 0.7);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 160, 0, 1);
-}
-
-img {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-a {
-	color: #4080D0;
-	text-decoration: none;
-}
-
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 1px solid -webkit-focus-ring-color;
-	outline-offset: -1px;
-}
-
-hr {
-	border: 0;
-	height: 2px;
-	border-bottom: 2px solid;
-}
-
-h1 {
-	padding-bottom: 0.3em;
-	line-height: 1.2;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-}
-
-h1, h2, h3 {
-	font-weight: normal;
-}
-
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-table > thead > tr > th {
-	text-align: left;
-	border-bottom: 1px solid;
-}
-
-table > thead > tr > th,
-table > thead > tr > td,
-table > tbody > tr > th,
-table > tbody > tr > td {
-	padding: 5px 10px;
-}
-
-table > tbody > tr + tr > td {
-	border-top: 1px solid;
-}
-
-blockquote {
-	margin: 0 7px 0 5px;
-	padding: 0 16px 0 10px;
-	border-left: 5px solid;
-}
-
-code {
-	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
-}
-
-body.wordWrap pre {
-	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
-}
-
-pre:not(.hljs),
-pre.hljs code > div {
-	padding: 16px;
-	border-radius: 3px;
-	overflow: auto;
-}
-
-/** Theming */
-
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
-	background-color: rgba(220, 220, 220, 0.4);
-}
-
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
-	background-color: rgba(10, 10, 10, 0.4);
-}
-
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
-	background-color: rgb(0, 0, 0);
-}
-
-.vscode-high-contrast h1 {
-	border-color: rgb(0, 0, 0);
-}
-
-.vscode-light table > thead > tr > th {
-	border-color: rgba(0, 0, 0, 0.69);
-}
-
-.vscode-dark table > thead > tr > th {
-	border-color: rgba(255, 255, 255, 0.69);
-}
-
-.vscode-light h1,
-.vscode-light hr,
-.vscode-light table > tbody > tr + tr > td {
-	border-color: rgba(0, 0, 0, 0.18);
-}
-
-.vscode-dark h1,
-.vscode-dark hr,
-.vscode-dark table > tbody > tr + tr > td {
-	border-color: rgba(255, 255, 255, 0.18);
-}
-
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
-</style>
-
-<style>
-/* Tomorrow Theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-	color: #8e908c;
-}
-
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-	color: #c82829;
-}
-
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-	color: #f5871f;
-}
-
-/* Tomorrow Yellow */
-.hljs-attribute {
-	color: #eab700;
-}
-
-/* Tomorrow Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-	color: #718c00;
-}
-
-/* Tomorrow Blue */
-.hljs-title,
-.hljs-section {
-	color: #4271ae;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-	color: #8959a8;
-}
-
-.hljs {
-	display: block;
-	overflow-x: auto;
-	color: #4d4d4c;
-	padding: 0.5em;
-}
-
-.hljs-emphasis {
-	font-style: italic;
-}
-
-.hljs-strong {
-	font-weight: bold;
-}
-</style>
-
-<style>
-/*
- * Markdown PDF CSS
- */
-
- body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-}
-
-pre {
-	background-color: #f8f8f8;
-	border: 1px solid #cccccc;
-	border-radius: 3px;
-	overflow-x: auto;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
-}
-
-pre:not(.hljs) {
-	padding: 23px;
-	line-height: 19px;
-}
-
-blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.emoji {
-	height: 1.4em;
-}
-
-/* for inline code */
-:not(pre):not(.hljs) > code {
-	color: #C9AE75; /* Change the old color so it seems less like an error */
-	font-size: inherit;
-}
-
-/* Page Break : use <div class="page"/> to insert page break
--------------------------------------------------------- */
-.page {
-	page-break-after: always;
-}
-
-</style>
-
-</head>
-<body>
-<h1 id="%E9%A2%84%E5%A4%84%E7%90%86">预处理</h1>
-<!-- TOC -->
+        <h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><!-- TOC -->
 <ul>
-<li><a href="#%E9%A2%84%E5%A4%84%E7%90%86">预处理</a>
-<ul>
-<li><a href="#%E5%8A%9F%E8%83%BD%E6%A6%82%E6%8B%AC">功能概括</a></li>
-<li><a href="#%E7%8E%B0%E7%8A%B6%E6%A6%82%E6%8B%AC">现状概括</a>
-<ul>
-<li><a href="#1-%E5%9B%BE%E4%BE%8B%E8%AF%86%E5%88%AB">1. 图例识别</a></li>
-<li><a href="#2-%E9%80%9A%E7%94%A8%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB">2. 通用表格识别</a></li>
-<li><a href="#3-%E5%B0%81%E9%9D%A2%E8%AF%86%E5%88%AB">3. 封面识别</a></li>
-<li><a href="#4-%E6%9D%90%E6%96%99%E8%A1%A8%E8%AF%86%E5%88%AB">4. 材料表识别</a></li>
-<li><a href="#5-%E7%9B%AE%E5%BD%95%E8%A1%A8%E8%AF%86%E5%88%AB">5. 目录表识别</a></li>
+<li><a href="#预处理">预处理</a><ul>
+<li><a href="#功能概括">功能概括</a></li>
+<li><a href="#现状概括">现状概括</a><ul>
+<li><a href="#1-图例识别">1. 图例识别</a></li>
+<li><a href="#2-通用表格识别">2. 通用表格识别</a></li>
+<li><a href="#3-封面识别">3. 封面识别</a></li>
+<li><a href="#4-材料表识别">4. 材料表识别</a></li>
+<li><a href="#5-目录表识别">5. 目录表识别</a></li>
 </ul>
 </li>
-<li><a href="#%E5%8F%AF%E8%B0%83%E6%95%B4%E9%A1%B9">可调整项</a>
-<ul>
-<li><a href="#%E4%B8%80-%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4">一、 公共基础数据结构调整</a></li>
-<li><a href="#%E4%BA%8C-%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4">二、 基础预处理调整</a></li>
+<li><a href="#可调整项">可调整项</a><ul>
+<li><a href="#一-公共基础数据结构调整">一、 公共基础数据结构调整</a></li>
+<li><a href="#二-基础预处理调整">二、 基础预处理调整</a></li>
 </ul>
 </li>
-<li><a href="#%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">调整方案</a>
-<ul>
-<li><a href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">基础数据结构调整方案</a></li>
-<li><a href="#%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">预处理调整方案</a></li>
-<li><a href="#%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86">基础预处理</a></li>
-<li><a href="#%E5%8A%A0%E5%B7%A5%E5%A4%84%E7%90%86">加工处理</a></li>
-<li><a href="#%E5%AF%B9%E8%B1%A1%E6%9E%84%E5%BB%BA">对象构建</a></li>
+<li><a href="#调整方案">调整方案</a><ul>
+<li><a href="#基础数据结构调整方案">基础数据结构调整方案</a></li>
+<li><a href="#预处理调整方案">预处理调整方案</a></li>
+<li><a href="#基础预处理">基础预处理</a></li>
+<li><a href="#加工处理">加工处理</a></li>
+<li><a href="#对象构建">对象构建</a></li>
 </ul>
 </li>
-<li><a href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C">最终结果</a>
-<ul>
-<li><a href="#%E7%B1%BB%E7%BB%93%E6%9E%84">类结构</a></li>
+<li><a href="#最终结果">最终结果</a><ul>
+<li><a href="#类结构">类结构</a></li>
 </ul>
 </li>
-<li><a href="#%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA">实例展示</a>
-<ul>
-<li><a href="#%E4%BC%AA%E4%BB%A3%E7%A0%81">伪代码</a></li>
+<li><a href="#实例展示">实例展示</a><ul>
+<li><a href="#伪代码">伪代码</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <!-- /TOC -->
-<h2 id="%E5%8A%9F%E8%83%BD%E6%A6%82%E6%8B%AC">功能概括</h2>
-<p>针对单个大文件预处理时间较长，且需要多次使用。所以单独提取预处理模块</p>
-<h2 id="%E7%8E%B0%E7%8A%B6%E6%A6%82%E6%8B%AC">现状概括</h2>
-<h3 id="1-%E5%9B%BE%E4%BE%8B%E8%AF%86%E5%88%AB">1. 图例识别</h3>
-<ul>
+<h2 id="功能概括"><a href="#功能概括" class="headerlink" title="功能概括"></a>功能概括</h2><p>针对单个大文件预处理时间较长，且需要多次使用。所以单独提取预处理模块</p>
+<h2 id="现状概括"><a href="#现状概括" class="headerlink" title="现状概括"></a>现状概括</h2><h3 id="1-图例识别"><a href="#1-图例识别" class="headerlink" title="1. 图例识别"></a>1. 图例识别</h3><ul>
 <li>读取数据库中所有实体，按块表记录存储。</li>
 <li>标准图例特征提取</li>
 <li>待识别文件特征提取</li>
 <li>待识别文件部分块及多段线进行分解，统计各块表记录文字大小</li>
-<li>图元分析及扫描器构建（用于快速检索）</li>
-</ul>
-<h3 id="2-%E9%80%9A%E7%94%A8%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB">2. 通用表格识别</h3>
-<ul>
-<li>按块读取数据库中所有实体与块,按块进行表格识别，根据矩阵复制</li>
-</ul>
-<h3 id="3-%E5%B0%81%E9%9D%A2%E8%AF%86%E5%88%AB">3. 封面识别</h3>
-<ul>
+<li>图元分析及扫描器构建（用于快速检索）<h3 id="2-通用表格识别"><a href="#2-通用表格识别" class="headerlink" title="2. 通用表格识别"></a>2. 通用表格识别</h3></li>
+<li>按块读取数据库中所有实体与块,按块进行表格识别，根据矩阵复制<h3 id="3-封面识别"><a href="#3-封面识别" class="headerlink" title="3. 封面识别"></a>3. 封面识别</h3></li>
 <li>依赖图例识别提供的方法，获取数据库中所有块实体</li>
-<li>读取块列表中所有实体中的文本</li>
-</ul>
-<h3 id="4-%E6%9D%90%E6%96%99%E8%A1%A8%E8%AF%86%E5%88%AB">4. 材料表识别</h3>
-<ul>
-<li>主要依赖通用表格识别</li>
-</ul>
-<h3 id="5-%E7%9B%AE%E5%BD%95%E8%A1%A8%E8%AF%86%E5%88%AB">5. 目录表识别</h3>
-<ul>
-<li>主要依赖通用表格识别</li>
-</ul>
-<h2 id="%E5%8F%AF%E8%B0%83%E6%95%B4%E9%A1%B9">可调整项</h2>
-<h3 id="%E4%B8%80%E3%80%81-%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4">一、 公共基础数据结构调整</h3>
-<ul>
-<li>
-<p>现有结构来由</p>
-<p>现有基础数据结构分别由BsEntity,及GaEntity构建，两者可相互转换。之所有存在两个基本数据结构类，由于不同阶段开发人员不同，所以根据不同阶段的需求，不同开发人员分别构建了这两个基础数据结构</p>
+<li>读取块列表中所有实体中的文本<h3 id="4-材料表识别"><a href="#4-材料表识别" class="headerlink" title="4. 材料表识别"></a>4. 材料表识别</h3></li>
+<li>主要依赖通用表格识别<h3 id="5-目录表识别"><a href="#5-目录表识别" class="headerlink" title="5. 目录表识别"></a>5. 目录表识别</h3></li>
+<li>主要依赖通用表格识别 <h2 id="可调整项"><a href="#可调整项" class="headerlink" title="可调整项"></a>可调整项</h2><h3 id="一、-公共基础数据结构调整"><a href="#一、-公共基础数据结构调整" class="headerlink" title="一、 公共基础数据结构调整"></a>一、 公共基础数据结构调整</h3></li>
+<li><p>现有结构来由</p>
+<p>  现有基础数据结构分别由BsEntity,及GaEntity构建，两者可相互转换。之所有存在两个基本数据结构类，由于不同阶段开发人员不同，所以根据不同阶段的需求，不同开发人员分别构建了这两个基础数据结构</p>
 </li>
-<li>
-<p>现有结构分析</p>
+<li><p>现有结构分析</p>
 <ol>
 <li>基础数据结构类BsEntity与GaEntity构建出发点一致，都为基础数据结构封装类。</li>
 <li>基础数据结构中BsEntity及GaEntity类功能复杂，负责多种类型实体的管理。</li>
 </ol>
 </li>
-<li>
-<p>调整方向</p>
+<li><p>调整方向</p>
 <ol>
 <li>将BsEntity及GaEntity，构建成一个基础数据结构</li>
 <li>构建一个基础类，多种类型实体继承此基础类，进行不同的实现处理</li>
 </ol>
 </li>
 </ul>
-<h3 id="%E4%BA%8C%E3%80%81-%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4">二、 基础预处理调整</h3>
-<h2 id="%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">调整方案</h2>
-<h3 id="%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">基础数据结构调整方案</h3>
-<p><img src="img/base_data_structure.jpg" alt="基础数据结构调整"></p>
-<h3 id="%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">预处理调整方案</h3>
-<ul>
+<h3 id="二、-基础预处理调整"><a href="#二、-基础预处理调整" class="headerlink" title="二、 基础预处理调整"></a>二、 基础预处理调整</h3><h2 id="调整方案"><a href="#调整方案" class="headerlink" title="调整方案"></a>调整方案</h2><h3 id="基础数据结构调整方案"><a href="#基础数据结构调整方案" class="headerlink" title="基础数据结构调整方案"></a>基础数据结构调整方案</h3><p><img src="img/base_data_structure.jpg" alt="基础数据结构调整"></p>
+<h3 id="预处理调整方案"><a href="#预处理调整方案" class="headerlink" title="预处理调整方案"></a>预处理调整方案</h3><ul>
 <li>方案一</li>
 </ul>
 <p>加载Dwg文件时进行<strong>基础预处理</strong>，并存储预处理得到的基础数据。在进行识别时，识别类需要告知识别管理类需要什么数据，识别管理类查看数据仓库中是否存在识别类所需的数据，不存在则根据加工类工厂实例化对应<strong>数据加工类</strong>,继而对基础数据进行加工成识别类所需数据，储存加工后的数据到数据仓库。作为每次识别的数据源。</p>
@@ -828,133 +407,45 @@ blockquote {
 <li>方案二</li>
 </ul>
 <p>加载Dwg文件时进行<strong>基础预处理</strong>，并存储预处理得到的基础数据。识别管理类根据调用者输入要识别类型，确定识别所需数据。识别管理类查看数据仓库是否存在数据，不存在则根据识别类提供的成员方法实例化<strong>数据加工类</strong>初始化其函数指针，然后对基础数据进行加工，储存加工后的数据到数据仓库。得到所需数据，继而进行识别。</p>
-<h3 id="%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86">基础预处理</h3>
-<p>主要负责待识别图纸dwg文件实体数据读取，存储到基础数据结构中。</p>
-<h3 id="%E5%8A%A0%E5%B7%A5%E5%A4%84%E7%90%86">加工处理</h3>
-<p>新增数据加工模块，各模块在识别过程中对预处理基础数据进行再次加工，进行缓存便于识别模块分析处理。<em>识别模块仅仅能使用加工后的数据</em></p>
+<h3 id="基础预处理"><a href="#基础预处理" class="headerlink" title="基础预处理"></a>基础预处理</h3><p>主要负责待识别图纸dwg文件实体数据读取，存储到基础数据结构中。</p>
+<h3 id="加工处理"><a href="#加工处理" class="headerlink" title="加工处理"></a>加工处理</h3><p>新增数据加工模块，各模块在识别过程中对预处理基础数据进行再次加工，进行缓存便于识别模块分析处理。<em>识别模块仅仅能使用加工后的数据</em></p>
 <ul>
-<li>
-<p><strong>图例识别</strong></p>
+<li><p><strong>图例识别</strong></p>
 <ul>
 <li>读取特征文件</li>
 <li>部分块及多段线打散操作</li>
 <li>图元分析处理</li>
-<li>扫描器构建</li>
+<li>扫描器构建 </li>
 <li>提取特征</li>
 </ul>
 </li>
-<li>
-<p><strong>表格识别相关</strong></p>
+<li><p><strong>表格识别相关</strong> </p>
 <ul>
 <li>按块存储实体及矩阵</li>
 </ul>
 </li>
-<li>
-<p><strong>文本分析相关</strong></p>
+<li><p><strong>文本分析相关</strong></p>
 <ul>
 <li>提取对应块表记录中所有文本，进行排序处理</li>
 </ul>
 </li>
 </ul>
-<h3 id="%E5%AF%B9%E8%B1%A1%E6%9E%84%E5%BB%BA">对象构建</h3>
-<ul>
+<h3 id="对象构建"><a href="#对象构建" class="headerlink" title="对象构建"></a>对象构建</h3><ul>
 <li><strong>预处理类</strong>：对数据进行预处理，生成基础数据</li>
 <li><strong>预处理数据类</strong>：用于存储预处理后的数据，进行管理</li>
 <li><strong>数据加工类</strong>：根据识别所需数据，进行基础数据加工</li>
 <li><strong>加工数据类</strong>：加工后的数据结构</li>
-<li><strong>加工类工厂类</strong>：主要用于实例化加工类</li>
-</ul>
-<h2 id="%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C">最终结果</h2>
-<h3 id="%E7%B1%BB%E7%BB%93%E6%9E%84">类结构</h3>
-<ul>
+<li><strong>加工类工厂类</strong>：主要用于实例化加工类<h2 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h2><h3 id="类结构"><a href="#类结构" class="headerlink" title="类结构"></a>类结构</h3></li>
 <li>版本一（<em>UML类图</em>）</li>
 </ul>
 <p><img src="img/version1.jpg" alt="版本一"></p>
-<h2 id="%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA">实例展示</h2>
-<h3 id="%E4%BC%AA%E4%BB%A3%E7%A0%81">伪代码</h3>
-<ul>
-<li>方案一</li>
+<h2 id="实例展示"><a href="#实例展示" class="headerlink" title="实例展示"></a>实例展示</h2><h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><ul>
+<li><p>方案一</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">识别管理类中交互</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CBsRecManager</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">// LoadDwg基础数据</span></span><br><span class="line">	CBsBaseDataMgr* m_pBaseDataMgr;</span><br><span class="line">	<span class="comment">// 加工后的数据map</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">map</span>&lt;rec_type, TAG_DWG_CRUDEDATA*&gt; m_mapProcessData;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 识别</span></span><br><span class="line">	<span class="function">Rescode <span class="title">Recognize</span><span class="params">(rec_type,con_param,outdata**)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">// 查询是否已经存在预处理数据</span></span><br><span class="line">		<span class="comment">// TAG_DWG_CRUDEDATA 为加工后数据基类</span></span><br><span class="line">		TAG_DWG_CRUDEDATA* pInputData = *m_mapProcessData.find(rec_type);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (pInputData == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 根据类型，由工厂决定谁来加工</span></span><br><span class="line">			IDataProcess *pProcess = CBsDataProcessFactory::CreateProcess(rec_type);</span><br><span class="line">			<span class="comment">// 对基础数据进行加工，输出加工后数据</span></span><br><span class="line">			pProcess-&gt;ProcessData(m_pBaseDataMgr, pInputData);</span><br><span class="line">			<span class="comment">// 存储加工后的数据</span></span><br><span class="line">			m_mapProcessData.insert(<span class="built_in">std</span>::make_pair&lt;&gt;(pInputData))</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">		IBsRecognize *pRec = CBsRecFactory::CreateRec();</span><br><span class="line">		pRec-&gt;recognize(...);</span><br><span class="line">		<span class="comment">// 根据输入数据，进行正常识别流程</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方案二</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">识别管理类中交互</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CBsRecManager</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">// LoadDwg基础数据</span></span><br><span class="line">	CBsBaseDataMgr* m_pBaseDataMgr;</span><br><span class="line">	<span class="comment">// 加工后的数据map</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">map</span>&lt;rec_type, TAG_DWG_CRUDEDATA*&gt; m_mapProcessData;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 识别</span></span><br><span class="line">	<span class="function">Rescode <span class="title">Recognize</span><span class="params">(rec_type,con_param,outdata**)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">// 根据识别工厂类，实例化识别模块具体类</span></span><br><span class="line">		IBsRecognize *pRec = CBsRecFactory::CreateRec(rec_type);</span><br><span class="line">		assert(pRec);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 查询是否已经存在预处理数据</span></span><br><span class="line">		<span class="comment">// TAG_DWG_CRUDEDATA 为加工后数据基类</span></span><br><span class="line">		TAG_DWG_CRUDEDATA* pInputData = *m_mapProcessData.find(rec_type);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (pInputData == m_mapProcessData.end())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 由识别类提供成员函数决定预处理方法，实例化加工管理类，交给那个管理类中存在函数指针，</span></span><br><span class="line">			<span class="comment">// 需要识别类抽象ProcessData方法，此方法同时负责实例化具体加工的数据结构，输入参数为二维指针</span></span><br><span class="line">			CBsDataProcessMgr DataProcessMgr(std::bind(IBsRecognize::ProcessData, *pRec, std::placeholders::_1, std::placeholders::_2));</span><br><span class="line">			<span class="comment">// 对基础数据进行加工，输出加工后数据</span></span><br><span class="line">			DataProcessMgr.ProcessData(m_pBaseDataMgr, pInputData);</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// 存储加工后的数据</span></span><br><span class="line">			m_mapProcessData.insert(<span class="built_in">std</span>::make_pair&lt;&gt;(pInputData))</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		pRec-&gt;recognize(...);</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">		<span class="comment">// 根据输入数据，进行正常识别流程</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<pre class="hljs"><code><div><span class="hljs-comment">/**
-识别管理类中交互
-*/</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CBsRecManager</span>
-{</span>
-	<span class="hljs-comment">// LoadDwg基础数据</span>
-	CBsBaseDataMgr* m_pBaseDataMgr;
-	<span class="hljs-comment">// 加工后的数据map</span>
-	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;rec_type, TAG_DWG_CRUDEDATA*&gt; m_mapProcessData;
-	
-	<span class="hljs-comment">// 识别</span>
-	<span class="hljs-function">Rescode <span class="hljs-title">Recognize</span><span class="hljs-params">(rec_type,con_param,outdata**)</span>
-	</span>{
-		<span class="hljs-comment">// 查询是否已经存在预处理数据</span>
-		<span class="hljs-comment">// TAG_DWG_CRUDEDATA 为加工后数据基类</span>
-		TAG_DWG_CRUDEDATA* pInputData = *m_mapProcessData.find(rec_type);
-		
-		<span class="hljs-keyword">if</span> (pInputData == <span class="hljs-literal">nullptr</span>)
-		{
-			<span class="hljs-comment">// 根据类型，由工厂决定谁来加工</span>
-			IDataProcess *pProcess = CBsDataProcessFactory::CreateProcess(rec_type);
-			<span class="hljs-comment">// 对基础数据进行加工，输出加工后数据</span>
-			pProcess-&gt;ProcessData(m_pBaseDataMgr, pInputData);
-			<span class="hljs-comment">// 存储加工后的数据</span>
-			m_mapProcessData.insert(<span class="hljs-built_in">std</span>::make_pair&lt;&gt;(pInputData))
-		}
-		
-
-		<span class="hljs-comment">//...</span>
-		IBsRecognize *pRec = CBsRecFactory::CreateRec();
-		pRec-&gt;recognize(...);
-		<span class="hljs-comment">// 根据输入数据，进行正常识别流程</span>
-	}
-};
-</div></code></pre>
-<ul>
-<li>方案二</li>
-</ul>
-<pre class="hljs"><code><div><span class="hljs-comment">/**
-识别管理类中交互
-*/</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CBsRecManager</span>
-{</span>
-	<span class="hljs-comment">// LoadDwg基础数据</span>
-	CBsBaseDataMgr* m_pBaseDataMgr;
-	<span class="hljs-comment">// 加工后的数据map</span>
-	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;rec_type, TAG_DWG_CRUDEDATA*&gt; m_mapProcessData;
-	
-	<span class="hljs-comment">// 识别</span>
-	<span class="hljs-function">Rescode <span class="hljs-title">Recognize</span><span class="hljs-params">(rec_type,con_param,outdata**)</span>
-	</span>{
-		<span class="hljs-comment">// 根据识别工厂类，实例化识别模块具体类</span>
-		IBsRecognize *pRec = CBsRecFactory::CreateRec(rec_type);
-		assert(pRec);
-
-		<span class="hljs-comment">// 查询是否已经存在预处理数据</span>
-		<span class="hljs-comment">// TAG_DWG_CRUDEDATA 为加工后数据基类</span>
-		TAG_DWG_CRUDEDATA* pInputData = *m_mapProcessData.find(rec_type);
-		
-		<span class="hljs-keyword">if</span> (pInputData == m_mapProcessData.end())
-		{
-			<span class="hljs-comment">// 由识别类提供成员函数决定预处理方法，实例化加工管理类，交给那个管理类中存在函数指针，</span>
-			<span class="hljs-comment">// 需要识别类抽象ProcessData方法，此方法同时负责实例化具体加工的数据结构，输入参数为二维指针</span>
-			<span class="hljs-function">CBsDataProcessMgr <span class="hljs-title">DataProcessMgr</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::bind(IBsRecognize::ProcessData, *pRec, <span class="hljs-built_in">std</span>::placeholders::_1, <span class="hljs-built_in">std</span>::placeholders::_2)</span>)</span>;
-			<span class="hljs-comment">// 对基础数据进行加工，输出加工后数据</span>
-			DataProcessMgr.ProcessData(m_pBaseDataMgr, pInputData);
-			
-			<span class="hljs-comment">// 存储加工后的数据</span>
-			m_mapProcessData.insert(<span class="hljs-built_in">std</span>::make_pair&lt;&gt;(pInputData))
-		}
-		
-		pRec-&gt;recognize(...);
-		<span class="hljs-comment">//...</span>
-		<span class="hljs-comment">// 根据输入数据，进行正常识别流程</span>
-	}
-};
-</div></code></pre>
-
-</body>
-</html>
 
       
     </div>
@@ -979,8 +470,8 @@ blockquote {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/09/Logger/Logger/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/01/09/CommonTableRecognize/CommonTableRecognize/" rel="next" title="通用表格识别">
+                <i class="fa fa-chevron-left"></i> 通用表格识别
               </a>
             
           </div>
@@ -989,8 +480,8 @@ blockquote {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/09/Pretreatment/Pretreatment/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/09/Logger/Logger/" rel="prev" title="日志模块">
+                日志模块 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1074,7 +565,7 @@ blockquote {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1139,7 +630,7 @@ blockquote {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E6%A6%82%E6%8B%AC"><span class="nav-number">1.1.</span> <span class="nav-text">功能概括</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E7%8A%B6%E6%A6%82%E6%8B%AC"><span class="nav-number">1.2.</span> <span class="nav-text">现状概括</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9B%BE%E4%BE%8B%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 图例识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%80%9A%E7%94%A8%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 通用表格识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B0%81%E9%9D%A2%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 封面识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%9D%90%E6%96%99%E8%A1%A8%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 材料表识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%9B%AE%E5%BD%95%E8%A1%A8%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. 目录表识别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%B0%83%E6%95%B4%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">可调整项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4"><span class="nav-number">1.3.1.</span> <span class="nav-text">一、 公共基础数据结构调整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4"><span class="nav-number">1.3.2.</span> <span class="nav-text">二、 基础预处理调整</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.</span> <span class="nav-text">调整方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.1.</span> <span class="nav-text">基础数据结构调整方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.2.</span> <span class="nav-text">预处理调整方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">1.4.3.</span> <span class="nav-text">基础预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%B7%A5%E5%A4%84%E7%90%86"><span class="nav-number">1.4.4.</span> <span class="nav-text">加工处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E6%9E%84%E5%BB%BA"><span class="nav-number">1.4.5.</span> <span class="nav-text">对象构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C"><span class="nav-number">1.5.</span> <span class="nav-text">最终结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.1.</span> <span class="nav-text">类结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA"><span class="nav-number">1.6.</span> <span class="nav-text">实例展示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.6.1.</span> <span class="nav-text">伪代码</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#预处理"><span class="nav-number">1.</span> <span class="nav-text">预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能概括"><span class="nav-number">1.1.</span> <span class="nav-text">功能概括</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现状概括"><span class="nav-number">1.2.</span> <span class="nav-text">现状概括</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-图例识别"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 图例识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-通用表格识别"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 通用表格识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-封面识别"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 封面识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-材料表识别"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 材料表识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-目录表识别"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. 目录表识别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可调整项"><span class="nav-number">1.3.</span> <span class="nav-text">可调整项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-公共基础数据结构调整"><span class="nav-number">1.3.1.</span> <span class="nav-text">一、 公共基础数据结构调整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-基础预处理调整"><span class="nav-number">1.3.2.</span> <span class="nav-text">二、 基础预处理调整</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整方案"><span class="nav-number">1.4.</span> <span class="nav-text">调整方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础数据结构调整方案"><span class="nav-number">1.4.1.</span> <span class="nav-text">基础数据结构调整方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预处理调整方案"><span class="nav-number">1.4.2.</span> <span class="nav-text">预处理调整方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础预处理"><span class="nav-number">1.4.3.</span> <span class="nav-text">基础预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加工处理"><span class="nav-number">1.4.4.</span> <span class="nav-text">加工处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象构建"><span class="nav-number">1.4.5.</span> <span class="nav-text">对象构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最终结果"><span class="nav-number">1.5.</span> <span class="nav-text">最终结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类结构"><span class="nav-number">1.5.1.</span> <span class="nav-text">类结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例展示"><span class="nav-number">1.6.</span> <span class="nav-text">实例展示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#伪代码"><span class="nav-number">1.6.1.</span> <span class="nav-text">伪代码</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
