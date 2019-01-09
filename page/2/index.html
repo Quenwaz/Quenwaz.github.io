@@ -99,7 +99,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/利用dlib进行人脸检测/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/ClassDesignPrinciple/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Quenwa Zhang">
@@ -282,7 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/05/利用dlib进行人脸检测/" itemprop="url">利用dlib进行人脸检测</a></h1>
+                <a class="post-title-link" href="/2019/01/09/ClassDesignPrinciple/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-05T12:21:04+08:00">
-                2018-07-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:16:28+08:00">
+                2019-01-09
               </time>
             
 
@@ -304,28 +304,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">编码</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -356,224 +334,723 @@
       
         
           
-            <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
-<li>python 3.6.1</li>
-<li>opencv</li>
-<li>dlib</li>
-<li>numpy</li>
-</ul>
-<h3 id="DLIB-介绍"><a href="#DLIB-介绍" class="headerlink" title="DLIB 介绍"></a>DLIB 介绍</h3><p>Dlib是一个包含机器学习算法的C++开源工具包。Dlib可以帮助您创建很多复杂的机器学习方面的软件来帮助解决实际问题。目前Dlib已经被广泛的用在行业和学术领域,包括机器人,嵌入式设备,移动电话和大型高性能计算环境。</p>
-<p>Dlib是开源的、免费的;官网和git地址:</p>
+            <!DOCTYPE html>
+<html>
+<head>
+<title>ClassDesignPrinciple.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+	margin: 50px;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h2 id="%E4%B8%80%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99">一.单一职责原则</h2>
+<pre><code>单一职责原则是最简单的面向对象设计原则，它用于控制类的粒度大小。单一职责原则定义如下:
+</code></pre>
+<p><strong>单一职责原则(Single Responsibility Principle, SRP)：</strong></p>
+<blockquote>
+<p>一个类只负责一个功能领域中的相应职责，或者可以定义为：<strong>就一个类而言，应该只有一个引起它变化的原因。</strong></p>
+</blockquote>
+<p>单一职责原则告诉我们：一个类不能太“累”！在软件系统中，一个类（大到模块，小到方法）承担的职责越多，它被复用的可能性就越小，而且一个类承担的职责过多，就相当于将这些职责耦合在一起，当其中一个职责变化时，可能会影响其他职责的运作，因此要将这些职责进行分离，将不同的职责封装在不同的类中，即将不同的变化原因封装在不同的类中，如果多个职责总是同时发生改变则可将它们封装在同一类中。</p>
+<p>单一职责原则是实现高内聚、低耦合的指导方针，它是最简单但又最难运用的原则，需要设计人员发现类的不同职责并将其分离，而发现类的多重职责需要设计人员具有较强的分析设计能力和相关实践经验。</p>
+<h2 id="%E4%BA%8C%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99">二.开闭原则</h2>
+<pre><code>开闭原则是面向对象的可复用设计的第一块基石，它是最重要的面向对象设计原则。开闭原则由Bertrand  Meyer于1988年提出，其定义如下：
+</code></pre>
+<p><strong>开闭原则(Open-Closed Principle, OCP)：</strong></p>
+<blockquote>
+<p>一个软件实体应当对扩展开放，对修改关闭。即软件实体应尽量在不修改原有代码的情况下进行扩展。</p>
+</blockquote>
+<p>在开闭原则的定义中，软件实体可以指一个软件模块、一个由多个类组成的局部结构或一个独立的类。</p>
+<p>任何软件都需要面临一个很重要的问题，即它们的需求会随时间的推移而发生变化。当软件系统需要面对新的需求时，我们应该尽量保证系统的设计框架是稳定的。如果一个软件设计符合开闭原则，那么可以非常方便地对系统进行扩展，而且在扩展时无须修改现有代码，使得软件系统在拥有适应性和灵活性的同时具备较好的稳定性和延续性。随着软件规模越来越大，软件寿命越来越长，软件维护成本越来越高，设计满足开闭原则的软件系统也变得越来越重要。</p>
+<p>为了满足开闭原则，需要对系统进行抽象化设计，抽象化是开闭原则的关键。在Java、C#等编程语言中，可以为系统定义一个相对稳定的抽象层，而将不同的实现行为移至具体的实现层中完成。在很多面向对象编程语言中都提供了接口、抽象类等机制，可以通过它们定义系统的抽象层，再通过具体类来进行扩展。如果需要修改系统的行为，无须对抽象层进行任何改动，只需要增加新的具体类来实现新的业务功能即可，实现在不修改已有代码的基础上扩展系统的功能，达到开闭原则的要求。</p>
+<h2 id="%E4%B8%89%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99">三.里氏替换原则</h2>
+<pre><code>里氏代换原则由2008年图灵奖得主、美国第一位计算机科学女博士Barbara Liskov教授和卡内基·梅隆大学Jeannette Wing教授于1994年提出。其严格表述如下：如果对每一个类型为S的对象o1，都有类型为T的对象o2，使得以T定义的所有程序P在所有的对象o1代换o2时，程序P的行为没有变化，那么类型S是类型T的子类型。这个定义比较拗口且难以理解，因此我们一般使用它的另一个通俗版定义：
+</code></pre>
+<p><strong>里氏代换原则(Liskov Substitution Principle, LSP)：</strong></p>
+<blockquote>
+<p>所有引用基类（父类）的地方必须能透明地使用其子类的对象。</p>
+</blockquote>
+<p>里氏代换原则告诉我们，在软件中将一个基类对象替换成它的子类对象，程序将不会产生任何错误和异常，反过来则不成立，如果一个软件实体使用的是一个子类对象的话，那么它不一定能够使用基类对象。例如：我喜欢动物，那我一定喜欢狗，因为狗是动物的子类；但是我喜欢狗，不能据此断定我喜欢动物，因为我并不喜欢老鼠，虽然它也是动物。</p>
+<p>例如有两个类，一个类为BaseClass，另一个是SubClass类，并且SubClass类是BaseClass类的子类，那么一个方法如果可以接受一个BaseClass类型的基类对象base的话，如：method1(base)，那么它必然可以接受一个BaseClass类型的子类对象sub，method1(sub)能够正常运行。反过来的代换不成立，如一个方法method2接受BaseClass类型的子类对象sub为参数：method2(sub)，那么一般而言不可以有method2(base)，除非是重载方法。</p>
+<p>里氏代换原则是实现开闭原则的重要方式之一，由于使用基类对象的地方都可以使用子类对象，因此在程序中尽量使用基类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象。</p>
+<p><em>在使用里氏代换原则时需要注意如下几个问题：</em></p>
 <ul>
-<li><a href="http://dlib.net/" target="_blank" rel="noopener">官网</a></li>
-<li><a href="https://github.com/davisking/dlib" target="_blank" rel="noopener">github</a> </li>
+<li>
+<p>子类的所有方法必须在父类中声明，或子类必须实现父类中声明的所有方法。根据里氏代换原则，为了保证系统的扩展性，在程序中通常使用父类来进行定义，如果一个方法只存在子类中，在父类中不提供相应的声明，则无法在以父类定义的对象中使用该方法。</p>
+</li>
+<li>
+<p>我们在运用里氏代换原则时，尽量把父类设计为抽象类或者接口，让子类继承父类或实现父接口，并实现在父类中声明的方法，运行时，子类实例替换父类实例，我们可以很方便地扩展系统的功能，同时无须修改原有子类的代码，增加新的功能可以通过增加一个新的子类来实现。里氏代换原则是开闭原则的具体实现手段之一。</p>
+</li>
+<li>
+<p>Java语言中，在编译阶段，Java编译器会检查一个程序是否符合里氏代换原则，这是一个与实现无关的、纯语法意义上的检查，但Java编译器的检查是有局限的。</p>
+</li>
 </ul>
-<p>Dlib的主要特点:</p>
+<h2 id="%E5%9B%9B%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99">四.依赖倒置原则</h2>
+<pre><code>如果说开闭原则是面向对象设计的目标的话，那么依赖倒转原则就是面向对象设计的主要实现机制之一，它是系统抽象化的具体实现。依赖倒转原则是Robert C. Martin在1996年为“C++Reporter”所写的专栏Engineering Notebook的第三篇，后来加入到他在2002年出版的经典著作“Agile Software Development, Principles, Patterns, and Practices”一书中。依赖倒转原则定义如下：
+</code></pre>
+<p><strong>依赖倒转原则(Dependency Inversion  Principle, DIP)：</strong></p>
+<blockquote>
+<p>抽象不应该依赖于细节，细节应当依赖于抽象。换言之，要针对接口编程，而不是针对实现编程。</p>
+</blockquote>
+<p>依赖倒转原则要求我们在程序代码中传递参数时或在关联关系中，尽量引用层次高的抽象层类，即使用接口和抽象类进行变量类型声明、参数类型声明、方法返回类型声明，以及数据类型的转换等，而不要用具体类来做这些事情。为了确保该原则的应用，一个具体类应当只实现接口或抽象类中声明过的方法，而不要给出多余的方法，否则将无法调用到在子类中增加的新方法。</p>
+<p>在引入抽象层后，系统将具有很好的灵活性，在程序中尽量使用抽象层进行编程，而将具体类写在配置文件中，这样一来，如果系统行为发生变化，只需要对抽象层进行扩展，并修改配置文件，而无须修改原有系统的源代码，在不修改的情况下来扩展系统的功能，满足开闭原则的要求。</p>
+<p>在实现依赖倒转原则时，我们需要针对抽象层编程，而将具体类的对象通过依赖注入(DependencyInjection, DI)的方式注入到其他对象中，依赖注入是指当一个对象要与其他对象发生依赖关系时，通过抽象来注入所依赖的对象。常用的注入方式有三种，分别是：构造注入，设值注入（Setter注入）和接口注入。构造注入是指通过构造函数来传入具体类的对象，设值注入是指通过Setter方法来传入具体类的对象，而接口注入是指通过在接口中声明的业务方法来传入具体类的对象。这些方法在定义时使用的是抽象类型，在运行时再传入具体类型的对象，由子类对象来覆盖父类对象。</p>
+<h2 id="%E4%BA%94%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99">五.接口隔离原则</h2>
+<p><strong>接口隔离原则(Interface  Segregation Principle, ISP)：</strong></p>
+<blockquote>
+<p>使用多个专门的接口，而不使用单一的总接口，即客户端不应该依赖那些它不需要的接口。</p>
+</blockquote>
+<p>根据接口隔离原则，当一个接口太大时，我们需要将它分割成一些更细小的接口，使用该接口的客户端仅需知道与之相关的方法即可。每一个接口应该承担一种相对独立的角色，不干不该干的事，该干的事都要干。这里的“接口”往往有两种不同的含义：一种是指一个类型所具有的方法特征的集合，仅仅是一种逻辑上的抽象；另外一种是指某种语言具体的“接口”定义，有严格的定义和结构，比如Java语言中的interface。对于这两种不同的含义，ISP的表达方式以及含义都有所不同：</p>
+<ul>
+<li>
+<p>当把“接口”理解成一个类型所提供的所有方法特征的集合的时候，这就是一种逻辑上的概念，接口的划分将直接带来类型的划分。可以把接口理解成角色，一个接口只能代表一个角色，每个角色都有它特定的一个接口，此时，这个原则可以叫做“角色隔离原则”。</p>
+</li>
+<li>
+<p>如果把“接口”理解成狭义的特定语言的接口，那么ISP表达的意思是指接口仅仅提供客户端需要的行为，客户端不需要的行为则隐藏起来，应当为客户端提供尽可能小的单独的接口，而不要提供大的总接口。在面向对象编程语言中，实现一个接口就需要实现该接口中定义的所有方法，因此大的总接口使用起来不一定很方便，为了使接口的职责单一，需要将大接口中的方法根据其职责不同分别放在不同的小接口中，以确保每个接口使用起来都较为方便，并都承担某一单一角色。接口应该尽量细化，同时接口中的方法应该尽量少，每个接口中只包含一个客户端（如子模块或业务逻辑类）所需的方法即可，这种机制也称为“定制服务”，即为不同的客户端提供宽窄不同的接口。</p>
+</li>
+</ul>
+<h2 id="%E5%85%AD%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99">六.迪米特法则</h2>
+<pre><code>迪米特法则来自于1987年美国东北大学(Northeastern University)一个名为“Demeter”的研究项目。迪米特法则又称为最少知识原则(LeastKnowledge Principle, LKP)，其定义如下：
+</code></pre>
+<p><strong>迪米特法则(Law of  Demeter, LoD)：</strong></p>
+<blockquote>
+<p>一个软件实体应当尽可能少地与其他实体发生相互作用。</p>
+</blockquote>
+<p>如果一个系统符合迪米特法则，那么当其中某一个模块发生修改时，就会尽量少地影响其他模块，扩展会相对容易，这是对软件实体之间通信的限制，迪米特法则要求限制软件实体之间通信的宽度和深度。迪米特法则可降低系统的耦合度，使类与类之间保持松散的耦合关系。</p>
+<p>迪米特法则还有几种定义形式，包括：不要和“陌生人”说话、只与你的直接朋友通信等，在迪米特法则中，对于一个对象，其朋友包括以下几类：</p>
+<ul>
+<li>
+<p>当前对象本身(this)；</p>
+</li>
+<li>
+<p>以参数形式传入到当前对象方法中的对象；</p>
+</li>
+<li>
+<p>当前对象的成员对象；</p>
+</li>
+<li>
+<p>如果当前对象的成员对象是一个集合，那么集合中的元素也都是朋友；</p>
+</li>
+<li>
+<p>当前对象所创建的对象。</p>
+</li>
+</ul>
+<p>任何一个对象，如果满足上面的条件之一，就是当前对象的“朋友”，否则就是“陌生人”。在应用迪米特法则时，一个对象只能与直接朋友发生交互，不要与“陌生人”发生直接交互，这样做可以降低系统的耦合度，一个对象的改变不会给太多其他对象带来影响。</p>
+<p>迪米特法则要求我们在设计系统时，应该尽量减少对象之间的交互，如果两个对象之间不必彼此直接通信，那么这两个对象就不应当发生任何直接的相互作用，如果其中的一个对象需要调用另一个对象的某一个方法的话，可以通过第三者转发这个调用。简言之，就是通过引入一个合理的第三者来降低现有对象之间的耦合度。</p>
+<p>在将迪米特法则运用到系统设计中时，要注意下面的几点：在类的划分上，应当尽量创建松耦合的类，类之间的耦合度越低，就越有利于复用，一个处在松耦合中的类一旦被修改，不会对关联的类造成太大波及；在类的结构设计上，每一个类都应当尽量降低其成员变量和成员函数的访问权限；在类的设计上，只要有可能，一个类型应当设计成不变类；在对其他类的引用上，一个对象对其他对象的引用应当降到最低。</p>
+
+</body>
+</html>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/Pretreatment/Pretreatment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Quenwa Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Q">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/09/Pretreatment/Pretreatment/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:16:28+08:00">
+                2019-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><!-- TOC -->
+<ul>
+<li><a href="#预处理">预处理</a><ul>
+<li><a href="#功能概括">功能概括</a></li>
+<li><a href="#现状概括">现状概括</a><ul>
+<li><a href="#1-图例识别">1. 图例识别</a></li>
+<li><a href="#2-通用表格识别">2. 通用表格识别</a></li>
+<li><a href="#3-封面识别">3. 封面识别</a></li>
+<li><a href="#4-材料表识别">4. 材料表识别</a></li>
+<li><a href="#5-目录表识别">5. 目录表识别</a></li>
+</ul>
+</li>
+<li><a href="#可调整项">可调整项</a><ul>
+<li><a href="#一-公共基础数据结构调整">一、 公共基础数据结构调整</a></li>
+<li><a href="#二-基础预处理调整">二、 基础预处理调整</a></li>
+</ul>
+</li>
+<li><a href="#调整方案">调整方案</a><ul>
+<li><a href="#基础数据结构调整方案">基础数据结构调整方案</a></li>
+<li><a href="#预处理调整方案">预处理调整方案</a></li>
+<li><a href="#基础预处理">基础预处理</a></li>
+<li><a href="#加工处理">加工处理</a></li>
+<li><a href="#对象构建">对象构建</a></li>
+</ul>
+</li>
+<li><a href="#最终结果">最终结果</a><ul>
+<li><a href="#类结构">类结构</a></li>
+</ul>
+</li>
+<li><a href="#实例展示">实例展示</a><ul>
+<li><a href="#伪代码">伪代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="功能概括"><a href="#功能概括" class="headerlink" title="功能概括"></a>功能概括</h2><p>针对单个大文件预处理时间较长，且需要多次使用。所以单独提取预处理模块</p>
+<h2 id="现状概括"><a href="#现状概括" class="headerlink" title="现状概括"></a>现状概括</h2><h3 id="1-图例识别"><a href="#1-图例识别" class="headerlink" title="1. 图例识别"></a>1. 图例识别</h3><ul>
+<li>读取数据库中所有实体，按块表记录存储。</li>
+<li>标准图例特征提取</li>
+<li>待识别文件特征提取</li>
+<li>待识别文件部分块及多段线进行分解，统计各块表记录文字大小</li>
+<li>图元分析及扫描器构建（用于快速检索）<h3 id="2-通用表格识别"><a href="#2-通用表格识别" class="headerlink" title="2. 通用表格识别"></a>2. 通用表格识别</h3></li>
+<li>按块读取数据库中所有实体与块,按块进行表格识别，根据矩阵复制<h3 id="3-封面识别"><a href="#3-封面识别" class="headerlink" title="3. 封面识别"></a>3. 封面识别</h3></li>
+<li>依赖图例识别提供的方法，获取数据库中所有块实体</li>
+<li>读取块列表中所有实体中的文本<h3 id="4-材料表识别"><a href="#4-材料表识别" class="headerlink" title="4. 材料表识别"></a>4. 材料表识别</h3></li>
+<li>主要依赖通用表格识别<h3 id="5-目录表识别"><a href="#5-目录表识别" class="headerlink" title="5. 目录表识别"></a>5. 目录表识别</h3></li>
+<li>主要依赖通用表格识别 <h2 id="可调整项"><a href="#可调整项" class="headerlink" title="可调整项"></a>可调整项</h2><h3 id="一、-公共基础数据结构调整"><a href="#一、-公共基础数据结构调整" class="headerlink" title="一、 公共基础数据结构调整"></a>一、 公共基础数据结构调整</h3></li>
+<li><p>现有结构来由</p>
+<p>  现有基础数据结构分别由BsEntity,及GaEntity构建，两者可相互转换。之所有存在两个基本数据结构类，由于不同阶段开发人员不同，所以根据不同阶段的需求，不同开发人员分别构建了这两个基础数据结构</p>
+</li>
+<li><p>现有结构分析</p>
 <ol>
-<li><p>文档齐全</p>
-<p> 不像很多其他的开源库一样,Dlib为每一个类和函数提供了完整的文档说明。同时,还提供了debug模式;打开debug模式后,用户可以调试代码,查看变量和对象的值,快速定位错误点。另外,Dlib还提供了大量的实例。</p>
-</li>
-<li><p>高质量的可移植代码</p>
-<p> Dlib不依赖第三方库,无须安装和配置,这部分可参照(官网左侧树形目录的how to compile的介绍)。Dlib可用在window、Mac OS、Linux系统上。</p>
-</li>
-<li><p>提供大量的机器学习 / 图像处理算法</p>
-<ul>
-<li><p>深度学习</p>
-</li>
-<li><p>基于SVM的分类和递归算法</p>
-</li>
-<li><p>针对大规模分类和递归的降维方法</p>
-</li>
-<li><p>相关向量机(relevance vector machine);是与支持向量机相同的函数形式稀疏概率模型,对未知函数进行预测或分类。其训练是在贝叶斯框架下进行的,与SVM相比,不需要估计正则化参数,其核函数也不需要满足Mercer条件,需要更少的相关向量,训练时间长,测试时间短。</p>
-</li>
-<li><p>聚类: linear or kernel k-means, Chinese Whispers, and Newman clustering. Radial Basis Function Networks</p>
-</li>
-<li><p>多层感知机</p>
-</li>
-</ul>
-</li>
+<li>基础数据结构类BsEntity与GaEntity构建出发点一致，都为基础数据结构封装类。</li>
+<li>基础数据结构中BsEntity及GaEntity类功能复杂，负责多种类型实体的管理。</li>
 </ol>
-<h3 id="人脸检测（CNN）"><a href="#人脸检测（CNN）" class="headerlink" title="人脸检测（CNN）"></a>人脸检测（CNN）</h3><p>示例显示如何使用dlib运行基于CNN的面部检测器。加载预训练模型并使用它来查找图像中的面。该CNN模型比基于HOG的模型准确得多，但需要更多的计算能力运行，并且意味着在GPU上执行以获得合理的速度。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># The contents of this file are in the public domain. See LICENSE_FOR_EXAMPLE_PROGRAMS.txt</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   This example shows how to run a CNN based face detector using dlib.  The</span></span><br><span class="line"><span class="comment">#   example loads a pretrained model and uses it to find faces in images.  The</span></span><br><span class="line"><span class="comment">#   CNN model is much more accurate than the HOG based model shown in the</span></span><br><span class="line"><span class="comment">#   face_detector.py example, but takes much more computational power to</span></span><br><span class="line"><span class="comment">#   run, and is meant to be executed on a GPU to attain reasonable speed.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   You can download the pre-trained model from:</span></span><br><span class="line"><span class="comment">#       http://dlib.net/files/mmod_human_face_detector.dat.bz2</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   The examples/faces folder contains some jpg images of people.  You can run</span></span><br><span class="line"><span class="comment">#   this program on them and see the detections by executing the</span></span><br><span class="line"><span class="comment">#   following command:</span></span><br><span class="line"><span class="comment">#       ./cnn_face_detector.py mmod_human_face_detector.dat ../examples/faces/*.jpg</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># COMPILING/INSTALLING THE DLIB PYTHON INTERFACE</span></span><br><span class="line"><span class="comment">#   You can install dlib using the command:</span></span><br><span class="line"><span class="comment">#       pip install dlib</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   Alternatively, if you want to compile dlib yourself then go into the dlib</span></span><br><span class="line"><span class="comment">#   root folder and run:</span></span><br><span class="line"><span class="comment">#       python setup.py install</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   Compiling dlib should work on any operating system so long as you have</span></span><br><span class="line"><span class="comment">#   CMake installed.  On Ubuntu, this can be done easily by running the</span></span><br><span class="line"><span class="comment">#   command:</span></span><br><span class="line"><span class="comment">#       sudo apt-get install cmake</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   Also note that this example requires Numpy which can be installed</span></span><br><span class="line"><span class="comment">#   via the command:</span></span><br><span class="line"><span class="comment">#       pip install numpy</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> dlib</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># if len(sys.argv) &lt; 3:</span></span><br><span class="line"><span class="comment">#     print(</span></span><br><span class="line"><span class="comment">#         "Call this program like this:\n"</span></span><br><span class="line"><span class="comment">#         "   ./cnn_face_detector.py mmod_human_face_detector.dat ../examples/faces/*.jpg\n"</span></span><br><span class="line"><span class="comment">#         "You can get the mmod_human_face_detector.dat file from:\n"</span></span><br><span class="line"><span class="comment">#         "    http://dlib.net/files/mmod_human_face_detector.dat.bz2")</span></span><br><span class="line"><span class="comment">#     exit()</span></span><br><span class="line"><span class="comment"># 官方例程都是从命令行加载，其提供的训练模型</span></span><br><span class="line"><span class="comment"># 需要先行下载</span></span><br><span class="line">cnn_face_detector = dlib.cnn_face_detection_model_v1(<span class="string">"mmod_human_face_detector.dat"</span>)</span><br><span class="line">win = dlib.image_window()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此处改成自己的图片目录，图片中需包含人脸</span></span><br><span class="line"><span class="comment"># 该例程会进行人脸框选</span></span><br><span class="line">cur_path = os.getcwd()</span><br><span class="line">image_path = cur_path + os.sep + <span class="string">'faces'</span></span><br><span class="line">print(image_path)</span><br><span class="line">dir_pics = os.listdir(image_path)</span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> dir_pics:</span><br><span class="line">    print(<span class="string">"Processing file: &#123;&#125;"</span>.format(f))</span><br><span class="line">    path = image_path + os.sep + f</span><br><span class="line">    print(path)</span><br><span class="line">    img = dlib.load_rgb_image(path)</span><br><span class="line">    <span class="comment"># The 1 in the second argument indicates that we should upsample the image</span></span><br><span class="line">    <span class="comment"># 1 time.  This will make everything bigger and allow us to detect more</span></span><br><span class="line">    <span class="comment"># faces.</span></span><br><span class="line">    dets = cnn_face_detector(img, <span class="number">1</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    This detector returns a mmod_rectangles object. This object contains a list of mmod_rectangle objects.</span></span><br><span class="line"><span class="string">    These objects can be accessed by simply iterating over the mmod_rectangles object</span></span><br><span class="line"><span class="string">    The mmod_rectangle object has two member variables, a dlib.rectangle object, and a confidence score.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    It is also possible to pass a list of images to the detector.</span></span><br><span class="line"><span class="string">        - like this: dets = cnn_face_detector([image list], upsample_num, batch_size = 128)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    In this case it will return a mmod_rectangless object.</span></span><br><span class="line"><span class="string">    This object behaves just like a list of lists and can be iterated over.</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    print(<span class="string">"Number of faces detected: &#123;&#125;"</span>.format(len(dets)))</span><br><span class="line">    <span class="keyword">for</span> i, d <span class="keyword">in</span> enumerate(dets):</span><br><span class="line">        print(<span class="string">"Detection &#123;&#125;: Left: &#123;&#125; Top: &#123;&#125; Right: &#123;&#125; Bottom: &#123;&#125; Confidence: &#123;&#125;"</span>.format(</span><br><span class="line">            i, d.rect.left(), d.rect.top(), d.rect.right(), d.rect.bottom(), d.confidence))</span><br><span class="line"></span><br><span class="line">    rects = dlib.rectangles()</span><br><span class="line">    rects.extend([d.rect <span class="keyword">for</span> d <span class="keyword">in</span> dets])</span><br><span class="line"></span><br><span class="line">    win.clear_overlay()</span><br><span class="line">    win.set_image(img)</span><br><span class="line">    win.add_overlay(rects)</span><br><span class="line">    dlib.hit_enter_to_continue()</span><br></pre></td></tr></table></figure></p>
-<img src="/2018/07/05/利用dlib进行人脸检测/cnn_face_detector.jpg" title="cnn_face_detector">
-<h3 id="人脸检测（HOG）"><a href="#人脸检测（HOG）" class="headerlink" title="人脸检测（HOG）"></a>人脸检测（HOG）</h3><p>利用OpenCV读取摄像头数据帧，官方例程利用load_rgb_image加载图片文件，其数据帧就是numpy数组。然后直接dlib提供的detector方法进行采取面部68个地标进行人脸检测。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> dlib</span><br><span class="line"> </span><br><span class="line">cap=cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 可在官网下载已经训练好的68特征人脸数据 </span></span><br><span class="line"><span class="comment"># http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 下载数据包</span></span><br><span class="line">predictor_path = <span class="string">"shape_predictor_68_face_landmarks.dat"</span></span><br><span class="line">predictor = dlib.shape_predictor(predictor_path)</span><br><span class="line">detector = dlib.get_frontal_face_detector()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    _,frame=cap.read()</span><br><span class="line">    <span class="comment"># Ask the detector to find the bounding boxes of each face. The 1 in the  </span></span><br><span class="line">    <span class="comment"># second argument indicates that we should upsample the image 1 time. This  </span></span><br><span class="line">    <span class="comment"># will make everything bigger and allow us to detect more faces. </span></span><br><span class="line">    dets = detector(frame, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> len(dets) != <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># Get the landmarks/parts for the face in box d.</span></span><br><span class="line">        shape = predictor(frame, dets[<span class="number">0</span>])</span><br><span class="line">        print(shape.parts())</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> shape.parts():</span><br><span class="line">            cv2.circle(frame, (p.x, p.y), <span class="number">3</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>), <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    cv2.imshow(<span class="string">'video'</span>,frame)</span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>)&amp;<span class="number">0xFF</span>==<span class="number">27</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/03/利用Socket传输摄像头视频流数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Quenwa Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Q">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/03/利用Socket传输摄像头视频流数据/" itemprop="url">利用Socket传输摄像头视频流数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-03T11:05:11+08:00">
-                2018-07-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">编码</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
-<li>python 3.6.1</li>
-<li>cv2</li>
-<li>numpy</li>
-<li>socket</li>
-<li>threading</li>
-<li>struct</li>
+</li>
+<li><p>调整方向</p>
+<ol>
+<li>将BsEntity及GaEntity，构建成一个基础数据结构</li>
+<li>构建一个基础类，多种类型实体继承此基础类，进行不同的实现处理</li>
+</ol>
+</li>
 </ul>
-<h3 id="TCP通讯了解"><a href="#TCP通讯了解" class="headerlink" title="TCP通讯了解"></a>TCP通讯了解</h3><h5 id="通讯流程图"><a href="#通讯流程图" class="headerlink" title="通讯流程图"></a>通讯流程图</h5><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="processonSvg1000" viewbox="63.0 75.4605734767025 607.0 455.5394265232975" width="607.0" height="455.5394265232975"><defs id="ProcessOnDefs1001"><marker id="ProcessOnMarker1011" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1012" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1019" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1020" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1027" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1028" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1035" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1036" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1043" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1044" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1055" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1056" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1063" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1064" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1071" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1072" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker><marker id="ProcessOnMarker1107" markerunits="userSpaceOnUse" orient="auto" markerwidth="16.23606797749979" markerheight="10.550836550532098" viewbox="-1.0 -1.3763819204711736 16.23606797749979 10.550836550532098" refx="-1.0" refy="3.8990363547948754"><path id="ProcessOnPath1108" d="M12.0 3.8990363547948754L0.0 7.798072709589751V0.0Z" stroke="#323232" stroke-width="2.0" fill="#323232" transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)"/></marker></defs><g id="ProcessOnG1002"><path id="ProcessOnPath1003" d="M63.0 75.4605734767025H670.0V531.0H63.0V75.4605734767025Z" fill="none"/><g id="ProcessOnG1004"><g id="ProcessOnG1005" transform="matrix(1.0,0.0,0.0,1.0,202.0,99.0)" opacity="1.0"><path id="ProcessOnPath1006" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1007" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1008" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">socket()</text></g></g><g id="ProcessOnG1009"><path id="ProcessOnPath1010" d="M252.0 124.84229390681003L252.0 150.536917562724L252.00000000000003 150.536917562724L252.00000000000003 160.99547324113817" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1011)"/></g><g id="ProcessOnG1013" transform="matrix(1.0,0.0,0.0,1.0,202.0,176.23154121863797)" opacity="1.0"><path id="ProcessOnPath1014" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1015" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1016" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">bind()</text></g></g><g id="ProcessOnG1017"><path id="ProcessOnPath1018" d="M252.00000000000003 202.073835125448L252.00000000000003 227.76845878136197L252.00000000000003 227.76845878136197L252.00000000000003 238.22701445977617" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1019)"/></g><g id="ProcessOnG1021" transform="matrix(1.0,0.0,0.0,1.0,202.0,253.46308243727597)" opacity="1.0"><path id="ProcessOnPath1022" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1023" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1024" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">listen()</text></g></g><g id="ProcessOnG1025"><path id="ProcessOnPath1026" d="M252.00000000000003 279.305376344086L252.00000000000003 305.0L252.00000000000003 305.0L252.00000000000003 315.45855567841414" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1027)"/></g><g id="ProcessOnG1029" transform="matrix(1.0,0.0,0.0,1.0,202.0,330.6946236559139)" opacity="1.0"><path id="ProcessOnPath1030" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1031" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1032" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">accept()</text></g></g><g id="ProcessOnG1033"><path id="ProcessOnPath1034" d="M252.00000000000003 356.53691756272394L252.00000000000003 382.231541218638L252.00000000000003 382.231541218638L252.00000000000003 392.6900968970522" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1035)"/></g><g id="ProcessOnG1037" transform="matrix(1.0,0.0,0.0,1.0,202.0,407.92616487455194)" opacity="1.0"><path id="ProcessOnPath1038" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1039" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1040" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">recv()/send()</text></g></g><g id="ProcessOnG1041"><path id="ProcessOnPath1042" d="M252.00000000000003 433.76845878136197L252.00000000000003 459.46308243727594L252.00000000000003 459.46308243727594L252.00000000000003 469.9216381156902" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1043)"/></g><g id="ProcessOnG1045" transform="matrix(1.0,0.0,0.0,1.0,202.0,485.15770609319)" opacity="1.0"><path id="ProcessOnPath1046" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1047" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1048" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">close()</text></g></g><g id="ProcessOnG1049" transform="matrix(1.0,0.0,0.0,1.0,427.0,253.46308243727606)" opacity="1.0"><path id="ProcessOnPath1050" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1051" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1052" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">socket()</text></g></g><g id="ProcessOnG1053"><path id="ProcessOnPath1054" d="M477.0 279.3053763440861L477.0 305.00000000000006L477.0 305.00000000000006L477.0 315.45855567841426" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1055)"/></g><g id="ProcessOnG1057" transform="matrix(1.0,0.0,0.0,1.0,427.0,330.69462365591403)" opacity="1.0"><path id="ProcessOnPath1058" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1059" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1060" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">connect()</text></g></g><g id="ProcessOnG1061"><path id="ProcessOnPath1062" d="M477.0 356.53691756272406L477.0 382.23154121863803L477.0 382.23154121863803L477.0 392.69009689705223" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1063)"/></g><g id="ProcessOnG1065" transform="matrix(1.0,0.0,0.0,1.0,427.0,407.926164874552)" opacity="1.0"><path id="ProcessOnPath1066" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1067" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1068" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">send()/recv()</text></g></g><g id="ProcessOnG1069"><path id="ProcessOnPath1070" d="M477.0 433.7684587813621L477.0 459.46308243727606L477.0 459.46308243727606L477.0 469.9216381156902" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1071)"/></g><g id="ProcessOnG1073" transform="matrix(1.0,0.0,0.0,1.0,427.0,485.15770609319)" opacity="1.0"><path id="ProcessOnPath1074" d="M0.0 0.0L100.0 0.0L100.0 25.842293906810035L0.0 25.842293906810035Z" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" opacity="1.0" fill="#ffffff"/><g id="ProcessOnG1075" transform="matrix(1.0,0.0,0.0,1.0,10.0,4.796146953405017)"><text id="ProcessOnText1076" fill="#000000" font-size="13" x="39.0" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">close()</text></g></g><g id="ProcessOnG1077" transform="matrix(1.0,0.0,0.0,1.0,96.0,95.4605734767025)" opacity="1.0"><path id="ProcessOnPath1078" d="M0.0 0.0L119.0 0.0L119.0 32.921146953405014L0.0 32.921146953405014Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1079" transform="matrix(1.0,0.0,0.0,1.0,0.0,8.335573476702507)"><text id="ProcessOnText1080" fill="#000000" font-size="13" x="58.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">创建socket</text></g></g><g id="ProcessOnG1081" transform="matrix(1.0,0.0,0.0,1.0,96.0,172.69211469534054)" opacity="1.0"><path id="ProcessOnPath1082" d="M0.0 0.0L119.0 0.0L119.0 32.921146953405014L0.0 32.921146953405014Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1083" transform="matrix(1.0,0.0,0.0,1.0,0.0,8.335573476702507)"><text id="ProcessOnText1084" fill="#000000" font-size="13" x="58.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">绑定IP,端口</text></g></g><g id="ProcessOnG1085" transform="matrix(1.0,0.0,0.0,1.0,96.0,249.9236559139785)" opacity="1.0"><path id="ProcessOnPath1086" d="M0.0 0.0L119.0 0.0L119.0 32.921146953405014L0.0 32.921146953405014Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1087" transform="matrix(1.0,0.0,0.0,1.0,0.0,8.335573476702507)"><text id="ProcessOnText1088" fill="#000000" font-size="13" x="58.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">监听IP,端口</text></g></g><g id="ProcessOnG1089" transform="matrix(1.0,0.0,0.0,1.0,83.0,327.1551971326165)" opacity="1.0"><path id="ProcessOnPath1090" d="M0.0 0.0L119.0 0.0L119.0 32.921146953405014L0.0 32.921146953405014Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1091" transform="matrix(1.0,0.0,0.0,1.0,0.0,8.335573476702507)"><text id="ProcessOnText1092" fill="#000000" font-size="13" x="58.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">接受客户端连接</text></g></g><g id="ProcessOnG1093" transform="matrix(1.0,0.0,0.0,1.0,83.0,404.38673835125445)" opacity="1.0"><path id="ProcessOnPath1094" d="M0.0 0.0L119.0 0.0L119.0 32.921146953405014L0.0 32.921146953405014Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1095" transform="matrix(1.0,0.0,0.0,1.0,0.0,8.335573476702507)"><text id="ProcessOnText1096" fill="#000000" font-size="13" x="58.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">发送或接受消息</text></g></g><g id="ProcessOnG1097" transform="matrix(1.0,0.0,0.0,1.0,96.0,478.078853046595)" opacity="1.0"><path id="ProcessOnPath1098" d="M0.0 0.0L119.0 0.0L119.0 32.921146953405014L0.0 32.921146953405014Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1099" transform="matrix(1.0,0.0,0.0,1.0,0.0,8.335573476702507)"><text id="ProcessOnText1100" fill="#000000" font-size="13" x="58.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">关闭socket</text></g></g><g id="ProcessOnG1101" transform="matrix(1.0,0.0,0.0,1.0,531.0,327.15519713261654)" opacity="1.0"><path id="ProcessOnPath1102" d="M0.0 0.0L119.0 0.0L119.0 32.921146953405014L0.0 32.921146953405014Z" stroke="none" stroke-width="0.0" stroke-dasharray="none" opacity="1.0" fill="none"/><g id="ProcessOnG1103" transform="matrix(1.0,0.0,0.0,1.0,0.0,8.335573476702507)"><text id="ProcessOnText1104" fill="#000000" font-size="13" x="58.5" y="13.325" font-family="微软雅黑" font-weight="normal" font-style="normal" text-decoration="none" family="微软雅黑" text-anchor="middle" size="13">连接服务端</text></g></g><g id="ProcessOnG1105"><path id="ProcessOnPath1106" d="M427.0 343.61577060931904L364.5 343.61577060931904L364.5 343.61577060931893L317.2360679774998 343.61577060931893" stroke="#323232" stroke-width="2.0" stroke-dasharray="none" fill="none" marker-end="url(#ProcessOnMarker1107)"/></g></g></g></svg>
-
+<h3 id="二、-基础预处理调整"><a href="#二、-基础预处理调整" class="headerlink" title="二、 基础预处理调整"></a>二、 基础预处理调整</h3><h2 id="调整方案"><a href="#调整方案" class="headerlink" title="调整方案"></a>调整方案</h2><h3 id="基础数据结构调整方案"><a href="#基础数据结构调整方案" class="headerlink" title="基础数据结构调整方案"></a>基础数据结构调整方案</h3><p><img src="img/base_data_structure.jpg" alt="基础数据结构调整"></p>
+<h3 id="预处理调整方案"><a href="#预处理调整方案" class="headerlink" title="预处理调整方案"></a>预处理调整方案</h3><ul>
+<li>方案一</li>
+</ul>
+<p>加载Dwg文件时进行<strong>基础预处理</strong>，并存储预处理得到的基础数据。在进行识别时，识别类需要告知识别管理类需要什么数据，识别管理类查看数据仓库中是否存在识别类所需的数据，不存在则根据加工类工厂实例化对应<strong>数据加工类</strong>,继而对基础数据进行加工成识别类所需数据，储存加工后的数据到数据仓库。作为每次识别的数据源。</p>
 <ul>
-<li><p>创建socket:</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br></pre></td></tr></table></figure>
-<p>  其中参数: <br><br>  <strong>AF_INET:</strong> IPv4 网络协议的套接字类型, <strong>AF_INET6</strong> 则是 IPv6 <br><br>  <strong>SOCK_STREAM:</strong> 有保障的(即能保证数据正确传送到对方)面向连接的SOCKET。TCP则是利用这种方式进行传输。</p>
+<li>方案二</li>
+</ul>
+<p>加载Dwg文件时进行<strong>基础预处理</strong>，并存储预处理得到的基础数据。识别管理类根据调用者输入要识别类型，确定识别所需数据。识别管理类查看数据仓库是否存在数据，不存在则根据识别类提供的成员方法实例化<strong>数据加工类</strong>初始化其函数指针，然后对基础数据进行加工，储存加工后的数据到数据仓库。得到所需数据，继而进行识别。</p>
+<h3 id="基础预处理"><a href="#基础预处理" class="headerlink" title="基础预处理"></a>基础预处理</h3><p>主要负责待识别图纸dwg文件实体数据读取，存储到基础数据结构中。</p>
+<h3 id="加工处理"><a href="#加工处理" class="headerlink" title="加工处理"></a>加工处理</h3><p>新增数据加工模块，各模块在识别过程中对预处理基础数据进行再次加工，进行缓存便于识别模块分析处理。<em>识别模块仅仅能使用加工后的数据</em></p>
+<ul>
+<li><p><strong>图例识别</strong></p>
+<ul>
+<li>读取特征文件</li>
+<li>部分块及多段线打散操作</li>
+<li>图元分析处理</li>
+<li>扫描器构建 </li>
+<li>提取特征</li>
+</ul>
 </li>
-<li><p>绑定IP,端口</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sock.bind(<span class="string">"127.0.0.1"</span>, <span class="number">1234</span>)</span><br></pre></td></tr></table></figure>
+<li><p><strong>表格识别相关</strong> </p>
+<ul>
+<li>按块存储实体及矩阵</li>
+</ul>
 </li>
-<li><p>监听</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数 指定监听个数</span></span><br><span class="line">sock.listen(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接受客户端连接</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回客户端socket 及IP地址信息</span></span><br><span class="line">client,addr = self.sock.accept()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发送/接收</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回发送字节数</span></span><br><span class="line">client.send(<span class="string">"hello world！"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收8个字节数据</span></span><br><span class="line">client.recv(<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>关闭socket</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.close()</span><br></pre></td></tr></table></figure>
+<li><p><strong>文本分析相关</strong></p>
+<ul>
+<li>提取对应块表记录中所有文本，进行排序处理</li>
+</ul>
 </li>
 </ul>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CameraServer</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, host = <span class="params">(<span class="string">"127.0.0.1"</span>, <span class="number">1234</span>)</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">            初始化</span></span><br><span class="line"><span class="string">            @param host: ip及端口</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.host = host      </span><br><span class="line">        self.setSocket(self.host)    </span><br><span class="line">        self.mutex = threading.Lock()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setSocket</span><span class="params">(self, host)</span>:</span>      </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">            初始化socket，设置端口复用</span></span><br><span class="line"><span class="string">            绑定host，开始监听</span></span><br><span class="line"><span class="string">            @param host: ip及端口</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)   </span><br><span class="line">        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,<span class="number">1</span>) self.socket.bind(self.host)      </span><br><span class="line">        self.socket.listen(<span class="number">5</span>)      </span><br><span class="line">        print(<span class="string">"Server running on port:%d"</span> % host[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_processConnection</span><span class="params">(self, client, addr)</span>:</span>     </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">            客户端连接线程执行方法</span></span><br><span class="line"><span class="string">            @param client 客户端socket</span></span><br><span class="line"><span class="string">            @param addr 客户端ip信息</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>):        </span><br><span class="line">            info = struct.unpack(<span class="string">"lhh"</span>,client.recv(<span class="number">8</span>))        </span><br><span class="line">            bufSize = info[<span class="number">0</span>]        </span><br><span class="line">            <span class="keyword">if</span> bufSize:           </span><br><span class="line">                 <span class="keyword">try</span>:                  </span><br><span class="line">                    self.mutex.acquire()                </span><br><span class="line">                    self.buf=<span class="string">b''</span>                </span><br><span class="line">                    tempBuf=self.buf                </span><br><span class="line">                    <span class="keyword">while</span>(bufSize):                 </span><br><span class="line">                        <span class="comment">#循环读取到一张图片的长度</span></span><br><span class="line">                        tempBuf = client.recv(bufSize)                    </span><br><span class="line">                        bufSize -= len(tempBuf)                    </span><br><span class="line">                        self.buf += tempBuf                </span><br><span class="line">                        data = numpy.fromstring(self.buf,dtype=<span class="string">'uint8'</span>)</span><br><span class="line">                        self.image=cv2.imdecode(data,<span class="number">1</span>)     </span><br><span class="line">                        cv2.waitKey(<span class="number">10</span>)    </span><br><span class="line">                        cv2.imshow(<span class="string">"from %s:%d"</span>% (addr[<span class="number">0</span>], addr[<span class="number">1</span>]),self.image)            </span><br><span class="line">                 <span class="keyword">except</span>:                </span><br><span class="line">                     print(<span class="string">"接收失败"</span>)                </span><br><span class="line">                     <span class="keyword">pass</span>              </span><br><span class="line">                 <span class="keyword">finally</span>:                </span><br><span class="line">                     self.mutex.release()               </span><br><span class="line">                     <span class="keyword">if</span> cv2.waitKey(<span class="number">10</span>) == <span class="number">27</span>:                    </span><br><span class="line">                         client.close()                    </span><br><span class="line">                         cv2.destroyAllWindows()                    </span><br><span class="line">                         print(<span class="string">"放弃连接"</span>)                    </span><br><span class="line">                         <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span>      </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">            执行方法</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>):        </span><br><span class="line">            client,addr = self.socket.accept()        </span><br><span class="line">            clientThread = threading.Thread(target = self._processConnection, </span><br><span class="line">                args = (client, addr, ))  </span><br><span class="line">            <span class="comment">#有客户端连接时产生新的线程进行处理                      </span></span><br><span class="line">            clientThread.start()</span><br></pre></td></tr></table></figure>
-<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CameraClient</span>:</span>      </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, resolution = [<span class="number">640</span>,<span class="number">480</span>], remoteAddress = <span class="params">(<span class="string">"127.0.0.1"</span>, <span class="number">1234</span>)</span>)</span>:</span>     </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">            初始化CameraClient</span></span><br><span class="line"><span class="string">            @param resolution 传送分辨率</span></span><br><span class="line"><span class="string">            @remoteAddress 服务端host</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.remoteAddress = remoteAddress        </span><br><span class="line">        self.resolution = resolution                  </span><br><span class="line">        self.path=os.getcwd()        </span><br><span class="line">        self.img_quality = <span class="number">15</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_setSocket</span><span class="params">(self)</span>:</span>      </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">            初始化socket</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.client=socket.socket(socket.AF_INET, socket.SOCK_STREAM)  </span><br><span class="line">        self.client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connect</span><span class="params">(self)</span>:</span>      </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">            连接server</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self._setSocket()      </span><br><span class="line">        self.client.connect(self.remoteAddress)  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_processConnection</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">            视频发送线程方法</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        camera = cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line">        encode_param=[int(cv2.IMWRITE_JPEG_QUALITY), self.img_quality]       </span><br><span class="line">        print(<span class="string">"打开摄像头成功"</span>,file=f)    </span><br><span class="line">        print(<span class="string">"连接开始时间:%s"</span>%time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, </span><br><span class="line">                time.localtime(time.time())),file=f)    </span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>):           </span><br><span class="line">            (grabbed, self.img) = camera.read()  </span><br><span class="line">            result, imgencode = cv2.imencode(<span class="string">'.jpg'</span>,self.img,encode_param)        </span><br><span class="line">            img_code = numpy.array(imgencode)        </span><br><span class="line">            self.imgdata  = img_code.tostring()                   </span><br><span class="line">            <span class="keyword">try</span>:                    </span><br><span class="line">                self.client.send(struct.pack(<span class="string">"lhh"</span>,len(self.imgdata),</span><br><span class="line">                        self.resolution[<span class="number">0</span>],self.resolution[<span class="number">1</span>])+self.imgdata) </span><br><span class="line">                        <span class="comment">#发送图片信息(图片 长度,分辨率,图片内容)                </span></span><br><span class="line">            <span class="keyword">except</span>:            </span><br><span class="line">                camera.release()                    </span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span> </span><br><span class="line">        clientThread = threading.Thread(target = self._processConnection)  </span><br><span class="line">        clientThread.start()</span><br></pre></td></tr></table></figure>
-<hr>
-<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+<h3 id="对象构建"><a href="#对象构建" class="headerlink" title="对象构建"></a>对象构建</h3><ul>
+<li><strong>预处理类</strong>：对数据进行预处理，生成基础数据</li>
+<li><strong>预处理数据类</strong>：用于存储预处理后的数据，进行管理</li>
+<li><strong>数据加工类</strong>：根据识别所需数据，进行基础数据加工</li>
+<li><strong>加工数据类</strong>：加工后的数据结构</li>
+<li><strong>加工类工厂类</strong>：主要用于实例化加工类<h2 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h2><h3 id="类结构"><a href="#类结构" class="headerlink" title="类结构"></a>类结构</h3></li>
+<li>版本一（<em>UML类图</em>）</li>
+</ul>
+<p><img src="img/version1.jpg" alt="版本一"></p>
+<h2 id="实例展示"><a href="#实例展示" class="headerlink" title="实例展示"></a>实例展示</h2><h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><ul>
+<li><p>方案一</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">识别管理类中交互</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CBsRecManager</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">// LoadDwg基础数据</span></span><br><span class="line">	CBsBaseDataMgr* m_pBaseDataMgr;</span><br><span class="line">	<span class="comment">// 加工后的数据map</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">map</span>&lt;rec_type, TAG_DWG_CRUDEDATA*&gt; m_mapProcessData;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 识别</span></span><br><span class="line">	<span class="function">Rescode <span class="title">Recognize</span><span class="params">(rec_type,con_param,outdata**)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">// 查询是否已经存在预处理数据</span></span><br><span class="line">		<span class="comment">// TAG_DWG_CRUDEDATA 为加工后数据基类</span></span><br><span class="line">		TAG_DWG_CRUDEDATA* pInputData = *m_mapProcessData.find(rec_type);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (pInputData == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 根据类型，由工厂决定谁来加工</span></span><br><span class="line">			IDataProcess *pProcess = CBsDataProcessFactory::CreateProcess(rec_type);</span><br><span class="line">			<span class="comment">// 对基础数据进行加工，输出加工后数据</span></span><br><span class="line">			pProcess-&gt;ProcessData(m_pBaseDataMgr, pInputData);</span><br><span class="line">			<span class="comment">// 存储加工后的数据</span></span><br><span class="line">			m_mapProcessData.insert(<span class="built_in">std</span>::make_pair&lt;&gt;(pInputData))</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">		IBsRecognize *pRec = CBsRecFactory::CreateRec();</span><br><span class="line">		pRec-&gt;recognize(...);</span><br><span class="line">		<span class="comment">// 根据输入数据，进行正常识别流程</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方案二</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">识别管理类中交互</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CBsRecManager</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">// LoadDwg基础数据</span></span><br><span class="line">	CBsBaseDataMgr* m_pBaseDataMgr;</span><br><span class="line">	<span class="comment">// 加工后的数据map</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">map</span>&lt;rec_type, TAG_DWG_CRUDEDATA*&gt; m_mapProcessData;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 识别</span></span><br><span class="line">	<span class="function">Rescode <span class="title">Recognize</span><span class="params">(rec_type,con_param,outdata**)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">// 根据识别工厂类，实例化识别模块具体类</span></span><br><span class="line">		IBsRecognize *pRec = CBsRecFactory::CreateRec(rec_type);</span><br><span class="line">		assert(pRec);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 查询是否已经存在预处理数据</span></span><br><span class="line">		<span class="comment">// TAG_DWG_CRUDEDATA 为加工后数据基类</span></span><br><span class="line">		TAG_DWG_CRUDEDATA* pInputData = *m_mapProcessData.find(rec_type);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (pInputData == m_mapProcessData.end())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 由识别类提供成员函数决定预处理方法，实例化加工管理类，交给那个管理类中存在函数指针，</span></span><br><span class="line">			<span class="comment">// 需要识别类抽象ProcessData方法，此方法同时负责实例化具体加工的数据结构，输入参数为二维指针</span></span><br><span class="line">			CBsDataProcessMgr DataProcessMgr(std::bind(IBsRecognize::ProcessData, *pRec, std::placeholders::_1, std::placeholders::_2));</span><br><span class="line">			<span class="comment">// 对基础数据进行加工，输出加工后数据</span></span><br><span class="line">			DataProcessMgr.ProcessData(m_pBaseDataMgr, pInputData);</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// 存储加工后的数据</span></span><br><span class="line">			m_mapProcessData.insert(<span class="built_in">std</span>::make_pair&lt;&gt;(pInputData))</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		pRec-&gt;recognize(...);</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">		<span class="comment">// 根据输入数据，进行正常识别流程</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
 
           
         
@@ -622,7 +1099,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/02/OpenCV-显示视频/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/Pretreatment/Pretreatment/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Quenwa Zhang">
@@ -641,7 +1118,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/02/OpenCV-显示视频/" itemprop="url">OpenCV 显示视频</a></h1>
+                <a class="post-title-link" href="/2019/01/09/Pretreatment/Pretreatment/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -653,8 +1130,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-02T10:40:57+08:00">
-                2018-07-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:16:28+08:00">
+                2019-01-09
               </time>
             
 
@@ -663,28 +1140,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">编码</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -715,16 +1170,628 @@
       
         
           
-            <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
-<li>python 3.6.1   </li>
-<li>cv2</li>
-<li>numpy</li>
+            <!DOCTYPE html>
+<html>
+<head>
+<title>Pretreatment.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+	margin: 50px;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E9%A2%84%E5%A4%84%E7%90%86">预处理</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#%E9%A2%84%E5%A4%84%E7%90%86">预处理</a>
+<ul>
+<li><a href="#%E5%8A%9F%E8%83%BD%E6%A6%82%E6%8B%AC">功能概括</a></li>
+<li><a href="#%E7%8E%B0%E7%8A%B6%E6%A6%82%E6%8B%AC">现状概括</a>
+<ul>
+<li><a href="#1-%E5%9B%BE%E4%BE%8B%E8%AF%86%E5%88%AB">1. 图例识别</a></li>
+<li><a href="#2-%E9%80%9A%E7%94%A8%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB">2. 通用表格识别</a></li>
+<li><a href="#3-%E5%B0%81%E9%9D%A2%E8%AF%86%E5%88%AB">3. 封面识别</a></li>
+<li><a href="#4-%E6%9D%90%E6%96%99%E8%A1%A8%E8%AF%86%E5%88%AB">4. 材料表识别</a></li>
+<li><a href="#5-%E7%9B%AE%E5%BD%95%E8%A1%A8%E8%AF%86%E5%88%AB">5. 目录表识别</a></li>
 </ul>
-<h3 id="从摄像头中读取"><a href="#从摄像头中读取" class="headerlink" title="从摄像头中读取"></a>从摄像头中读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">"capture"</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<p>若需知道视频最大分辨率，及帧数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取摄像头最大分辨率</span></span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_WIDTH)</span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_HEIGHT)</span><br><span class="line"><span class="comment"># 获取视频帧数</span></span><br><span class="line">fps =cap.get(cv2.CAP_PROP_FPS)</span><br></pre></td></tr></table></figure></p>
-<h3 id="从MP4文件中读取"><a href="#从MP4文件中读取" class="headerlink" title="从MP4文件中读取"></a>从MP4文件中读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="string">"D://test.mp4"</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">"capture"</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<hr>
-<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+</li>
+<li><a href="#%E5%8F%AF%E8%B0%83%E6%95%B4%E9%A1%B9">可调整项</a>
+<ul>
+<li><a href="#%E4%B8%80-%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4">一、 公共基础数据结构调整</a></li>
+<li><a href="#%E4%BA%8C-%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4">二、 基础预处理调整</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">调整方案</a>
+<ul>
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">基础数据结构调整方案</a></li>
+<li><a href="#%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">预处理调整方案</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86">基础预处理</a></li>
+<li><a href="#%E5%8A%A0%E5%B7%A5%E5%A4%84%E7%90%86">加工处理</a></li>
+<li><a href="#%E5%AF%B9%E8%B1%A1%E6%9E%84%E5%BB%BA">对象构建</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C">最终结果</a>
+<ul>
+<li><a href="#%E7%B1%BB%E7%BB%93%E6%9E%84">类结构</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA">实例展示</a>
+<ul>
+<li><a href="#%E4%BC%AA%E4%BB%A3%E7%A0%81">伪代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="%E5%8A%9F%E8%83%BD%E6%A6%82%E6%8B%AC">功能概括</h2>
+<p>针对单个大文件预处理时间较长，且需要多次使用。所以单独提取预处理模块</p>
+<h2 id="%E7%8E%B0%E7%8A%B6%E6%A6%82%E6%8B%AC">现状概括</h2>
+<h3 id="1-%E5%9B%BE%E4%BE%8B%E8%AF%86%E5%88%AB">1. 图例识别</h3>
+<ul>
+<li>读取数据库中所有实体，按块表记录存储。</li>
+<li>标准图例特征提取</li>
+<li>待识别文件特征提取</li>
+<li>待识别文件部分块及多段线进行分解，统计各块表记录文字大小</li>
+<li>图元分析及扫描器构建（用于快速检索）</li>
+</ul>
+<h3 id="2-%E9%80%9A%E7%94%A8%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB">2. 通用表格识别</h3>
+<ul>
+<li>按块读取数据库中所有实体与块,按块进行表格识别，根据矩阵复制</li>
+</ul>
+<h3 id="3-%E5%B0%81%E9%9D%A2%E8%AF%86%E5%88%AB">3. 封面识别</h3>
+<ul>
+<li>依赖图例识别提供的方法，获取数据库中所有块实体</li>
+<li>读取块列表中所有实体中的文本</li>
+</ul>
+<h3 id="4-%E6%9D%90%E6%96%99%E8%A1%A8%E8%AF%86%E5%88%AB">4. 材料表识别</h3>
+<ul>
+<li>主要依赖通用表格识别</li>
+</ul>
+<h3 id="5-%E7%9B%AE%E5%BD%95%E8%A1%A8%E8%AF%86%E5%88%AB">5. 目录表识别</h3>
+<ul>
+<li>主要依赖通用表格识别</li>
+</ul>
+<h2 id="%E5%8F%AF%E8%B0%83%E6%95%B4%E9%A1%B9">可调整项</h2>
+<h3 id="%E4%B8%80%E3%80%81-%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4">一、 公共基础数据结构调整</h3>
+<ul>
+<li>
+<p>现有结构来由</p>
+<p>现有基础数据结构分别由BsEntity,及GaEntity构建，两者可相互转换。之所有存在两个基本数据结构类，由于不同阶段开发人员不同，所以根据不同阶段的需求，不同开发人员分别构建了这两个基础数据结构</p>
+</li>
+<li>
+<p>现有结构分析</p>
+<ol>
+<li>基础数据结构类BsEntity与GaEntity构建出发点一致，都为基础数据结构封装类。</li>
+<li>基础数据结构中BsEntity及GaEntity类功能复杂，负责多种类型实体的管理。</li>
+</ol>
+</li>
+<li>
+<p>调整方向</p>
+<ol>
+<li>将BsEntity及GaEntity，构建成一个基础数据结构</li>
+<li>构建一个基础类，多种类型实体继承此基础类，进行不同的实现处理</li>
+</ol>
+</li>
+</ul>
+<h3 id="%E4%BA%8C%E3%80%81-%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4">二、 基础预处理调整</h3>
+<h2 id="%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">调整方案</h2>
+<h3 id="%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">基础数据结构调整方案</h3>
+<p><img src="img/base_data_structure.jpg" alt="基础数据结构调整"></p>
+<h3 id="%E9%A2%84%E5%A4%84%E7%90%86%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">预处理调整方案</h3>
+<ul>
+<li>方案一</li>
+</ul>
+<p>加载Dwg文件时进行<strong>基础预处理</strong>，并存储预处理得到的基础数据。在进行识别时，识别类需要告知识别管理类需要什么数据，识别管理类查看数据仓库中是否存在识别类所需的数据，不存在则根据加工类工厂实例化对应<strong>数据加工类</strong>,继而对基础数据进行加工成识别类所需数据，储存加工后的数据到数据仓库。作为每次识别的数据源。</p>
+<ul>
+<li>方案二</li>
+</ul>
+<p>加载Dwg文件时进行<strong>基础预处理</strong>，并存储预处理得到的基础数据。识别管理类根据调用者输入要识别类型，确定识别所需数据。识别管理类查看数据仓库是否存在数据，不存在则根据识别类提供的成员方法实例化<strong>数据加工类</strong>初始化其函数指针，然后对基础数据进行加工，储存加工后的数据到数据仓库。得到所需数据，继而进行识别。</p>
+<h3 id="%E5%9F%BA%E7%A1%80%E9%A2%84%E5%A4%84%E7%90%86">基础预处理</h3>
+<p>主要负责待识别图纸dwg文件实体数据读取，存储到基础数据结构中。</p>
+<h3 id="%E5%8A%A0%E5%B7%A5%E5%A4%84%E7%90%86">加工处理</h3>
+<p>新增数据加工模块，各模块在识别过程中对预处理基础数据进行再次加工，进行缓存便于识别模块分析处理。<em>识别模块仅仅能使用加工后的数据</em></p>
+<ul>
+<li>
+<p><strong>图例识别</strong></p>
+<ul>
+<li>读取特征文件</li>
+<li>部分块及多段线打散操作</li>
+<li>图元分析处理</li>
+<li>扫描器构建</li>
+<li>提取特征</li>
+</ul>
+</li>
+<li>
+<p><strong>表格识别相关</strong></p>
+<ul>
+<li>按块存储实体及矩阵</li>
+</ul>
+</li>
+<li>
+<p><strong>文本分析相关</strong></p>
+<ul>
+<li>提取对应块表记录中所有文本，进行排序处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E5%AF%B9%E8%B1%A1%E6%9E%84%E5%BB%BA">对象构建</h3>
+<ul>
+<li><strong>预处理类</strong>：对数据进行预处理，生成基础数据</li>
+<li><strong>预处理数据类</strong>：用于存储预处理后的数据，进行管理</li>
+<li><strong>数据加工类</strong>：根据识别所需数据，进行基础数据加工</li>
+<li><strong>加工数据类</strong>：加工后的数据结构</li>
+<li><strong>加工类工厂类</strong>：主要用于实例化加工类</li>
+</ul>
+<h2 id="%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C">最终结果</h2>
+<h3 id="%E7%B1%BB%E7%BB%93%E6%9E%84">类结构</h3>
+<ul>
+<li>版本一（<em>UML类图</em>）</li>
+</ul>
+<p><img src="img/version1.jpg" alt="版本一"></p>
+<h2 id="%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA">实例展示</h2>
+<h3 id="%E4%BC%AA%E4%BB%A3%E7%A0%81">伪代码</h3>
+<ul>
+<li>方案一</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+识别管理类中交互
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CBsRecManager</span>
+{</span>
+	<span class="hljs-comment">// LoadDwg基础数据</span>
+	CBsBaseDataMgr* m_pBaseDataMgr;
+	<span class="hljs-comment">// 加工后的数据map</span>
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;rec_type, TAG_DWG_CRUDEDATA*&gt; m_mapProcessData;
+	
+	<span class="hljs-comment">// 识别</span>
+	<span class="hljs-function">Rescode <span class="hljs-title">Recognize</span><span class="hljs-params">(rec_type,con_param,outdata**)</span>
+	</span>{
+		<span class="hljs-comment">// 查询是否已经存在预处理数据</span>
+		<span class="hljs-comment">// TAG_DWG_CRUDEDATA 为加工后数据基类</span>
+		TAG_DWG_CRUDEDATA* pInputData = *m_mapProcessData.find(rec_type);
+		
+		<span class="hljs-keyword">if</span> (pInputData == <span class="hljs-literal">nullptr</span>)
+		{
+			<span class="hljs-comment">// 根据类型，由工厂决定谁来加工</span>
+			IDataProcess *pProcess = CBsDataProcessFactory::CreateProcess(rec_type);
+			<span class="hljs-comment">// 对基础数据进行加工，输出加工后数据</span>
+			pProcess-&gt;ProcessData(m_pBaseDataMgr, pInputData);
+			<span class="hljs-comment">// 存储加工后的数据</span>
+			m_mapProcessData.insert(<span class="hljs-built_in">std</span>::make_pair&lt;&gt;(pInputData))
+		}
+		
+
+		<span class="hljs-comment">//...</span>
+		IBsRecognize *pRec = CBsRecFactory::CreateRec();
+		pRec-&gt;recognize(...);
+		<span class="hljs-comment">// 根据输入数据，进行正常识别流程</span>
+	}
+};
+</div></code></pre>
+<ul>
+<li>方案二</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+识别管理类中交互
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CBsRecManager</span>
+{</span>
+	<span class="hljs-comment">// LoadDwg基础数据</span>
+	CBsBaseDataMgr* m_pBaseDataMgr;
+	<span class="hljs-comment">// 加工后的数据map</span>
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;rec_type, TAG_DWG_CRUDEDATA*&gt; m_mapProcessData;
+	
+	<span class="hljs-comment">// 识别</span>
+	<span class="hljs-function">Rescode <span class="hljs-title">Recognize</span><span class="hljs-params">(rec_type,con_param,outdata**)</span>
+	</span>{
+		<span class="hljs-comment">// 根据识别工厂类，实例化识别模块具体类</span>
+		IBsRecognize *pRec = CBsRecFactory::CreateRec(rec_type);
+		assert(pRec);
+
+		<span class="hljs-comment">// 查询是否已经存在预处理数据</span>
+		<span class="hljs-comment">// TAG_DWG_CRUDEDATA 为加工后数据基类</span>
+		TAG_DWG_CRUDEDATA* pInputData = *m_mapProcessData.find(rec_type);
+		
+		<span class="hljs-keyword">if</span> (pInputData == m_mapProcessData.end())
+		{
+			<span class="hljs-comment">// 由识别类提供成员函数决定预处理方法，实例化加工管理类，交给那个管理类中存在函数指针，</span>
+			<span class="hljs-comment">// 需要识别类抽象ProcessData方法，此方法同时负责实例化具体加工的数据结构，输入参数为二维指针</span>
+			<span class="hljs-function">CBsDataProcessMgr <span class="hljs-title">DataProcessMgr</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::bind(IBsRecognize::ProcessData, *pRec, <span class="hljs-built_in">std</span>::placeholders::_1, <span class="hljs-built_in">std</span>::placeholders::_2)</span>)</span>;
+			<span class="hljs-comment">// 对基础数据进行加工，输出加工后数据</span>
+			DataProcessMgr.ProcessData(m_pBaseDataMgr, pInputData);
+			
+			<span class="hljs-comment">// 存储加工后的数据</span>
+			m_mapProcessData.insert(<span class="hljs-built_in">std</span>::make_pair&lt;&gt;(pInputData))
+		}
+		
+		pRec-&gt;recognize(...);
+		<span class="hljs-comment">//...</span>
+		<span class="hljs-comment">// 根据输入数据，进行正常识别流程</span>
+	}
+};
+</div></code></pre>
+
+</body>
+</html>
 
           
         
@@ -764,7 +1831,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -789,6 +1856,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -798,6 +1867,10 @@
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Quenwa Zhang" />
             
               <p class="site-author-name" itemprop="name">Quenwa Zhang</p>
               <p class="site-description motion-element" itemprop="description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</p>
@@ -810,38 +1883,48 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
             
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">categories</span>
-                </a>
-              </div>
-            
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iTimeTraveler" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="css/images/wexin.jpg" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Wechat</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=404937333&site=qq&menu=yes" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-globe"></i>QQ</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2qCyu7S9sa_0sq_76ezj7Jqss6r0q6v0ubW3" target="_blank" title="envelope-o">
+                      
+                        <i class="fa fa-fw fa-globe"></i>envelope-o</a>
+                  </span>
+                
+            </div>
           
 
           

@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Logger.md    /*---------------------------------------------------------------------------------------------  *  Copyright (c) Microsoft Corporation. All rights reserved.  *  Licensed under the MIT">
+<meta name="keywords" content="C++,Boost,STL,Python,OpenCV,人脸识别,编程思想">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Q">
+<meta property="og:url" content="http://yoursite.com/2019/01/09/Logger/Logger/index.html">
+<meta property="og:site_name" content="Q">
+<meta property="og:description" content="Logger.md    /*---------------------------------------------------------------------------------------------  *  Copyright (c) Microsoft Corporation. All rights reserved.  *  Licensed under the MIT">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-09T05:55:22.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Q">
+<meta name="twitter:description" content="Logger.md    /*---------------------------------------------------------------------------------------------  *  Copyright (c) Microsoft Corporation. All rights reserved.  *  Licensed under the MIT">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/09/Logger/Logger/"/>
+
+
+
+
+
+  <title> | Q</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Q</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quenwaz's Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/Logger/Logger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Quenwa Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Q">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:16:28+08:00">
+                2019-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!DOCTYPE html>
+<html>
+<head>
+<title>Logger.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+	margin: 50px;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97">日志模块</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97">日志模块</a>
+<ul>
+<li><a href="#%E5%8A%9F%E8%83%BD%E6%A6%82%E6%8B%AC">功能概括</a></li>
+<li><a href="#%E7%8E%B0%E7%8A%B6%E5%88%86%E6%9E%90">现状分析</a>
+<ul>
+<li><a href="#1-%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90">1. 功能分析</a></li>
+<li><a href="#2-%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90">2. 代码分析</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%AF%E8%B0%83%E6%95%B4%E9%A1%B9">可调整项</a>
+<ul>
+<li><a href="#1-%E5%8A%9F%E8%83%BD%E8%B0%83%E6%95%B4">1. 功能调整</a></li>
+<li><a href="#2-%E4%BB%A3%E7%A0%81%E8%B0%83%E6%95%B4">2. 代码调整</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">调整方案</a></li>
+<li><a href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C">最终结果</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA">实例展示</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="%E5%8A%9F%E8%83%BD%E6%A6%82%E6%8B%AC">功能概括</h2>
+<p>主要提供给调用者记录程序运行过程中产生的错误或信息。</p>
+<h2 id="%E7%8E%B0%E7%8A%B6%E5%88%86%E6%9E%90">现状分析</h2>
+<p>现有日志模块提供了基本日志打印功能，日志级别，基本文件管理，以及线程安全。</p>
+<h3 id="1-%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90">1. 功能分析</h3>
+<ul>
+<li>
+<p>日志打印功能</p>
+<p>现有日志类提供了多个接口供调用者使用。其中用户可使用接口为最后三个，之前的所有接口供类内部调用。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">//-日志信息-</span>
+    <span class="hljs-comment">//-获取日志字符串,可以另外-</span>
+    <span class="hljs-function"><span class="hljs-keyword">static</span> CString <span class="hljs-title">sOutV</span><span class="hljs-params">(LPCTSTR strType, LPCTSTR strFormat = <span class="hljs-literal">NULL</span>, va_list valist = <span class="hljs-literal">NULL</span>)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">static</span> CString <span class="hljs-title">sOut0</span><span class="hljs-params">(LPCTSTR strType, LPCTSTR strFormat = <span class="hljs-literal">NULL</span>,...)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">static</span> CString <span class="hljs-title">sOut</span> <span class="hljs-params">( LPCTSTR strFormat = <span class="hljs-literal">NULL</span>,...)</span></span>;
+
+    <span class="hljs-comment">//-将日志信息输出到文件-</span>
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">short</span> <span class="hljs-title">OutV</span><span class="hljs-params">(LPCTSTR strType, LPCTSTR strFormat = <span class="hljs-literal">NULL</span>, va_list valist = <span class="hljs-literal">NULL</span>)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">short</span> <span class="hljs-title">Out0</span><span class="hljs-params">(LPCTSTR strType, LPCTSTR strFormat = <span class="hljs-literal">NULL</span>,...)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">short</span> <span class="hljs-title">Out</span> <span class="hljs-params">(LPCTSTR strFormat = <span class="hljs-literal">NULL</span>,...)</span></span>;
+
+</div></code></pre>
+</li>
+<li>
+<p>日志文件管理</p>
+<p>日志类中提供了四个接口，供调用者对日志文件进行指定及获取，以及打开日志文件。且提供了多进程日志读写时文件前缀指定。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">//-日志文件-</span>
+    <span class="hljs-comment">//----如果没有指定，则为exe所在路径下的log.log文件----</span>
+    <span class="hljs-function"><span class="hljs-keyword">static</span> CString <span class="hljs-title">GetLogFile</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">short</span> <span class="hljs-title">SetLogFile</span><span class="hljs-params">(LPCTSTR strPath)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">short</span> <span class="hljs-title">ViewLogFile</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-comment">//-前缀-</span>
+    <span class="hljs-comment">//----如果多个进程往同一个文件输出日志，可以为每个进程设置一个前缀----</span>
+    <span class="hljs-comment">//----前缀出现在日期时间之前----</span>
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">short</span> <span class="hljs-title">SetPrefix</span><span class="hljs-params">(LPCTSTR strPrefix)</span></span>;
+</div></code></pre>
+</li>
+</ul>
+<h3 id="2-%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90">2. 代码分析</h3>
+<ul>
+<li>
+<p>代码规范</p>
+<ul>
+<li>未提供虚函数，却将基类置为虚函数</li>
+<li>代码注释不够详细</li>
+<li>方法命名不能让调用者清晰其功能</li>
+<li>封装性不够好，某些由类内部调用的接口暴露为公有</li>
+<li>成员方法命名应以m_为前缀</li>
+</ul>
+</li>
+<li>
+<p>类设计</p>
+<ul>
+<li>此日志管理类不应提供日志文件打开方法，应只负责日志写入操作</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E5%8F%AF%E8%B0%83%E6%95%B4%E9%A1%B9">可调整项</h2>
+<h3 id="1-%E5%8A%9F%E8%83%BD%E8%B0%83%E6%95%B4">1. 功能调整</h3>
+<ul>
+<li>改变日志写入方式，利用流进行写入</li>
+<li>调整日志级别为枚举，且为必选项，调用者写日志时必须指定级别</li>
+<li>提供格式化方法，供调用者对日志进行格式化操作</li>
+<li>提供日志回转操作，可利用文件大小或指定时间进行日志回转</li>
+<li>提供日志打印渠道，如文件，控制台，输出窗口等</li>
+</ul>
+<h3 id="2-%E4%BB%A3%E7%A0%81%E8%B0%83%E6%95%B4">2. 代码调整</h3>
+<ul>
+<li>按现有代码规范进行调整</li>
+</ul>
+<h2 id="%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">调整方案</h2>
+<ul>
+<li>
+<p>方案一</p>
+<ul>
+<li>设计日志类，管理一份<strong>fstream流</strong>，利用流给日志类提供写入操作。且输入类型仅支持基础数据类型，如需输入自定义类类型，需要自行重载&lt;&lt;方法。</li>
+<li>日志类需要对写入操作提供多线程安全锁。</li>
+<li>日志类维护一份日志级别枚举与对应字符串的pair对象,便于打印日志级别。</li>
+<li>构建日志格式化类，对日志打印输出进行格式化操作</li>
+<li>构建日志回转操作类，依据文件大小或是时间对日志文件进行新增</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>方案二
+<ul>
+<li>设计日志类，底层boost库提供支持。</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C">最终结果</h2>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA">实例展示</h2>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/09/InterfaceAdjustment/InterfaceAdjustment/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/09/Logger/Logger/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Quenwa Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Quenwa Zhang</p>
+              <p class="site-description motion-element" itemprop="description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iTimeTraveler" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="css/images/wexin.jpg" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Wechat</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=404937333&site=qq&menu=yes" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-globe"></i>QQ</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2qCyu7S9sa_0sq_76ezj7Jqss6r0q6v0ubW3" target="_blank" title="envelope-o">
+                      
+                        <i class="fa fa-fw fa-globe"></i>envelope-o</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">日志模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E6%A6%82%E6%8B%AC"><span class="nav-number">1.1.</span> <span class="nav-text">功能概括</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E7%8A%B6%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">现状分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 功能分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%B0%83%E6%95%B4%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">可调整项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8A%9F%E8%83%BD%E8%B0%83%E6%95%B4"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 功能调整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BB%A3%E7%A0%81%E8%B0%83%E6%95%B4"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 代码调整</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.</span> <span class="nav-text">调整方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C"><span class="nav-number">1.5.</span> <span class="nav-text">最终结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA"><span class="nav-number">1.6.</span> <span class="nav-text">实例展示</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Quenwa Zhang</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

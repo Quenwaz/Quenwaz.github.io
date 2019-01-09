@@ -100,7 +100,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -270,10 +270,10 @@
         
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-                13 tags in total
+                No tags
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/Cpp/" style="font-size: 30px; color: #111">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 18px; color: #8e8e8e">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 18px; color: #8e8e8e">Dlib</a> <a href="/tags/HEXO/" style="font-size: 18px; color: #8e8e8e">HEXO</a> <a href="/tags/Ubuntu/" style="font-size: 18px; color: #8e8e8e">Linux</a> <a href="/tags/OpenCV/" style="font-size: 24px; color: #4f4f4f">OpenCV</a> <a href="/tags/Python/" style="font-size: 30px; color: #111">Python</a> <a href="/tags/Socket/" style="font-size: 12px; color: #ccc">Socket</a> <a href="/tags/FaceDetection/" style="font-size: 18px; color: #8e8e8e">人脸检测</a> <a href="/tags/Algorithm/" style="font-size: 18px; color: #8e8e8e">算法</a> <a href="/tags/ProgrammingThinking/" style="font-size: 18px; color: #8e8e8e">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 18px; color: #8e8e8e">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 18px; color: #8e8e8e">设计模式</a>
+              
             </div>
           </div>
         
@@ -312,6 +312,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -321,6 +323,10 @@
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Quenwa Zhang" />
             
               <p class="site-author-name" itemprop="name">Quenwa Zhang</p>
               <p class="site-description motion-element" itemprop="description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</p>
@@ -333,38 +339,48 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
             
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">categories</span>
-                </a>
-              </div>
-            
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iTimeTraveler" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="css/images/wexin.jpg" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Wechat</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=404937333&site=qq&menu=yes" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-globe"></i>QQ</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2qCyu7S9sa_0sq_76ezj7Jqss6r0q6v0ubW3" target="_blank" title="envelope-o">
+                      
+                        <i class="fa fa-fw fa-globe"></i>envelope-o</a>
+                  </span>
+                
+            </div>
           
 
           
