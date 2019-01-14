@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/interface/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/利用Visual-Studio开发Linux程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Quenwa Zhang">
@@ -282,7 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/09/interface/" itemprop="url">图形分析接口</a></h1>
+                <a class="post-title-link" href="/2019/01/14/利用Visual-Studio开发Linux程序/" itemprop="url">利用Visual Studio开发Linux程序</a></h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:47:45+08:00">
-                2019-01-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-14T10:38:59+08:00">
+                2019-01-14
               </time>
             
 
@@ -334,274 +334,26 @@
       
         
           
-            <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 版权:TNBS</span></span><br><span class="line"><span class="comment"> * 作者:Zhangkh</span></span><br><span class="line"><span class="comment"> * 日期:2018-5-15 17:28</span></span><br><span class="line"><span class="comment"> * 描述:图形识别接口文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _GRAPHANALYSIS_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GRAPHANALYSIS_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"BsGraphAnalysisData.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> GRAPHANALYSIS_EXPORT</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GRAPHANALYSIS_API extern <span class="meta-string">"C"</span> __declspec(dllexport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GRAPHANALYSIS_API extern <span class="meta-string">"C"</span> __declspec(dllimport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">_RECOGNIZE_BEGIN</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 识别类型</span></span><br><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">REC_TYPE</span>&#123;</span></span><br><span class="line">	<span class="comment">// 识别图例</span></span><br><span class="line">	REC_CUTLINE,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 识别表格</span></span><br><span class="line">	REC_TABLE, </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 识别目录表</span></span><br><span class="line">	REC_DIRTABLE, </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 识别材料表</span></span><br><span class="line">	REC_MATERIALTABLE,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 识别图框</span></span><br><span class="line">	REC_FRAME,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 识别封面</span></span><br><span class="line">	REC_COVER, </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment"> * 描述:加载dwg图纸，读取dwg图纸中内容</span></span><br><span class="line"><span class="comment"> * 参数:lpszDwgPath dwg图纸路径</span></span><br><span class="line"><span class="comment"> * 返回:加载是否成功，存在则成功</span></span><br><span class="line"><span class="comment"> */</span>   </span><br><span class="line"><span class="function">GRAPHANALYSIS_API <span class="keyword">bool</span> <span class="title">LoadDwg</span><span class="params">(LPCTSTR lpszDwgPath)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment"> * 描述: 卸载当前加载的图纸，及其内存释放</span></span><br><span class="line"><span class="comment"> * 参数: 无</span></span><br><span class="line"><span class="comment"> * 返回: void</span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"><span class="function">GRAPHANALYSIS_API <span class="keyword">void</span> <span class="title">UnLoadDwg</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment"> * 描述: 设置当前工作目录，配置及特征文件所在路径</span></span><br><span class="line"><span class="comment"> * 参数: lpszWorkDir 工作路径</span></span><br><span class="line"><span class="comment"> * 返回: 返回错误码</span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"><span class="function">GRAPHANALYSIS_API INT_PTR <span class="title">SetWorkDir</span><span class="params">(LPCTSTR lpszWorkDir)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment"> * 描述: 识别图例/表格/文本等</span></span><br><span class="line"><span class="comment"> * 参数: </span></span><br><span class="line"><span class="comment"> * @recType 识别类型  </span></span><br><span class="line"><span class="comment"> * @pCondParam 识别条件 </span></span><br><span class="line"><span class="comment"> * @pRetData 识别结果</span></span><br><span class="line"><span class="comment"> * 返回: 返回错误码</span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"><span class="function">GRAPHANALYSIS_API INT_PTR  <span class="title">RecognizeDwg</span><span class="params">(REC_TYPE recType, Rec::TAG_COND_PARAM* pCondParam, Rec::TAG_RET_BASEDATA*&amp; pRetData)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment"> * 描述: 识别图例/表格/文本等</span></span><br><span class="line"><span class="comment"> * 参数: recType 识别类型  lpszParam 识别条件xml流 lpszXml 识别结果</span></span><br><span class="line"><span class="comment"> * 返回: 返回错误码</span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"><span class="function">GRAPHANALYSIS_API INT_PTR  <span class="title">RecognizeDwgToXml</span><span class="params">(REC_TYPE recType, LPCTSTR lpszParam, LPCTSTR lpszXml)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment"> * 描述: 获取错误码对应错误详情</span></span><br><span class="line"><span class="comment"> * 参数: nCode 错误码</span></span><br><span class="line"><span class="comment"> * 返回: 字符串详情</span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"><span class="function">GRAPHANALYSIS_API LPCTSTR <span class="title">GetErrorDesc</span><span class="params">(INT_PTR nCode)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">_RECOGNIZE_END</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/Index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Quenwa Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Q">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/09/Index/" itemprop="url">图形分析调整大纲</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:27:00+08:00">
-                2019-01-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="图形分析调整大纲"><a href="#图形分析调整大纲" class="headerlink" title="图形分析调整大纲"></a>图形分析调整大纲</h1><h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p><a href="CurrentFrameAnlysis.xmind">详见思维导图</a></p>
-<h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><ul>
-<li></li>
-<li><a href="/2019/01/09/InterfaceAdjustment/InterfaceAdjustment/" title="图形分析接口调整">图形分析接口调整</a></li>
-<li><a href="/2019/01/09/Pretreatment/Pretreatment/" title="预处理">预处理</a></li>
-<li>识别模块<ul>
-<li><a href="/2019/01/09/CutlineAnalysis/CutlineAnalysis/" title="图例识别">图例识别</a></li>
-<li><a href="/2019/01/09/CommonTableRecognize/CommonTableRecognize/" title="通用表格识别">通用表格识别</a></li>
-<li><a href="">图框识别</a></li>
-<li><a href="">目录表识别</a></li>
-<li><a href="">材料表识别</a></li>
-<li><a href="">封面文本识别</a></li>
+            <h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>为了能在Windows平台进行Linux程序开发，本文着重讲解如何部署开发环境</p>
+<h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><ul>
+<li>visual studio 2017</li>
+<li>centos 7.0<h1 id="visual-studio环境部署"><a href="#visual-studio环境部署" class="headerlink" title="visual studio环境部署"></a>visual studio环境部署</h1><a href="https://visualstudio.microsoft.com/zh-hans/downloads/" target="_blank" rel="noopener">下载</a>visual studio 2017，按照步骤进行安装。<strong>记得勾选【使用C++的Linux开发】</strong></li>
 </ul>
-</li>
-<li><a href="">配置模块</a></li>
-<li><a href="/2019/01/09/Logger/Logger/" title="日志模块">日志模块</a>[日志模块]</li>
-</ul>
-<h2 id="指导原则"><a href="#指导原则" class="headerlink" title="指导原则"></a>指导原则</h2><a href="/2019/01/09/ClassDesignPrinciple/" title="设计原则">设计原则</a>
-<p></p>
+<h1 id="Linux环境部署"><a href="#Linux环境部署" class="headerlink" title="Linux环境部署"></a>Linux环境部署</h1><p>1、 首先确保你拥有Linux系统，本文基于CentOs系统<br>2、 安装Openssh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>3、 安装g++<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br></pre></td></tr></table></figure></p>
+<p>4、 安装gdb+gdbserver</p>
+<pre><code>首先[下载]( http://ftp.gnu.org/gnu/gdb/)gdb-8.2.tar.gz，下载完成将压缩文件上传到Centos用户目录。Linux gdb-8.2.tar.gz所在目录
+</code></pre><p>解压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar  -zxvf  gdb-7.12.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>解压后会出现 gdb-8.2 文件目录，进入此目录，执行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure></p>
+<p>然后执行make命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure></p>
+<p>然后进行安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<p>若安装过程中出现make : makeinfo : 命令未找到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install texinfo</span><br></pre></td></tr></table></figure></p>
+<p>完成后，在gdb-8.2目录中找到gdb程序，复制到/usr/bin目录下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp gdb-8.2/gdb/gdb   /usr/bin</span><br></pre></td></tr></table></figure></p>
+<p>同时在目录中将生成的gdbserver程序也拷贝到/usr/bin目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp gdb-8.2/gdb/gdb/gdbserver  /usr/bin</span><br></pre></td></tr></table></figure></p>
+<p>5、完成</p>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/CutlineAnalysis/CutlineAnalysis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Quenwa Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Q">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/09/CutlineAnalysis/CutlineAnalysis/" itemprop="url">图例识别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:27:00+08:00">
-                2019-01-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="图例识别"><a href="#图例识别" class="headerlink" title="图例识别"></a>图例识别</h1><h2 id="功能概括"><a href="#功能概括" class="headerlink" title="功能概括"></a>功能概括</h2><p>主要用于识别电网元器件图例，继而进行各项工作，如进行标准图例对比，而判定图纸是否规范。现主要用于北京评审平台进行标准图例分析，以简化手工对比。提高工作效率。<br><br>主要由图例分析，线路合并，参数识别等功能模块构成。</p>
-<h2 id="现状概括"><a href="#现状概括" class="headerlink" title="现状概括"></a>现状概括</h2><p>因整体项目开发周期较长，项目经历了不同开发人员的迭代，积累了风格各异的代码。主要没有一个整体架构布局，导致图例分析中涉及到的各功能模块耦合度过高。其中显著的问题是，因后续开发人员对之前结构的摒弃，导致了功能模块重复的代码。</p>
-<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a><em>前提条件</em></h3><p>图例分析主要前提条件有dwg数据源处理的数据结果、识别范围、标准图例特征文件等。具体参数概括：</p>
-<ul>
-<li><strong>数据源</strong>：需要对dwg图纸进行读取进行基础数据构建。</li>
-<li><strong>范围</strong>：识别范围可选整张图纸或是按图框进行识别。因部分图纸数据量较大，存在按图框进行识别（即仅仅识别图框内图例）。因而需要首先进行图框识别结果进行按图框识别图例。图框识别属于图表识别一种特例。因此，如果按图框进行识别，需要依赖图框识别。现将图框识别整合到了图例分析前提条件中进行处理。</li>
-<li><strong>图例特征文件</strong>：根据配置目录中各图例的dwg文件，进行分析生成特征文件xml，同时实例化各图例特征。便于后期分析。</li>
-</ul>
-<h2 id="可调整项"><a href="#可调整项" class="headerlink" title="可调整项"></a>可调整项</h2><h2 id="调整方案"><a href="#调整方案" class="headerlink" title="调整方案"></a>调整方案</h2><h2 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h2><p><img src="img/CutlineAnalysis.jpg" alt=""></p>
-<h2 id="实例展示"><a href="#实例展示" class="headerlink" title="实例展示"></a>实例展示</h2>
           
         
       
@@ -639,10 +391,6 @@
   </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 
 
           </div>
@@ -692,7 +440,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

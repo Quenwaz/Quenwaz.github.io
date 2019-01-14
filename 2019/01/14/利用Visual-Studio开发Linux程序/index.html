@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
+<meta name="description" content="目的为了能在Windows平台进行Linux程序开发，本文着重讲解如何部署开发环境 环境说明 visual studio 2017 centos 7.0visual studio环境部署下载visual studio 2017，按照步骤进行安装。记得勾选【使用C++的Linux开发】  Linux环境部署1、 首先确保你拥有Linux系统，本文基于CentOs系统2、 安装Openssh1yum">
 <meta name="keywords" content="C++,Boost,STL,Python,OpenCV,人脸识别,编程思想">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Q">
-<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Visual Studio开发Linux程序">
+<meta property="og:url" content="http://yoursite.com/2019/01/14/利用Visual-Studio开发Linux程序/index.html">
 <meta property="og:site_name" content="Q">
-<meta property="og:description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
+<meta property="og:description" content="目的为了能在Windows平台进行Linux程序开发，本文着重讲解如何部署开发环境 环境说明 visual studio 2017 centos 7.0visual studio环境部署下载visual studio 2017，按照步骤进行安装。记得勾选【使用C++的Linux开发】  Linux环境部署1、 首先确保你拥有Linux系统，本文基于CentOs系统2、 安装Openssh1yum">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-14T02:58:03.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Q">
-<meta name="twitter:description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
+<meta name="twitter:title" content="利用Visual Studio开发Linux程序">
+<meta name="twitter:description" content="目的为了能在Windows平台进行Linux程序开发，本文着重讲解如何部署开发环境 环境说明 visual studio 2017 centos 7.0visual studio环境部署下载visual studio 2017，按照步骤进行安装。记得勾选【使用C++的Linux开发】  Linux环境部署1、 首先确保你拥有Linux系统，本文基于CentOs系统2、 安装Openssh1yum">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/5/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/14/利用Visual-Studio开发Linux程序/"/>
 
 
 
 
 
-  <title>Q</title>
+  <title>利用Visual Studio开发Linux程序 | Q</title>
   
 
 
@@ -144,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/CommonTableRecognize/CommonTableRecognize/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/利用Visual-Studio开发Linux程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Quenwa Zhang">
@@ -280,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/09/CommonTableRecognize/CommonTableRecognize/" itemprop="url">Untitled</a></h1>
+          <h1 class="post-title" itemprop="name headline">利用Visual Studio开发Linux程序</h1>
         
 
         <div class="post-meta">
@@ -294,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T14:16:28+08:00">
-                2019-01-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-14T10:38:59+08:00">
+                2019-01-14
               </time>
             
 
@@ -332,12 +330,26 @@
       
 
       
-        
-          
-            <p>##通用表格识别</p>
+        <h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>为了能在Windows平台进行Linux程序开发，本文着重讲解如何部署开发环境</p>
+<h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><ul>
+<li>visual studio 2017</li>
+<li>centos 7.0<h1 id="visual-studio环境部署"><a href="#visual-studio环境部署" class="headerlink" title="visual studio环境部署"></a>visual studio环境部署</h1><a href="https://visualstudio.microsoft.com/zh-hans/downloads/" target="_blank" rel="noopener">下载</a>visual studio 2017，按照步骤进行安装。<strong>记得勾选【使用C++的Linux开发】</strong></li>
+</ul>
+<h1 id="Linux环境部署"><a href="#Linux环境部署" class="headerlink" title="Linux环境部署"></a>Linux环境部署</h1><p>1、 首先确保你拥有Linux系统，本文基于CentOs系统<br>2、 安装Openssh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>3、 安装g++<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br></pre></td></tr></table></figure></p>
+<p>4、 安装gdb+gdbserver</p>
+<pre><code>首先[下载]( http://ftp.gnu.org/gnu/gdb/)gdb-8.2.tar.gz，下载完成将压缩文件上传到Centos用户目录。Linux gdb-8.2.tar.gz所在目录
+</code></pre><p>解压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar  -zxvf  gdb-7.12.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>解压后会出现 gdb-8.2 文件目录，进入此目录，执行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure></p>
+<p>然后执行make命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure></p>
+<p>然后进行安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<p>若安装过程中出现make : makeinfo : 命令未找到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install texinfo</span><br></pre></td></tr></table></figure></p>
+<p>完成后，在gdb-8.2目录中找到gdb程序，复制到/usr/bin目录下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp gdb-8.2/gdb/gdb   /usr/bin</span><br></pre></td></tr></table></figure></p>
+<p>同时在目录中将生成的gdbserver程序也拷贝到/usr/bin目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp gdb-8.2/gdb/gdb/gdbserver  /usr/bin</span><br></pre></td></tr></table></figure></p>
+<p>5、完成</p>
+<hr>
+<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
 
-          
-        
       
     </div>
     
@@ -354,12 +366,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -369,14 +381,11 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -384,6 +393,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -406,8 +419,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -426,7 +448,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -481,6 +503,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境说明"><span class="nav-number">1.0.1.</span> <span class="nav-text">环境说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#visual-studio环境部署"><span class="nav-number">2.</span> <span class="nav-text">visual studio环境部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux环境部署"><span class="nav-number">3.</span> <span class="nav-text">Linux环境部署</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -615,6 +653,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
