@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Quenwaz" />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
-<meta name="keywords" content="C++,Boost,STL,Python,OpenCV,人脸识别,编程思想">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Q">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="什么是右值在C++中表达式和变量要么是左值要么是右值，通常临时对象为右值。不可利用&amp;amp;取得内存地址的为右值。而左值在内存中有确定的存储地址。1234567int i = 0;          // 0 为右值   i为左值int j = i + 1;      // i+1 为右值int&amp;amp; test(); test() = 10;        // test()为左值int te">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C11右值，右值引用与转移语义">
+<meta property="og:url" content="http://yoursite.com/2019/01/20/C++右值引用与移动构造/index.html">
 <meta property="og:site_name" content="Q">
-<meta property="og:description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
+<meta property="og:description" content="什么是右值在C++中表达式和变量要么是左值要么是右值，通常临时对象为右值。不可利用&amp;amp;取得内存地址的为右值。而左值在内存中有确定的存储地址。1234567int i = 0;          // 0 为右值   i为左值int j = i + 1;      // i+1 为右值int&amp;amp; test(); test() = 10;        // test()为左值int te">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-21T03:58:27.812Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Q">
-<meta name="twitter:description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
+<meta name="twitter:title" content="C11右值，右值引用与转移语义">
+<meta name="twitter:description" content="什么是右值在C++中表达式和变量要么是左值要么是右值，通常临时对象为右值。不可利用&amp;amp;取得内存地址的为右值。而左值在内存中有确定的存储地址。1234567int i = 0;          // 0 为右值   i为左值int j = i + 1;      // i+1 为右值int&amp;amp; test(); test() = 10;        // test()为左值int te">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/20/C++右值引用与移动构造/"/>
 
 
 
 
 
-  <title>Q</title>
+  <title>C11右值，右值引用与转移语义 | Q</title>
   
 
 
@@ -144,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -280,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/20/C++右值引用与移动构造/" itemprop="url">C11右值，右值引用与转移语义</a></h1>
+          <h1 class="post-title" itemprop="name headline">C11右值，右值引用与转移语义</h1>
         
 
         <div class="post-meta">
@@ -354,9 +352,7 @@
       
 
       
-        
-          
-            <h2 id="什么是右值"><a href="#什么是右值" class="headerlink" title="什么是右值"></a>什么是右值</h2><p>在C++中表达式和变量要么是左值要么是右值，通常临时对象为右值。不可利用&amp;取得内存地址的为右值。而左值在内存中有确定的存储地址。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;          <span class="comment">// 0 为右值   i为左值</span></span><br><span class="line"><span class="keyword">int</span> j = i + <span class="number">1</span>;      <span class="comment">// i+1 为右值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">test</span><span class="params">()</span></span>; </span><br><span class="line">test() = <span class="number">10</span>;        <span class="comment">// test()为左值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test0</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">int</span> n = test0();     <span class="comment">// test0() 为右值</span></span><br><span class="line"><span class="keyword">int</span> *p = &amp;test0();   <span class="comment">// 错误, p为右值不能取地址</span></span><br></pre></td></tr></table></figure></p>
+        <h2 id="什么是右值"><a href="#什么是右值" class="headerlink" title="什么是右值"></a>什么是右值</h2><p>在C++中表达式和变量要么是左值要么是右值，通常临时对象为右值。不可利用&amp;取得内存地址的为右值。而左值在内存中有确定的存储地址。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;          <span class="comment">// 0 为右值   i为左值</span></span><br><span class="line"><span class="keyword">int</span> j = i + <span class="number">1</span>;      <span class="comment">// i+1 为右值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">test</span><span class="params">()</span></span>; </span><br><span class="line">test() = <span class="number">10</span>;        <span class="comment">// test()为左值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test0</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">int</span> n = test0();     <span class="comment">// test0() 为右值</span></span><br><span class="line"><span class="keyword">int</span> *p = &amp;test0();   <span class="comment">// 错误, p为右值不能取地址</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h2><p>C++11 之前，右值不能被引用，仅能用常量引用绑定一个右值:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; test = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
 <p>上述中常量引用绑定的右值是无法改变的，但是其实右值是可以改变的：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">tagTest</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> nTest;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Set</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; t)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        nTest = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">const</span> <span class="keyword">int</span>&amp; <span class="title">Get</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> nTest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">_tagTest() 实例化一个右值(临时对象)</span></span><br><span class="line"><span class="comment">调用Set改变了这个右值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">_tagTest().Set(<span class="number">1</span>).Get();</span><br></pre></td></tr></table></figure></p>
 <p>既然右值可以改变， 那么就有了右值引用。</p>
@@ -378,8 +374,6 @@
 <hr>
 <p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
 
-          
-        
       
     </div>
     
@@ -394,293 +388,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/利用manifest进行运行库配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Quenwa Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Q">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/18/利用manifest进行运行库配置/" itemprop="url">利用manifest进行运行库配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T13:06:02+08:00">
-                2019-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Cpp/" rel="tag"># C++</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="利用manifest进行运行库配置"><a href="#利用manifest进行运行库配置" class="headerlink" title="利用manifest进行运行库配置"></a>利用manifest进行运行库配置</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>使发布的可执行程序，在windows各个版本中能正确打开程序。且无需额外安装<strong>vcredist</strong>对运行库进行部署。</p>
-<h3 id="Assembly-Manifest机制"><a href="#Assembly-Manifest机制" class="headerlink" title="Assembly Manifest机制"></a>Assembly Manifest机制</h3><p>Assembly Manifest 机制仅仅适用于项目属性运行库为<strong>Multi-threaded Debug DLL (/MDd) 或 Multi-threaded DLL (/MD)</strong>, 在Visual Studio中新建项目，默认会将.manifest文件嵌入到应用程序当中。<br>manifest文件示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos; standalone=&apos;yes&apos;?&gt;</span><br><span class="line">&lt;assembly xmlns=&apos;urn:schemas-microsoft-com:asm.v1&apos; manifestVersion=&apos;1.0&apos;&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;dependentAssembly&gt;</span><br><span class="line">            &lt;assemblyIdentity type=&apos;win32&apos; name=&apos;Microsoft.VC80.CRT&apos; version=&apos;8.0.50608.0&apos; processorArchitecture=&apos;x86&apos; publicKeyToken=&apos;1fc8b3b9a1e18e3b&apos; /&gt;</span><br><span class="line">        &lt;/dependentAssembly&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/assembly&gt;</span><br></pre></td></tr></table></figure></p>
-<p>因为dll是动态加载共享库，同一dll可能被多个程序所使用。而存在不同的程序调用相同的dll,而其版本存在差异，操作系统就无法分辨。如果加载了错误版本的dll，将导致程序无法正常启动。<br>而(.manifest)可以以<strong>强文件名的方式定位到所需dll所在目录</strong>,具体实现利用manifest文件中节点<br>assemblyIdentity 的属性进行组合目录名，可以到<strong>C:\Windows\WinSxS</strong>找到其中有所需的dll。</p>
-<p>另外，对于运行库dll本身存在自己的manifest清单文件描述，主要用于描述其强文件签名(hash),确保文件正确性。</p>
-<p>最后，关于系统升级dll的兼容性问题，因为系统升级可能导致其系统库版本进行升级，版本号存在变化。那么清单文件中描述的版本在新升级的系统中将无法适用，所以引进了<strong>policy的策略文件来确认映射关系</strong>进行版本重定向。具体重定向描述位置位于<strong>C:\WINDOWS\WinSxS\Policies\Policy</strong></p>
-<h4 id="运行库查找规则"><a href="#运行库查找规则" class="headerlink" title="运行库查找规则"></a>运行库查找规则</h4><p>根据MSDN的说明，在本地查找并加载遵循一下规则：</p>
-<ul>
-<li>在应用程序本地文件夹中查找名为 <assemblyname>.manifest 的清单文件。在此示例中，加载程序试图在exe所在的文件夹中查找Microsoft.VC80.CRT.manifest。如果找到该清单，加载程序将从应用程序文件夹中加载 crt dll。如果未找到 crt dll，加载将失败。</assemblyname></li>
-<li>尝试在 appl.exe 本地文件夹中打开文件夹 <assemblyname>，如果存在此文件夹，则从中加载清单文件 <assemblyname>.manifest。如果找到该清单，加载程序将从 <assemblyname> 文件夹中加载 crt dll。如果未找到 crt dll，加载将失败。</assemblyname></assemblyname></assemblyname></li>
-</ul>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>确保当前项目Runtime Library 是<strong>Multi-threaded DLL</strong>，否则无需配置。</p>
-<h4 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h4><p><strong>项目属性-&gt;清单工具-&gt;输入输出</strong>  中将<strong>清单嵌入</strong>设为<strong>否</strong>，那样就会帮你生成manifest文件而不会将它嵌入</p>
-<p>如果你需要额外的配置<br>在<strong>链接器-&gt;清单文件-&gt;附加清单依赖项</strong>中加入<br>例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; processorArchitecture=&apos;X86&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos;</span><br></pre></td></tr></table></figure></p>
-<h4 id="运行库移植"><a href="#运行库移植" class="headerlink" title="运行库移植"></a>运行库移植</h4><p>在各个版本中的vs安装目录中找到<strong>redist</strong>目录，将各个版本需要的运行库及对应的manifest(<strong>低版本存在</strong>)移动到发布的exe同级目录。</p>
-<blockquote>
-<p><strong>参考资料</strong><br></p>
-<ol>
-<li><a href="https://blog.csdn.net/pizi0475/article/details/7791150?locationNum=9&amp;fps=1" target="_blank" rel="noopener">vc2008不安装vcredist发布程序</a></li>
-<li><a href="https://blog.csdn.net/xiaojianpitt/article/details/4269641" target="_blank" rel="noopener"> Assembly Manifest</a></li>
-</ol>
-</blockquote>
-<hr>
-<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/利用Visual-Studio开发Linux程序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Quenwa Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Q">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/14/利用Visual-Studio开发Linux程序/" itemprop="url">利用Visual Studio开发Linux程序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-14T10:38:59+08:00">
-                2019-01-14
-              </time>
+              <a href="/2019/01/18/利用manifest进行运行库配置/" rel="next" title="利用manifest进行运行库配置">
+                <i class="fa fa-chevron-left"></i> 利用manifest进行运行库配置
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>为了能在Windows平台进行Linux程序开发，本文着重讲解如何部署开发环境</p>
-<h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><ul>
-<li>visual studio 2017</li>
-<li>centos 7.0</li>
-</ul>
-<h1 id="Visual-Studio环境部署"><a href="#Visual-Studio环境部署" class="headerlink" title="Visual Studio环境部署"></a>Visual Studio环境部署</h1><p><a href="https://visualstudio.microsoft.com/zh-hans/downloads/" target="_blank" rel="noopener">下载</a>visual studio 2017，按照步骤进行安装。<strong>记得勾选【使用C++的Linux开发】</strong></p>
-<h1 id="Linux环境部署"><a href="#Linux环境部署" class="headerlink" title="Linux环境部署"></a>Linux环境部署</h1><p>1、 首先确保你拥有Linux系统，本文基于CentOs系统<br>2、 安装Openssh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-server</span><br></pre></td></tr></table></figure></p>
-<p>3、 安装g++<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br></pre></td></tr></table></figure></p>
-<p>4、 安装gdb+gdbserver<br>首先<a href="http://ftp.gnu.org/gnu/gdb/" target="_blank" rel="noopener">下载</a>gdb-8.2.tar.gz，下载完成将压缩文件上传到Centos用户目录。Linux gdb-8.2.tar.gz所在目录<br><br>解压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar  -zxvf  gdb-7.12.tar.gz</span><br></pre></td></tr></table></figure></p>
-<p>解压后会出现 gdb-8.2 文件目录，进入此目录，执行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure></p>
-<p>然后执行make命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure></p>
-<p>然后进行安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure></p>
-<p>若安装过程中出现make : makeinfo : 命令未找到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install texinfo</span><br></pre></td></tr></table></figure></p>
-<p>完成后，在gdb-8.2目录中找到gdb程序，复制到/usr/bin目录下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp gdb-8.2/gdb/gdb   /usr/bin</span><br></pre></td></tr></table></figure></p>
-<p>同时在目录中将生成的gdbserver程序也拷贝到/usr/bin目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp gdb-8.2/gdb/gdb/gdbserver  /usr/bin</span><br></pre></td></tr></table></figure></p>
-<p>5、完成</p>
-<hr>
-<p><small><font color="gray">本文<a href="http://quenwaz.github.io" target="_blank" rel="noopener">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -690,10 +427,49 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -701,6 +477,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -723,8 +503,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -816,6 +605,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是右值"><span class="nav-number">1.</span> <span class="nav-text">什么是右值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#右值引用"><span class="nav-number">2.</span> <span class="nav-text">右值引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#符号标识"><span class="nav-number">2.1.</span> <span class="nav-text">符号标识</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转移语义"><span class="nav-number">3.</span> <span class="nav-text">转移语义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动构造与移动赋值操作符"><span class="nav-number">3.1.</span> <span class="nav-text">移动构造与移动赋值操作符</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -950,6 +755,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
