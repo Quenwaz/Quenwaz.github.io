@@ -3,16 +3,16 @@ node_js:
 - '8'
 branches:
   only:
-  - master
+  - source
 before_install:
-- openssl aes-256-cbc -K $encrypted_95e24e700a4c_key -iv $encrypted_95e24e700a4c_iv
-  -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
+- openssl aes-256-cbc -K $encrypted_83cbab1bbca1_key -iv $encrypted_83cbab1bbca1_iv
+  -in .travis/id_rsa.enc -out .travis/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 - eval $(ssh-agent)
 - ssh-add ~/.ssh/id_rsa
 - cp .travis/ssh_config ~/.ssh/config
-- git config --global user.name 'Ghostdar'
-- git config --global user.email 848760247@qq.com
+- git config --global user.name 'Quenwaz'
+- git config --global user.email zhangkunhua3696@126.com
 install:
 - npm install hexo-cli -g
 - npm install
