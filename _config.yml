@@ -103,7 +103,7 @@ theme: hipaper
 deploy:
   type: git
   # repository: https://github.com/Quenwaz/Quenwaz.github.io.git
-  repository: https://github_token@github.com/Quenwaz/Quenwaz.github.io.git
+  repo: https://github_token@github.com/Quenwaz/Quenwaz.github.io.git
   branch: master
   token: github_token
   # message: "Submission from hexo"
