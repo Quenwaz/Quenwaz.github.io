@@ -102,7 +102,7 @@ theme: hipaper
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/Quenwaz/Quenwaz.github.io.git
+  repo: git@github.com:Quenwaz/Quenwaz.github.io.git
   # repo: https://github_token@github.com/Quenwaz/Quenwaz.github.io.git
   branch: master
   # token: github_token
