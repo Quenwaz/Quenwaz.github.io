@@ -105,5 +105,5 @@ deploy:
   repo: https://github.com/Quenwaz/Quenwaz.github.io.git
   # repo: https://github_token@github.com/Quenwaz/Quenwaz.github.io.git
   branch: master
-  token: github_token
+  # token: github_token
   # message: "Submission from hexo"
