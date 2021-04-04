@@ -99,8 +99,10 @@ pagination_dir: page
 theme: hipaper
 
 # Deployment
-## Docs: https://hexo.io/docs/deployment.html
+## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
   repository: https://github.com/Quenwaz/Quenwaz.github.io.git
   branch: master
+  token: github_token
+  # message: "Submission from hexo"
