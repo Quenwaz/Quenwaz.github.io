@@ -63,11 +63,15 @@ category_map:
 tag_map:
       Linux: Linux
       Windows: Windows
+      操作系统: OperatingSystem
+      线程: Thread
+      进程: Process
+      IO: IO
       Dlib: Dlib
       HEXO: HEXO
       OpenCV: OpenCV
       Socket: Socket
-      C++:  Cpp
+      Cpp:  Cpp
       Python: Python
       CppMetaProgramming: MetaProgramming
       VsCode: VsCode
