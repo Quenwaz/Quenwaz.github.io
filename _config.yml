@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Q
+title: Quenwaz
 subtitle: Quenwaz's Blog
 description: 人生有如一股奔流，没有暗礁，激不起美丽的浪花
 keywords: C++,Boost,STL,Python,OpenCV,人脸识别,编程思想
@@ -61,7 +61,8 @@ category_map:
             生活: life
             其他: other
 tag_map:
-      Linux: Ubuntu
+      Linux: Linux
+      Windows: Windows
       Dlib: Dlib
       HEXO: HEXO
       OpenCV: OpenCV
@@ -105,5 +106,4 @@ deploy:
   repo: git@github.com:Quenwaz/Quenwaz.github.io.git
   # repo: https://github_token@github.com/Quenwaz/Quenwaz.github.io.git
   branch: master
-  # token: github_token
   # message: "Submission from hexo"
