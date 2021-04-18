@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- 
+  <title>C++ 线程安全单例模式 | Quenwaz</title> -->
+  <title>Quenwaz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="C++线程操作系统" />
+  
+  
+  
+  
+  <meta name="description" content="什么是线程安全？在拥有共享数据的多条线程并行执行的程序中，线程安全的代码会通过同步机制保证各个线程都可以正常且正确的执行，不会出现数据污染等意外情况。  如何保证线程安全？ 给共享的资源加把锁，保证每个资源变量每时每刻至多被一个线程占用。 让线程也拥有资源，不用去共享进程中的资源。如： 使用threadlocal可以为每个线程的维护一个私有的本地变量。   什么是单例模式？单例模式指在整个系统生命">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 线程安全单例模式">
+<meta property="og:url" content="https://quenwaz.github.io/2021/04/05/yuque/C++%20%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Quenwaz">
+<meta property="og:description" content="什么是线程安全？在拥有共享数据的多条线程并行执行的程序中，线程安全的代码会通过同步机制保证各个线程都可以正常且正确的执行，不会出现数据污染等意外情况。  如何保证线程安全？ 给共享的资源加把锁，保证每个资源变量每时每刻至多被一个线程占用。 让线程也拥有资源，不用去共享进程中的资源。如： 使用threadlocal可以为每个线程的维护一个私有的本地变量。   什么是单例模式？单例模式指在整个系统生命">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-04-05T08:11:29.000Z">
+<meta property="article:modified_time" content="2021-04-18T08:28:56.000Z">
+<meta property="article:author" content="Quenwa Zhang">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="线程">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Quenwaz" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div class="site-header-image">
+    <img id="originBg" width="100%" alt="Quenwa Zhang" src="">
+  </div>
+
+  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
+    <img id="blurBg" width="100%" style="top: 96%" alt="Quenwa Zhang" src="">
+  </div>
+
+  <script>
+        var imgUrls = "css/images/brooke-lark-wMzx2nBdeng-unsplash.jpg,https://source.unsplash.com/collection/1041983/1920x1080,https://source.unsplash.com/1920x1080/?Textures&Patterns,Interiors,Food".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("originBg").src=imgUrls[random];
+          document.getElementById("blurBg").src=imgUrls[random];
+        } else {
+          document.getElementById("originBg").src='/' + imgUrls[random];
+          document.getElementById("blurBg").src='/' + imgUrls[random];
+        }
+    </script>
+
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Quenwaz" rel="home"> Quenwaz </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-yuque/C++ 线程安全单例模式" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      C++ 线程安全单例模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/04/05/yuque/C++%20%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="article-date">
+	  <time datetime="2021-04-05T08:11:29.000Z" itemprop="datePublished">April 5, 2021</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是线程安全？"><a href="#什么是线程安全？" class="headerlink" title="什么是线程安全？"></a>什么是线程安全？</h2><p>在拥有<strong>共享数据</strong>的<strong>多条线程并行执行</strong>的程序中，线程安全的代码会通过<strong>同步机制</strong>保证<strong>各个线程</strong>都可以正常且正确的执行，不会出现数据污染等意外情况。</p>
+<hr>
+<h2 id="如何保证线程安全？"><a href="#如何保证线程安全？" class="headerlink" title="如何保证线程安全？"></a>如何保证线程安全？</h2><ol>
+<li>给<strong>共享的资源</strong>加把<strong>锁</strong>，保证每个资源变量每时每刻至多被一个线程占用。</li>
+<li>让线程也拥有资源，不用去共享进程中的资源。如： 使用<strong>threadlocal</strong>可以为每个线程的维护一个<strong>私有的</strong>本地变量。</li>
+</ol>
+<hr>
+<h2 id="什么是单例模式？"><a href="#什么是单例模式？" class="headerlink" title="什么是单例模式？"></a>什么是单例模式？</h2><p>单例模式指在整个系统生命周期里，保证一个类只能产生一个实例，确保该类的<strong>唯一性</strong>。</p>
+<h3 id="单例模式分类"><a href="#单例模式分类" class="headerlink" title="单例模式分类"></a>单例模式分类</h3><p>单例模式可以分为<strong>懒汉式</strong>和<strong>饿汉式</strong>，两者之间的区别在于<strong>创建实例的时间不同</strong>：</p>
+<ul>
+<li><strong>懒汉式</strong>：指系统运行中，实例并不存在，只有当需要使用该实例时，才会去创建并使用实例。<strong>（这种方式要考虑线程安全）</strong></li>
+<li><strong>饿汉式</strong>：指系统一运行，就初始化创建实例，当需要时，直接调用即可。<strong>（本身就线程安全，没有多线程的问题）</strong></li>
+</ul>
+<h3 id="单例类特点"><a href="#单例类特点" class="headerlink" title="单例类特点"></a>单例类特点</h3><ul>
+<li>构造函数和析构函数为<strong>private</strong>类型，目的<strong>禁止</strong>外部构造和析构</li>
+<li>拷贝构造和赋值构造函数为<strong>private</strong>类型，目的是<strong>禁止</strong>外部拷贝和赋值，确保实例的唯一性</li>
+<li>类里有个获取实例的<strong>静态函数</strong>，可以全局访问</li>
+</ul>
+<hr>
+<h2 id="普通懒汉式单例-（-线程不安全-）"><a href="#普通懒汉式单例-（-线程不安全-）" class="headerlink" title="普通懒汉式单例 （ 线程不安全 ）"></a>普通懒汉式单例 （ 线程不安全 ）</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///////////////////  普通懒汉式实现 -- 线程不安全 //////////////////</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span> <span class="comment">// std::cout</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mutex&gt;</span>    <span class="comment">// std::mutex</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span> <span class="comment">// pthread_create</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleInstance</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 获取单例对象</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> SingleInstance *<span class="title">GetInstance</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 释放单例，进程退出时调用</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteInstance</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印单例地址</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 将其构造和析构成为私有的, 禁止外部构造和析构</span></span><br><span class="line">    SingleInstance();</span><br><span class="line">    ~SingleInstance();</span><br><span class="line">    <span class="comment">// 将其拷贝构造和赋值构造成为私有函数, 禁止外部拷贝和赋值</span></span><br><span class="line">    SingleInstance(<span class="keyword">const</span> SingleInstance &amp;signal);</span><br><span class="line">    <span class="keyword">const</span> SingleInstance &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> SingleInstance &amp;signal);</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 唯一单例对象指针</span></span><br><span class="line">    <span class="keyword">static</span> SingleInstance *m_SingleInstance;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//初始化静态成员变量</span></span><br><span class="line">SingleInstance *SingleInstance::m_SingleInstance = <span class="literal">NULL</span>;</span><br><span class="line"><span class="function">SingleInstance* <span class="title">SingleInstance::GetInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (m_SingleInstance == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        m_SingleInstance = <span class="keyword">new</span> (<span class="built_in">std</span>::nothrow) SingleInstance;  <span class="comment">// 没有加锁是线程不安全的，当线程并发时会创建多个实例</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m_SingleInstance;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SingleInstance::deleteInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (m_SingleInstance)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">delete</span> m_SingleInstance;</span><br><span class="line">        m_SingleInstance = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SingleInstance::Print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;我的实例内存地址是:&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">SingleInstance::SingleInstance()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;构造函数&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">SingleInstance::~SingleInstance()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;析构函数&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">///////////////////  普通懒汉式实现 -- 线程不安全  //////////////////</span></span><br><span class="line"><span class="comment">// 线程函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">PrintHello</span><span class="params">(<span class="keyword">void</span> *threadid)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 主线程与子线程分离，两者相互不干涉，子线程结束同时子线程的资源自动回收</span></span><br><span class="line">    pthread_detach(pthread_self());</span><br><span class="line">    <span class="comment">// 对传入的参数进行强制类型转换，由无类型指针变为整形数指针，然后再读取</span></span><br><span class="line">    <span class="keyword">int</span> tid = *((<span class="keyword">int</span> *)threadid);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Hi, 我是线程 ID:[&quot;</span> &lt;&lt; tid &lt;&lt; <span class="string">&quot;]&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">// 打印实例地址</span></span><br><span class="line">    SingleInstance::GetInstance()-&gt;Print();</span><br><span class="line">    pthread_exit(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM_THREADS 5 <span class="comment">// 线程个数</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">pthread_t</span> threads[NUM_THREADS] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> indexes[NUM_THREADS] = &#123;<span class="number">0</span>&#125;; <span class="comment">// 用数组来保存i的值</span></span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;main() : 开始 ... &quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NUM_THREADS; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;main() : 创建线程:[&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;]&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">        indexes[i] = i; <span class="comment">//先保存i的值</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 传入的时候必须强制转换为void* 类型，即无类型指针</span></span><br><span class="line">        ret = pthread_create(&amp;threads[i], <span class="literal">NULL</span>, PrintHello, (<span class="keyword">void</span> *)&amp;(indexes[i]));</span><br><span class="line">        <span class="keyword">if</span> (ret)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Error:无法创建线程,&quot;</span> &lt;&lt; ret &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 手动释放单实例的资源</span></span><br><span class="line">    SingleInstance::deleteInstance();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;main() : 结束! &quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="普通懒汉式单例运行结果："><a href="#普通懒汉式单例运行结果：" class="headerlink" title="普通懒汉式单例运行结果："></a>普通懒汉式单例运行结果：</h4><p>从运行结果可知，单例构造函数创建了两个，内存地址分别为<code>0x7f3c980008c0</code>和<code>0x7f3c900008c0</code>，所以普通懒汉式单例只适合单进程不适合多线程，因为是线程不安全的。</p>
+<hr>
+<h2 id="加锁的懒汉式单例-（-线程安全-）"><a href="#加锁的懒汉式单例-（-线程安全-）" class="headerlink" title="加锁的懒汉式单例 （ 线程安全 ）"></a>加锁的懒汉式单例 （ 线程安全 ）</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///////////////////  加锁的懒汉式实现  //////////////////</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleInstance</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 获取单实例对象</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> SingleInstance *&amp;<span class="title">GetInstance</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//释放单实例，进程退出时调用</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteInstance</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印实例地址</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 将其构造和析构成为私有的, 禁止外部构造和析构</span></span><br><span class="line">    SingleInstance();</span><br><span class="line">    ~SingleInstance();</span><br><span class="line">    <span class="comment">// 将其拷贝构造和赋值构造成为私有函数, 禁止外部拷贝和赋值</span></span><br><span class="line">    SingleInstance(<span class="keyword">const</span> SingleInstance &amp;signal);</span><br><span class="line">    <span class="keyword">const</span> SingleInstance &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> SingleInstance &amp;signal);</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 唯一单实例对象指针</span></span><br><span class="line">    <span class="keyword">static</span> SingleInstance *m_SingleInstance;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">std</span>::mutex m_Mutex;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//初始化静态成员变量</span></span><br><span class="line">SingleInstance *SingleInstance::m_SingleInstance = <span class="literal">NULL</span>;</span><br><span class="line"><span class="built_in">std</span>::mutex SingleInstance::m_Mutex;</span><br><span class="line"><span class="function">SingleInstance *&amp;<span class="title">SingleInstance::GetInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//  这里使用了两个 if判断语句的技术称为双检锁；好处是，只有判断指针为空的时候才加锁，</span></span><br><span class="line">    <span class="comment">//  避免每次调用 GetInstance的方法都加锁，锁的开销毕竟还是有点大的。</span></span><br><span class="line">    <span class="keyword">if</span> (m_SingleInstance == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">lock</span><span class="params">(m_Mutex)</span></span>; <span class="comment">// 加锁</span></span><br><span class="line">        <span class="keyword">if</span> (m_SingleInstance == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            m_SingleInstance = <span class="keyword">new</span> (<span class="built_in">std</span>::nothrow) SingleInstance;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m_SingleInstance;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SingleInstance::deleteInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">lock</span><span class="params">(m_Mutex)</span></span>; <span class="comment">// 加锁</span></span><br><span class="line">    <span class="keyword">if</span> (m_SingleInstance)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">delete</span> m_SingleInstance;</span><br><span class="line">        m_SingleInstance = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SingleInstance::Print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;我的实例内存地址是:&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">SingleInstance::SingleInstance()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;构造函数&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">SingleInstance::~SingleInstance()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;析构函数&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">///////////////////  加锁的懒汉式实现  //////////////////</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="加锁的懒汉式单例的运行结果："><a href="#加锁的懒汉式单例的运行结果：" class="headerlink" title="加锁的懒汉式单例的运行结果："></a>加锁的懒汉式单例的运行结果：</h4><p>从运行结果可知，只创建了一个实例，内存地址是<code>0x7f28b00008c0</code>，所以加了互斥锁的普通懒汉式是线程安全的</p>
+<h2 id="内部静态变量的懒汉单例（C-11-线程安全）"><a href="#内部静态变量的懒汉单例（C-11-线程安全）" class="headerlink" title="内部静态变量的懒汉单例（C++11 线程安全）"></a>内部静态变量的懒汉单例（C++11 线程安全）</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///////////////////  内部静态变量的懒汉实现  //////////////////</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 获取单实例对象</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> Single &amp;<span class="title">GetInstance</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印实例地址</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 禁止外部构造</span></span><br><span class="line">    Single();</span><br><span class="line">    <span class="comment">// 禁止外部析构</span></span><br><span class="line">    ~Single();</span><br><span class="line">    <span class="comment">// 禁止外部复制构造</span></span><br><span class="line">    Single(<span class="keyword">const</span> Single &amp;signal);</span><br><span class="line">    <span class="comment">// 禁止外部赋值操作</span></span><br><span class="line">    <span class="keyword">const</span> Single &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Single &amp;signal);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">Single &amp;<span class="title">Single::GetInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 局部静态特性的方式实现单实例</span></span><br><span class="line">    <span class="keyword">static</span> Single signal;</span><br><span class="line">    <span class="keyword">return</span> signal;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Single::Print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;我的实例内存地址是:&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">Single::Single()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;构造函数&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">Single::~Single()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;析构函数&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">///////////////////  内部静态变量的懒汉实现  //////////////////</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="内部静态变量的懒汉单例的运行结果："><a href="#内部静态变量的懒汉单例的运行结果：" class="headerlink" title="内部静态变量的懒汉单例的运行结果："></a>内部静态变量的懒汉单例的运行结果：</h4><p><code>-std=c++0x</code>编译是使用了 C11 的特性，在 C11 内部静态变量的方式里是线程安全的，只创建了一次实例，内存地址是<code>0x6016e8</code>，这个方式非常推荐，实现的代码最少！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@lincoding singleInstall]#g++ SingleInstance.cpp -o SingleInstance -lpthread -std&#x3D;c++0x</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="饿汉式单例-（本身就线程安全）"><a href="#饿汉式单例-（本身就线程安全）" class="headerlink" title="饿汉式单例 （本身就线程安全）"></a>饿汉式单例 （本身就线程安全）</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">////////////////////////// 饿汉实现 /////////////////////</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 获取单实例</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> Singleton* <span class="title">GetInstance</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 释放单实例，进程退出时调用</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteInstance</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印实例地址</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 将其构造和析构成为私有的, 禁止外部构造和析构</span></span><br><span class="line">    Singleton();</span><br><span class="line">    ~Singleton();</span><br><span class="line">    <span class="comment">// 将其拷贝构造和赋值构造成为私有函数, 禁止外部拷贝和赋值</span></span><br><span class="line">    Singleton(<span class="keyword">const</span> Singleton &amp;signal);</span><br><span class="line">    <span class="keyword">const</span> Singleton &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Singleton &amp;signal);</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 唯一单实例对象指针</span></span><br><span class="line">    <span class="keyword">static</span> Singleton *g_pSingleton;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 代码一运行就初始化创建实例 ，本身就线程安全</span></span><br><span class="line">Singleton* Singleton::g_pSingleton = <span class="keyword">new</span> (<span class="built_in">std</span>::nothrow) Singleton;</span><br><span class="line"><span class="function">Singleton* <span class="title">Singleton::GetInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> g_pSingleton;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Singleton::deleteInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (g_pSingleton)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">delete</span> g_pSingleton;</span><br><span class="line">        g_pSingleton = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Singleton::Print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;我的实例内存地址是:&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">Singleton::Singleton()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;构造函数&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">Singleton::~Singleton()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;析构函数&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">////////////////////////// 饿汉实现 /////////////////////</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="饿汉式单例的运行结果："><a href="#饿汉式单例的运行结果：" class="headerlink" title="饿汉式单例的运行结果："></a>饿汉式单例的运行结果：</h4><p>从运行结果可知，饿汉式在程序一开始就构造函数初始化了，所以本身就线程安全的</p>
+<hr>
+<h2 id="特点与选择"><a href="#特点与选择" class="headerlink" title="特点与选择"></a>特点与选择</h2><ul>
+<li>懒汉式是以时间换空间，适应于访问量较<strong>小</strong>时；推荐使用<strong>内部静态变量的懒汉单例</strong>，代码量少</li>
+<li>饿汉式是以空间换时间，适应于访问量较<strong>大</strong>时，或者线程比较多的的情况</li>
+</ul>
+<blockquote>
+<p>原文链接: <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020244045">https://segmentfault.com/a/1190000020244045</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OperatingSystem/" rel="tag">操作系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/" rel="tag">线程</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/16/yuque/ANSI(GBK%E3%80%81GB2312)%E4%B8%8EUTF-8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ANSI(GBK、GB2312)与UTF-8之间的转换
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/28/blog/NetworkProgramming/TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TCP/IP基础知识</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是线程安全？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">如何保证线程安全？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">什么是单例模式？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB"><span class="nav-number">3.1.</span> <span class="nav-text">单例模式分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E7%B1%BB%E7%89%B9%E7%82%B9"><span class="nav-number">3.2.</span> <span class="nav-text">单例类特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%87%92%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B-%EF%BC%88-%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8-%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">普通懒汉式单例 （ 线程不安全 ）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%87%92%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="nav-number">4.0.1.</span> <span class="nav-text">普通懒汉式单例运行结果：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E9%94%81%E7%9A%84%E6%87%92%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B-%EF%BC%88-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">加锁的懒汉式单例 （ 线程安全 ）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E9%94%81%E7%9A%84%E6%87%92%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B%E7%9A%84%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="nav-number">5.0.1.</span> <span class="nav-text">加锁的懒汉式单例的运行结果：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E7%9A%84%E6%87%92%E6%B1%89%E5%8D%95%E4%BE%8B%EF%BC%88C-11-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">内部静态变量的懒汉单例（C++11 线程安全）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E7%9A%84%E6%87%92%E6%B1%89%E5%8D%95%E4%BE%8B%E7%9A%84%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="nav-number">6.0.1.</span> <span class="nav-text">内部静态变量的懒汉单例的运行结果：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A5%BF%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B-%EF%BC%88%E6%9C%AC%E8%BA%AB%E5%B0%B1%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">饿汉式单例 （本身就线程安全）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A5%BF%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B%E7%9A%84%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="nav-number">7.0.1.</span> <span class="nav-text">饿汉式单例的运行结果：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%E4%B8%8E%E9%80%89%E6%8B%A9"><span class="nav-number">8.</span> <span class="nav-text">特点与选择</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 Quenwaz All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="http://quenwaz.applinzi.com" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+      var headerblur = document.getElementById("header-blur");
+      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- 
+  <title>ANSI(GBK、GB2312)与UTF-8之间的转换 | Quenwaz</title> -->
+  <title>Quenwaz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="字符编码" />
+  
+  
+  
+  
+  <meta name="description" content="为了更清晰地说明 Windows 与 Linux 之间的编码问题， 我决定以代码实践的方式进行展开。 前提说明首要概念:**单字节字符串: **即 ACSII 字符串， 单个字节可表示一个字符的字符串。多字节字符串: 多个字节来表示一个字符， 如 GB18030, UTF-8 等。**宽字符字符串: **宽字符由操作系统决定宽度。 如 Windows（UTF-16LE）、Linux（UTF-32）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ANSI(GBK、GB2312)与UTF-8之间的转换">
+<meta property="og:url" content="https://quenwaz.github.io/2021/04/16/yuque/ANSI(GBK%E3%80%81GB2312)%E4%B8%8EUTF-8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/index.html">
+<meta property="og:site_name" content="Quenwaz">
+<meta property="og:description" content="为了更清晰地说明 Windows 与 Linux 之间的编码问题， 我决定以代码实践的方式进行展开。 前提说明首要概念:**单字节字符串: **即 ACSII 字符串， 单个字节可表示一个字符的字符串。多字节字符串: 多个字节来表示一个字符， 如 GB18030, UTF-8 等。**宽字符字符串: **宽字符由操作系统决定宽度。 如 Windows（UTF-16LE）、Linux（UTF-32）">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-04-15T16:27:43.000Z">
+<meta property="article:modified_time" content="2021-04-18T08:28:56.000Z">
+<meta property="article:author" content="Quenwa Zhang">
+<meta property="article:tag" content="字符编码">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Quenwaz" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div class="site-header-image">
+    <img id="originBg" width="100%" alt="Quenwa Zhang" src="">
+  </div>
+
+  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
+    <img id="blurBg" width="100%" style="top: 96%" alt="Quenwa Zhang" src="">
+  </div>
+
+  <script>
+        var imgUrls = "css/images/brooke-lark-wMzx2nBdeng-unsplash.jpg,https://source.unsplash.com/collection/1041983/1920x1080,https://source.unsplash.com/1920x1080/?Textures&Patterns,Interiors,Food".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("originBg").src=imgUrls[random];
+          document.getElementById("blurBg").src=imgUrls[random];
+        } else {
+          document.getElementById("originBg").src='/' + imgUrls[random];
+          document.getElementById("blurBg").src='/' + imgUrls[random];
+        }
+    </script>
+
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Quenwaz" rel="home"> Quenwaz </a>
+            
+          </h1>
+          
+          
+            <div class="site-description">人生有如一股奔流，没有暗礁，激不起美丽的浪花</div>
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-yuque/ANSI(GBK、GB2312)与UTF-8之间的转换" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      ANSI(GBK、GB2312)与UTF-8之间的转换
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/04/16/yuque/ANSI(GBK%E3%80%81GB2312)%E4%B8%8EUTF-8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" class="article-date">
+	  <time datetime="2021-04-15T16:27:43.000Z" itemprop="datePublished">April 16, 2021</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了更清晰地说明 Windows 与 Linux 之间的编码问题， 我决定以代码实践的方式进行展开。</p>
+<h2 id="前提说明"><a href="#前提说明" class="headerlink" title="前提说明"></a>前提说明</h2><p>首要概念:<br>**单字节字符串: **即 ACSII 字符串， 单个字节可表示一个字符的字符串。<br><strong>多字节字符串:</strong> 多个字节来表示一个字符， 如 GB18030, UTF-8 等。<br>**宽字符字符串: **宽字符由操作系统决定宽度。 如 Windows（UTF-16LE）、Linux（UTF-32）。</p>
+<p>其次需要明确一个概念: <strong>ANSI(GB2312、GBK)与 UTF-8 之间进行转换必须经过 Unicode 作为中转。</strong><br>那么如何进行转换呢？ 请看如下 C++代码:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> cvt</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">std::string <span class="title">w2utf8</span><span class="params">(<span class="keyword">const</span> std::wstring&amp; str)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">static</span> std::wstring_convert&lt;std::codecvt_utf8&lt;<span class="keyword">wchar_t</span>&gt;&gt; strCnv;</span><br><span class="line">		<span class="keyword">return</span> strCnv.<span class="built_in">to_bytes</span>(str);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">std::wstring <span class="title">utf82w</span><span class="params">(<span class="keyword">const</span> std::string&amp; str)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">static</span> std::wstring_convert&lt;std::codecvt_utf8&lt;<span class="keyword">wchar_t</span>&gt;&gt; strCnv;</span><br><span class="line">		<span class="keyword">return</span> strCnv.<span class="built_in">from_bytes</span>(str);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">std::string <span class="title">w2ansi</span><span class="params">(<span class="keyword">const</span> std::wstring&amp; str, <span class="keyword">const</span> std::string&amp; locale=<span class="string">&quot;chs&quot;</span>)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">typedef</span> std::codecvt_byname&lt;<span class="keyword">wchar_t</span>, <span class="keyword">char</span>, std::<span class="keyword">mbstate_t</span>&gt; F;</span><br><span class="line">		<span class="function"><span class="keyword">static</span> std::wstring_convert&lt;F&gt; <span class="title">strCnv</span><span class="params">(<span class="keyword">new</span> F(locale))</span></span>;</span><br><span class="line">		<span class="keyword">return</span> strCnv.<span class="built_in">to_bytes</span>(str);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">std::wstring <span class="title">ansi2w</span><span class="params">(<span class="keyword">const</span> std::string&amp; str, <span class="keyword">const</span> std::string&amp; locale=<span class="string">&quot;chs&quot;</span>)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">typedef</span> std::codecvt_byname&lt;<span class="keyword">wchar_t</span>, <span class="keyword">char</span>, std::<span class="keyword">mbstate_t</span>&gt; F;</span><br><span class="line">		<span class="function"><span class="keyword">static</span> std::wstring_convert&lt;F&gt; <span class="title">strCnv</span><span class="params">(<span class="keyword">new</span> F(locale))</span></span>;</span><br><span class="line">		<span class="keyword">return</span> strCnv.<span class="built_in">from_bytes</span>(str);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>作为辅助， 提供字符串转换为十六进制代码:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function">std::string <span class="title">char2hex</span><span class="params">(std::string <span class="keyword">const</span>&amp; s)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		std::string ret;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">unsigned</span> i = <span class="number">0</span>; i != s.<span class="built_in">size</span>(); ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">char</span> hex[<span class="number">8</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">			<span class="built_in">sprintf_s</span>(hex, <span class="string">&quot;%x&quot;</span>, <span class="keyword">static_cast</span>&lt;<span class="keyword">unsigned</span> <span class="keyword">char</span>&gt;(s[i]));</span><br><span class="line">			ret += hex;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function">std::string <span class="title">char2hex</span><span class="params">(std::wstring <span class="keyword">const</span>&amp; s)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		std::string ret;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">unsigned</span> i = <span class="number">0</span>; i != s.<span class="built_in">size</span>(); ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">char</span> hex[<span class="number">8</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">			<span class="built_in">sprintf_s</span>(hex, <span class="string">&quot;%x&quot;</span>, s[i]);</span><br><span class="line">			ret += hex;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来进行测试。数据定义如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __TO_WSTRING(VAR) L##VAR</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TO_WSTRING(VAR) __TO_WSTRING(VAR)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CONSTANT_STRING <span class="meta-string">&quot;测试中文&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CONSTANT_STRINGW TO_WSTRING(CONSTANT_STRING)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>测试环境:</p>
+<ul>
+<li>Windows 10</li>
+<li>visual studio 2019</li>
+<li>C++ 14</li>
+</ul>
+<h3 id="编码检查"><a href="#编码检查" class="headerlink" title="编码检查"></a>编码检查</h3><p>msvc 编译选项解释:</p>
+<blockquote>
+<p>/source-charset 是用于将程序的源文本解释为在编译之前用于预处理阶段输入的内部表示形式的编码。<br>/execution-charset 预处理之后，用于编译的代码中的任何字符串或字符文本的内部表示形式。</p>
+</blockquote>
+<blockquote>
+<p><strong>个人理解是将 source-charset 指定的编码解释源代码用作编译， 而 execution-charset 主要将代码中的字符及字符串按指定编码存储到可执行文件。</strong></p>
+</blockquote>
+<blockquote>
+<p>详见微软解释<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/cpp/build/reference/execution-charset-set-execution-character-set?view=msvc-160">/execution-charset</a>与<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/cpp/build/reference/source-charset-set-source-character-set?view=msvc-160">/source-charset</a></p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_file_gb2312_source_gbk_execution_gbk</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: gb2312</span></span><br><span class="line"><span class="comment">	 * /source-charset:gbk /execution-charset:gbk</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="built_in">check</span>();</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is GB2312</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果:</p>
+<ul>
+<li>宽字符为 UTF-8</li>
+<li>多字节字符为 GB2312</li>
+</ul>
+<p>接下来 7 个测试结果如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_file_gb2312_source_gbk_execution_utf8</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: gb2312</span></span><br><span class="line"><span class="comment">	 * /source-charset:gbk /execution-charset:utf-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">check</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is UTF-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_file_gb2312_source_utf8_execution_gbk</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: gb2312</span></span><br><span class="line"><span class="comment">	 * /source-charset:utf-8 /execution-charset:gbk</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">// 出现警告: utf-8编码中出现非法字符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">check</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * wstring is Unknown</span></span><br><span class="line"><span class="comment">	 * string is Unknown</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_file_gb2312_source_utf8_execution_utf8</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: gb2312</span></span><br><span class="line"><span class="comment">	 * /source-charset:utf-8 /execution-charset:utf-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">// 出现警告: utf-8编码中出现非法字符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">check</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * string is GB2312</span></span><br><span class="line"><span class="comment">	 * wstring is Unknown</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_file_utf8_source_utf8_execution_utf8</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: utf-8</span></span><br><span class="line"><span class="comment">	 * /source-charset:utf-8 /execution-charset:utf-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">check</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is UTF-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_file_utf8_source_utf8_execution_gbk</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: utf-8</span></span><br><span class="line"><span class="comment">	 * /source-charset:utf-8 /execution-charset:gbk</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">check</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is GB2312</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_file_utf8_source_gbk_execution_utf8</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: utf-8</span></span><br><span class="line"><span class="comment">	 * /source-charset:gbk /execution-charset:utf-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	 <span class="comment">// 出现警告: 包含无法显示的字符(936), 以unicode编码防止数据丢失</span></span><br><span class="line">	<span class="built_in">check</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is UTF-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_file_utf8_source_gbk_execution_gbk</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: utf-8</span></span><br><span class="line"><span class="comment">	 * /source-charset:gbk /execution-charset:gbk</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">// 出现警告: 包含无法显示的字符(936), 以unicode编码防止数据丢失</span></span><br><span class="line">	<span class="built_in">check</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is UTF-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>结论:</strong><br>尽量保持文件编码与/source-charset 编码一致， 否则会造成乱码情况。从以上测试来看，测试<code>check_file_utf8_source_gbk_execution_gbk</code> 源文件格式为 utf-8，而指定/source-charset 为 gbk, 于是编译警告， 但是编译器自动转换代码为 unicode，所以最终字符串都为 utf-8。测试<code>check_file_utf8_source_utf8_execution_gbk</code>同理。而对于测试<code>check_file_gb2312_source_utf8_execution_gbk</code>与测试<code>check_file_gb2312_source_utf8_execution_utf8</code>直接警告非法字符， 导致最终结果未定义。</p>
+<h3 id="打印输出"><a href="#打印输出" class="headerlink" title="打印输出"></a>打印输出</h3><p>下面分别对不同编码文件及编译选项的代码进行打印输出:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_file_utf8_source_utf8_execution_gbk</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: utf-8</span></span><br><span class="line"><span class="comment">	 * /source-charset:utf-8 /execution-charset:gbk</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;chcp 65001&quot;</span>);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is GB2312</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="built_in">check_file_utf8_source_utf8_execution_gbk</span>();</span><br><span class="line">	std::cout &lt;&lt; cvt::<span class="built_in">w2utf8</span>(cvt::<span class="built_in">ansi2w</span>(CONSTANT_STRING, <span class="string">&quot;chs&quot;</span>)).<span class="built_in">c_str</span>() &lt;&lt; std::endl;</span><br><span class="line">	std::wcout.<span class="built_in">imbue</span>(std::<span class="built_in">locale</span>(std::<span class="built_in">locale</span>(<span class="string">&quot;chs&quot;</span>), <span class="keyword">new</span> std::codecvt_utf8&lt;<span class="keyword">wchar_t</span>&gt;()));</span><br><span class="line">	std::wcout &lt;&lt; CONSTANT_STRINGW &lt;&lt; std::endl;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * 测试中文</span></span><br><span class="line"><span class="comment">	 * 测试中文</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_file_utf8_source_utf8_execution_utf8</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: utf-8</span></span><br><span class="line"><span class="comment">	 * /source-charset:utf-8 /execution-charset:utf-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;chcp 65001&quot;</span>);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is UTF-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="built_in">check_file_utf8_source_utf8_execution_utf8</span>();</span><br><span class="line">	std::cout &lt;&lt; CONSTANT_STRING &lt;&lt; std::endl;</span><br><span class="line">	std::wcout.<span class="built_in">imbue</span>(std::<span class="built_in">locale</span>(std::<span class="built_in">locale</span>(<span class="string">&quot;chs&quot;</span>), <span class="keyword">new</span> std::codecvt_utf8&lt;<span class="keyword">wchar_t</span>&gt;()));</span><br><span class="line">	std::wcout &lt;&lt; CONSTANT_STRINGW &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * 测试中文</span></span><br><span class="line"><span class="comment">	 * 测试中文</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_file_gb2312_source_gbk_execution_gbk</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: gb2312</span></span><br><span class="line"><span class="comment">	 * /source-charset:gbk /execution-charset:gbk</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;chcp 936&quot;</span>);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is GB2312</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="built_in">check_file_gb2312_source_gbk_execution_gbk</span>();</span><br><span class="line">	std::cout &lt;&lt; CONSTANT_STRING &lt;&lt; std::endl;</span><br><span class="line">	std::wcout.<span class="built_in">imbue</span>(std::<span class="built_in">locale</span>(std::<span class="built_in">locale</span>(<span class="string">&quot;chs&quot;</span>)));</span><br><span class="line">	std::wcout &lt;&lt; CONSTANT_STRINGW &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * 测试中文</span></span><br><span class="line"><span class="comment">	 * 测试中文</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_file_gb2312_source_gbk_execution_utf8</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * file encode: gb2312</span></span><br><span class="line"><span class="comment">	 * /source-charset:gbk /execution-charset:utf-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;chcp 936&quot;</span>);</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * wstring is UTF-8</span></span><br><span class="line"><span class="comment">	 * string is UTF-8</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="built_in">check_file_gb2312_source_gbk_execution_utf8</span>();</span><br><span class="line">	std::cout &lt;&lt; cvt::<span class="built_in">w2ansi</span>(cvt::<span class="built_in">utf82w</span>(CONSTANT_STRING), <span class="string">&quot;chs&quot;</span>).<span class="built_in">c_str</span>() &lt;&lt; std::endl;</span><br><span class="line">	std::wcout.<span class="built_in">imbue</span>(std::<span class="built_in">locale</span>(std::<span class="built_in">locale</span>(<span class="string">&quot;chs&quot;</span>)));</span><br><span class="line">	std::wcout &lt;&lt; CONSTANT_STRINGW &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * output:</span></span><br><span class="line"><span class="comment">	 * 测试中文</span></span><br><span class="line"><span class="comment">	 * 测试中文</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>test_file_utf8_source_utf8_execution_gbk</code> 控制台为 utf-8， 多字节字符串为 GB2312，所以需要转换为 Unicode 然后转换为 UTF-8 进行显示， 而宽字节字符串为 UTF-8，需要指定 local 为 gbk 然后添加一个转换为 utf-8 的转换器才能正常显示。<br><code>test_file_utf8_source_utf8_execution_utf8</code> 控制台为 utf-8, 多字节宽字节字符串都为 UTF-8。所以多字节可直接显示如需转换。 而宽字节字符串同上。<br><code>test_file_gb2312_source_gbk_execution_gbk</code> 控制台为 gbk, 宽字符为 UTF-8, 多字符为 GB2312。所以多字符串能直接显示， 而宽字符串需要添加 local， 默认转换器为 new std::codecvt_byname&lt;wchar_t, char, std::mbstate_t&gt;(“chs”)，所以无需指定。<br><code>test_file_gb2312_source_gbk_execution_utf8</code> 控制台为 gbk, 多字节宽字节字符串都为 UTF-8。多字节字符串需要转换为 Unicode 然后转换为 GBK 进行显示。</p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="编码检查-1"><a href="#编码检查-1" class="headerlink" title="编码检查"></a>编码检查</h3><p>gcc 编译选项解释:</p>
+<ul>
+<li><strong>-finput-charset=charset</strong>，指定源文件本身的编码方式，默认为 UTF-8(有无 BOM 均可)。例如当我们的源代码文件保存为 GBK 时，则也应当将此选项的值指定为 GBK。</li>
+<li><strong>-fwide-exec-charset=charset</strong>，指定宽字符或宽字符串的字面值常量的内部编码方式，默认为 UTF-32 或 UTF-16，对应 wchar_t 的宽度。wchar_t 的宽度依赖平台实现，windows 实现为 2 字节宽，linux 实现为 4 字节宽。例如指定此选项为 GBK，则宽字符或宽字符串常量将会以 GBK 编码方式存储，而不是默认的 UTF-16 或 UTF-32 编码方式。</li>
+<li><strong>-fexec-charset=charset</strong>，指定窄字符或窄字符串的字面值常量的内部编码方式，默认为 UTF-8。例如指定此选项为 GBK，则窄字符或窄字符串常量将会以 GBK 编码方式存储而不是默认的 UTF-8 编码方式。</li>
+</ul>
+<p>由于测试结果一致， 再此就不代码详述了。 代码上存在差异如 codecvt_byname 的参数 Windows 为<code>chs</code>，Linux 为<code>zh_CN.GBK</code>。 system 无法利用 chcp 切换终端编码， 因为 chcp 为 Windows 命令。</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" rel="tag">字符编码</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/04/05/yuque/C++%20%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++ 线程安全单例模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%8F%90%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">前提说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows"><span class="nav-number">2.</span> <span class="nav-text">Windows</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E6%A3%80%E6%9F%A5"><span class="nav-number">2.1.</span> <span class="nav-text">编码检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E8%BE%93%E5%87%BA"><span class="nav-number">2.2.</span> <span class="nav-text">打印输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux"><span class="nav-number">3.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E6%A3%80%E6%9F%A5-1"><span class="nav-number">3.1.</span> <span class="nav-text">编码检查</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2021 Quenwaz All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="http://quenwaz.applinzi.com" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+      var headerblur = document.getElementById("header-blur");
+      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

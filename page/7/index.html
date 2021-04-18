@@ -70,7 +70,7 @@
   </div>
 
   <script>
-        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
+        var imgUrls = "css/images/brooke-lark-wMzx2nBdeng-unsplash.jpg,https://source.unsplash.com/collection/1041983/1920x1080,https://source.unsplash.com/1920x1080/?Textures&Patterns,Interiors,Food".split(",");
         var random = Math.floor((Math.random() * imgUrls.length ));
         if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
           document.getElementById("originBg").src=imgUrls[random];
@@ -131,6 +131,198 @@
       <div id="content" class="outer">
         
           <section id="main">
+  
+    <article id="post-blog/DesignPatterns/设计模式之设计原则"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/04/20/blog/DesignPatterns/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">设计模式之设计原则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/04/20/blog/DesignPatterns/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" class="article-date">
+	  <time datetime="2018-04-20T05:16:43.000Z" itemprop="datePublished">April 20, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-blog/Python/Python核心编程--Python基础"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/04/19/blog/Python/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B--Python%E5%9F%BA%E7%A1%80/">Python核心编程--Python基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/04/19/blog/Python/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B--Python%E5%9F%BA%E7%A1%80/" class="article-date">
+	  <time datetime="2018-04-19T14:33:50.000Z" itemprop="datePublished">April 19, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="语句与语法"><a href="#语句与语法" class="headerlink" title="语句与语法"></a>语句与语法</h3><p>字符与基本规则</p>
+<table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#</td>
+<td align="center">注释的开始符号，通常#后空一格</td>
+</tr>
+<tr>
+<td align="center">\n</td>
+<td align="center">换行</td>
+</tr>
+<tr>
+<td align="center">\</td>
+<td align="center">继续上一行</td>
+</tr>
+<tr>
+<td align="center">;</td>
+<td align="center">两个语句连接在一行中</td>
+</tr>
+<tr>
+<td align="center">:</td>
+<td align="center">将代码块的头和体分开</td>
+</tr>
+</tbody></table>
+<ul>
+<li>不同的缩进深度分隔不同的代码块</li>
+<li>python文件即模块</li>
+</ul>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释(#)"></a>注释(#)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注释开始了</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">这是多行注释</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">这也是多行注释</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="继续"><a href="#继续" class="headerlink" title="继续(\)"></a>继续(\)</h4><p>若一行语句太长，可以利用**\**进行分隔，如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (weather_is_hot == <span class="number">1</span>) <span class="keyword">and</span> \</span><br><span class="line">(shark_warnings ==<span class="number">0</span>):</span><br><span class="line">  send_goto_beach_mesg_to_pager()</span><br></pre></td></tr></table></figure>
+<p>另外，不使用反斜杠也可以换行，即使用小括号，中括号，花括号都可以多行书写。当然三引号字符串也可以。</p>
+<p>建议使用括号进行换行，使语句可读性更高。</p>
+<h4 id="代码组由不同缩进分隔"><a href="#代码组由不同缩进分隔" class="headerlink" title="代码组由不同缩进分隔"></a>代码组由不同缩进分隔</h4><blockquote>
+<p>核心风格:缩进四个空格宽度，避免使用制表符<br/><br>  推荐使用空格替代制表符的原因：因为不同文本编辑器中的制表符代表的空白宽度不统一，<strong>如果你的代码要跨平台，或者不同的编辑器读写，建议不要使用制表符</strong>。</p>
+</blockquote>
+<h4 id="同行书写多个语句"><a href="#同行书写多个语句" class="headerlink" title="同行书写多个语句(;)"></a>同行书写多个语句(;)</h4><p>分号(;)允许你将多个语句写在同一行上，语句之间用分号隔开，而这些语句子不能在这行开始新的代码块。如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys; x = <span class="string">&#x27;foo&#x27;</span>; sys.stdout.write(x + <span class="string">&#x27;\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>显然同行多个语句块大大降低代码可读性，python虽允许但不提倡这么做。</p>
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>每个python脚本文件都可以被当成是一个模块。如果一个模块驱动太多功能，可以考虑进行模块拆分。</p>
+<h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><p>等号(=)即赋值</p>
+<ul>
+<li><p>增量赋值支持</p>
+<pre><code>+=    -=    *=    /=    %=    **=
+&lt;&lt;=   &gt;&gt;=   &amp;=    ^=    |=   
+</code></pre>
+</li>
+<li><p>多重赋值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = y = z = <span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+<li><p>多元赋值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x, y, z = <span class="number">1</span>, <span class="number">2</span>, <span class="string">&#x27;a string&#x27;</span></span><br><span class="line"><span class="comment"># 通常建议利用元祖进行多元赋值,更具可读性</span></span><br><span class="line">(x, y, z) = (<span class="number">1</span>, <span class="number">2</span>, <span class="string">&#x27;a string&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 交换变量的值,如下</span></span><br><span class="line">x, y = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">x, y = y, x</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>python 标识符规则与大多数计算机语言相似:</p>
+<ul>
+<li>第一个字符必须为字母或下划线</li>
+<li>剩下字符可以是字母数字或下划线</li>
+<li>区分大小写</li>
+</ul>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>如需查看关键字，请执行**help(‘keywords’)**：</p>
+<pre><code>False               def                 if                  raise
+None                del                 import              return
+True                elif                in                  try
+and                 else                is                  while
+as                  except              lambda              with
+assert              finally             nonlocal            yield
+break               for                 not
+class               from                or
+continue            global              pass
+</code></pre>
+<h4 id="专用下划线标识符"><a href="#专用下划线标识符" class="headerlink" title="专用下划线标识符"></a>专用下划线标识符</h4><ul>
+<li>_xxx: 不用’from module import *’导入</li>
+<li>_xxx_：系统定义名字</li>
+<li>__xxx：类中的私有变量名</li>
+</ul>
+<blockquote>
+<p>核心风格:避免用下划线作为变量名的开始，因为下划线对解释器有特殊的意义。</p>
+</blockquote>
+<br/>
+----------
+<small>此文为《Python核心编程》（第二版）学习笔记
+若有错误处，烦请指出。</small>
+
+<hr>
+<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
   
     <article id="post-blog/Python/Python核心编程--Python起步"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
@@ -476,166 +668,11 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-blog/Python/Python核心编程--欢迎来到python的世界"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/04/15/blog/Python/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B--%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0python%E7%9A%84%E4%B8%96%E7%95%8C/">Python核心编程——欢迎来到python的世界</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/04/15/blog/Python/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B--%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0python%E7%9A%84%E4%B8%96%E7%95%8C/" class="article-date">
-	  <time datetime="2018-04-15T04:53:42.000Z" itemprop="datePublished">April 15, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
- 
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是Python"><a href="#什么是Python" class="headerlink" title="什么是Python"></a>什么是Python</h2><p>Python优雅且健壮的编程，它继承传统语言的强大和，同时也借鉴简单脚本和解释语言的易用性。</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p><strong>高级</strong><br>Python高级数据结构，如List，Dictionary，set，Tumple等数据结构</p>
-<p><strong>面向对象</strong><br>面向对象编程为数据和逻辑相分离的结构化和过程化编程添加了新活力。面向对象编程支持将特定的行为、特性和功能与它们要处理或所代表的数据结合在一起。</p>
-<p><strong>可升级</strong><br>Python提供了基本开发模块，你可以在它上面开发你的软件，而且当这些需要扩展和增长时，Python可插入性和模块化架构则能使你的项目生机盎然和易于管理。</p>
-<p><strong>可扩展</strong><br>在Python中如果遇到性能瓶颈，可以利用C/C++编码写Python模块，且在使用上跟Python标准模板无异。<br>如果CPython是使用C写的，所以要使用C/C++编写Python扩展。同样Python的Java实现被称作Jython,要使用Java编写其扩展。</p>
-<p><strong>可移植性</strong><br>在不同的操作系统上都能看到Python的身影。因为Python是由C写的，又由于C的可移植性，使得Python可以运行在任何ANSI C编译器的平台上。</p>
-<p><strong>健壮性</strong><br>Python提供了“安全合理”的退出机制，让程序员能掌控局面。一旦你的Python程序因为错误崩溃，解释程序就会转出一个“堆栈跟踪”。里边包含崩溃的原因以及文件名，代码所在行数。这些异常Python能够让你监控并进行处理。</p>
-<p><strong>内存管理器</strong><br>C/C++最大的诟病就是开发者需要自行管理内存。而Python自身的内存管理使你能够专心于开发最直接的目标，无需关注内存释放。</p>
-<p><strong>解释性和（字节）编译性</strong><br>Python是一种解释性语言，就意味着开发过程中没有了编译环节。由于不是以本地机器码运行，纯粹的解释性语言通常比编译性语言要慢。而因为Java，Python是一种近似机器语言的字节编译，使得其性能有所提高，同时保持解释性语言的优点。</p>
-<blockquote>
-<p>Python源文件通常以.py作为扩展名。当源文件被解释器加载或者显示地进行字节码编译的时候会被编译成字节码。由于可能解释器不同，源文件会被编译成带有.pyc或.pyo扩展名的文件。</p>
-</blockquote>
-<h2 id="下载和安装Python"><a href="#下载和安装Python" class="headerlink" title="下载和安装Python"></a>下载和安装Python</h2><p><em><a target="_blank" rel="noopener" href="https://www.python.org/downloads/">官网下载</a></em></p>
-<p><strong>Python支持操作系统：</strong></p>
-<ul>
-<li>所有Unix衍生系统（Linux,MacOs X,Solaris,FreeBSD等）</li>
-<li>windows系统</li>
-<li>游戏控制平台：VxWorks,QNX</li>
-<li>其他</li>
-</ul>
-<p><strong>开源Python发行版本–Anaconda</strong><br>可使用Anaconda对Python版本以及各模块进行管理，其使用与Pip类似，同时支持可视化界面操作。<br>可使用清华镜像进行<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/">下载</a>，相比速度较快。具体Anaconda对应Python版本请自行百度。</p>
-<br/>
-----------
-<small>此文为《Python核心编程》（第二版）学习笔记
-若有错误处，烦请指出。</small>
-
-<hr>
-<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-blog/DataStructuresAndAlgorithms/排序算法之归并排序"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/03/12/blog/DataStructuresAndAlgorithms/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">排序算法之归并排序</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/03/12/blog/DataStructuresAndAlgorithms/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" class="article-date">
-	  <time datetime="2018-03-12T14:44:48.000Z" itemprop="datePublished">March 12, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
- 
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="分治法"><a href="#分治法" class="headerlink" title="分治法"></a>分治法</h3><p>分治法，简而言即是分而治之。将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后合并子问题的解来建立原问题的解。</p>
-<p>分治模式在每层递归时都有三个步骤:</p>
-<ul>
-<li><strong>分解</strong>原问题为若干子问题，这些子问题是原问题较小规模的实例。</li>
-<li><strong>解决</strong>这些子问题，递归地求解各子问题。然而，若子问题的规模足够小，则直接求解。</li>
-<li><strong>合并</strong>这些子问题的解成原问题的解</li>
-</ul>
-<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>归并排序算法完全遵循分治模式，直观操作如下：</p>
-<ul>
-<li><strong>分解</strong>:分解待排序的n个元素的序列成各具有n/2个元素的子序列。</li>
-<li><strong>解决</strong>:使用归并排序递归地排序两个子序列</li>
-<li><strong>合并</strong>:合并两个已排序好的子序列得到排序结果</li>
-</ul>
-<p>当待排序的子序列长度为1时，递归开始回升，进行合并。因为1的元素已经排序好。</p>
-<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>相比插入排序时间复杂度$O(n^2)$,归并排序算法时间复杂度为$O(n)$，其中n为待合并元素总数。</p>
-<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MERGE</span>(A, p, q, r)</span><br><span class="line">n1 = q - p + <span class="number">1</span>;</span><br><span class="line">n2 = r - q</span><br><span class="line">L[n1 + <span class="number">1</span>] = &#123;&#125;</span><br><span class="line">R[n2 + <span class="number">1</span>] = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i = <span class="number">1</span> to n1</span><br><span class="line">  L[i] = A[p + i - <span class="number">1</span>]</span><br><span class="line"><span class="keyword">for</span> j = <span class="number">1</span> to n2</span><br><span class="line">  R[j] = A[q + j]</span><br><span class="line"></span><br><span class="line">L[n1 + <span class="number">1</span>] = <span class="number">9999999</span></span><br><span class="line">R[n2 + <span class="number">1</span>] = <span class="number">9999999</span></span><br><span class="line">i = <span class="number">1</span></span><br><span class="line">j = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> k = p to r</span><br><span class="line">  <span class="keyword">if</span> L[i] &lt;= R[j]</span><br><span class="line">    A[k] = L[i]</span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    A[k] = L[j]</span><br><span class="line">    j = j + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>下面将以上算法进行<strong>分解</strong>成子程序使用</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MERGER-<span class="built_in">SORT</span>(A, p, r)</span><br><span class="line">  <span class="keyword">if</span> p &lt; r</span><br><span class="line">    q = (p + r) / <span class="number">2</span></span><br><span class="line">    MERGER-<span class="built_in">SORT</span>(A, p, q)</span><br><span class="line">    MERGER-<span class="built_in">SORT</span>(A, q + <span class="number">1</span>, r)</span><br><span class="line">    <span class="built_in">MERGER</span>(A, p, q, r)</span><br></pre></td></tr></table></figure>
-
-
-
-<br/>
-<small>*本文为学习整理《算法导论》一书中的要点*</small>
-
-<hr>
-<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">算法</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">Next</a>
   </nav>
 
 </section>
@@ -737,6 +774,30 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2021/04/16/yuque/ANSI(GBK%E3%80%81GB2312)%E4%B8%8EUTF-8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/">ANSI(GBK、GB2312)与UTF-8之间的转换</a></h6>
+              <span>April 16, 2021</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2021/04/05/yuque/C++%20%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">C++ 线程安全单例模式</a></h6>
+              <span>April 5, 2021</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/06/28/blog/NetworkProgramming/TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">TCP/IP基础知识</a></h6>
               <span>June 28, 2019</span>
             </div>
@@ -779,30 +840,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/18/blog/Cpp/C++11%E5%8F%B3%E5%80%BC%EF%BC%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E4%B8%8E%E8%BD%AC%E7%A7%BB%E8%AF%AD%E4%B9%89/">C++11右值，右值引用与转移语义</a></h6>
-              <span>January 18, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/15/blog/DevTools/%E5%88%A9%E7%94%A8manifest%E8%BF%9B%E8%A1%8C%E8%BF%90%E8%A1%8C%E5%BA%93%E9%85%8D%E7%BD%AE/">利用manifest进行运行库配置</a></h6>
-              <span>January 15, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -812,7 +849,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/study/">学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编码</a><span class="category-list-count">27</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/study/">学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编码</a><span class="category-list-count">29</span></li></ul>
     </div>
   </div>
 
@@ -822,7 +859,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/" rel="tag">CppMetaProgramming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/" rel="tag">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/" rel="tag">Other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/" rel="tag">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudio/" rel="tag">Visual Studio</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technicalalk/" rel="tag">技术杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetworkProgramming/" rel="tag">网络编程</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/" rel="tag">CppMetaProgramming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/" rel="tag">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/" rel="tag">Other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/" rel="tag">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudio/" rel="tag">Visual Studio</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" rel="tag">字符编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technicalalk/" rel="tag">技术杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OperatingSystem/" rel="tag">操作系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/" rel="tag">线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetworkProgramming/" rel="tag">网络编程</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -832,7 +869,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 12.5px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 12.5px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 12.5px;">HEXO</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Other/" style="font-size: 10px;">Other</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/VisualStudio/" style="font-size: 15px;">Visual Studio</a> <a href="/tags/FaceDetection/" style="font-size: 12.5px;">人脸检测</a> <a href="/tags/Technicalalk/" style="font-size: 10px;">技术杂谈</a> <a href="/tags/Algorithm/" style="font-size: 12.5px;">算法</a> <a href="/tags/ProgrammingThinking/" style="font-size: 15px;">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 15px;">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 15px;">设计模式</a>
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 12.5px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 12.5px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 12.5px;">HEXO</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Other/" style="font-size: 10px;">Other</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/VisualStudio/" style="font-size: 15px;">Visual Studio</a> <a href="/tags/FaceDetection/" style="font-size: 12.5px;">人脸检测</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" style="font-size: 10px;">字符编码</a> <a href="/tags/Technicalalk/" style="font-size: 10px;">技术杂谈</a> <a href="/tags/OperatingSystem/" style="font-size: 10px;">操作系统</a> <a href="/tags/Algorithm/" style="font-size: 12.5px;">算法</a> <a href="/tags/Thread/" style="font-size: 10px;">线程</a> <a href="/tags/ProgrammingThinking/" style="font-size: 15px;">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 15px;">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 15px;">设计模式</a>
     </div>
   </div>
 
@@ -842,7 +879,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

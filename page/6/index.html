@@ -70,7 +70,7 @@
   </div>
 
   <script>
-        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
+        var imgUrls = "css/images/brooke-lark-wMzx2nBdeng-unsplash.jpg,https://source.unsplash.com/collection/1041983/1920x1080,https://source.unsplash.com/1920x1080/?Textures&Patterns,Interiors,Food".split(",");
         var random = Math.floor((Math.random() * imgUrls.length ));
         if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
           document.getElementById("originBg").src=imgUrls[random];
@@ -131,6 +131,134 @@
       <div id="content" class="outer">
         
           <section id="main">
+  
+    <article id="post-blog/ComputerVision/OpenCV-显示视频"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/07/02/blog/ComputerVision/OpenCV-%E6%98%BE%E7%A4%BA%E8%A7%86%E9%A2%91/">OpenCV 显示视频</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/02/blog/ComputerVision/OpenCV-%E6%98%BE%E7%A4%BA%E8%A7%86%E9%A2%91/" class="article-date">
+	  <time datetime="2018-07-02T02:40:57.000Z" itemprop="datePublished">July 2, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
+<li>python 3.6.1   </li>
+<li>cv2</li>
+<li>numpy</li>
+</ul>
+<h3 id="从摄像头中读取"><a href="#从摄像头中读取" class="headerlink" title="从摄像头中读取"></a>从摄像头中读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">&quot;capture&quot;</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == <span class="built_in">ord</span>(<span class="string">&#x27;q&#x27;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows() </span><br></pre></td></tr></table></figure>
+<p>若需知道视频最大分辨率，及帧数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取摄像头最大分辨率</span></span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_WIDTH)</span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_HEIGHT)</span><br><span class="line"><span class="comment"># 获取视频帧数</span></span><br><span class="line">fps =cap.get(cv2.CAP_PROP_FPS) </span><br></pre></td></tr></table></figure>
+
+<h3 id="从MP4文件中读取"><a href="#从MP4文件中读取" class="headerlink" title="从MP4文件中读取"></a>从MP4文件中读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="string">&quot;D://test.mp4&quot;</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">&quot;capture&quot;</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == <span class="built_in">ord</span>(<span class="string">&#x27;q&#x27;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows() </span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-blog/ProgrammingTalk/对异常、断言与返回值的选择"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/06/20/blog/ProgrammingTalk/%E5%AF%B9%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E4%B8%8E%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E9%80%89%E6%8B%A9/">对异常、断言与返回值的选择</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/06/20/blog/ProgrammingTalk/%E5%AF%B9%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E4%B8%8E%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E9%80%89%E6%8B%A9/" class="article-date">
+	  <time datetime="2018-06-19T16:58:55.000Z" itemprop="datePublished">June 20, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>编码过程中，难免遇到对异常、断言及返回值选择问题的困惑。本文将收集到网络上对这种选择的总结。因基本没有一个课本对这几个选择有明确的界定，故本文提供建议，仅供参考。
+</code></pre>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>当你实现某个功能可能失败，则可以利用返回值的形式告知调用者失败原因或直接返回失败。</p>
+<p>eg: 你找一个目录下不确定存在的东西，没找到即返回没找到。</p>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p>断言即断定绝对不会发生的事情，即不可能事件。<br>使用场景：在你当前代码逻辑下，你认为100%不会出现某种情况，请使用断言，主要用于开发人员对问题快速定位。</p>
+<p>注意：切记勿用断言替代入参检查替代返回值，将导致Release模式下入参的不确定性，而引发未知错误。</p>
+<p>eg: 数组索引是否超出范围</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>异常则是你实现的功能99.999%不会失败，但可能0.001%的原因导致失败了，请毫不犹豫使用异常。</p>
+<p>eg: 你找一个程序必须的应该存在的配置文件，没找到可以抛出异常。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>方便对底层代码的不可能发生的错误进行遏止，留下发生异常原因，然后自杀进程。避免异常蔓延导致难以定位的错误。<br>异常是处理构造函数失败的唯一途径</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>底层代码异常泛滥，顶层代码将要对所有调用进行异常捕获与处理。甚至导致中间过程未处理而出现不可预料的错误。<br>异常会彻底扰乱程序的执行流程并难以判断，函数也许会在您意料不到的地方返回。<br>切勿在析构函数中抛出异常，将导致内存泄漏及其他不可预料的错误。</p>
+<h3 id="其他说法"><a href="#其他说法" class="headerlink" title="其他说法"></a>其他说法</h3><h4 id="观点一"><a href="#观点一" class="headerlink" title="观点一"></a>观点一</h4><p>也有部分人认为，针对对外接口（客户对象非程序员）不使用异常，因客户可不想看到程序崩溃的情况。而内部接口使用异常，便于开发过程中快速定位错误。</p>
+<h4 id="观点二"><a href="#观点二" class="headerlink" title="观点二"></a>观点二</h4><p>在google的编码规范中是严禁使用异常的，估计缘由与google现有的大多数C++代码都没有异常处理, 所以引入带有异常处理的新代码相当困难。</p>
+<hr>
+<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
   
     <article id="post-blog/DesignPatterns/设计模式之工厂模式"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
@@ -200,203 +328,11 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-blog/DesignPatterns/设计模式之设计原则"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/04/20/blog/DesignPatterns/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">设计模式之设计原则</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/04/20/blog/DesignPatterns/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" class="article-date">
-	  <time datetime="2018-04-20T05:16:43.000Z" itemprop="datePublished">April 20, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
- 
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-blog/Python/Python核心编程--Python基础"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/04/19/blog/Python/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B--Python%E5%9F%BA%E7%A1%80/">Python核心编程--Python基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/04/19/blog/Python/Python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B--Python%E5%9F%BA%E7%A1%80/" class="article-date">
-	  <time datetime="2018-04-19T14:33:50.000Z" itemprop="datePublished">April 19, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
- 
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="语句与语法"><a href="#语句与语法" class="headerlink" title="语句与语法"></a>语句与语法</h3><p>字符与基本规则</p>
-<table>
-<thead>
-<tr>
-<th align="center">字符</th>
-<th align="center">规则</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">#</td>
-<td align="center">注释的开始符号，通常#后空一格</td>
-</tr>
-<tr>
-<td align="center">\n</td>
-<td align="center">换行</td>
-</tr>
-<tr>
-<td align="center">\</td>
-<td align="center">继续上一行</td>
-</tr>
-<tr>
-<td align="center">;</td>
-<td align="center">两个语句连接在一行中</td>
-</tr>
-<tr>
-<td align="center">:</td>
-<td align="center">将代码块的头和体分开</td>
-</tr>
-</tbody></table>
-<ul>
-<li>不同的缩进深度分隔不同的代码块</li>
-<li>python文件即模块</li>
-</ul>
-<h4 id="注释"><a href="#注释" class="headerlink" title="注释(#)"></a>注释(#)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注释开始了</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">这是多行注释</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">这也是多行注释</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="继续"><a href="#继续" class="headerlink" title="继续(\)"></a>继续(\)</h4><p>若一行语句太长，可以利用**\**进行分隔，如:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (weather_is_hot == <span class="number">1</span>) <span class="keyword">and</span> \</span><br><span class="line">(shark_warnings ==<span class="number">0</span>):</span><br><span class="line">  send_goto_beach_mesg_to_pager()</span><br></pre></td></tr></table></figure>
-<p>另外，不使用反斜杠也可以换行，即使用小括号，中括号，花括号都可以多行书写。当然三引号字符串也可以。</p>
-<p>建议使用括号进行换行，使语句可读性更高。</p>
-<h4 id="代码组由不同缩进分隔"><a href="#代码组由不同缩进分隔" class="headerlink" title="代码组由不同缩进分隔"></a>代码组由不同缩进分隔</h4><blockquote>
-<p>核心风格:缩进四个空格宽度，避免使用制表符<br/><br>  推荐使用空格替代制表符的原因：因为不同文本编辑器中的制表符代表的空白宽度不统一，<strong>如果你的代码要跨平台，或者不同的编辑器读写，建议不要使用制表符</strong>。</p>
-</blockquote>
-<h4 id="同行书写多个语句"><a href="#同行书写多个语句" class="headerlink" title="同行书写多个语句(;)"></a>同行书写多个语句(;)</h4><p>分号(;)允许你将多个语句写在同一行上，语句之间用分号隔开，而这些语句子不能在这行开始新的代码块。如:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys; x = <span class="string">&#x27;foo&#x27;</span>; sys.stdout.write(x + <span class="string">&#x27;\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>显然同行多个语句块大大降低代码可读性，python虽允许但不提倡这么做。</p>
-<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>每个python脚本文件都可以被当成是一个模块。如果一个模块驱动太多功能，可以考虑进行模块拆分。</p>
-<h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><p>等号(=)即赋值</p>
-<ul>
-<li><p>增量赋值支持</p>
-<pre><code>+=    -=    *=    /=    %=    **=
-&lt;&lt;=   &gt;&gt;=   &amp;=    ^=    |=   
-</code></pre>
-</li>
-<li><p>多重赋值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = y = z = <span class="number">1</span></span><br></pre></td></tr></table></figure></li>
-<li><p>多元赋值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x, y, z = <span class="number">1</span>, <span class="number">2</span>, <span class="string">&#x27;a string&#x27;</span></span><br><span class="line"><span class="comment"># 通常建议利用元祖进行多元赋值,更具可读性</span></span><br><span class="line">(x, y, z) = (<span class="number">1</span>, <span class="number">2</span>, <span class="string">&#x27;a string&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 交换变量的值,如下</span></span><br><span class="line">x, y = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">x, y = y, x</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>python 标识符规则与大多数计算机语言相似:</p>
-<ul>
-<li>第一个字符必须为字母或下划线</li>
-<li>剩下字符可以是字母数字或下划线</li>
-<li>区分大小写</li>
-</ul>
-<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>如需查看关键字，请执行**help(‘keywords’)**：</p>
-<pre><code>False               def                 if                  raise
-None                del                 import              return
-True                elif                in                  try
-and                 else                is                  while
-as                  except              lambda              with
-assert              finally             nonlocal            yield
-break               for                 not
-class               from                or
-continue            global              pass
-</code></pre>
-<h4 id="专用下划线标识符"><a href="#专用下划线标识符" class="headerlink" title="专用下划线标识符"></a>专用下划线标识符</h4><ul>
-<li>_xxx: 不用’from module import *’导入</li>
-<li>_xxx_：系统定义名字</li>
-<li>__xxx：类中的私有变量名</li>
-</ul>
-<blockquote>
-<p>核心风格:避免用下划线作为变量名的开始，因为下划线对解释器有特殊的意义。</p>
-</blockquote>
-<br/>
-----------
-<small>此文为《Python核心编程》（第二版）学习笔记
-若有错误处，烦请指出。</small>
-
-<hr>
-<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/5/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/">Next</a>
   </nav>
 
 </section>
@@ -498,6 +434,30 @@ continue            global              pass
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2021/04/16/yuque/ANSI(GBK%E3%80%81GB2312)%E4%B8%8EUTF-8%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/">ANSI(GBK、GB2312)与UTF-8之间的转换</a></h6>
+              <span>April 16, 2021</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2021/04/05/yuque/C++%20%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">C++ 线程安全单例模式</a></h6>
+              <span>April 5, 2021</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/06/28/blog/NetworkProgramming/TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">TCP/IP基础知识</a></h6>
               <span>June 28, 2019</span>
             </div>
@@ -540,30 +500,6 @@ continue            global              pass
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/18/blog/Cpp/C++11%E5%8F%B3%E5%80%BC%EF%BC%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E4%B8%8E%E8%BD%AC%E7%A7%BB%E8%AF%AD%E4%B9%89/">C++11右值，右值引用与转移语义</a></h6>
-              <span>January 18, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/15/blog/DevTools/%E5%88%A9%E7%94%A8manifest%E8%BF%9B%E8%A1%8C%E8%BF%90%E8%A1%8C%E5%BA%93%E9%85%8D%E7%BD%AE/">利用manifest进行运行库配置</a></h6>
-              <span>January 15, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -573,7 +509,7 @@ continue            global              pass
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/study/">学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编码</a><span class="category-list-count">27</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/study/">学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编码</a><span class="category-list-count">29</span></li></ul>
     </div>
   </div>
 
@@ -583,7 +519,7 @@ continue            global              pass
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/" rel="tag">CppMetaProgramming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/" rel="tag">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/" rel="tag">Other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/" rel="tag">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudio/" rel="tag">Visual Studio</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technicalalk/" rel="tag">技术杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetworkProgramming/" rel="tag">网络编程</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/" rel="tag">CppMetaProgramming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/" rel="tag">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/" rel="tag">Other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/" rel="tag">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudio/" rel="tag">Visual Studio</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" rel="tag">字符编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technicalalk/" rel="tag">技术杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OperatingSystem/" rel="tag">操作系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/" rel="tag">线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetworkProgramming/" rel="tag">网络编程</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -593,7 +529,7 @@ continue            global              pass
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 12.5px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 12.5px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 12.5px;">HEXO</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Other/" style="font-size: 10px;">Other</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/VisualStudio/" style="font-size: 15px;">Visual Studio</a> <a href="/tags/FaceDetection/" style="font-size: 12.5px;">人脸检测</a> <a href="/tags/Technicalalk/" style="font-size: 10px;">技术杂谈</a> <a href="/tags/Algorithm/" style="font-size: 12.5px;">算法</a> <a href="/tags/ProgrammingThinking/" style="font-size: 15px;">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 15px;">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 15px;">设计模式</a>
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 12.5px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 12.5px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 12.5px;">HEXO</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Other/" style="font-size: 10px;">Other</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/VisualStudio/" style="font-size: 15px;">Visual Studio</a> <a href="/tags/FaceDetection/" style="font-size: 12.5px;">人脸检测</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" style="font-size: 10px;">字符编码</a> <a href="/tags/Technicalalk/" style="font-size: 10px;">技术杂谈</a> <a href="/tags/OperatingSystem/" style="font-size: 10px;">操作系统</a> <a href="/tags/Algorithm/" style="font-size: 12.5px;">算法</a> <a href="/tags/Thread/" style="font-size: 10px;">线程</a> <a href="/tags/ProgrammingThinking/" style="font-size: 15px;">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 15px;">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 15px;">设计模式</a>
     </div>
   </div>
 
@@ -603,7 +539,7 @@ continue            global              pass
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
