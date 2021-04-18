@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <!-- 
-  <title>Page 5 | Q</title> -->
-  <title>Q</title>
+  <title>Page 5 | Quenwaz</title> -->
+  <title>Quenwaz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -12,16 +12,16 @@
   
   <meta name="description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Q">
+<meta property="og:title" content="Quenwaz">
 <meta property="og:url" content="https://quenwaz.github.io/page/5/index.html">
-<meta property="og:site_name" content="Q">
+<meta property="og:site_name" content="Quenwaz">
 <meta property="og:description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
 <meta property="og:locale">
 <meta property="article:author" content="Quenwa Zhang">
 <meta property="article:tag" content="C++,Boost,STL,Python,OpenCV,人脸识别,编程思想">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Q" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Quenwaz" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
   
@@ -91,7 +91,7 @@
 
           <h1 class="site-title">
             
-              <a href="/" title="Q" rel="home"> Q </a>
+              <a href="/" title="Quenwaz" rel="home"> Quenwaz </a>
             
           </h1>
           
@@ -132,7 +132,7 @@
         
           <section id="main">
   
-    <article id="post-利用dlib进行面部特征提取"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-blog/Socket/利用Socket传输摄像头视频流数据"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -140,7 +140,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/07/11/%E5%88%A9%E7%94%A8dlib%E8%BF%9B%E8%A1%8C%E9%9D%A2%E9%83%A8%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/">利用dlib进行面部特征提取</a>
+      <a class="article-title" href="/2018/07/03/blog/Socket/%E5%88%A9%E7%94%A8Socket%E4%BC%A0%E8%BE%93%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E6%B5%81%E6%95%B0%E6%8D%AE/">利用Socket传输摄像头视频流数据</a>
     </h1>
   
 
@@ -148,173 +148,7 @@
     
     <div class="article-meta">
       
-	<a href="/2018/07/11/%E5%88%A9%E7%94%A8dlib%E8%BF%9B%E8%A1%8C%E9%9D%A2%E9%83%A8%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/" class="article-date">
-	  <time datetime="2018-07-11T11:08:30.000Z" itemprop="datePublished">July 11, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
- 
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
-<li>python 3.6.1</li>
-<li>opencv</li>
-<li>dlib</li>
-<li>numpy</li>
-</ul>
-<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><ul>
-<li><p>加载官方提供模型，面部检测器</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">detector = dlib.get_frontal_face_detector()</span><br></pre></td></tr></table></figure></li>
-<li><p>加载<a target="_blank" rel="noopener" href="http://dlib.net/files/shape_predictor_5_face_landmarks.dat.bz2">面部标记模型</a>，将面对齐到标准姿势。与脸、眼睛、眉毛、嘴角等对齐</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sp = dlib.shape_predictor(<span class="string">&#x27;shape_predictor_5_face_landmarks.dat&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
-<li><p>最后加载用于将面部特征转换为128D矢量模型<a target="_blank" rel="noopener" href="http://dlib.net/files/dlib_face_recognition_resnet_model_v1.dat.bz2">(下载)</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">facerec = dlib.face_recognition_model_v1(<span class="string">&#x27;dlib_face_recognition_resnet_model_v1.dat.bz2&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">extract_128d_feature</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        返回单张图像的128D特征</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, dlib_shape_5_face_dat_path, dlib_face_rec_model_dat_path</span>):</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># detector to find the faces</span></span><br><span class="line">        self.detector = dlib.get_frontal_face_detector()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># shape predictor to find the face landmarks</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dlib_shape_5_face_dat_path):</span><br><span class="line">            <span class="built_in">print</span>(dlib_shape_5_face_dat_path + <span class="string">&quot;文件不存在！&quot;</span>)</span><br><span class="line">            exit()</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        self.predictor = dlib.shape_predictor(dlib_shape_5_face_dat_path)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dlib_face_rec_model_dat_path):</span><br><span class="line">            <span class="built_in">print</span>(dlib_face_rec_model_dat_path + <span class="string">&quot;文件不存在！&quot;</span>)</span><br><span class="line">            exit()</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="comment"># face recognition model, the object maps human faces into 128D vectors</span></span><br><span class="line">        self.facerec = dlib.face_recognition_model_v1(dlib_face_rec_model_dat_path)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detector</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.detector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, img</span>):</span></span><br><span class="line">        img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">        dets = self.detector(img_gray, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(dets)!=<span class="number">0</span>):</span><br><span class="line">            shape = self.predictor(img_gray, dets[<span class="number">0</span>])</span><br><span class="line">            face_descriptor = self.facerec.compute_face_descriptor(img_gray, shape)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            face_descriptor = <span class="number">0</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span>, <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span>, face_descriptor</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>最终可以得到128维向量数据，其中同一人的图像彼此接近，并且来自不同人的图像相距很远。 因此，您可以通过将面映射到128D空间然后检查它们的欧几里德距离是否很小来执行面部识别。</p>
-<p>通常，如果两个面部描述符向量之间的欧几里德距离小于0.6，则它们来自同一个人，否则它们来自不同的人。</p>
-<hr>
-<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-利用dlib进行人脸检测"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/07/05/%E5%88%A9%E7%94%A8dlib%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B/">利用dlib进行人脸检测</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/07/05/%E5%88%A9%E7%94%A8dlib%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B/" class="article-date">
-	  <time datetime="2018-07-05T04:21:04.000Z" itemprop="datePublished">July 5, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
- 
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
-<li>python 3.6.1</li>
-<li>opencv</li>
-<li>dlib</li>
-<li>numpy</li>
-</ul>
-<h3 id="DLIB-介绍"><a href="#DLIB-介绍" class="headerlink" title="DLIB 介绍"></a>DLIB 介绍</h3><p>Dlib是一个包含机器学习算法的C++开源工具包。Dlib可以帮助您创建很多复杂的机器学习方面的软件来帮助解决实际问题。目前Dlib已经被广泛的用在行业和学术领域,包括机器人,嵌入式设备,移动电话和大型高性能计算环境。</p>
-<p>Dlib是开源的、免费的;官网和git地址:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://dlib.net/">官网</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/davisking/dlib">github</a> </li>
-</ul>
-<p>Dlib的主要特点:</p>
-<ol>
-<li><p>文档齐全</p>
-<p> 不像很多其他的开源库一样,Dlib为每一个类和函数提供了完整的文档说明。同时,还提供了debug模式;打开debug模式后,用户可以调试代码,查看变量和对象的值,快速定位错误点。另外,Dlib还提供了大量的实例。</p>
-</li>
-<li><p>高质量的可移植代码</p>
-<p> Dlib不依赖第三方库,无须安装和配置,这部分可参照(官网左侧树形目录的how to compile的介绍)。Dlib可用在window、Mac OS、Linux系统上。</p>
-</li>
-<li><p>提供大量的机器学习 / 图像处理算法</p>
-<ul>
-<li><p>深度学习</p>
-</li>
-<li><p>基于SVM的分类和递归算法</p>
-</li>
-<li><p>针对大规模分类和递归的降维方法</p>
-</li>
-<li><p>相关向量机(relevance vector machine);是与支持向量机相同的函数形式稀疏概率模型,对未知函数进行预测或分类。其训练是在贝叶斯框架下进行的,与SVM相比,不需要估计正则化参数,其核函数也不需要满足Mercer条件,需要更少的相关向量,训练时间长,测试时间短。</p>
-</li>
-<li><p>聚类: linear or kernel k-means, Chinese Whispers, and Newman clustering. Radial Basis Function Networks</p>
-</li>
-<li><p>多层感知机</p>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="人脸检测（CNN）"><a href="#人脸检测（CNN）" class="headerlink" title="人脸检测（CNN）"></a>人脸检测（CNN）</h3><p>示例显示如何使用dlib运行基于CNN的面部检测器。加载预训练模型并使用它来查找图像中的面。该CNN模型比基于HOG的模型准确得多，但需要更多的计算能力运行，并且意味着在GPU上执行以获得合理的速度。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># The contents of this file are in the public domain. See LICENSE_FOR_EXAMPLE_PROGRAMS.txt</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   This example shows how to run a CNN based face detector using dlib.  The</span></span><br><span class="line"><span class="comment">#   example loads a pretrained model and uses it to find faces in images.  The</span></span><br><span class="line"><span class="comment">#   CNN model is much more accurate than the HOG based model shown in the</span></span><br><span class="line"><span class="comment">#   face_detector.py example, but takes much more computational power to</span></span><br><span class="line"><span class="comment">#   run, and is meant to be executed on a GPU to attain reasonable speed.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   You can download the pre-trained model from:</span></span><br><span class="line"><span class="comment">#       http://dlib.net/files/mmod_human_face_detector.dat.bz2</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   The examples/faces folder contains some jpg images of people.  You can run</span></span><br><span class="line"><span class="comment">#   this program on them and see the detections by executing the</span></span><br><span class="line"><span class="comment">#   following command:</span></span><br><span class="line"><span class="comment">#       ./cnn_face_detector.py mmod_human_face_detector.dat ../examples/faces/*.jpg</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># COMPILING/INSTALLING THE DLIB PYTHON INTERFACE</span></span><br><span class="line"><span class="comment">#   You can install dlib using the command:</span></span><br><span class="line"><span class="comment">#       pip install dlib</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   Alternatively, if you want to compile dlib yourself then go into the dlib</span></span><br><span class="line"><span class="comment">#   root folder and run:</span></span><br><span class="line"><span class="comment">#       python setup.py install</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   Compiling dlib should work on any operating system so long as you have</span></span><br><span class="line"><span class="comment">#   CMake installed.  On Ubuntu, this can be done easily by running the</span></span><br><span class="line"><span class="comment">#   command:</span></span><br><span class="line"><span class="comment">#       sudo apt-get install cmake</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   Also note that this example requires Numpy which can be installed</span></span><br><span class="line"><span class="comment">#   via the command:</span></span><br><span class="line"><span class="comment">#       pip install numpy</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> dlib</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># if len(sys.argv) &lt; 3:</span></span><br><span class="line"><span class="comment">#     print(</span></span><br><span class="line"><span class="comment">#         &quot;Call this program like this:\n&quot;</span></span><br><span class="line"><span class="comment">#         &quot;   ./cnn_face_detector.py mmod_human_face_detector.dat ../examples/faces/*.jpg\n&quot;</span></span><br><span class="line"><span class="comment">#         &quot;You can get the mmod_human_face_detector.dat file from:\n&quot;</span></span><br><span class="line"><span class="comment">#         &quot;    http://dlib.net/files/mmod_human_face_detector.dat.bz2&quot;)</span></span><br><span class="line"><span class="comment">#     exit()</span></span><br><span class="line"><span class="comment"># 官方例程都是从命令行加载，其提供的训练模型</span></span><br><span class="line"><span class="comment"># 需要先行下载</span></span><br><span class="line">cnn_face_detector = dlib.cnn_face_detection_model_v1(<span class="string">&quot;mmod_human_face_detector.dat&quot;</span>)</span><br><span class="line">win = dlib.image_window()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此处改成自己的图片目录，图片中需包含人脸</span></span><br><span class="line"><span class="comment"># 该例程会进行人脸框选</span></span><br><span class="line">cur_path = os.getcwd()</span><br><span class="line">image_path = cur_path + os.sep + <span class="string">&#x27;faces&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(image_path)</span><br><span class="line">dir_pics = os.listdir(image_path)</span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> dir_pics:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Processing file: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(f))</span><br><span class="line">    path = image_path + os.sep + f</span><br><span class="line">    <span class="built_in">print</span>(path)</span><br><span class="line">    img = dlib.load_rgb_image(path)</span><br><span class="line">    <span class="comment"># The 1 in the second argument indicates that we should upsample the image</span></span><br><span class="line">    <span class="comment"># 1 time.  This will make everything bigger and allow us to detect more</span></span><br><span class="line">    <span class="comment"># faces.</span></span><br><span class="line">    dets = cnn_face_detector(img, <span class="number">1</span>)</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    This detector returns a mmod_rectangles object. This object contains a list of mmod_rectangle objects.</span></span><br><span class="line"><span class="string">    These objects can be accessed by simply iterating over the mmod_rectangles object</span></span><br><span class="line"><span class="string">    The mmod_rectangle object has two member variables, a dlib.rectangle object, and a confidence score.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    It is also possible to pass a list of images to the detector.</span></span><br><span class="line"><span class="string">        - like this: dets = cnn_face_detector([image list], upsample_num, batch_size = 128)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    In this case it will return a mmod_rectangless object.</span></span><br><span class="line"><span class="string">    This object behaves just like a list of lists and can be iterated over.</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Number of faces detected: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">len</span>(dets)))</span><br><span class="line">    <span class="keyword">for</span> i, d <span class="keyword">in</span> <span class="built_in">enumerate</span>(dets):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Detection &#123;&#125;: Left: &#123;&#125; Top: &#123;&#125; Right: &#123;&#125; Bottom: &#123;&#125; Confidence: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(</span><br><span class="line">            i, d.rect.left(), d.rect.top(), d.rect.right(), d.rect.bottom(), d.confidence))</span><br><span class="line"></span><br><span class="line">    rects = dlib.rectangles()</span><br><span class="line">    rects.extend([d.rect <span class="keyword">for</span> d <span class="keyword">in</span> dets])</span><br><span class="line"></span><br><span class="line">    win.clear_overlay()</span><br><span class="line">    win.set_image(img)</span><br><span class="line">    win.add_overlay(rects)</span><br><span class="line">    dlib.hit_enter_to_continue()</span><br></pre></td></tr></table></figure>
-<img src="/2018/07/05/%E5%88%A9%E7%94%A8dlib%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B/cnn_face_detector.jpg" class="" title="cnn_face_detector">
-
-
-<h3 id="人脸检测（HOG）"><a href="#人脸检测（HOG）" class="headerlink" title="人脸检测（HOG）"></a>人脸检测（HOG）</h3><p>利用OpenCV读取摄像头数据帧，官方例程利用load_rgb_image加载图片文件，其数据帧就是numpy数组。然后直接dlib提供的detector方法进行采取面部68个地标进行人脸检测。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> dlib</span><br><span class="line"> </span><br><span class="line">cap=cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 可在官网下载已经训练好的68特征人脸数据 </span></span><br><span class="line"><span class="comment"># http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 下载数据包</span></span><br><span class="line">predictor_path = <span class="string">&quot;shape_predictor_68_face_landmarks.dat&quot;</span></span><br><span class="line">predictor = dlib.shape_predictor(predictor_path)</span><br><span class="line">detector = dlib.get_frontal_face_detector()</span><br><span class="line"> </span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    _,frame=cap.read()</span><br><span class="line">    <span class="comment"># Ask the detector to find the bounding boxes of each face. The 1 in the  </span></span><br><span class="line">    <span class="comment"># second argument indicates that we should upsample the image 1 time. This  </span></span><br><span class="line">    <span class="comment"># will make everything bigger and allow us to detect more faces. </span></span><br><span class="line">    dets = detector(frame, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(dets) != <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># Get the landmarks/parts for the face in box d.</span></span><br><span class="line">        shape = predictor(frame, dets[<span class="number">0</span>])</span><br><span class="line">        <span class="built_in">print</span>(shape.parts())</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> shape.parts():</span><br><span class="line">            cv2.circle(frame, (p.x, p.y), <span class="number">3</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>), -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    cv2.imshow(<span class="string">&#x27;video&#x27;</span>,frame)</span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>)&amp;<span class="number">0xFF</span>==<span class="number">27</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-利用Socket传输摄像头视频流数据"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/07/03/%E5%88%A9%E7%94%A8Socket%E4%BC%A0%E8%BE%93%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E6%B5%81%E6%95%B0%E6%8D%AE/">利用Socket传输摄像头视频流数据</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/07/03/%E5%88%A9%E7%94%A8Socket%E4%BC%A0%E8%BE%93%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E6%B5%81%E6%95%B0%E6%8D%AE/" class="article-date">
+	<a href="/2018/07/03/blog/Socket/%E5%88%A9%E7%94%A8Socket%E4%BC%A0%E8%BE%93%E6%91%84%E5%83%8F%E5%A4%B4%E8%A7%86%E9%A2%91%E6%B5%81%E6%95%B0%E6%8D%AE/" class="article-date">
 	  <time datetime="2018-07-03T03:05:11.000Z" itemprop="datePublished">July 3, 2018</time>
 	</a>
 
@@ -378,11 +212,139 @@
 <!-- Table of Contents -->
 
   
+    <article id="post-blog/ComputerVision/OpenCV-显示视频"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/07/02/blog/ComputerVision/OpenCV-%E6%98%BE%E7%A4%BA%E8%A7%86%E9%A2%91/">OpenCV 显示视频</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/02/blog/ComputerVision/OpenCV-%E6%98%BE%E7%A4%BA%E8%A7%86%E9%A2%91/" class="article-date">
+	  <time datetime="2018-07-02T02:40:57.000Z" itemprop="datePublished">July 2, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><ul>
+<li>python 3.6.1   </li>
+<li>cv2</li>
+<li>numpy</li>
+</ul>
+<h3 id="从摄像头中读取"><a href="#从摄像头中读取" class="headerlink" title="从摄像头中读取"></a>从摄像头中读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">&quot;capture&quot;</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == <span class="built_in">ord</span>(<span class="string">&#x27;q&#x27;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows() </span><br></pre></td></tr></table></figure>
+<p>若需知道视频最大分辨率，及帧数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取摄像头最大分辨率</span></span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_WIDTH)</span><br><span class="line">cap.get(cv2.CAP_PROP_FRAME_HEIGHT)</span><br><span class="line"><span class="comment"># 获取视频帧数</span></span><br><span class="line">fps =cap.get(cv2.CAP_PROP_FPS) </span><br></pre></td></tr></table></figure>
+
+<h3 id="从MP4文件中读取"><a href="#从MP4文件中读取" class="headerlink" title="从MP4文件中读取"></a>从MP4文件中读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># created by Quenwaz</span></span><br><span class="line"><span class="comment"># 15/06/2018 17:05:45 </span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(<span class="string">&quot;D://test.mp4&quot;</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">True</span>):</span><br><span class="line">    <span class="comment"># 读取摄像头数据流中的一帧</span></span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv2.imshow(<span class="string">&quot;capture&quot;</span>, frame)</span><br><span class="line">    <span class="comment"># 按键q退出</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == <span class="built_in">ord</span>(<span class="string">&#x27;q&#x27;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows() </span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-blog/ProgrammingTalk/对异常、断言与返回值的选择"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/06/20/blog/ProgrammingTalk/%E5%AF%B9%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E4%B8%8E%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E9%80%89%E6%8B%A9/">对异常、断言与返回值的选择</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/06/20/blog/ProgrammingTalk/%E5%AF%B9%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E4%B8%8E%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E9%80%89%E6%8B%A9/" class="article-date">
+	  <time datetime="2018-06-19T16:58:55.000Z" itemprop="datePublished">June 20, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>编码过程中，难免遇到对异常、断言及返回值选择问题的困惑。本文将收集到网络上对这种选择的总结。因基本没有一个课本对这几个选择有明确的界定，故本文提供建议，仅供参考。
+</code></pre>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>当你实现某个功能可能失败，则可以利用返回值的形式告知调用者失败原因或直接返回失败。</p>
+<p>eg: 你找一个目录下不确定存在的东西，没找到即返回没找到。</p>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p>断言即断定绝对不会发生的事情，即不可能事件。<br>使用场景：在你当前代码逻辑下，你认为100%不会出现某种情况，请使用断言，主要用于开发人员对问题快速定位。</p>
+<p>注意：切记勿用断言替代入参检查替代返回值，将导致Release模式下入参的不确定性，而引发未知错误。</p>
+<p>eg: 数组索引是否超出范围</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>异常则是你实现的功能99.999%不会失败，但可能0.001%的原因导致失败了，请毫不犹豫使用异常。</p>
+<p>eg: 你找一个程序必须的应该存在的配置文件，没找到可以抛出异常。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>方便对底层代码的不可能发生的错误进行遏止，留下发生异常原因，然后自杀进程。避免异常蔓延导致难以定位的错误。<br>异常是处理构造函数失败的唯一途径</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>底层代码异常泛滥，顶层代码将要对所有调用进行异常捕获与处理。甚至导致中间过程未处理而出现不可预料的错误。<br>异常会彻底扰乱程序的执行流程并难以判断，函数也许会在您意料不到的地方返回。<br>切勿在析构函数中抛出异常，将导致内存泄漏及其他不可预料的错误。</p>
+<h3 id="其他说法"><a href="#其他说法" class="headerlink" title="其他说法"></a>其他说法</h3><h4 id="观点一"><a href="#观点一" class="headerlink" title="观点一"></a>观点一</h4><p>也有部分人认为，针对对外接口（客户对象非程序员）不使用异常，因客户可不想看到程序崩溃的情况。而内部接口使用异常，便于开发过程中快速定位错误。</p>
+<h4 id="观点二"><a href="#观点二" class="headerlink" title="观点二"></a>观点二</h4><p>在google的编码规范中是严禁使用异常的，估计缘由与google现有的大多数C++代码都没有异常处理, 所以引入带有异常处理的新代码相当困难。</p>
+<hr>
+<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next</a>
   </nav>
 
 </section>
@@ -484,31 +446,7 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2021/04/03/yuque/%F0%9F%97%92%20%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92/">🗒 项目计划</a></h6>
-              <span>April 3, 2021</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2021/03/30/hello-world/">Hello World</a></h6>
-              <span>March 30, 2021</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/28/TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">TCP/IP基础知识</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/06/28/blog/NetworkProgramming/TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">TCP/IP基础知识</a></h6>
               <span>June 28, 2019</span>
             </div>
 
@@ -520,7 +458,7 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/06/15/vmware%E5%AE%89%E8%A3%85CentOS/">vmware安装CentOS</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/06/15/blog/Linux/vmware%E5%AE%89%E8%A3%85CentOS/">vmware安装CentOS</a></h6>
               <span>June 15, 2019</span>
             </div>
 
@@ -532,7 +470,7 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/01/27/%E5%86%8D%E8%B0%88%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">再谈单例模式--设计模式</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/01/27/blog/DesignPatterns/%E5%86%8D%E8%B0%88%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">再谈单例模式--设计模式</a></h6>
               <span>January 27, 2019</span>
             </div>
 
@@ -544,8 +482,32 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/01/26/%E8%AE%A4%E8%AF%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%8F%8A%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">认识内存泄漏及定位内存泄漏</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/01/26/blog/Debug/%E8%AE%A4%E8%AF%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%8F%8A%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">认识内存泄漏及定位内存泄漏</a></h6>
               <span>January 26, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/01/18/blog/Cpp/C++11%E5%8F%B3%E5%80%BC%EF%BC%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E4%B8%8E%E8%BD%AC%E7%A7%BB%E8%AF%AD%E4%B9%89/">C++11右值，右值引用与转移语义</a></h6>
+              <span>January 18, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/01/15/blog/DevTools/%E5%88%A9%E7%94%A8manifest%E8%BF%9B%E8%A1%8C%E8%BF%90%E8%A1%8C%E5%BA%93%E9%85%8D%E7%BD%AE/">利用manifest进行运行库配置</a></h6>
+              <span>January 15, 2019</span>
             </div>
 
           </li>
@@ -569,7 +531,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cpp/" rel="tag">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/" rel="tag">CppMetaProgramming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/" rel="tag">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/" rel="tag">Other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/" rel="tag">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudio/" rel="tag">Visual Studio</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technicalalk/" rel="tag">技术杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetworkProgramming/" rel="tag">网络编程</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/" rel="tag">CppMetaProgramming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/" rel="tag">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/" rel="tag">Other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/" rel="tag">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudio/" rel="tag">Visual Studio</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technicalalk/" rel="tag">技术杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetworkProgramming/" rel="tag">网络编程</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -579,7 +541,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 12.5px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 12.5px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 12.5px;">HEXO</a> <a href="/tags/Ubuntu/" style="font-size: 15px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Other/" style="font-size: 10px;">Other</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/VisualStudio/" style="font-size: 15px;">Visual Studio</a> <a href="/tags/FaceDetection/" style="font-size: 12.5px;">人脸检测</a> <a href="/tags/Technicalalk/" style="font-size: 10px;">技术杂谈</a> <a href="/tags/Algorithm/" style="font-size: 12.5px;">算法</a> <a href="/tags/ProgrammingThinking/" style="font-size: 15px;">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 15px;">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 15px;">设计模式</a>
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 12.5px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 12.5px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 12.5px;">HEXO</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Other/" style="font-size: 10px;">Other</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/VisualStudio/" style="font-size: 15px;">Visual Studio</a> <a href="/tags/FaceDetection/" style="font-size: 12.5px;">人脸检测</a> <a href="/tags/Technicalalk/" style="font-size: 10px;">技术杂谈</a> <a href="/tags/Algorithm/" style="font-size: 12.5px;">算法</a> <a href="/tags/ProgrammingThinking/" style="font-size: 15px;">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 15px;">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 15px;">设计模式</a>
     </div>
   </div>
 
@@ -589,7 +551,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -618,7 +580,7 @@
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2021 Q All Rights Reserved.
+	      &copy; 2021 Quenwaz All Rights Reserved.
         
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  
@@ -717,7 +679,7 @@
 
 
 
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 	</script>
 
 

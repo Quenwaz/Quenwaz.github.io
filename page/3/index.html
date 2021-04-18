@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <!-- 
-  <title>Page 3 | Q</title> -->
-  <title>Q</title>
+  <title>Page 3 | Quenwaz</title> -->
+  <title>Quenwaz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -12,16 +12,16 @@
   
   <meta name="description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Q">
+<meta property="og:title" content="Quenwaz">
 <meta property="og:url" content="https://quenwaz.github.io/page/3/index.html">
-<meta property="og:site_name" content="Q">
+<meta property="og:site_name" content="Quenwaz">
 <meta property="og:description" content="人生有如一股奔流，没有暗礁，激不起美丽的浪花">
 <meta property="og:locale">
 <meta property="article:author" content="Quenwa Zhang">
 <meta property="article:tag" content="C++,Boost,STL,Python,OpenCV,人脸识别,编程思想">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Q" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Quenwaz" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
   
@@ -91,7 +91,7 @@
 
           <h1 class="site-title">
             
-              <a href="/" title="Q" rel="home"> Q </a>
+              <a href="/" title="Quenwaz" rel="home"> Quenwaz </a>
             
           </h1>
           
@@ -132,7 +132,7 @@
         
           <section id="main">
   
-    <article id="post-C++11右值，右值引用与转移语义"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-blog/DevTools/利用Visual-Studio开发Linux程序"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -140,7 +140,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/18/C++11%E5%8F%B3%E5%80%BC%EF%BC%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E4%B8%8E%E8%BD%AC%E7%A7%BB%E8%AF%AD%E4%B9%89/">C++11右值，右值引用与转移语义</a>
+      <a class="article-title" href="/2019/01/06/blog/DevTools/%E5%88%A9%E7%94%A8Visual-Studio%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F/">利用Visual Studio开发Linux程序</a>
     </h1>
   
 
@@ -148,169 +148,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/01/18/C++11%E5%8F%B3%E5%80%BC%EF%BC%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E4%B8%8E%E8%BD%AC%E7%A7%BB%E8%AF%AD%E4%B9%89/" class="article-date">
-	  <time datetime="2019-01-18T11:44:33.000Z" itemprop="datePublished">January 18, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
- 
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>C++ 11引进右值引用，主要为了实现对象转移和完美转发。主要作用体现在<strong>避免对象之间无必要的拷贝，节省存储资源以及提高效率</strong>。</p>
-<h2 id="什么是右值"><a href="#什么是右值" class="headerlink" title="什么是右值"></a>什么是右值</h2><p>在C++中表达式和变量要么是左值要么是右值，通常临时对象为右值。不可利用&amp;取得内存地址的为右值。而左值在内存中有确定的存储地址。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;          <span class="comment">// 0 为右值   i为左值</span></span><br><span class="line"><span class="keyword">int</span> j = i + <span class="number">1</span>;      <span class="comment">// i+1 为右值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">test</span><span class="params">()</span></span>; </span><br><span class="line"><span class="built_in">test</span>() = <span class="number">10</span>;        <span class="comment">// test()为左值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test0</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="built_in">test0</span>();     <span class="comment">// test0() 为右值</span></span><br><span class="line"><span class="keyword">int</span> *p = &amp;<span class="built_in">test0</span>();   <span class="comment">// 错误, p为右值不能取地址</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h2><p>C++11 之前，右值不能被引用，仅能用常量引用绑定一个右值:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; test = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>上述中常量引用绑定的右值是无法改变的，但是其实右值是可以改变的：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">tagTest</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> nTest;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Set</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; t)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        nTest = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">const</span> <span class="keyword">int</span>&amp; <span class="title">Get</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> nTest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">_tagTest() 实例化一个右值(临时对象)</span></span><br><span class="line"><span class="comment">调用Set改变了这个右值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">_tagTest().<span class="built_in">Set</span>(<span class="number">1</span>).<span class="built_in">Get</span>();</span><br></pre></td></tr></table></figure>
-<p>既然右值可以改变， 那么就有了右值引用。</p>
-<h3 id="符号标识"><a href="#符号标识" class="headerlink" title="符号标识"></a>符号标识</h3><p><strong>右值引用利用两个&amp;进行标识</strong>，如:<strong>int &amp;&amp; a;</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> &amp; i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;LValue：&quot;</span> &lt;&lt; i &lt;&lt; std::endl; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> &amp;&amp; i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;RValue：&quot;</span> &lt;&lt; i &lt;&lt; std::endl; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">test</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">test</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*输出:</span></span><br><span class="line"><span class="comment">    RValue: 0</span></span><br><span class="line"><span class="comment">    LValue: 1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>上述**test(&amp;&amp; i)**中将0传入后，将变成左值。这个临时变量在传递后，变成了命名对象。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> &amp; i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;LValue：&quot;</span> &lt;&lt; i &lt;&lt; std::endl; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> &amp;&amp; i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 此处i 已经转变成左值</span></span><br><span class="line">    <span class="built_in">test</span>(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">test</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">test</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*输出:</span></span><br><span class="line"><span class="comment">    LValue: 1</span></span><br><span class="line"><span class="comment">    LValue: 1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<h2 id="转移语义"><a href="#转移语义" class="headerlink" title="转移语义"></a>转移语义</h2><p>右值引用主要用来支撑转移语义。转移语义可以将资源 ( 堆，系统对象等 ) 从一个对象转移到另一个对象，这样能够减少不必要的临时对象的创建、拷贝以及销毁，能够大幅度提高 C++ 应用程序的性能。临时对象的维护 ( 创建和销毁 ) 对性能有严重影响。</p>
-<blockquote>
-<p>转移语义是和拷贝语义相对的，可以类比文件的剪切与拷贝，当我们将文件从一个目录拷贝到另一个目录时，<strong>速度比剪切慢很多</strong>。</p>
-</blockquote>
-<p>通过转移语义，临时对象中的资源能够转移其它的对象里。</p>
-<p>如下，拷贝带来的消耗(<em>极端例子，可优化</em>):</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> param)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; param &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> param;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n = <span class="built_in">test</span>(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>分析以上代码:</p>
-<ul>
-<li>入参param进行一次拷贝</li>
-<li>返回param进行一次拷贝</li>
-<li>n = test(0)进行一次拷贝</li>
-</ul>
-<h3 id="移动构造与移动赋值操作符"><a href="#移动构造与移动赋值操作符" class="headerlink" title="移动构造与移动赋值操作符"></a>移动构造与移动赋值操作符</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">tagTest</span> &#123;</span></span><br><span class="line">	<span class="keyword">size_t</span> nLen;</span><br><span class="line">	<span class="keyword">char</span>* pData;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">IniData</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* psz)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line"></span><br><span class="line">		pData = <span class="keyword">new</span> <span class="keyword">char</span>[nLen + <span class="number">1</span>];</span><br><span class="line">		<span class="built_in">memset</span>(pData, <span class="number">0</span>, nLen + <span class="number">1</span>);</span><br><span class="line">		<span class="built_in">memcpy</span>(pData, psz, nLen);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//_tagTest() : nLen(0), pData(nullptr) &#123; std::cout &lt;&lt; &quot;默认构造&quot; &lt;&lt; std::endl; &#125;</span></span><br><span class="line"></span><br><span class="line">	_tagTest(<span class="keyword">const</span> <span class="keyword">char</span>* psz) &#123;</span><br><span class="line">		nLen = <span class="built_in">strlen</span>(psz);</span><br><span class="line">		<span class="built_in">IniData</span>(psz);</span><br><span class="line"></span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;重载构造&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	~_tagTest() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;析构&quot;</span> &lt;&lt; (pData? pData:<span class="string">&quot;&quot;</span>) &lt;&lt; std::endl;</span><br><span class="line">		<span class="keyword">if</span> (pData != <span class="literal">nullptr</span>) &#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">delete</span>[]pData;</span><br><span class="line">			pData = <span class="literal">nullptr</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		nLen = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	_tagTest(<span class="keyword">const</span> _tagTest&amp; inst)</span><br><span class="line">	&#123;</span><br><span class="line">		nLen = inst.nLen;</span><br><span class="line">		<span class="built_in">IniData</span>(inst.pData);</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;拷贝构造函数&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	_tagTest(_tagTest&amp;&amp; inst)</span><br><span class="line">	&#123;</span><br><span class="line">		nLen = inst.nLen;</span><br><span class="line">		pData = inst.pData;</span><br><span class="line">		inst.nLen = <span class="number">0</span>;</span><br><span class="line">		inst.pData = <span class="literal">nullptr</span>;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;移动构造函数&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	_tagTest&amp; <span class="keyword">operator</span>= (<span class="keyword">const</span> _tagTest&amp; inst)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span> == &amp;inst)</span><br><span class="line">			<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">		nLen = inst.nLen;</span><br><span class="line">		<span class="built_in">IniData</span>(inst.pData);</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;拷贝赋值&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	_tagTest&amp; <span class="keyword">operator</span>= (_tagTest&amp;&amp; inst)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span> == &amp;inst)</span><br><span class="line">			<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">		nLen = inst.nLen;</span><br><span class="line">		pData = inst.pData;</span><br><span class="line">		inst.nLen = <span class="number">0</span>;</span><br><span class="line">		inst.pData = <span class="literal">nullptr</span>;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;移动赋值&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    _tagTest test;</span><br><span class="line">    test = _tagTest(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">    std::vector&lt;_tagTest&gt; vecTest;</span><br><span class="line">    vecTest.<span class="built_in">push_back</span>(_tagTest(<span class="string">&quot;test&quot;</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*输出</span></span><br><span class="line"><span class="comment">移动赋值</span></span><br><span class="line"><span class="comment">移动构造函数</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="库函数std-move的使用"><a href="#库函数std-move的使用" class="headerlink" title="库函数std::move的使用"></a>库函数std::move的使用</h2><p>显然编译器只对右值引用才调用移动构造函数以及移动复制函数，而几乎我们声明的命名对象都是左值引用。当你了解某个对象将不再使用又想嫁接给另一个变量触发移动构造或是赋值，那么可以使用<strong>std::move</strong>进行转换，将左值引用转换为右值引用。</p>
-<p>示例程序:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> &amp; i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;LValue：&quot;</span> &lt;&lt; i &lt;&lt; std::endl; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> &amp;&amp; i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;RValue：&quot;</span> &lt;&lt; i &lt;&lt; std::endl; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">test</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">test</span>(std::<span class="built_in">move</span>(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*输出</span></span><br><span class="line"><span class="comment">RValue: 0;</span></span><br><span class="line"><span class="comment">RValue: 1;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<hr>
-<p><small><font color= "gray">本文<a href="https://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/" rel="tag">C++</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-利用manifest进行运行库配置"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/15/%E5%88%A9%E7%94%A8manifest%E8%BF%9B%E8%A1%8C%E8%BF%90%E8%A1%8C%E5%BA%93%E9%85%8D%E7%BD%AE/">利用manifest进行运行库配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/01/15/%E5%88%A9%E7%94%A8manifest%E8%BF%9B%E8%A1%8C%E8%BF%90%E8%A1%8C%E5%BA%93%E9%85%8D%E7%BD%AE/" class="article-date">
-	  <time datetime="2019-01-15T05:06:02.000Z" itemprop="datePublished">January 15, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
- 
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="利用manifest进行运行库配置"><a href="#利用manifest进行运行库配置" class="headerlink" title="利用manifest进行运行库配置"></a>利用manifest进行运行库配置</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>使发布的可执行程序，在windows各个版本中能正确打开程序。且无需额外安装<strong>vcredist</strong>对运行库进行部署。</p>
-<h3 id="Assembly-Manifest机制"><a href="#Assembly-Manifest机制" class="headerlink" title="Assembly Manifest机制"></a>Assembly Manifest机制</h3><p>Assembly Manifest 机制仅仅适用于项目属性运行库为<strong>Multi-threaded Debug DLL (/MDd) 或 Multi-threaded DLL (/MD)</strong>, 在Visual Studio中新建项目，默认会将.manifest文件嵌入到应用程序当中。<br>manifest文件示例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&#39;1.0&#39; encoding&#x3D;&#39;UTF-8&#39; standalone&#x3D;&#39;yes&#39;?&gt;</span><br><span class="line">&lt;assembly xmlns&#x3D;&#39;urn:schemas-microsoft-com:asm.v1&#39; manifestVersion&#x3D;&#39;1.0&#39;&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;dependentAssembly&gt;</span><br><span class="line">            &lt;assemblyIdentity type&#x3D;&#39;win32&#39; name&#x3D;&#39;Microsoft.VC80.CRT&#39; version&#x3D;&#39;8.0.50608.0&#39; processorArchitecture&#x3D;&#39;x86&#39; publicKeyToken&#x3D;&#39;1fc8b3b9a1e18e3b&#39; &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;dependentAssembly&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;&#x2F;assembly&gt;</span><br></pre></td></tr></table></figure>
-<p>因为dll是动态加载共享库，同一dll可能被多个程序所使用。而存在不同的程序调用相同的dll,而其版本存在差异，操作系统就无法分辨。如果加载了错误版本的dll，将导致程序无法正常启动。<br>而(.manifest)可以以<strong>强文件名的方式定位到所需dll所在目录</strong>,具体实现利用manifest文件中节点<br>assemblyIdentity 的属性进行组合目录名，可以到<strong>C:\Windows\WinSxS</strong>找到其中有所需的dll。</p>
-<p>另外，对于运行库dll本身存在自己的manifest清单文件描述，主要用于描述其强文件签名(hash),确保文件正确性。</p>
-<p>最后，关于系统升级dll的兼容性问题，因为系统升级可能导致其系统库版本进行升级，版本号存在变化。那么清单文件中描述的版本在新升级的系统中将无法适用，所以引进了<strong>policy的策略文件来确认映射关系</strong>进行版本重定向。具体重定向描述位置位于<strong>C:\WINDOWS\WinSxS\Policies\Policy</strong></p>
-<h4 id="运行库查找规则"><a href="#运行库查找规则" class="headerlink" title="运行库查找规则"></a>运行库查找规则</h4><p>根据MSDN的说明，在本地查找并加载遵循一下规则：</p>
-<ul>
-<li>在应用程序本地文件夹中查找名为 <assemblyName>.manifest 的清单文件。在此示例中，加载程序试图在exe所在的文件夹中查找Microsoft.VC80.CRT.manifest。如果找到该清单，加载程序将从应用程序文件夹中加载 crt dll。如果未找到 crt dll，加载将失败。</li>
-<li>尝试在 appl.exe 本地文件夹中打开文件夹 <assemblyName>，如果存在此文件夹，则从中加载清单文件 <assemblyName>.manifest。如果找到该清单，加载程序将从 <assemblyName> 文件夹中加载 crt dll。如果未找到 crt dll，加载将失败。</li>
-</ul>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>确保当前项目Runtime Library 是<strong>Multi-threaded DLL</strong>，否则无需配置。</p>
-<h4 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h4><p><strong>项目属性-&gt;清单工具-&gt;输入输出</strong>  中将<strong>清单嵌入</strong>设为<strong>否</strong>，那样就会帮你生成manifest文件而不会将它嵌入</p>
-<p>如果你需要额外的配置<br>在<strong>链接器-&gt;清单文件-&gt;附加清单依赖项</strong>中加入<br>例如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type&#x3D;&#39;win32&#39; name&#x3D;&#39;Microsoft.Windows.Common-Controls&#39; version&#x3D;&#39;6.0.0.0&#39; processorArchitecture&#x3D;&#39;X86&#39; publicKeyToken&#x3D;&#39;6595b64144ccf1df&#39; language&#x3D;&#39;*&#39;</span><br></pre></td></tr></table></figure>
-<h4 id="运行库移植"><a href="#运行库移植" class="headerlink" title="运行库移植"></a>运行库移植</h4><p>在各个版本中的vs安装目录中找到<strong>redist</strong>目录，将各个版本需要的运行库及对应的manifest(<strong>低版本存在</strong>)移动到发布的exe同级目录。</p>
-<blockquote>
-<p><strong>参考资料</strong><br/></p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/pizi0475/article/details/7791150?locationNum=9&fps=1">vc2008不安装vcredist发布程序</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaojianpitt/article/details/4269641"> Assembly Manifest</a></li>
-</ol>
-</blockquote>
-<hr>
-<p><small><font color= "gray">本文<a href="https://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/programming/">编码</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VisualStudio/" rel="tag">Visual Studio</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-利用Visual-Studio开发Linux程序"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/06/%E5%88%A9%E7%94%A8Visual-Studio%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F/">利用Visual Studio开发Linux程序</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/01/06/%E5%88%A9%E7%94%A8Visual-Studio%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F/" class="article-date">
+	<a href="/2019/01/06/blog/DevTools/%E5%88%A9%E7%94%A8Visual-Studio%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F/" class="article-date">
 	  <time datetime="2019-01-06T02:38:59.000Z" itemprop="datePublished">January 6, 2019</time>
 	</a>
 
@@ -372,11 +210,223 @@
 <!-- Table of Contents -->
 
   
+    <article id="post-blog/AutoCad/国产CAD二次开发风险评估及异同与AutoCAD"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/08/21/blog/AutoCad/%E5%9B%BD%E4%BA%A7CAD%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E5%8F%8A%E5%BC%82%E5%90%8C%E4%B8%8EAutoCAD/">国产CAD二次开发风险评估</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/08/21/blog/AutoCad/%E5%9B%BD%E4%BA%A7CAD%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E5%8F%8A%E5%BC%82%E5%90%8C%E4%B8%8EAutoCAD/" class="article-date">
+	  <time datetime="2018-08-21T13:58:32.000Z" itemprop="datePublished">August 21, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="国产CAD二次开发风险评估"><a href="#国产CAD二次开发风险评估" class="headerlink" title="国产CAD二次开发风险评估"></a>国产CAD二次开发风险评估</h2><hr>
+<h3 id="总体评估"><a href="#总体评估" class="headerlink" title="总体评估"></a>总体评估</h3><p>总体上，国产CAD提供的二次开发SDK，基本能满足现有设计软件系统二次开发需求，且开发接口差异微小。又因其对ObjectARX兼容较好，所以开发成本非常低。</p>
+<h4 id="中望CAD"><a href="#中望CAD" class="headerlink" title="- 中望CAD"></a>- 中望CAD</h4><p>中望对Open Design(以下简称OD)提供的接口做的二次封装相对浩辰更为完善，封装性较好。基本无法找到OD接口的痕迹，所以在二次开发过程中基本无异于AutoCAD。在对其进行预研过程中，所遇到的问题也相对较少，可见中望提供的SDK更为强健。</p>
+<h4 id="浩辰CAD"><a href="#浩辰CAD" class="headerlink" title="- 浩辰CAD"></a>- 浩辰CAD</h4><p>而浩辰CAD，相较于中望对OD封装较差，多半是原生OD库与接口，仅仅利用宏进行名称转换，没有进行深层封装。所以暴露的问题较多，在预研过程中遇到的问题较多，但也不影响核心功能。对其进行宏转换(替换)，或是稍作封装。基本上不会给后续开发带来问题。因OD提供支持较好。</p>
+<h3 id="预测风险"><a href="#预测风险" class="headerlink" title="预测风险"></a>预测风险</h3><h4 id="中望CAD-1"><a href="#中望CAD-1" class="headerlink" title="- 中望CAD"></a>- 中望CAD</h4><p>可能存在的预测风险，通常由部分接口(或模块)不支持引发,此类接口通常为不必须的。所以此类风险发生概率很低。以下稍作介绍：</p>
+<ul>
+<li><p><strong>不支持接口</strong></p>
+<ul>
+<li><p>acdbLoadMlineStyleFile</p>
+<p>  功能: 从文件中加载Mline样式。</p>
+<p>  现况: 现已返回null处理</p>
+</li>
+</ul>
+</li>
+<li><p><strong>不支持模块</strong></p>
+<ul>
+<li><p>DesignCenter Interface</p>
+<p>  功能: 设计中心</p>
+</li>
+<li><p>eTransmit Interface</p>
+<p>  功能: 用于将图纸打包进行网络传输</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>中望CAD基本对AutoCAD所有功能都提供支持，且接口转换较好，仅仅需要开发者对ObjectArx开发熟悉，基本对中望二次开发无碍。</p>
+<h4 id="浩辰CAD-1"><a href="#浩辰CAD-1" class="headerlink" title="- 浩辰CAD"></a>- 浩辰CAD</h4><p>经过预研过后，虽然浩辰存在一些细碎却问题，但始终不影响主体功能。只要后续开发，注重预研成果文档中的要点，基本风险较小。而可能存在的不可预知风险，可能就是因为其部分实体基类不同或是UI类基类不同而引发的问题，或是代理实体注册顺序而引发的问题。下面例举部分：</p>
+<ul>
+<li><p><strong>基类不同</strong></p>
+<ul>
+<li><strong>AcDbEntity</strong>的基类中存在亦同，其接口也有所不同，导致其为抽象类，部分接口并未实现</li>
+<li><strong>CAdUiDockControlBar</strong>基类不同，导致部分接口存在差异</li>
+<li><strong>ACDB_REGISTER_OBJECT_ENTRY_AUTO</strong> 宏提供的注册代理实体数据结构，在构建链表时没有遵循继承关系，导致代理实体注册失败。</li>
+</ul>
+</li>
+<li><p><strong>其他</strong></p>
+<ul>
+<li><strong>updateMTextAttributeDefinition</strong>返回值不同</li>
+<li><strong>AcDbIntArray</strong> 数据结构不一致</li>
+</ul>
+</li>
+</ul>
+<p>但终归，不会影响整体功能实现。开发成本和风险还是相对较小的。</p>
+<h2 id="国产CAD与AutoCAD异同"><a href="#国产CAD与AutoCAD异同" class="headerlink" title="国产CAD与AutoCAD异同"></a>国产CAD与AutoCAD异同</h2><p>国产CAD与AutoCAD在所提供的功能上差异微小。用户操作上基本相同。所以对于用户操作习惯来说，基本迁移无碍。所以对公司还是客户，迁移成本都不大。还能供用户喜好而进行更多选择。下面进行具体分析：</p>
+<ul>
+<li><p><strong>价钱方面:</strong><br>显然，不论是客户还是公司，第一个关注的是价钱。国产CAD价格多在5k~10k之间，没有超过1万元。而autocad需要1万+.</p>
+</li>
+<li><p><strong>基本功能:</strong><br>国产CAD提供了AutoCAD所有核心功能，对现有设计软件系统而言，已经满足。</p>
+</li>
+<li><p><strong>软件大小:</strong><br>国产CAD安装包仅仅200~300M上下，而AutoCAD动辄上一个G。相对来说国产CAD较为轻量。</p>
+</li>
+<li><p><strong>UI界面:</strong><br>国产CAD对其界面设计，基本与AutoCAD差不多，最大的不同就是各国产CAD对其UI由不同主题肤色。</p>
+</li>
+<li><p><strong>用户操作:</strong><br>用户操作差异性也相对较小</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Other/" rel="tag">Other</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-blog/DesignPatterns/1-重构的艺术-起步"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/08/14/blog/DesignPatterns/1-%E9%87%8D%E6%9E%84%E7%9A%84%E8%89%BA%E6%9C%AF-%E8%B5%B7%E6%AD%A5/">[1].重构的艺术--起步</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/08/14/blog/DesignPatterns/1-%E9%87%8D%E6%9E%84%E7%9A%84%E8%89%BA%E6%9C%AF-%E8%B5%B7%E6%AD%A5/" class="article-date">
+	  <time datetime="2018-08-14T14:22:43.000Z" itemprop="datePublished">August 14, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+ 
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h3><p>如果你正打算对代码进行重构，或者有重构的想法。本文及后续会给你提供一些建议，助你重构思路更为清晰。</p>
+<p>作者也是在重构过程中遇到种种困难，耗费了大量的精力与时间，却不能确定其健壮性。于是拿起书本《重构–改善既有代码的设计》，作为指南。</p>
+<p>本文及后续将提炼书本中提到的关键点以及例程。如需阅读书籍请<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/13pKEuTqUm89hpeScsPwDLg">下载</a></p>
+<h3 id="从代码开始"><a href="#从代码开始" class="headerlink" title="从代码开始"></a>从代码开始</h3><p>本实例供一个影片出租店使用的程序，计算每一位顾客的消费金额并打印详单。操作者告诉程序：顾客租了那些影片、租期多长，程序便更具租赁时间和影片类型算出费用。影片分为：普通片、儿童片和新片。除了计算费用，还需为常客计算积分，积分根据影片类型而划分。</p>
+<p><img src="data:image/png;base64,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o2bNmmnlypVaunTpFedYsmSJ7rrrLrVv317/+te/9Oyzz+r1119Xnz59FBAQoIMHD2rx4sXO/dPS0pSQkKCysjKNHj1aHTp00Jo1a/Tyyy9f0faqVasUHR1d6UtyUX8wPBsAAACA21QUt1Zr7frnKoZy9+7dW8OHD3f2UkuXZiFITk6WdGmqv8ufaa6YBnXWrFkKCwvTP//5T40ePVqpqamaOHGiS1xz5szR3XffrUOHDik2NlbFxcVKTk5Wly5dNGDAAD399NM6dOiQc/+VK1dKknr16iVvb2917dpV3333ndLS0jR58mSX+F944QX169evVt8BPAM9zQAAAADcpn379pKkffv21aqdGTNmKDAwUElJSYqOjr7mZ5jz8vIkScHBwZKkTp06SZKKi4t1/vx5l30rtvn7+zvXdenSRZIUEBAgSSorK3NuO3r0qCTp448/VnJysj7++GNJcg4zv1y3bt2uKV54PopmAAAAAG5TMRXpihUrdO7cOZdtFb3QXl5ekqRffvlFknTq1Kkr2unbt682btyo+fPn6/Tp00pMTHR5drjCf66rKHYrCtwjR45Iknx9feXj43Pd1yVJbdq0kSStWbNGGRkZLn//qUmTJrU6FzwHw7MBAAAAuE18fLy++uorff/994qJidE999yj5s2b6+DBg/rd736nJ554Qt26ddO3336rpKQkRUZGat26dVe0M3r0aIWFhTkL6mbNmrkUooGBgcrPz9f06dPVqVMnTZs2TZIUExOjZcuWacaMGRo4cKDS09MlSWPHjq31W6xHjhypFStWaMKECRo4cKC8vb2Vk5OjESNG6N57761V2/BcFM0AAAAA3KZ58+Z644039Pbbb+vzzz/Xhg0bZLVadcsttzhfijV16lS9+OKL+uabb5Sbm6u4uDjt37/fpZ2bb75Z69atU3l5uXr06KGJEye6FM1Tp07VggULlJWVpWPHjjnXP/roo5KkTz75RB999JECAgI0fvx45/raeOyxx+Tt7a3U1FSlpqbqpptuUteuXdW5c+datw3PVa8nDKuYgB6A5zFzAvrGjtwIeC5yo2eryJ9XG2oLwBwV04mZmT95phkAAKCeCQoKmhEYGPgXs+MAgMagQQzP5tdAwHNU/BoI85EbAc/hrtzo7e3d3dfXt7ekCw6HoywgIOBPBQUF/1NSUvKjW04AALgCPc0A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"></p>
+<ul>
+<li>Movie(影片)<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _h_moveie_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _h_moveie_included</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Movie</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Movie</span>(<span class="keyword">const</span> std::string&amp; title, <span class="keyword">int</span> princeCode)</span><br><span class="line">        : _title(title)</span><br><span class="line">        , _princeCode(princeCode)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPrinceCode</span><span class="params">()</span> <span class="keyword">const</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;_princeCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setPrinceCode</span><span class="params">(<span class="keyword">int</span> nValue)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;_princeCode = nValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">const</span> std::string&amp; <span class="title">getTitle</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;_title;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> CHILDRENS = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> REGULAR = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> NEW_RELEASE = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string _title;</span><br><span class="line">    <span class="keyword">int</span> _princeCode;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//_h_moveie_included</span></span></span><br></pre></td></tr></table></figure></li>
+<li>Rental(租赁)</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _h_rental_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _h_rental_included</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Movie.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rental</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Rental</span>(Movie movie, <span class="keyword">int</span> daysRented)</span><br><span class="line">        : _movie(movie)</span><br><span class="line">        , _daysRented(daysRented)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getDaysRented</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;_daysRented;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">const</span> Movie&amp;  <span class="title">getMovie</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;_movie;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Movie _movie;</span><br><span class="line">    <span class="keyword">int</span> _daysRented;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//  _h_rental_included</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Customer(顾客)</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _h_customer_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _h_customer_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Rental.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Customer</span>(<span class="keyword">const</span> std::string&amp; name)</span><br><span class="line">        :_name(name)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">typedef</span> std::shared_ptr&lt;Rental&gt; RentalPtr;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addRental</span><span class="params">(RentalPtr&amp; pRental)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;_rentals.<span class="built_in">push_back</span>(pRental);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">const</span> std::string&amp; <span class="title">getName</span><span class="params">()</span> <span class="keyword">const</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;_name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::string <span class="title">statement</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> totalAmount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> frequentRenterPoints = <span class="number">0</span>;</span><br><span class="line">        std::string result = <span class="string">&quot;Rental Record for &quot;</span> + <span class="keyword">this</span>-&gt;_name +<span class="string">&quot; \n&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> each : <span class="keyword">this</span>-&gt;_rentals)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">double</span> thisAmount = <span class="number">0</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="built_in"><span class="keyword">switch</span></span>(each-&gt;<span class="built_in">getMovie</span>().<span class="built_in">getPrinceCode</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">case</span> Movie::CHILDRENS:</span><br><span class="line">                    thisAmount += <span class="number">1.5</span>;</span><br><span class="line">                    <span class="keyword">if</span> (each-&gt;<span class="built_in">getDaysRented</span>() &gt; <span class="number">3</span>)&#123;</span><br><span class="line">                        thisAmount += (each-&gt;<span class="built_in">getDaysRented</span>() - <span class="number">3</span>) * <span class="number">1.5</span>;</span><br><span class="line">                    &#125; </span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> Movie::REGULAR:</span><br><span class="line">                    thisAmount += <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">if</span> (each-&gt;<span class="built_in">getDaysRented</span>() &gt; <span class="number">2</span>)&#123;</span><br><span class="line">                        thisAmount += (each-&gt;<span class="built_in">getDaysRented</span>() - <span class="number">2</span>) * <span class="number">1.5</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> Movie::NEW_RELEASE:</span><br><span class="line">                    thisAmount += each-&gt;<span class="built_in">getDaysRented</span>() * <span class="number">3</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">default</span>: <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            frequentRenterPoints++;</span><br><span class="line">            <span class="keyword">if</span> ((each-&gt;<span class="built_in">getMovie</span>().<span class="built_in">getPrinceCode</span>() == Movie::NEW_RELEASE) &amp;&amp; each-&gt;<span class="built_in">getDaysRented</span>() &gt; <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                frequentRenterPoints++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            result += <span class="string">&quot;\t&quot;</span> + each-&gt;<span class="built_in">getMovie</span>().<span class="built_in">getTitle</span>() + <span class="string">&quot;\t&quot;</span> + std::<span class="built_in">to_string</span>(thisAmount) + <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">            totalAmount += thisAmount;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        result += <span class="string">&quot;Amount owed is &quot;</span> + std::<span class="built_in">to_string</span>(totalAmount) + <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">        result += <span class="string">&quot;You earned &quot;</span> + std::<span class="built_in">to_string</span>(frequentRenterPoints) + <span class="string">&quot; frequent renter points&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string _name;</span><br><span class="line">    std::vector&lt;RentalPtr&gt; _rentals;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//_h_customer_included</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h3><p>在看了这一段程序后，你有什么吐槽点？或是有什么值得学习的地方？请仔细寻味一番，再继续往下看。</p>
+<ul>
+<li><p>槽点一</p>
+<p>  Customer 类中的成员方法statement太长，显然做了过多的事情。做了本该由其他类或方法做的事情。</p>
+</li>
+<li><p>槽点二</p>
+<p>  当需要以HTML格式输出详单，那么statement方法根本无法复用其任何行为。而你能做的事情就是再写一个类型HtmlStatement()方法重复statement中大多数行为。</p>
+</li>
+<li><p>槽点三</p>
+<p>  如果计费标准发生改变，那么statement()及HtmlStatement()方法都需要做出相应的改变。且必须一致。相对写一个永不需要改变的程序，你觉得此处的设计如何？</p>
+</li>
+<li><p>槽点四</p>
+<p>  当需要改变影片分类规则，这些规则会直接影响到顾客消费和常客积分点的计算方式。那么statement又要进行调整。</p>
+</li>
+</ul>
+<p>综上，我们需要调整的重点即是statement()方法。此时重构技术就粉墨登场了。</p>
+<blockquote>
+<p>如果你发现需要为程序添加一个特性，而代码结构使你无法很方便地达到目的，那就先重构那个程序，使特性添加更容易进行。</p>
+</blockquote>
+<h3 id="开始重构"><a href="#开始重构" class="headerlink" title="开始重构"></a>开始重构</h3><h4 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h4><p>重构的第一步骤永远相同，即为即将修改的代码建立一组可靠的测试环境。此步骤为必须的，在很大程度上可避免bug的入侵。可靠的测试可避免人为的错误。</p>
+<p>当前程序输出的为一个字符串，我们可以假设一些顾客,给他们租几部不同的影片然后生成字符串。作为参考进行后续测试。</p>
+<p><strong>记住，此步骤至关重要。</strong></p>
+<blockquote>
+<p>重构之前，首先检查自己是否有一套可靠的测试机制。这些测试必须有自我检验的能力。</p>
+</blockquote>
+<h4 id="分解冗长的方法"><a href="#分解冗长的方法" class="headerlink" title="分解冗长的方法"></a>分解冗长的方法</h4><p>当前例程中明显较为冗长的方法即statement()。首先需要找出代码中的部分逻辑用于提取方法。显然，代码中的<strong>switch</strong>方法提炼到独立的方法中比较合适。</p>
+<p>其次，函数中的局部变量和参数也需要关注，each和thisAmount，主要关注它是否会被修改。<strong>任何不会被修改的变量都可以被当成参数传入新的函数</strong>，至于会被修改的变量则需要格外小心。如果只有一个变量会被修改，可以把它当作返回值。<strong>尽量替换掉函数中的临时变量，而避免不断赋值过程中引起的问题</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _h_customer_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _h_customer_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Rental.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span> &#123;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">amountFor</span><span class="params">(<span class="keyword">const</span> RentalPtr&amp; pRental)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">assert</span>(!pRental);</span><br><span class="line">        <span class="keyword">double</span> dResult = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in"><span class="keyword">switch</span></span>(pRental-&gt;<span class="built_in">getMovie</span>().<span class="built_in">getPrinceCode</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">case</span> Movie::CHILDRENS:</span><br><span class="line">                dResult += <span class="number">1.5</span>;</span><br><span class="line">                <span class="keyword">if</span> (pRental-&gt;<span class="built_in">getDaysRented</span>() &gt; <span class="number">3</span>)&#123;</span><br><span class="line">                    dResult += (pRental-&gt;<span class="built_in">getDaysRented</span>() - <span class="number">3</span>) * <span class="number">1.5</span>;</span><br><span class="line">                &#125; </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> Movie::REGULAR:</span><br><span class="line">                dResult += <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span> (pRental-&gt;<span class="built_in">getDaysRented</span>() &gt; <span class="number">2</span>)&#123;</span><br><span class="line">                    dResult += (pRental-&gt;<span class="built_in">getDaysRented</span>() - <span class="number">2</span>) * <span class="number">1.5</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> Movie::NEW_RELEASE:</span><br><span class="line">                dResult += pRental-&gt;<span class="built_in">getDaysRented</span>() * <span class="number">3</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dResult;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//_h_customer_included</span></span></span><br></pre></td></tr></table></figure>
+<p>仔细阅读提取出来的<strong>amountFor</strong>方法，发现其中使用了来自Rental类的信息，却没有使用自身类Customer中的任何信息。</p>
+<p>所以，显然此方法放置在Rental中更为合适。<strong>函数应该放置在所使用数据的所属对象内</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _h_rental_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _h_rental_included</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Movie.h&quot;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rental</span>&#123;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getCharge</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">assert</span>(!pRental);</span><br><span class="line">        <span class="keyword">double</span> dResult = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in"><span class="keyword">switch</span></span>(<span class="built_in">getMovie</span>().<span class="built_in">getPrinceCode</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">case</span> Movie::CHILDRENS:</span><br><span class="line">                dResult += <span class="number">1.5</span>;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">getDaysRented</span>() &gt; <span class="number">3</span>)&#123;</span><br><span class="line">                    dResult += (<span class="built_in">getDaysRented</span>() - <span class="number">3</span>) * <span class="number">1.5</span>;</span><br><span class="line">                &#125; </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> Movie::REGULAR:</span><br><span class="line">                dResult += <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">getDaysRented</span>() &gt; <span class="number">2</span>)&#123;</span><br><span class="line">                    dResult += (<span class="built_in">getDaysRented</span>() - <span class="number">2</span>) * <span class="number">1.5</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> Movie::NEW_RELEASE:</span><br><span class="line">                dResult += <span class="built_in">getDaysRented</span>() * <span class="number">3</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dResult;</span><br><span class="line">    &#125;    </span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//_h_customer_included</span></span></span><br></pre></td></tr></table></figure>
+
+<p>接下来修改amountFor方法，直接使用迁移的方法getCharge,此处保留amountFor方法(<em>可删除此方法，直接在statement中调用getCharge</em>)的好处就是，如果多个地方调用此公用方法，那么保留会对引起变化较小。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _h_customer_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _h_customer_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Rental.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span> &#123;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">amountFor</span><span class="params">(<span class="keyword">const</span> RentalPtr&amp; pRental)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">assert</span>(!pRental);</span><br><span class="line">        <span class="keyword">return</span> pRental-&gt;<span class="built_in">getCharge</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//_h_customer_included</span></span></span><br></pre></td></tr></table></figure>
+
+<p>接下来开始提取“常客积分计算”代码。按照之前的理论，有理由将常客积分计算放置到Rental中。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _h_rental_included</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _h_rental_included</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Movie.h&quot;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rental</span>&#123;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getFrequentRenterPoints</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((<span class="built_in">getMovie</span>().<span class="built_in">getPrinceCode</span>() == Movie::NEW_RELEASE) &amp;&amp; <span class="built_in">getDaysRented</span>() &gt; <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>重构技术就是以微小的步伐修改程序，如果你犯下错误，很容易便可发现它。</p>
+</blockquote>
+<hr>
+<p><small><font color= "gray">本文<a href="http://quenwaz.github.io/">Quenwaz</a>版权所有，转载请说明出处</font></small></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/programming/">编码</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">Next</a>
   </nav>
 
 </section>
@@ -478,31 +528,7 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2021/04/03/yuque/%F0%9F%97%92%20%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92/">🗒 项目计划</a></h6>
-              <span>April 3, 2021</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2021/03/30/hello-world/">Hello World</a></h6>
-              <span>March 30, 2021</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/28/TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">TCP/IP基础知识</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/06/28/blog/NetworkProgramming/TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">TCP/IP基础知识</a></h6>
               <span>June 28, 2019</span>
             </div>
 
@@ -514,7 +540,7 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/06/15/vmware%E5%AE%89%E8%A3%85CentOS/">vmware安装CentOS</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/06/15/blog/Linux/vmware%E5%AE%89%E8%A3%85CentOS/">vmware安装CentOS</a></h6>
               <span>June 15, 2019</span>
             </div>
 
@@ -526,7 +552,7 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/01/27/%E5%86%8D%E8%B0%88%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">再谈单例模式--设计模式</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/01/27/blog/DesignPatterns/%E5%86%8D%E8%B0%88%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">再谈单例模式--设计模式</a></h6>
               <span>January 27, 2019</span>
             </div>
 
@@ -538,8 +564,32 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/01/26/%E8%AE%A4%E8%AF%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%8F%8A%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">认识内存泄漏及定位内存泄漏</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/01/26/blog/Debug/%E8%AE%A4%E8%AF%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%8F%8A%E5%AE%9A%E4%BD%8D%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">认识内存泄漏及定位内存泄漏</a></h6>
               <span>January 26, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/01/18/blog/Cpp/C++11%E5%8F%B3%E5%80%BC%EF%BC%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E4%B8%8E%E8%BD%AC%E7%A7%BB%E8%AF%AD%E4%B9%89/">C++11右值，右值引用与转移语义</a></h6>
+              <span>January 18, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/01/15/blog/DevTools/%E5%88%A9%E7%94%A8manifest%E8%BF%9B%E8%A1%8C%E8%BF%90%E8%A1%8C%E5%BA%93%E9%85%8D%E7%BD%AE/">利用manifest进行运行库配置</a></h6>
+              <span>January 15, 2019</span>
             </div>
 
           </li>
@@ -563,7 +613,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cpp/" rel="tag">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/" rel="tag">CppMetaProgramming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/" rel="tag">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/" rel="tag">Other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/" rel="tag">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudio/" rel="tag">Visual Studio</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technicalalk/" rel="tag">技术杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetworkProgramming/" rel="tag">网络编程</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MetaProgramming/" rel="tag">CppMetaProgramming</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dlib/" rel="tag">Dlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/" rel="tag">HEXO</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Other/" rel="tag">Other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket/" rel="tag">Socket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VisualStudio/" rel="tag">Visual Studio</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FaceDetection/" rel="tag">人脸检测</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technicalalk/" rel="tag">技术杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProgrammingThinking/" rel="tag">编程思想</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetworkProgramming/" rel="tag">网络编程</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DesignPatterns/" rel="tag">设计模式</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -573,7 +623,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 12.5px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 12.5px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 12.5px;">HEXO</a> <a href="/tags/Ubuntu/" style="font-size: 15px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Other/" style="font-size: 10px;">Other</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/VisualStudio/" style="font-size: 15px;">Visual Studio</a> <a href="/tags/FaceDetection/" style="font-size: 12.5px;">人脸检测</a> <a href="/tags/Technicalalk/" style="font-size: 10px;">技术杂谈</a> <a href="/tags/Algorithm/" style="font-size: 12.5px;">算法</a> <a href="/tags/ProgrammingThinking/" style="font-size: 15px;">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 15px;">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 15px;">设计模式</a>
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/MetaProgramming/" style="font-size: 12.5px;">CppMetaProgramming</a> <a href="/tags/Dlib/" style="font-size: 12.5px;">Dlib</a> <a href="/tags/HEXO/" style="font-size: 12.5px;">HEXO</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Other/" style="font-size: 10px;">Other</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Socket/" style="font-size: 10px;">Socket</a> <a href="/tags/VisualStudio/" style="font-size: 15px;">Visual Studio</a> <a href="/tags/FaceDetection/" style="font-size: 12.5px;">人脸检测</a> <a href="/tags/Technicalalk/" style="font-size: 10px;">技术杂谈</a> <a href="/tags/Algorithm/" style="font-size: 12.5px;">算法</a> <a href="/tags/ProgrammingThinking/" style="font-size: 15px;">编程思想</a> <a href="/tags/NetworkProgramming/" style="font-size: 15px;">网络编程</a> <a href="/tags/DesignPatterns/" style="font-size: 15px;">设计模式</a>
     </div>
   </div>
 
@@ -583,7 +633,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -612,7 +662,7 @@
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2021 Q All Rights Reserved.
+	      &copy; 2021 Quenwaz All Rights Reserved.
         
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  
@@ -711,7 +761,7 @@
 
 
 
-	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 	</script>
 
 
