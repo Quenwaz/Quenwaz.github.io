@@ -41,8 +41,8 @@
       
       <guid>https://quenwaz.github.io/post/linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B/</guid>
       
-        <description>&lt;p&gt;系统调用是一种软中断处理程序, 用于让程序从用户态陷入内核态, 以执行相应的操作.&lt;/p&gt;
-&lt;p&gt;例如:&lt;/p&gt;
+        <description>&lt;p&gt;系统调用是一种软中断处理程序, 用于让程序从用户态陷入内核态, 以执行相应的操作。&lt;/p&gt;
+&lt;h2 id=&#34;用例说明&#34;&gt;用例说明&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;应用程序调用系统调用接口,例如write、read等&lt;/li&gt;
 &lt;li&gt;系统调用接口将参数传递给内核态， 然后触发软中断&lt;/li&gt;
@@ -50,7 +50,8 @@
 &lt;li&gt;中断处理程序根据系统调用号， 在系统调用表中查找相应的系统调用处理函数，并执行相应的系统调用处理。&lt;/li&gt;
 &lt;li&gt;系统调用处理完后， 将结果返回给中断处理程序，然后将控制权返回到用户态。&lt;/li&gt;
 &lt;li&gt;系统调用接口将结果返回给应用程序。&lt;/li&gt;
-&lt;/ol&gt;</description>
+&lt;/ol&gt;
+</description>
       
     </item>
     
