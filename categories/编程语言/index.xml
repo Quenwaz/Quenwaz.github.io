@@ -6,7 +6,16 @@
     <description>Recent content in 编程语言 on 胸无点墨 - quenwaz&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Jan 2019 19:44:33 +0000</lastBuildDate><atom:link href="https://quenwaz.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 23:17:10 +0800</lastBuildDate><atom:link href="https://quenwaz.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数据结构之链表</title>
+      <link>https://quenwaz.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/</link>
+      <pubDate>Mon, 10 Jul 2023 23:17:10 +0800</pubDate>
+      
+      <guid>https://quenwaz.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/</guid>
+      <description>数据结构之链表 什么是链表 链表（Linked List）是一种常用的数据结构，用于存储一系列元素。与数组不同，链表中的元素不必在内存中连续存储，</description>
+    </item>
+    
     <item>
       <title>C&#43;&#43;11右值，右值引用与转移语义</title>
       <link>https://quenwaz.github.io/post/c&#43;&#43;11%E5%8F%B3%E5%80%BC%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E4%B8%8E%E8%BD%AC%E7%A7%BB%E8%AF%AD%E4%B9%89/</link>
