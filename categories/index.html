@@ -62,10 +62,12 @@
 
 <style>
   .wallpaper {
-    background-image: url('https://followingmyfeet.com/wp-content/uploads/2018/02/825_2229-HDR.jpg');
+    background: url('https://source.unsplash.com/collection/466697/1920x1080') center no-repeat,
+			    url('/image/default.jpg') center no-repeat;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+	padding: 0;
   }
 </style>
 
@@ -297,22 +299,13 @@
 
     <div id="mobile-panel">
       <style>
-        .main_background_image {
-			background: 
-				url(https://source.unsplash.com/collection/466697/1920x1080) center no-repeat,
-				url(image/default.jpg) center no-repeat;
-			background-size: cover;
-			background-attachment: fixed;
-			padding: 0;
-			
-		}
-		.main_background_image_filter{
+		.wallpaper_filter{
 			backdrop-filter : blur(0px) brightness(120%);
 			padding: 3em 0;
 		}
       </style>
-      <main id="main" class="main bg-llight wallpaper main_background_image">
-		<div class="main_background_image_filter">
+      <main id="main" class="main bg-llight wallpaper">
+		<div class="wallpaper_filter">
         
   
   
