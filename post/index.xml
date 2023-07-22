@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 胸无点墨 - quenwaz&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Jul 2023 23:17:10 +0800</lastBuildDate><atom:link href="https://quenwaz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jul 2023 21:16:02 +0800</lastBuildDate><atom:link href="https://quenwaz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker了解及基础使用篇</title>
+      <link>https://quenwaz.github.io/post/docker--%E4%BA%86%E8%A7%A3%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E7%AF%87/</link>
+      <pubDate>Tue, 18 Jul 2023 21:16:02 +0800</pubDate>
+      
+      <guid>https://quenwaz.github.io/post/docker--%E4%BA%86%E8%A7%A3%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E7%AF%87/</guid>
+      <description>Docker&amp;ndash;了解及基础使用篇 Docker 架构: Docker 包括三个基本概念: 镜像（Image）：Docker 镜像（Image），就相当于是一个 root 文</description>
+    </item>
+    
     <item>
       <title>数据结构之链表</title>
       <link>https://quenwaz.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/</link>

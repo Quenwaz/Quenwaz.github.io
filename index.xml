@@ -6,7 +6,7 @@
     <description>Recent content on 胸无点墨 - quenwaz&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Jul 2023 23:17:10 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Jul 2023 21:16:02 +0800</lastBuildDate>
     
         <atom:link href="https://quenwaz.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -30,6 +30,118 @@
 &lt;li&gt;💞️ 随时为更好的未来准备着， 期望对我感兴趣的同行联系我&lt;/li&gt;
 &lt;li&gt;📫 如果对我感兴趣， 请Email: &lt;a href=&#34;mailto:404937333@qq.com&#34;&gt;404937333@qq.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Docker了解及基础使用篇</title>
+      <link>https://quenwaz.github.io/post/docker--%E4%BA%86%E8%A7%A3%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E7%AF%87/</link>
+      <pubDate>Tue, 18 Jul 2023 21:16:02 +0800</pubDate>
+      
+      <guid>https://quenwaz.github.io/post/docker--%E4%BA%86%E8%A7%A3%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E7%AF%87/</guid>
+      
+        <description>&lt;h1 id=&#34;docker--了解及基础使用篇&#34;&gt;Docker&amp;ndash;了解及基础使用篇&lt;/h1&gt;
+&lt;h2 id=&#34;docker-架构&#34;&gt;Docker 架构:&lt;/h2&gt;
+&lt;p&gt;Docker 包括三个基本概念:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;镜像（Image）：Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:16.04 就包含了完整的一套 Ubuntu16.04 最小系统的 root 文件系统。&lt;/li&gt;
+&lt;li&gt;容器（Container）：镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。&lt;/li&gt;
+&lt;li&gt;仓库（Repository）：仓库可看成一个代码控制中心，用来保存镜像。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Docker 使用客户端-服务器 (C/S) 架构模式，使用远程API来管理和创建Docker容器。客户端及我们用到终端命令。 服务端通常为一个守护进程。&lt;/p&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;h3 id=&#34;windows&#34;&gt;Windows&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下步骤仅限于Win10系统，其他版本没做尝试&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;首先下载&lt;a href=&#34;https://docs.docker.com/desktop/install/windows-install/&#34;&gt;Docker Desktop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;开启&lt;strong&gt;Hyper-V&lt;/strong&gt;： 控制面板&amp;gt;程序&amp;gt;启用或关闭Windows功能&amp;gt;Hyper-V,选中确定即可。或者通过命令&lt;code&gt;Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All&lt;/code&gt; 也可以。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.baidu.com/s?wd=%E5%AE%89%E8%A3%85WSL2&#34;&gt;安装WSL2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;安装 Docker Desktop for Windows&lt;/li&gt;
+&lt;li&gt;输入命令&lt;code&gt;docker run hello-world&lt;/code&gt; 验证是否安装成功。首先发现没有镜像hello-world则会进行拉取， 然后运行容器打印&amp;quot;&lt;strong&gt;Hello from Docker&lt;/strong&gt;!&amp;quot;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;linux&#34;&gt;Linux&lt;/h3&gt;
+&lt;h4 id=&#34;centos&#34;&gt;CentOS&lt;/h4&gt;
+&lt;p&gt;一行命令解决安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后运行docker:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl start docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;验证安装:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo docker run hello-world
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;开启开机自启动与其他服务类似:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl enable docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;镜像管理&#34;&gt;镜像管理&lt;/h2&gt;
+&lt;h3 id=&#34;查看镜像&#34;&gt;查看镜像&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker images
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;删除镜像&#34;&gt;删除镜像&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker rmi -f 镜像名称:tag
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;创建容器并启动&#34;&gt;创建容器并启动&lt;/h2&gt;
+&lt;p&gt;基本语法如下:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;options&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; image &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;command&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;arg...&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;常用option:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-d: 后台运行&lt;/li&gt;
+&lt;li&gt;-i: 以交互模式运行容器，即通过终端进行交互， 通常与&lt;code&gt;-t&lt;/code&gt;配合使用&lt;/li&gt;
+&lt;li&gt;-t: 用于指定容器交互的终端， 一般指定为&lt;code&gt;/bin/bash&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;-p: 指定端口映射， 格式为： &lt;code&gt;宿主机端口: 容器端口&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;-e: 设置环境变量， 格式为： &lt;code&gt;变量名=变量值&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ndash;volume,-v: 挂载， 格式为： &lt;code&gt;宿主机路径:容器内路径&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ndash;name=&amp;ldquo;somename&amp;rdquo;: 为容器指定一个名称&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run -dit /bin/bash -p 6080:80 --gpus&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;all -e USER&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;ubantu -e HTTP_PASSWORD&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;ubantu -v E:&lt;span style=&#34;color:#ae81ff&#34;&gt;\e&lt;/span&gt;xchange:/dev/shm ubuntu-desktop-20.04:mod1 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上述例子实例化ubuntu-desktop-20.04:mod1镜像的一个容器， 并指定为后台运行的交互式运行。 宿主端口6080映射到80， 指定了多个环境变量，指定了挂载路径。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若想启动容器不启动可参考 &lt;strong&gt;docker create&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;删除容器&#34;&gt;删除容器&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker rm -f 容器id或名称
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;查看容器&#34;&gt;查看容器&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker ps
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看已停止容器：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker ps -a
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;启动停止重启容器&#34;&gt;启动/停止/重启容器&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;start/stop/restart 容器id或名称
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;进入正在运行的容器&#34;&gt;进入正在运行的容器&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker exec -it 容器id /bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;持久化容器&#34;&gt;持久化容器&lt;/h2&gt;
+&lt;p&gt;容器只是镜像的一个实例， 只是运行在内存中。 就好比声明类(镜像)， 实例化对象(容器)一样，而持久化容器就好比类实例序列化。&lt;/p&gt;
+&lt;p&gt;在 Docker 中，有三种方式可以将容器中的文件系统保存为镜像：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;docker commit&lt;/code&gt;：将当前容器的文件系统保存为一个新的镜像。该镜像包含容器中的所有修改，包括新创建的文件、修改的配置等，但不包括容器的状态和元数据。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker commit -a 作者  -m 提交说明  容器id  镜像名称:tag
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;docker save&lt;/code&gt;：将指定的镜像及其所有依赖镜像打包成一个 tar 文件，并导出到本地文件系统。导出的 tar 文件包含完整的镜像和依赖镜像，包括镜像的元数据和状态信息。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker save -o 指定存储到本地的文件路径  镜像名称:tag
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;docker export&lt;/code&gt;：将当前容器的文件系统打包成一个 tar 文件，并导出到本地文件系统。导出的 tar 文件包含容器中的所有文件，但不包括容器的状态和元数据。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker export -o 指定存储到本地的文件路径   容器id或名称
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上述容器的状态和元数据通常如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;运行状态：包括容器的 PID（进程 ID）、CPU 和内存使用情况、网络配置、文件系统挂载点和容器的健康状态等。&lt;/li&gt;
+&lt;li&gt;元数据：包括镜像的名称、版本、标签、创建时间、镜像 ID、容器的名称、ID、创建时间、启动命令、端口映射、环境变量、网络配置、容器的标签和注释等。&lt;/li&gt;
+&lt;li&gt;容器日志等信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;导入镜像&#34;&gt;导入镜像&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker import 本地导出的文件路径  指定镜像名称:tag
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;其他实用命令&#34;&gt;其他实用命令&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;拷贝宿主机器文件到容器中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker cp 宿主机器路径  容器id:容器中路径
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看容器中运行的进程&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker top
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
       
     </item>
