@@ -147,6 +147,65 @@
     </item>
     
     <item>
+      <title>Http之初见</title>
+      <link>https://quenwaz.github.io/post/http%E4%B9%8B%E5%88%9D%E8%A7%81/</link>
+      <pubDate>Thu, 13 Jul 2023 22:57:53 +0800</pubDate>
+      
+      <guid>https://quenwaz.github.io/post/http%E4%B9%8B%E5%88%9D%E8%A7%81/</guid>
+      
+        <description>&lt;h1 id=&#34;http之初见&#34;&gt;http之初见&lt;/h1&gt;
+&lt;h2 id=&#34;http是如何工作的&#34;&gt;HTTP是如何工作的&lt;/h2&gt;
+&lt;p&gt;首先从一个常规问题出发， 来初步了解http协议。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;当你在浏览器输入网址，回车后发生了什么？&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;域名解析：浏览器首先将链接中的域名部分解析成IP地址，以便与该网站建立连接。如果浏览器的DNS缓存中不存在该域名的IP地址，则会向本地DNS服务器发送域名解析请求。&lt;/li&gt;
+&lt;li&gt;建立TCP连接：一旦浏览器知道了服务器的IP地址，它将使用TCP协议与该服务器建立连接。该过程通常包括三次握手协议，即客户端向服务器发送SYN报文，服务器回复ACK和SYN报文，最后客户端再回复ACK报文，完成TCP连接建立。&lt;/li&gt;
+&lt;li&gt;发送HTTP请求：一旦TCP连接建立完毕，浏览器将发送HTTP请求，其中包含用户请求的资源（如HTML文件、CSS文件、JavaScript文件等）的URL、请求方法（如GET、POST等）以及其他相关信息。&lt;/li&gt;
+&lt;li&gt;服务器响应：一旦服务器收到请求，它将返回HTTP响应，其中包含请求资源的内容、状态码（如200表示成功、404表示未找到资源等）、响应头信息等。&lt;/li&gt;
+&lt;li&gt;下载资源：一旦浏览器收到HTTP响应，它将开始下载请求的资源，并在下载完成后进行解析和渲染，以便将内容呈现给用户。&lt;/li&gt;
+&lt;li&gt;断开TCP连接：一旦资源下载完成，TCP连接将被断开，并释放相关资源，包括浏览器和服务器的内存和CPU资源等。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;什么是http&#34;&gt;什么是HTTP&lt;/h2&gt;
+&lt;p&gt;HTTP（Hypertext Transfer Protocol）是一种用于在计算机网络上传输超文本（如HTML）的应用层协议。它是互联网上应用最为广泛的协议之一，用于客户端和服务器之间的通信。&lt;/p&gt;
+&lt;p&gt;HTTP基于请求/响应模型，客户端向服务器发送HTTP请求，服务器接收请求并返回HTTP响应。HTTP请求由请求头和请求体两部分组成，请求头包含请求方法、URL、协议版本、请求头字段等信息，请求体包含请求参数、请求数据等内容。HTTP响应由响应头和响应体两部分组成，响应头包含响应状态码、协议版本、响应头字段等信息，响应体包含响应数据、错误信息等内容。&lt;/p&gt;
+&lt;p&gt;HTTP协议通常&lt;strong&gt;使用TCP作为传输协议&lt;/strong&gt;，通过TCP的可靠连接来传输HTTP请求和响应。HTTP还支持加密传输，即使用HTTPS协议来进行加密通信，以提高数据的安全性。&lt;/p&gt;
+&lt;p&gt;需要注意的是，HTTP是一种&lt;strong&gt;无状态协议&lt;/strong&gt;，即服务器不会保存客户端的状态信息。为了解决这个问题，HTTP引入了Cookie和Session等机制来维护状态信息。&lt;strong&gt;Cookie是一种在客户端存储状态信息的机制，而Session是一种在服务器端存储状态信息的机制&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;http主要用途&#34;&gt;HTTP主要用途&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;通过浏览器上网：HTTP协议是Web浏览器和Web服务器之间最常用的通信协议。当用户在浏览器中输入URL或者点击链接时，浏览器会
+向Web服务器发送HTTP请求，Web服务器接收到请求后，返回HTTP响应，浏览器依据响应的内容进行页面渲染。&lt;/li&gt;
+&lt;li&gt;作为网络接口：HTTP协议也被广泛用于Web API的实现。Web API是一种通过HTTP协议提供的、供程序调用的接口，可以使不同的程序或系统之间进行数据交互和共享。&lt;/li&gt;
+&lt;li&gt;文件传输：HTTP协议也可以用于文件传输。通过HTTP协议，用户可以在Web浏览器中下载文件，也可以通过Web服务器向其他用户提供文件下载。&lt;/li&gt;
+&lt;li&gt;实时通讯：HTTP协议也可以用于实现实时通讯，例如WebRTC技术就是基于HTTP协议的实时通讯技术，它可以在浏览器中实现音视频通话、屏幕共享等功能。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;http的资源定位&#34;&gt;HTTP的资源定位&lt;/h2&gt;
+&lt;p&gt;http通过URI来定位服务器资源， 从而下载获取并解析。&lt;/p&gt;
+&lt;h3 id=&#34;uriurlurn&#34;&gt;URI/URL/URN&lt;/h3&gt;
+&lt;p&gt;服务器资源名被称为统一资源标识符(Uniform Resource Identifier, URI)。URI就像因特网上的地址一样， 在世界范围内唯一标识并定位信息资源。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;URI有两种形式， 分别称为URL和URN。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;url&#34;&gt;URL&lt;/h4&gt;
+&lt;p&gt;统一资源定位符(URL)是资源标识符最常见的形式。 大部分URL都遵循一种标准格式， 这种格式包含三个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;URL的第一部分被称为方案（scheme），说明了访问资源所使用的协议类型。 这部分通常就是HTTP协议(http://)&lt;/li&gt;
+&lt;li&gt;第二部分给出了服务器的因特网地址（如img.zcool.cn）&lt;/li&gt;
+&lt;li&gt;剩余的部分指定了Web服务器上的某个资源（如/community/018aed58a51c7ba801219c779bab27.jpg@1280w_1l_2o_100sh.jpg）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如下所示:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://img.zcool.cn/community/018aed58a51c7ba801219c779bab27.jpg@1280w_1l_2o_100sh.jpg&#34;&gt;https://img.zcool.cn/community/018aed58a51c7ba801219c779bab27.jpg@1280w_1l_2o_100sh.jpg&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;urn&#34;&gt;URN&lt;/h4&gt;
+&lt;p&gt;URI的第二种形式就是统一资源名(URN)。URN是作为特定内容的唯一名称使用的， 与目前的资源所在地无关。通过URN, 还可以用同一个名字通过多种网络访问协议来访问资源。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;URN仍处于试验阶段， 还未大范围使用。 为了更有效地工作， URN需要一个支撑架构来解析资源的位置。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>数据结构之链表</title>
       <link>https://quenwaz.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/</link>
       <pubDate>Mon, 10 Jul 2023 23:17:10 +0800</pubDate>
