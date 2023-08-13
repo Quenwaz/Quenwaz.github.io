@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 胸无点墨 - quenwaz&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 18 Jul 2023 21:16:02 +0800</lastBuildDate><atom:link href="https://quenwaz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Jul 2023 09:40:22 +0800</lastBuildDate><atom:link href="https://quenwaz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>操作系统之动态链接库</title>
+      <link>https://quenwaz.github.io/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/</link>
+      <pubDate>Sat, 29 Jul 2023 09:40:22 +0800</pubDate>
+      
+      <guid>https://quenwaz.github.io/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/</guid>
+      <description>操作系统之动态链接库 静态库 静态库也称为归档文件， 它是UNIX系统提供的第一种库。静态库带来以下好处： 可以将一组经常被用到的目标文件组织进单个</description>
+    </item>
+    
     <item>
       <title>Docker了解及基础使用篇</title>
       <link>https://quenwaz.github.io/post/docker--%E4%BA%86%E8%A7%A3%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E7%AF%87/</link>

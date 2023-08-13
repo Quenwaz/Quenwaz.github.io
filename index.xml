@@ -6,7 +6,7 @@
     <description>Recent content on 胸无点墨 - quenwaz&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 18 Jul 2023 21:16:02 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 29 Jul 2023 09:40:22 +0800</lastBuildDate>
     
         <atom:link href="https://quenwaz.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -29,6 +29,313 @@
 &lt;li&gt;🌱 我近期正在加强自己的知识体系， 并进行梳理， 包括Linux内核、Windows核心、网络通讯、图像处理、数据结构与算法&lt;/li&gt;
 &lt;li&gt;💞️ 随时为更好的未来准备着， 期望对我感兴趣的同行联系我&lt;/li&gt;
 &lt;li&gt;📫 如果对我感兴趣， 请Email: &lt;a href=&#34;mailto:404937333@qq.com&#34;&gt;404937333@qq.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>操作系统之动态链接库</title>
+      <link>https://quenwaz.github.io/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/</link>
+      <pubDate>Sat, 29 Jul 2023 09:40:22 +0800</pubDate>
+      
+      <guid>https://quenwaz.github.io/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/</guid>
+      
+        <description>&lt;h1 id=&#34;操作系统之动态链接库&#34;&gt;操作系统之动态链接库&lt;/h1&gt;
+&lt;h2 id=&#34;静态库&#34;&gt;静态库&lt;/h2&gt;
+&lt;p&gt;静态库也称为归档文件， 它是UNIX系统提供的第一种库。静态库带来以下好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以将一组经常被用到的目标文件组织进单个库文件， 这样可以使用它来构建多个可执行程序的时候无需重新编译原来的源代码文件。&lt;/li&gt;
+&lt;li&gt;链接命令变得更简单了，在链接命令行中只需指定静态库名称即可， 而无需一个个列出目标文件了。链接器知道如何搜索静态库并将可执行程序需要的对象抽取出来。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;创建和维护静态库&#34;&gt;创建和维护静态库&lt;/h3&gt;
+&lt;p&gt;静态库的名称形式为&lt;code&gt;libname.a&lt;/code&gt;。
+使用&lt;code&gt;ar&lt;/code&gt;命令能够创建和维护静态库， 其通用形式如下所示。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ar options archive object-file&amp;hellip;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;options可选项：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;r(替换): 将一个目标文件插入到归档文件中并取代同名的目标文件。如:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ar r libdemo.a mod1.o mod2.o mod3.o&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;t(目标表)：显示归档中的目标表。即显示归档文件中所有目标文件。添加&lt;code&gt;v(verbose)&lt;/code&gt; 修饰后可显示权限、大小、修改时间等属性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;d(删除)：从归档文件中删除一个模块， 如下面例子所示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ar d libdemo.a mod3.o&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;使用静态库&#34;&gt;使用静态库&lt;/h3&gt;
+&lt;p&gt;将程序与静态库链接起来存在两种方式。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在链接命令中指定静态库名称&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cc -g -c prog.c
+cc -g -o prog prog.o libdemo.a&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将静态库放在链接器能搜索到的一个目录中(如/usr/lib)， 然后使用&lt;code&gt;-l&lt;/code&gt;选项指定库名称(&lt;strong&gt;即库文件名取出来lib前缀和.a后缀&lt;/strong&gt;)。如果不是放在链接库默认的搜索目录中， 也可使用&lt;code&gt;-L&lt;/code&gt;指定链接器搜索目录。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;虽然静态库可以包含很多目标模块， 但链接器只会包含那些程序所需的模块。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;共享库&#34;&gt;共享库&lt;/h2&gt;
+&lt;p&gt;上述的静态库存在哪些缺陷呢？链接静态库的每个可执行文件都存在目标模块的副本， 存在冗余， 这种冗余存在如下缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;存储同一个目标模块的多个副本会浪费磁盘空间&lt;/li&gt;
+&lt;li&gt;由于每个程序都存在相同的目标模块副本， 在其同时运行时，将耗费系统整体虚拟内存&lt;/li&gt;
+&lt;li&gt;如果对静态库中某个目标模块进行更新，所有依赖这个目标模块的程序则需重新链接以合并这个变更。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;共享库就是设计用来解决这些缺点的。 共享库的关键思想是目标模块的单个副本由所依赖的程序所共有。 目标模块不会被复制到链接过的可执行文件中。当共享库第一次被加载到内存后， 将会被所有依赖它的进程共有。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;虽然共享库的代码是由多个进程共享的，但其中的变量却是每个使用库的进程所独有，即各自有副本。
+共享库具备下列优势：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;整个程序大小变小了。 第一个加载共享库的程序启动时会花费更多时间， 用于查找共享库并加载到内存中。&lt;/li&gt;
+&lt;li&gt;修改目标模块时， 无需重新链接程序就能看到变更。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;相对应的缺点如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;共享库在编译时必须使用为止独立的代码， 这在大多数架构上都会带来性能开销， 因为它需要使用额外的寄存器。&lt;/li&gt;
+&lt;li&gt;在运行时必须要执行符号重定位。在符号重定位期间， 需要将共享库中的每个符号(变量或函数)的引用修改成符号在虚拟内存中的实际运行时位置。所以会带来一些性能消耗。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;创建共享库&#34;&gt;创建共享库&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc -g -c -fPIC -Wall mod1.c mod2.c mod3.c
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc -g -shared -o libdemo.so mod1.o mod2.o mod3.o
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;以上用编译和构建两个步骤创建动态库。 根据惯例， 共享库的前缀为lib, &lt;strong&gt;后缀为.so(shared object)&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;位置独立的代码&#34;&gt;位置独立的代码&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;gcc -fPIC&lt;/code&gt;选项指定编译器应该生成位置独立的代码， 这会改变编译器生成执行特定操作的代码的方式， 包括访问全局变量、静态和外部变量，访问字符串常量，以及获取函数的地址。&lt;strong&gt;这些变更使得代码可以在运行时被放置在任意一个虚拟地址处&lt;/strong&gt;。这对共享库是必需的， 因为在链接时无法知道共享库代码位于内存的何处。&lt;/p&gt;
+&lt;p&gt;为了确定目标文件在编译时是否使用了&lt;code&gt;-fPIC&lt;/code&gt;选项， 可使用如下命令来检查符号表中是否存在**&lt;em&gt;GLOBAL_OFFSET_TABLE&lt;/em&gt;**&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nm mod1.o | grep _GLOBAL_OFFSET_TABLE_
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;readelf -s mod1.o | grep _GLOBAL_OFFSET_TABLE_ 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;而检查共享库则使用如下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;objdump --all-headers libdemo.so | grep TEXTREL
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;readelf -d libdemo.so | grep TEXTREL
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果以上命令存在任何输出， 则未指定&lt;code&gt;-fPIC&lt;/code&gt;编译选项&lt;/p&gt;
+&lt;h4 id=&#34;控制函数的可见性&#34;&gt;控制函数的可见性&lt;/h4&gt;
+&lt;p&gt;设计良好的共享库应该只公开那些构成其声明的应用程序二进制接口的符号(函数和变量)。理由如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;避免依赖库的调用者， 依赖了非标准接口&lt;/li&gt;
+&lt;li&gt;共享库导出的符号可能会覆盖其他共享库导出的符号&lt;/li&gt;
+&lt;li&gt;导出非必需的符号会增加在运行时虚假在动态符号表的大小&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下列技术可控制符号的导出：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用&lt;code&gt;static&lt;/code&gt;关键字,使得符号私有于一个源代码模块， 从而使得它无法被其他目标文件绑定&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;利用GCC的特性声明：&lt;code&gt;__attribute__((visibility(&amp;quot;hidden&amp;quot;)))&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;版本脚本， 利用版本脚本可精细控制符号的可见性。其编译选项为&lt;code&gt;-Wl,--version-script,scriptfile.map&lt;/code&gt;,其中的scriptfile.map即为版本脚本文件。
+如一个共享库默认导出符号: vis_common()、vis_f1()、vis_f2(), 但要求是不需要导出vis_common(), 其脚本如下:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;VER_1{
+  global:
+    vis_f1;
+    vis_f2;
+  local:
+    *;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中&lt;strong&gt;VER_1&lt;/strong&gt;是一种版本标签。&lt;strong&gt;global&lt;/strong&gt;标记出了以分号分隔的对库之外的程序可见的符号列表，&lt;strong&gt;local&lt;/strong&gt;标记出了以分号分隔的对库之外的程序隐藏的符号列表。 以上用*表示除了global中列出的符号，其他都隐藏不可见。
+如果结合&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;__asm__&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.symver xyz_old, xyz@VER_1&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;__asm__&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.symver xyz_new, xyz@VER_2&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可实现符号版本化，可易于接口升级。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;#%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%BA%93&#34;&gt;动态加载库&lt;/a&gt;中提到的引用主程序函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;static 关键词将一个符号的可见性限制在单个源代码文件中， 而hidden特性使得符号对构成共享库的所有源代码文件可见，而对库之外的文件不可见。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;初始化函数与终止函数&#34;&gt;初始化函数与终止函数&lt;/h4&gt;
+&lt;p&gt;可以定义一个或多个在共享库被加载和卸载时自动执行的函数， 这样在使用共享库时就能完成一些初始化和终止工作了。无论是自动被加载还是使用dlopen()接口显式加载，初始化函数和终止函数都会被执行。&lt;/p&gt;
+&lt;p&gt;使用gcc的&lt;code&gt;constructor&lt;/code&gt;和&lt;code&gt;destructor&lt;/code&gt;特性可定义初始化和终止函数。如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__attribute__&lt;/span&gt;((constructor)) &lt;span style=&#34;color:#a6e22e&#34;&gt;some_name_load&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;/*Initialization code*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__attribute__&lt;/span&gt;((destructor)) &lt;span style=&#34;color:#a6e22e&#34;&gt;some_name_unload&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;/*Finalization code*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在共享库被加载时将会执行constructor修饰的函数， 相反，在卸载时会调用destructor修饰的函数。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当以上特性应用于可执行执行时， 具有相同的特性， 即在主程序初始化和销毁时被调用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;共享库的soname&#34;&gt;共享库的soname&lt;/h4&gt;
+&lt;p&gt;soname即共享库的别名， 其存储在ELF文件的&lt;strong&gt;DT_SONAME&lt;/strong&gt;标签中，如果共享库拥有一个soname，那么在静态链接阶段会将soname嵌入到可执行文件中，&lt;strong&gt;动态链接阶段也会使用soname来搜索库， 而不会使用真实名称&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;soname的目的是为了提供一层间接， 使可执行程序能够在运行时使用与链接时的库不同的共享库。&lt;/p&gt;
+&lt;p&gt;使用soname的第一步是在创建共享库时指定soname:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc -g -c -fPIC -Wall mod1.c mod2.c mod3.c
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc -g -shared -Wl,-soname,libtest.so -o libdemo.so mod1.o mod2.o mod3.o
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上述例子通过编译选项&lt;code&gt;-Wl,-soname&lt;/code&gt;指示了将&lt;code&gt;libdemo.so&lt;/code&gt;取别名为&lt;code&gt;libtest.so&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;通过如下命令可查看共享库的soname:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;objdump -p libdemo.so | grep SONAME
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;readelf -d libdemo.so | grep SONAME
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;注意： 当给共享库取别名后，应建立别名共享库的软链接， 指向真实生成的共享库。如以上例子中应建立软链接libdemo.so，指向libtest.so&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;共享库版本和命名规则&#34;&gt;共享库版本和命名规则&lt;/h4&gt;
+&lt;p&gt;明确版本的概念：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;次要版本
+版本不同但相互兼容的版本称为共享库的次要版本&lt;/li&gt;
+&lt;li&gt;主要版本
+与上一个版本完全不兼容的版本即为主要版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于&lt;strong&gt;真实名称&lt;/strong&gt;、&lt;strong&gt;soname&lt;/strong&gt;以及&lt;strong&gt;链接器名称&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;真实名称的格式为： &lt;code&gt;libname.so.major-id.minor-id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;共享库的soname包括相应的真实名称中的主要版本标识符， 但不包含次要版本标识符。因此其形式为：&lt;code&gt;libname.so.major-id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;所谓链接器名称，即将可执行文件与共享库链接起来时会用到的名称。该名称不包含任何版本信息， 形如：&lt;code&gt;libname.so&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;格式&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;真实名称&lt;/td&gt;
+&lt;td&gt;libname.so.maj.min&lt;/td&gt;
+&lt;td&gt;即真实的库文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;soname&lt;/td&gt;
+&lt;td&gt;libname.so.maj&lt;/td&gt;
+&lt;td&gt;为一个软链接，库的每个主要版本都存在一个soname: 在链接时嵌入到可执行文件中，在运行时找出其指向的真实名称的库文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;链接器名称&lt;/td&gt;
+&lt;td&gt;libname.so&lt;/td&gt;
+&lt;td&gt;为一个软链接，指向soname&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;比如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc -g -c -fPIC -Wall mod1.c mod2.c mod3.c
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc -g -shared -Wl,-soname,libdemo.so.1 -o libdemo.so.1.0.1 mod1.o mod2.o mod3.o
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;以上创建了一个真实名称为&lt;strong&gt;libdemo.so.1.0.1&lt;/strong&gt;的共享库， 其soname为&lt;strong&gt;libdemo.so.1&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;接着为soname和链接器名称创建符号链接：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ln -s libdemo.so.1.0.1 libdemo.so.1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ln -s libdemo.so.1 libdemo.so
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后就可以通过链接器名称来构建可执行程序了：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc -g -Wall -o prog prog.c -L. -ldemo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;使用共享库&#34;&gt;使用共享库&lt;/h3&gt;
+&lt;p&gt;由于可执行程序不再包含目标文件副本，所以需要某种机制找出所需运行时共享库。这是通过在链接阶段将共享库的名称嵌入可执行文件中来完成的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在ELF中， 库依赖性是记录在可执行文件的DT_NEEDED标签中&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如下命令可查看：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;objdump --all-headers libdemo.so  | grep NEEDED
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;readelf -d  libdemo.so  | grep NEEDED
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如下命令可将共享库名称嵌入到可执行文件中：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc -g -Wall -o prog prog.c libdemo.so
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;此时执行程序&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./prog
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;会收到错误&lt;code&gt;./prog: error while loading shared libraries: libdemo.so: cannot open shared object file: no such file or directory&lt;/code&gt;
+解决这个问题需要做第二件事： &lt;strong&gt;动态链接&lt;/strong&gt;，即在运行时解析内嵌的库名。这个任务由动态链接器(运行时链接器)来完成。动态链接器本身也是一个共享库， 其名称为&lt;code&gt;/lib/ld-linux.so.2&lt;/code&gt;, 所有使用共享库的ELF可执行文件都会用到这个共享库。&lt;/p&gt;
+&lt;p&gt;动态链接器会检查程序所需共享库清单并使用预先定义好的规则在文件系统上找出相关库文件。如默认会在&lt;code&gt;/lib&lt;/code&gt;和&lt;code&gt;/usr/lib&lt;/code&gt;等标准目录中查找所需动态库。&lt;/p&gt;
+&lt;p&gt;通知动态链接器一个共享库位于非标准目录中的一种方法是将该目录添加到&lt;code&gt;LD_LIBRARY_PATH&lt;/code&gt;环境变量中以分号间隔。&lt;/p&gt;
+&lt;p&gt;以上错误是因为&lt;strong&gt;libdemo.so&lt;/strong&gt;文件在当前目录中，通过如下命令即可避免报错：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;LD_LIBRARY_PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;. ./prog
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;动态链接与静态链接&#34;&gt;动态链接与静态链接&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;静态链接发生在编译阶段， 即编译时，链接器ld将一个或多个编译过的目标文件组合成一个可执行文件。&lt;/li&gt;
+&lt;li&gt;而动态链接发生在运行时，在运行时， 通过运行时链接器(/lib/ld-linux.so.2)找到所需库文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;只有动态库才有动态链接， 而静态库不存在动态链接。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;动态加载库&#34;&gt;动态加载库&lt;/h4&gt;
+&lt;p&gt;动态链接器会加载程序的动态以来列表中的所有共享库， 但有时候可延迟加载库。 动态链接器通过一组API来实现。 这组API通常被称为&lt;strong&gt;dlopen API&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;dlopen API&lt;/strong&gt;能在程序运行时打开一个共享库，根据名称在库中搜索一个函数，然后调用这个函数。这个过程通常称为动态加载。其核心api如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;dlopen()打开一个共享库， 返回其句柄。同一个库被打开多次，但&lt;strong&gt;加载进内存只会执行一次， 其他都是引用计数+1&lt;/strong&gt;。当加载的库依赖其他库， 其依赖树会同时被加载。&lt;/li&gt;
+&lt;li&gt;dlsym()搜索一个符号， 返回其地址。dlsym可接受一个伪句柄， 如&lt;strong&gt;RTLD_DEFAULT&lt;/strong&gt;或&lt;strong&gt;RTLD_NEXT&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;dlclose()关闭打开的句柄。该调用会将引用计数-1，当引用计数为0时，dlclose()才会从内存中删除这个库。当进程终止时会隐式地对所有库执行dlclose()。&lt;/li&gt;
+&lt;li&gt;dlerror()返回一个错误消息字符串。&lt;/li&gt;
+&lt;li&gt;dladdr()获取与加载的符号相关的信息, 非标准接口需要使用宏_GNU_SOURCE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若想调用以上API， 必须依赖&lt;strong&gt;libdl&lt;/strong&gt;库， 即在编译时需添加选项&lt;code&gt;-ldl&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;假设使用dlopen()动态加载了一个共享库， 然后dlsym()获取到符号x(), 而在x()中调用了函数y()，通常情况下会在当前共享库或依赖的共享库中查找该符号， &lt;strong&gt;如何让其调用主程序中的函数y()&lt;/strong&gt;?&lt;/p&gt;
+&lt;p&gt;要达到上述要求， 需要在编译主程序时， 利用编译选项&lt;code&gt;-Wl,--export-dynamic&lt;/code&gt;或&lt;code&gt;-export-dynamic&lt;/code&gt;,以允许&lt;strong&gt;动态加载的库访问主程序中的全局符号&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;预加载共享库ld_preload&#34;&gt;预加载共享库:LD_PRELOAD&lt;/h4&gt;
+&lt;p&gt;有时候可以选择覆盖一些正常情况下被动态链接器按照&lt;a href=&#34;#%E5%A4%9A%E4%B8%AA%E5%90%8C%E5%90%8D%E7%AC%A6%E5%8F%B7%E4%BC%98%E5%85%88%E7%BA%A7%E9%97%AE%E9%A2%98&#34;&gt;多个同名符号优先级问题&lt;/a&gt;找出的函数， 可定义环境变量&lt;code&gt;LD_PRELOAD&lt;/code&gt;，该环境变量指示了多个由空格或冒号间隔的共享库。这些库会被优先加载。因为被优先加载， 在找某个函数名时，会优先找预加载的共享库， 因此会覆盖后续的同名函数。&lt;/p&gt;
+&lt;p&gt;利用&lt;code&gt;/etc/ld.so.preload&lt;/code&gt;文件也可完成同样的效果。若两种方式都指定， LD_PRELOAD优先级更高。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;许多监控软件或是分析软件， 利用了此特性用于分析程序。可监控C接口调用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;监控动态链接器ld_debug&#34;&gt;监控动态链接器:LD_DEBUG&lt;/h4&gt;
+&lt;p&gt;有时候需要监控动态链接器的操作来弄清楚它在搜索哪些库、哪些符号， 可通过&lt;code&gt;LD_DEBUG&lt;/code&gt;环境变量来完成。如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;LD_DEBUG&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;libs date
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到搜索依赖共享库的过程&lt;/p&gt;
+&lt;h4 id=&#34;共享库常用工具&#34;&gt;共享库常用工具&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;ldd&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ldd命令显示了一个程序运行所需的共享库。形如: &lt;code&gt;ldd prog&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;objdump&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;命令形如： &lt;code&gt;objdump -x &amp;lt;filename&amp;gt; | grep NEEDED&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;readelf&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;命令形如: &lt;code&gt;readelf -d &amp;lt;filename&amp;gt; | grep NEEDED&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;nm&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;nm可以查看动态库是否定义了某个函数接口：&lt;code&gt;nm -A libdemo.so 2&amp;gt; /dev/null | grep somefunction&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ldconfig&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ldconfig 解决了共享库两个潜在问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;共享库位于各种目录中， 动态链接器搜索加载某个库将会比较慢&lt;/li&gt;
+&lt;li&gt;当安装了新版本的库或删除了旧版本的库， soname符号链接就不是最新的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ldconfig 主要用于解决以上两个问题， 针对第一个问题， ldconfig通过搜索标准库目录(/usr/lib、/lib、/usr/local/lib及x64对应目录)和&lt;code&gt;/etc/ld.so.conf&lt;/code&gt;中列出的目录创建缓存文件&lt;code&gt;/etc/ld.so.cache&lt;/code&gt;, 通过执行&lt;code&gt;ldconfig -p&lt;/code&gt;可查看缓存的内容。&lt;strong&gt;动态链接器在运行时解析库名称会使用这个缓存文件&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;针对第二个问题，ldconfig会检查每个库的主要版本的最新次要版本以找出嵌入的soname, 然后再同一目录为每个soname创建(或更新)对应的符号链接。
+为了避免生成缓存， 可附带&lt;code&gt;-n&lt;/code&gt;选项，而为了阻止soname符号链接创建，可指定&lt;code&gt;-X&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;每当安装了一个新的库，更新或删除了一个既有库， 以及/etc/ld.so.conf中的目录列表被修改之后， 都应该运行ldconfig。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;其他方式定位共享库&#34;&gt;其他方式定位共享库&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;在静态编译阶段可以在可执行文件中插入一个在运行时搜索共享库的目录列表。需利用编译选项&lt;code&gt;-Wl,-rpath,path1;path2;path3&lt;/code&gt;, 另一种替代方案即将多个目录放置到环境变量&lt;code&gt;LD_RUN_PATH&lt;/code&gt;环境变量中。
+如何查看elf文件中的&lt;code&gt;rpath&lt;/code&gt;, 通常使用命令&lt;code&gt;objdump -p prog | grep PATH&lt;/code&gt;或&lt;code&gt;readelf -d prog | grep PATH&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在rpath中使用&lt;code&gt;$ORIGIN&lt;/code&gt;, 如&lt;code&gt;gcc -Wl,-rpath, &#39;$ORIGIN&#39;/lib&lt;/code&gt;。这样可执行文件会在其lib目录中找依赖的共享库， 而不论可执行文件在哪个目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;共享库搜索&#34;&gt;共享库搜索&lt;/h4&gt;
+&lt;p&gt;共享库搜索优先级如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在可执行文件中读取&lt;strong&gt;DT_RPATH&lt;/strong&gt;条目， 搜索其指定的目录而排除&lt;strong&gt;DT_RUNPATH&lt;/strong&gt;条目指定的目录(因DT_RUNPATH优先级低于LD_LIBRARY_PATH)。&lt;/li&gt;
+&lt;li&gt;搜索&lt;strong&gt;LD_LIBRARY_PATH&lt;/strong&gt;指定的目录&lt;/li&gt;
+&lt;li&gt;搜索可执行文件中&lt;strong&gt;DT_RUNPATH&lt;/strong&gt;条目包含的目录&lt;/li&gt;
+&lt;li&gt;搜索&lt;code&gt;/etc/ld.so.cache&lt;/code&gt;指定的目录&lt;/li&gt;
+&lt;li&gt;搜索标准目录，如/lib、/lib64、/usr/lib等&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;多个同名符号优先级问题&#34;&gt;多个同名符号优先级问题&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;如果主程序与动态库中都存在同名符号&lt;strong&gt;func&lt;/strong&gt;,那么会优先调用主程序的&lt;strong&gt;func&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;而主程序依赖的多个共享库中存在同名接口， 则以以上搜索顺序找到的第一个共享库中的符号为准&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
