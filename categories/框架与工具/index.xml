@@ -2,17 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>框架与工具 on 胸无点墨 - quenwaz&#39;s personal blog</title>
-    <link>https://quenwaz.github.io/categories/%E6%A1%86%E6%9E%B6%E4%B8%8E%E5%B7%A5%E5%85%B7/</link>
+    <link>http://localhost:1313/categories/%E6%A1%86%E6%9E%B6%E4%B8%8E%E5%B7%A5%E5%85%B7/</link>
     <description>Recent content in 框架与工具 on 胸无点墨 - quenwaz&#39;s personal blog</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 18 Jul 2023 21:16:02 +0800</lastBuildDate>
-    <atom:link href="https://quenwaz.github.io/categories/%E6%A1%86%E6%9E%B6%E4%B8%8E%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Sep 2024 22:47:15 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/%E6%A1%86%E6%9E%B6%E4%B8%8E%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CEF框架理解及应用</title>
+      <link>http://localhost:1313/post/cef%E6%A1%86%E6%9E%B6%E7%90%86%E8%A7%A3%E5%8F%8A%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Sun, 08 Sep 2024 22:47:15 +0800</pubDate>
+      <guid>http://localhost:1313/post/cef%E6%A1%86%E6%9E%B6%E7%90%86%E8%A7%A3%E5%8F%8A%E5%BA%94%E7%94%A8/</guid>
+      <description>&lt;p&gt;文章&lt;a href=&#34;https://www.cnblogs.com/quenwaz/p/18400990&#34;&gt;CEF开发环境搭建&lt;/a&gt;提到了如何配置cef windows开发环境， 接下来梳理开发cef过程中对其框架的理解。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CEF开发环境搭建</title>
+      <link>http://localhost:1313/post/cef%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Fri, 06 Sep 2024 21:25:24 +0800</pubDate>
+      <guid>http://localhost:1313/post/cef%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <description>&lt;p&gt;本文主要记录windows平台搭建cef开发环境的过程。&lt;/p&gt;&#xA;&lt;h2 id=&#34;前置条件&#34;&gt;前置条件&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Windows 操作系统&lt;/li&gt;&#xA;&lt;li&gt;vs studio / vscode&lt;/li&gt;&#xA;&lt;li&gt;cmake&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;cef-源码下载&#34;&gt;CEF 源码下载&lt;/h2&gt;&#xA;&lt;p&gt;通过github 的&lt;a href=&#34;https://github.com/chromiumembedded/cef#binary-distributions&#34;&gt;cef&lt;/a&gt;找到下载预编译好的cef链接：&lt;a href=&#34;https://cef-builds.spotifycdn.com/index.html&#34;&gt;https://cef-builds.spotifycdn.com/index.html&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Docker了解及基础使用篇</title>
-      <link>https://quenwaz.github.io/post/docker--%E4%BA%86%E8%A7%A3%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E7%AF%87/</link>
+      <link>http://localhost:1313/post/docker--%E4%BA%86%E8%A7%A3%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E7%AF%87/</link>
       <pubDate>Tue, 18 Jul 2023 21:16:02 +0800</pubDate>
-      <guid>https://quenwaz.github.io/post/docker--%E4%BA%86%E8%A7%A3%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E7%AF%87/</guid>
+      <guid>http://localhost:1313/post/docker--%E4%BA%86%E8%A7%A3%E5%8F%8A%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E7%AF%87/</guid>
       <description>&lt;h1 id=&#34;docker--了解及基础使用篇&#34;&gt;Docker&amp;ndash;了解及基础使用篇&lt;/h1&gt;&#xA;&lt;h2 id=&#34;docker-架构&#34;&gt;Docker 架构:&lt;/h2&gt;&#xA;&lt;p&gt;Docker 包括三个基本概念:&lt;/p&gt;</description>
     </item>
   </channel>
