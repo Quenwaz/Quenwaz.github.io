@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  itemscope
+  itemtype="http://schema.org/WebPage"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+          CEF开发环境搭建 - 胸无点墨 - quenwaz&#39;s personal blog
+        </title>
+    
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Quenwaz" />
+  <meta name="description" content="本文主要记录windows平台搭建cef开发环境的过程。
+前置条件 Windows 操作系统 vs studio / vscode cmake CEF 源码下载 通过github 的cef找到下载预编译好的cef链接：https://cef-builds.spotifycdn.com/index.html
+" />
+
+  <meta name="keywords" content="Quenwaz, blog, c/c&#43;&#43;" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.134.0" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/cef%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.d8d87b982993a745e5e7b6a6cbf257be8c3e82aab5e485f0908ad7e6c3501ab2.css" integrity="sha256-2Nh7mCmTp0Xl57amy/JXvow&#43;gqq15IXwkIrX5sNQGrI=" media="screen" crossorigin="anonymous">
+
+
+
+<style>
+  .wallpaper {
+    background: url('https://source.unsplash.com/collection/466697/1920x1080') center no-repeat,
+			    url('/image/default.jpg') center no-repeat;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+	padding: 0;
+  }
+</style>
+
+
+
+
+<meta property="og:url" content="http://localhost:1313/post/cef%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+  <meta property="og:site_name" content="胸无点墨 - quenwaz&#39;s personal blog">
+  <meta property="og:title" content="CEF开发环境搭建">
+  <meta property="og:description" content="本文主要记录windows平台搭建cef开发环境的过程。
+前置条件 Windows 操作系统 vs studio / vscode cmake CEF 源码下载 通过github 的cef找到下载预编译好的cef链接：https://cef-builds.spotifycdn.com/index.html">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-09-06T21:25:24+08:00">
+    <meta property="article:modified_time" content="2024-09-06T21:25:24+08:00">
+    <meta property="article:tag" content="C/C&#43;&#43;">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Windows">
+
+  <meta itemprop="name" content="CEF开发环境搭建">
+  <meta itemprop="description" content="本文主要记录windows平台搭建cef开发环境的过程。
+前置条件 Windows 操作系统 vs studio / vscode cmake CEF 源码下载 通过github 的cef找到下载预编译好的cef链接：https://cef-builds.spotifycdn.com/index.html">
+  <meta itemprop="datePublished" content="2024-09-06T21:25:24+08:00">
+  <meta itemprop="dateModified" content="2024-09-06T21:25:24+08:00">
+  <meta itemprop="wordCount" content="1109">
+  <meta itemprop="keywords" content="C/C&#43;&#43;,Linux,Windows">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CEF开发环境搭建">
+  <meta name="twitter:description" content="本文主要记录windows平台搭建cef开发环境的过程。
+前置条件 Windows 操作系统 vs studio / vscode cmake CEF 源码下载 通过github 的cef找到下载预编译好的cef链接：https://cef-builds.spotifycdn.com/index.html">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+  </head>
+  <body>
+    <div id="back-to-top"></div>
+
+    <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Quenwaz</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">类别</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">关于</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+    
+      
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+    
+
+    
+
+    
+
+
+    <header id="header" class="header">
+      <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Quenwaz
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">类别</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+    </header>
+
+    <div id="mobile-panel">
+      <style>
+		.wallpaper_filter{
+			backdrop-filter : blur(0px) brightness(120%);
+			padding: 3em 0;
+		}
+      </style>
+      <main id="main" class="main bg-llight wallpaper">
+		<div class="wallpaper_filter">
+        <div class="content-wrapper">
+    <div id="content" class="content">
+      <article class="post">
+        
+        <header class="post-header">
+          <h1 class="post-title">CEF开发环境搭建</h1>
+          
+
+          <div class="post-meta">
+  <div class="post-meta-author">
+    by
+      <a href="/about">
+        <span class="post-meta-author-name">
+          Quenwaz
+        </span>
+      </a>
+    
+  </div>
+
+  <div class="post-meta-time">
+    <time datetime="2024-09-06">
+      2024-09-06
+    </time>
+  </div>
+
+  
+
+
+  <div class="post-meta__right">
+    <span class="post-meta-more">
+        1109 words -
+        3 min read
+      </span>
+
+    <div class="post-meta-category">
+        <a href="http://localhost:1313/categories/%E6%A1%86%E6%9E%B6%E4%B8%8E%E5%B7%A5%E5%85%B7/"> 框架与工具 </a>
+          
+      </div>
+
+
+    
+    
+
+
+    
+    
+  </div>
+</div>
+
+        </header>
+
+        
+        <div class="post-content">
+          <p>本文主要记录windows平台搭建cef开发环境的过程。</p>
+<h2 id="前置条件">前置条件</h2>
+<ul>
+<li>Windows 操作系统</li>
+<li>vs studio / vscode</li>
+<li>cmake</li>
+</ul>
+<h2 id="cef-源码下载">CEF 源码下载</h2>
+<p>通过github 的<a href="https://github.com/chromiumembedded/cef#binary-distributions">cef</a>找到下载预编译好的cef链接：<a href="https://cef-builds.spotifycdn.com/index.html">https://cef-builds.spotifycdn.com/index.html</a></p>
+<p>找到对应的操作系统及cpu架构的tab页， 笔者选择的是<code>Windows 64-bit</code>, 然后在<code>Current Stable Build &gt; Standard Distribution</code>下载对应的压缩包。</p>
+<blockquote>
+<p>这个包预编译了大部分所需库，分别在<strong>Debug/Release</strong>目录中， 包括:</p>
+<ul>
+<li>libcef.dll</li>
+<li>cef_sandbox.lib</li>
+<li>&hellip;
+还包含编译<strong>libcef_dll_wrapper</strong>所需的源码及sample</li>
+</ul>
+</blockquote>
+<h2 id="libcef_dll_wrapper-编译">libcef_dll_wrapper 编译</h2>
+<p>打开<strong>cmake-gui</strong>， 选择源码目录， 选择生成目录。 <code>configure &gt; generate &gt; open project</code> 然后编译。</p>
+<h2 id="开发环境配置">开发环境配置</h2>
+<p>接下来描述的开发环境配置<strong>仅适用于cmake项目</strong></p>
+<ol>
+<li>
+<p>将预编译好的库复制出来， 包括目录为</p>
+<ul>
+<li>Debug</li>
+<li>Release
+<ul>
+<li>cef_sandbox.lib</li>
+<li>chrome_elf.dll</li>
+<li>d3dcompiler_47.dll</li>
+<li>dxcompiler.dll</li>
+<li>dxil.dll</li>
+<li>libcef.dll</li>
+<li>libcef.lib</li>
+<li>libcef_dll_wrapper.lib</li>
+<li>libcef_dll_wrapper.pdb</li>
+<li>libEGL.dll</li>
+<li>libGLESv2.dll</li>
+<li>snapshot_blob.bin</li>
+<li>v8_context_snapshot.bin</li>
+<li>vk_swiftshader.dll</li>
+<li>vk_swiftshader_icd.json</li>
+<li>vulkan-1.dll</li>
+</ul>
+</li>
+<li>Resources</li>
+</ul>
+</li>
+<li>
+<p>将cmake、include目录复制出来, cmake目录包含如下文件:</p>
+<ul>
+<li>cef_macros.cmake</li>
+<li>cef_variables.cmake</li>
+<li>FindCEF.cmake</li>
+</ul>
+</li>
+<li>
+<p>在cmake目录中新增<code>cef_dll_wrapper.cmake</code>文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span> set(<span style="color:#e6db74">CEF_CEFWRAPPER_LIB_DEBUG</span> <span style="color:#e6db74">&#34;${CEF_BINARY_DIR_DEBUG}/libcef_dll_wrapper.lib&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> set(<span style="color:#e6db74">CEF_CEFWRAPPER_LIB_RELEASE</span> <span style="color:#e6db74">&#34;${CEF_BINARY_DIR_RELEASE}/libcef_dll_wrapper.lib&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> ADD_LOGICAL_TARGET(<span style="color:#e6db74">&#34;libcef_dll_wrapper&#34;</span> <span style="color:#e6db74">&#34;${CEF_CEFWRAPPER_LIB_DEBUG}&#34;</span> <span style="color:#e6db74">&#34;${CEF_CEFWRAPPER_LIB_RELEASE}&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> ADD_LOGICAL_TARGET(<span style="color:#e6db74">&#34;libcef_lib&#34;</span> <span style="color:#e6db74">&#34;${CEF_LIB_DEBUG}&#34;</span> <span style="color:#e6db74">&#34;${CEF_LIB_RELEASE}&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> if(<span style="color:#e6db74">USE_SANDBOX</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>     <span style="color:#75715e"># Logical target used to link the cef_sandbox library.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     ADD_LOGICAL_TARGET(<span style="color:#e6db74">&#34;cef_sandbox_lib&#34;</span> <span style="color:#e6db74">&#34;${CEF_SANDBOX_LIB_DEBUG}&#34;</span> <span style="color:#e6db74">&#34;${CEF_SANDBOX_LIB_RELEASE}&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> endif()<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p><strong>ADD_LOGICAL_TARGET</strong>定义在<code>cef_macros.cmake</code>中， 主要用于添加一个imported项目。
+<strong>USE_SANDBOX</strong>定义在<code>cef_variables.cmake</code>中， 主要确定是否开启沙箱，如果开启， 将会激活<code>CEF_USE_SANDBOX</code>宏定义，此宏直接影响示例代码中关于沙箱的设置。<strong>USE_SANDBOX</strong>同时会影响与沙箱相关的library。</p>
+</li>
+<li>
+<p>修改<code>FindCEF.cmake</code>, 在文件前头添加<code>get_filename_component(CEF_ROOT ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)</code>用于动态确定环境位置。在末尾添加<code>include(&quot;cef_dll_wrapper&quot;)</code> 用于包含cef_dll_wrapper相关环境</p>
+</li>
+<li>
+<p>完成</p>
+</li>
+</ol>
+<h2 id="项目配置示例">项目配置示例</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>find_package(<span style="color:#e6db74">CEF</span> <span style="color:#e6db74">MODULE</span> <span style="color:#e6db74">REQUIRED</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>add_executable (<span style="color:#e6db74">mytarget</span> <span style="color:#e6db74">WIN32</span> <span style="color:#f92672">${</span>SOURCEFILES<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>set(<span style="color:#e6db74">CEF_TARGET_OUT_DIR</span> <span style="color:#e6db74">&#34;${CMAKE_CURRENT_BINARY_DIR}&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>SET_EXECUTABLE_TARGET_PROPERTIES(<span style="color:#e6db74">mytarget</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_compile_definitions(<span style="color:#e6db74">mytarget</span> <span style="color:#e6db74">PRIVATE</span>   <span style="color:#e6db74">UNICODE</span> <span style="color:#e6db74">_UNICODE</span> <span style="color:#e6db74">_WINDOWS</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_link_options(<span style="color:#e6db74">mytarget</span> <span style="color:#e6db74">PRIVATE</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/ENTRY:wWinMainCRTStartup</span>
+</span></span><span style="display:flex;"><span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries(<span style="color:#e6db74">mytarget</span> <span style="color:#e6db74">libcef_lib</span> <span style="color:#e6db74">libcef_dll_wrapper</span> <span style="color:#f92672">${</span>CEF_STANDARD_LIBS<span style="color:#f92672">}</span> <span style="color:#f92672">${</span>CEF_SANDBOX_STANDARD_LIBS<span style="color:#f92672">}</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>if (<span style="color:#e6db74">CMAKE_VERSION</span> <span style="color:#e6db74">VERSION_GREATER</span> <span style="color:#e6db74">3.12</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>  set_property(<span style="color:#e6db74">TARGET</span> <span style="color:#e6db74">mytarget</span> <span style="color:#e6db74">PROPERTY</span> <span style="color:#e6db74">CXX_STANDARD</span> <span style="color:#e6db74">20</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>endif()<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>if(<span style="color:#e6db74">USE_SANDBOX</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#75715e"># Logical target used to link the cef_sandbox library.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    target_link_libraries(<span style="color:#e6db74">mytarget</span> <span style="color:#e6db74">cef_sandbox_lib</span> )<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>endif()<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Add the custom manifest files to the executable.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ADD_WINDOWS_MANIFEST(<span style="color:#e6db74">&#34;${CMAKE_CURRENT_SOURCE_DIR}/winres&#34;</span> <span style="color:#e6db74">&#34;mytarget&#34;</span> <span style="color:#e6db74">&#34;exe&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Copy binary and resource files to the target output directory.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>COPY_FILES(<span style="color:#e6db74">&#34;mytarget&#34;</span> <span style="color:#e6db74">&#34;${CEF_BINARY_FILES}&#34;</span> <span style="color:#e6db74">&#34;${CEF_BINARY_DIR}&#34;</span> <span style="color:#e6db74">&#34;${CMAKE_CURRENT_BINARY_DIR}&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>COPY_FILES(<span style="color:#e6db74">&#34;mytarget&#34;</span> <span style="color:#e6db74">&#34;${CEF_RESOURCE_FILES}&#34;</span> <span style="color:#e6db74">&#34;${CEF_RESOURCE_DIR}&#34;</span> <span style="color:#e6db74">&#34;${CMAKE_CURRENT_BINARY_DIR}&#34;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h3 id="关键配置"><strong>关键配置</strong></h3>
+<ol>
+<li>
+<p>find_package(CEF MODULE REQUIRED)</p>
+</li>
+<li>
+<p>set(CEF_TARGET_OUT_DIR &ldquo;${CMAKE_CURRENT_BINARY_DIR}&rdquo;)</p>
+<p>这个设置主要是因为<code>ADD_WINDOWS_MANIFEST</code>这个宏中用到了<code>CEF_TARGET_OUT_DIR</code></p>
+</li>
+<li>
+<p>SET_EXECUTABLE_TARGET_PROPERTIES(mytarget) 主要用于设置必要的编译链接选项</p>
+</li>
+<li>
+<p>必要依赖的环境<strong>libcef_lib libcef_dll_wrapper ${CEF_STANDARD_LIBS} ${CEF_SANDBOX_STANDARD_LIBS}</strong>， <strong>之所以需要CEF_SANDBOX_STANDARD_LIBS</strong>，是因为这个宏定义了Windows必要的依赖库， 特别是<code>Delayimp.lib</code>。 否则报链接错误。</p>
+</li>
+<li>
+<p>其他没啥可提的了， COPY_FILES是必要的，方便调试运行。</p>
+</li>
+</ol>
+
+        </div>
+
+        
+        
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Quenwaz</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+      2024-09-06
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">true</span>
+  </p>
+</div>
+
+
+
+        
+        
+
+
+        <footer class="post-footer">
+          <div class="post-tags">
+              <a href="http://localhost:1313/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a>
+                <a href="http://localhost:1313/tags/linux/">Linux</a>
+                <a href="http://localhost:1313/tags/windows/">Windows</a>
+                
+            </div>
+
+
+          
+          <nav class="post-nav">
+            
+              <a class="prev" href="/post/cef%E6%A1%86%E6%9E%B6%E7%90%86%E8%A7%A3%E5%8F%8A%E5%BA%94%E7%94%A8/">
+                
+                <i class="iconfont">
+                  <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+                </i>
+                <span class="prev-text nav-default">CEF框架理解及应用</span>
+                <span class="prev-text nav-mobile">Prev</span>
+              </a>
+            
+              <a class="next" href="/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/">
+                <span class="next-text nav-default">操作系统之动态链接库</span>
+                <span class="prev-text nav-mobile">Next</span>
+                
+                <i class="iconfont">
+                  <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+                </i>
+              </a>
+          </nav>
+        </footer>
+      </article>
+
+      
+      
+
+
+      
+      
+
+
+    </div>
+
+    
+    <nav class="toc" id="toc">
+    <div class="toc-title">Table of Contents</div>
+    <div class="toc-content custom-scrollbar">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前置条件">前置条件</a></li>
+    <li><a href="#cef-源码下载">CEF 源码下载</a></li>
+    <li><a href="#libcef_dll_wrapper-编译">libcef_dll_wrapper 编译</a></li>
+    <li><a href="#开发环境配置">开发环境配置</a></li>
+    <li><a href="#项目配置示例">项目配置示例</a>
+      <ul>
+        <li><a href="#关键配置"><strong>关键配置</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </nav>
+
+
+  </div>
+		</div>
+      </main>
+
+      <footer id="footer" class="footer">
+        <style>
+.iconfont{
+	font-size: 0.5em !important;
+}
+.footer {
+    margin-top: 1em;
+}
+
+</style>
+
+<div class="icon-links">
+  
+  
+    <a href="mailto:404937333@qq.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/Quenwaz" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="http://localhost:1313/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+  
+</div>
+
+<div class="copyright">
+  
+  <span class="copyright-year">&copy;2017-2024
+    <span class="author">
+        Quenwaz
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+      </footer>
+
+      <div class="button__back-to-top">
+        <a href="#back-to-top">
+          <i class="iconfont">
+            
+            <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+          </i>
+        </a>
+      </div>
+    </div>
+    
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.832fa812189c15e3f4a3d2a3fe3db85ef7569dc2b6b60cc5bf50120ca7a3395a.js" integrity="sha256-gy&#43;oEhicFeP0o9Kj/j24XvdWncK2tgzFv1ASDKejOVo=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
