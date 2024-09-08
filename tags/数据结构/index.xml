@@ -4,17 +4,16 @@
     <title>数据结构 on 胸无点墨 - quenwaz&#39;s personal blog</title>
     <link>https://quenwaz.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
     <description>Recent content in 数据结构 on 胸无点墨 - quenwaz&#39;s personal blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Jul 2023 23:17:10 +0800</lastBuildDate><atom:link href="https://quenwaz.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 23:17:10 +0800</lastBuildDate>
+    <atom:link href="https://quenwaz.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数据结构之链表</title>
       <link>https://quenwaz.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/</link>
       <pubDate>Mon, 10 Jul 2023 23:17:10 +0800</pubDate>
-      
       <guid>https://quenwaz.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/</guid>
-      <description>数据结构之链表 什么是链表 链表（Linked List）是一种常用的数据结构，用于存储一系列元素。与数组不同，链表中的元素不必在内存中连续存储，</description>
+      <description>&lt;h1 id=&#34;数据结构之链表&#34;&gt;数据结构之链表&lt;/h1&gt;&#xA;&lt;h2 id=&#34;什么是链表&#34;&gt;什么是链表&lt;/h2&gt;&#xA;&lt;p&gt;链表（Linked List）是一种常用的数据结构，用于存储一系列元素。与数组不同，链表中的元素不必在内存中连续存储，每个元素包含一个指向下一个元素的指针，通过这些指针，就可以将一组零散的内存块串联起来，形成一个链式结构。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

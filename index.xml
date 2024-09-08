@@ -6,7 +6,7 @@
     <description>Recent content on 胸无点墨 - quenwaz&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 29 Jul 2023 09:40:22 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 08 Sep 2024 22:47:15 +0800</lastBuildDate>
     
         <atom:link href="https://quenwaz.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -155,7 +155,7 @@ cc -g -o prog prog.o libdemo.a&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可实现符号版本化，可易于接口升级。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%BA%93&#34;&gt;动态加载库&lt;/a&gt;中提到的引用主程序函数&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://quenwaz.github.io/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/#动态加载库&#34;&gt;动态加载库&lt;/a&gt;中提到的引用主程序函数&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
@@ -203,30 +203,30 @@ cc -g -o prog prog.o libdemo.a&lt;/p&gt;
 &lt;li&gt;所谓链接器名称，即将可执行文件与共享库链接起来时会用到的名称。该名称不包含任何版本信息， 形如：&lt;code&gt;libname.so&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;名称&lt;/th&gt;
-&lt;th&gt;格式&lt;/th&gt;
-&lt;th&gt;描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;真实名称&lt;/td&gt;
-&lt;td&gt;libname.so.maj.min&lt;/td&gt;
-&lt;td&gt;即真实的库文件&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;soname&lt;/td&gt;
-&lt;td&gt;libname.so.maj&lt;/td&gt;
-&lt;td&gt;为一个软链接，库的每个主要版本都存在一个soname: 在链接时嵌入到可执行文件中，在运行时找出其指向的真实名称的库文件&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;链接器名称&lt;/td&gt;
-&lt;td&gt;libname.so&lt;/td&gt;
-&lt;td&gt;为一个软链接，指向soname&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;名称&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;格式&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;真实名称&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;libname.so.maj.min&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;即真实的库文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;soname&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;libname.so.maj&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;为一个软链接，库的每个主要版本都存在一个soname: 在链接时嵌入到可执行文件中，在运行时找出其指向的真实名称的库文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;链接器名称&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;libname.so&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;为一个软链接，指向soname&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;比如：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc -g -c -fPIC -Wall mod1.c mod2.c mod3.c
@@ -279,7 +279,7 @@ cc -g -o prog prog.o libdemo.a&lt;/p&gt;
 &lt;p&gt;假设使用dlopen()动态加载了一个共享库， 然后dlsym()获取到符号x(), 而在x()中调用了函数y()，通常情况下会在当前共享库或依赖的共享库中查找该符号， &lt;strong&gt;如何让其调用主程序中的函数y()&lt;/strong&gt;?&lt;/p&gt;
 &lt;p&gt;要达到上述要求， 需要在编译主程序时， 利用编译选项&lt;code&gt;-Wl,--export-dynamic&lt;/code&gt;或&lt;code&gt;-export-dynamic&lt;/code&gt;,以允许&lt;strong&gt;动态加载的库访问主程序中的全局符号&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;预加载共享库ld_preload&#34;&gt;预加载共享库:LD_PRELOAD&lt;/h4&gt;
-&lt;p&gt;有时候可以选择覆盖一些正常情况下被动态链接器按照&lt;a href=&#34;#%E5%A4%9A%E4%B8%AA%E5%90%8C%E5%90%8D%E7%AC%A6%E5%8F%B7%E4%BC%98%E5%85%88%E7%BA%A7%E9%97%AE%E9%A2%98&#34;&gt;多个同名符号优先级问题&lt;/a&gt;找出的函数， 可定义环境变量&lt;code&gt;LD_PRELOAD&lt;/code&gt;，该环境变量指示了多个由空格或冒号间隔的共享库。这些库会被优先加载。因为被优先加载， 在找某个函数名时，会优先找预加载的共享库， 因此会覆盖后续的同名函数。&lt;/p&gt;
+&lt;p&gt;有时候可以选择覆盖一些正常情况下被动态链接器按照&lt;a href=&#34;https://quenwaz.github.io/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/#多个同名符号优先级问题&#34;&gt;多个同名符号优先级问题&lt;/a&gt;找出的函数， 可定义环境变量&lt;code&gt;LD_PRELOAD&lt;/code&gt;，该环境变量指示了多个由空格或冒号间隔的共享库。这些库会被优先加载。因为被优先加载， 在找某个函数名时，会优先找预加载的共享库， 因此会覆盖后续的同名函数。&lt;/p&gt;
 &lt;p&gt;利用&lt;code&gt;/etc/ld.so.preload&lt;/code&gt;文件也可完成同样的效果。若两种方式都指定， LD_PRELOAD优先级更高。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;许多监控软件或是分析软件， 利用了此特性用于分析程序。可监控C接口调用。&lt;/p&gt;
@@ -365,7 +365,7 @@ cc -g -o prog prog.o libdemo.a&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;首先下载&lt;a href=&#34;https://docs.docker.com/desktop/install/windows-install/&#34;&gt;Docker Desktop&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;开启&lt;strong&gt;Hyper-V&lt;/strong&gt;： 控制面板&amp;gt;程序&amp;gt;启用或关闭Windows功能&amp;gt;Hyper-V,选中确定即可。或者通过命令&lt;code&gt;Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All&lt;/code&gt; 也可以。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.baidu.com/s?wd=%E5%AE%89%E8%A3%85WSL2&#34;&gt;安装WSL2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.baidu.com/s?wd=安装WSL2&#34;&gt;安装WSL2&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;安装 Docker Desktop for Windows&lt;/li&gt;
 &lt;li&gt;输入命令&lt;code&gt;docker run hello-world&lt;/code&gt; 验证是否安装成功。首先发现没有镜像hello-world则会进行拉取， 然后运行容器打印&amp;quot;&lt;strong&gt;Hello from Docker&lt;/strong&gt;!&amp;quot;&lt;/li&gt;
 &lt;/ol&gt;
